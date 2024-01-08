@@ -1,0 +1,227 @@
+msgid "Главная"
+msgstr "Main"
+
+msgid "Пожалуйста, подождите"
+msgstr ""
+
+msgid "Наш менеджер свяжется с Вами"
+msgstr ""
+
+msgid "Пожалуйста, представьтесь"
+msgstr ""
+
+msgid "Введите имя"
+msgstr ""
+
+msgid "Ваш номер телефона"
+msgstr ""
+
+msgid "Введите телефон"
+msgstr ""
+
+msgid "Отправить заявку"
+msgstr ""
+
+msgid "Нажимая кнопку «Отправить» вы подтверждаете свое согласие на <span>обработку</span> персональных данных"
+msgstr ""
+
+msgid "Жилые комплексы"
+msgstr ""
+
+msgid "Коммерция"
+msgstr ""
+
+msgid "Новости"
+msgstr ""
+
+msgid "Акции"
+msgstr ""
+
+msgid "О компании"
+msgstr ""
+
+msgid "Карьера"
+msgstr ""
+
+msgid "Контакты"
+msgstr ""
+
+msgid "Все права защищены"
+msgstr ""
+
+msgid "Разработка сайтов в <span>AstanaCreative.kz</span>"
+msgstr ""
+
+msgid "Появились вопросы"
+msgstr ""
+
+msgid "Оставьте свой телефон, и мы с вами свяжемся"
+msgstr ""
+
+msgid "Даю согласие на <i>обработку</i> персональных данных"
+msgstr ""
+
+msgid "Наши проекты"
+msgstr ""
+
+msgid "Все"
+msgstr ""
+
+msgid "В продаже"
+msgstr ""
+
+msgid "Перспективные"
+msgstr ""
+
+msgid "Реализованные"
+msgstr ""
+
+msgid "Город"
+msgstr ""
+
+msgid "Расположение"
+msgstr ""
+
+msgid "Кол-во комнат"
+msgstr ""
+
+msgid "Применить фильтр"
+msgstr ""
+
+msgid "Оставить заявку"
+msgstr ""
+
+msgid "Способы покупки"
+msgstr ""
+
+msgid "Все новости"
+msgstr ""
+
+msgid "Все акции"
+msgstr ""
+
+msgid "О застройщике"
+msgstr ""
+
+msgid "Подробнее"
+msgstr ""
+
+msgid "Реализованные проекты"
+msgstr ""
+
+msgid "Жизнь в Altyn Uia"
+msgstr ""
+
+msgid "Мы в Instagram"
+msgstr ""
+
+msgid "Результаты поиска"
+msgstr ""
+
+msgid "Срок сдачи"
+msgstr ""
+
+msgid "Стоимость"
+msgstr ""
+
+msgid "Адрес"
+msgstr ""
+
+msgid "Класс"
+msgstr ""
+
+msgid "Планировки"
+msgstr ""
+
+msgid "Карточка проекта"
+msgstr ""
+
+msgid "Жилой комплекс"
+msgstr ""
+
+msgid "Общая информация"
+msgstr ""
+
+msgid "Класс ЖК"
+msgstr ""
+
+msgid "Площадь квартир"
+msgstr ""
+
+msgid "Этажность"
+msgstr ""
+
+msgid "Количество очередей"
+msgstr ""
+
+msgid "Высота потолков"
+msgstr ""
+
+msgid "Паркинг"
+msgstr ""
+
+msgid "О проекте"
+msgstr ""
+
+msgid "Локация"
+msgstr ""
+
+msgid "Преимущества"
+msgstr ""
+
+msgid "Благоустройство"
+msgstr ""
+
+msgid "Записаться на консультацию"
+msgstr ""
+
+msgid "Выбрать квартиру"
+msgstr ""
+
+msgid "очередь"
+msgstr ""
+
+msgid "комнатные"
+msgstr ""
+
+msgid "Поделиться в соц. сетях"
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""

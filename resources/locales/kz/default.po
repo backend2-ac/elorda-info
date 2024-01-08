@@ -1,0 +1,77 @@
+msgid "Главная"
+msgstr "Басты бет"
+
+msgid "Контакты"
+msgstr "Байланыс"
+
+msgid "Карта сайта"
+msgstr "Сайт картасы"
+
+msgid "О проекте"
+msgstr "Жоба жайлы"
+
+msgid "Реклама"
+msgstr "Жарнама"
+
+msgid "Все права защищены"
+msgstr "Барлық құқықтар сақталған"
+
+msgid "Разработка сайтов в"
+msgstr "Сайтты әзірлеген"
+
+msgid "Важное"
+msgstr "Маңызды"
+
+msgid "Новости"
+msgstr "Жаңалықтар"
+
+msgid "Популярное"
+msgstr "Танымал"
+
+msgid "Назад"
+msgstr "Артқа"
+
+msgid "Вперед"
+msgstr "Алға"
+
+msgid "Теги"
+msgstr "Тегтер"
+
+msgid "Подписаться на Telegram"
+msgstr "Telegram-ға жазылу"
+
+msgid "Подписаться на Instagram"
+msgstr "Instagram-ға жазылу"
+
+msgid "Материалы по теме"
+msgstr "Тақырып материалдары"
+
+msgid "Об авторе"
+msgstr "Автор жайлы"
+
+msgid "Должность"
+msgstr "Лауазымы"
+
+msgid "Образование"
+msgstr "Білімі"
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""

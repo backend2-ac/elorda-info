@@ -1,0 +1,179 @@
+/* Указываем box sizing */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+ul[class],
+ol[class] {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1;
+    background: rgba(22, 22, 22, 1);
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+}
+
+ul[class],
+ol[class] {
+    list-style: none;
+}
+
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+article>*+* {
+    margin-top: 1em;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    padding: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 10px;
+    width: 1530px;
+}
+
+@media(max-width: 1920px) {
+    .container {
+        width: 1530px;
+    }
+}
+
+@media(max-width: 1650px) {
+    .container {
+        width: 1430px;
+    }
+}
+
+@media(max-width: 1550px) {
+    .container {
+        width: 1330px;
+    }
+}
+
+@media(max-width: 1450px) {
+    .container {
+        width: 1230px;
+    }
+}
+
+@media(max-width: 1350px) {
+    .container {
+        width: 1130px;
+    }
+}
+
+@media(max-width: 1250px) {
+    .container {
+        width: 1030px;
+    }
+}
+
+@media(max-width: 1150px) {
+    .container {
+        width: 930px;
+    }
+}
+
+@media(max-width: 992px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Light.eot');
+    src: local('☺'), url('../fonts/Roboto-Light.ttf') format('truetype'), url('../fonts/Roboto-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.eot');
+    src: local('☺'), url('../fonts/Roboto-Regular.ttf') format('truetype'), url('../fonts/Roboto-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Medium.eot');
+    src: local('☺'), url('../fonts/Roboto-Medium.ttf') format('truetype'), url('../fonts/Roboto-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Bold.eot');
+    src: local('☺'), url('../fonts/Roboto-Bold.ttf') format('truetype'), url('../fonts/Roboto-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Amster';
+    src: url('../fonts/amsterdamdecotwo.ttf');
+    src: local('☺'), url('../fonts/amsterdamdecotwo.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}

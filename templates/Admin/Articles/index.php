@@ -1,0 +1,134 @@
+<?php 
+  $langs = ['ru', 'kz', 'en']; 
+?>
+
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Статьи</h1>
+      </div>
+      <div class="col-sm-6"></div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+
+    <form class="form_cols" action="/admin/articles?test=test" method="GET" onsubmit="submitForm();">
+      
+      <div class="form-group col_2">
+        <label for="inputTitle">Название</label>
+        <?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'value' => $title)); ?>
+      </div>
+
+      <div class="form-group col_2">
+        <label for="inputAuthorId">Автор</label>
+        <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'value' => $author_id, 'empty' => 'Все')); ?>
+      </div>
+
+      <div class="form-group col_4">
+        <label for="inputViewsSort">Просмотры</label>
+        <select id="inputViewsSort" class="form-control" name="views_sort">
+          <option value="">Все</option>
+          <option value="100" <?= ($views_sort == 100) ? 'selected' : '' ?> >0 - 100</option>
+          <option value="500" <?= ($views_sort == 500) ? 'selected' : '' ?> >100 - 500</option>
+          <option value="1000" <?= ($views_sort == 1000) ? 'selected' : '' ?> >500 - 1 000</option>
+          <option value="1001" <?= ($views_sort == 1001) ? 'selected' : '' ?> >1 000 и больше</option>
+        </select>
+      </div>
+
+      <div class="submit_row form-group">
+        <?php echo $this->Form->button('Поиск', array('class' => 'btn btn-success')); ?>
+        <a href="/admin/articles?test=test" class="btn btn-danger">Сбросить</a>
+      </div>
+
+    </form>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Статьи</h3>
+      <div class="card-tools">
+        <a href="/admin/articles/add" class="btn btn-success">Добавить новый материал</a>
+      </div>
+    </div>
+    <div class="card-body p-0">
+    <?php if(!empty($data)): ?>
+      <table class="table table-striped projects">
+        <thead>
+            <tr>
+                <th style="width: 1%">ID</th>
+                <th style="width: 8%">Название</th>
+                <th style="width: 5%">Категория</th>
+                <th style="width: 5%">Картинка</th>
+                <th style="width: 5%">Дата</th>
+                <th style="width: 5%; text-align: right;">Редактирование</th>
+            </tr>
+        </thead>
+        <tbody>
+         	<?php foreach($data as $item): ?>
+        		<tr>
+        			<td>
+        				<?=$item['id']?>
+        			</td>
+              <td>
+                <?php foreach( $langs as $index => $key ): ?>
+                  <?php if( isset($item['_translations'][$key]) && $item['_translations'][$key]['title'] ): ?>
+                    <p> <b><?=$key?>:</b> <?= $item['_translations'][$key]['title'] ?></p>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+                <p><b>Просмотров:</b> <?= number_format($item['views'], 0, '', ' ') ?></p>
+              </td>
+              <td>
+                <?= $categories[$item['category_id']] ?>
+                <?php if( $item['rubric'] ): ?>
+                  / <?= $item['rubric']['title'] ?>
+                <?php endif; ?>
+              </td>
+        			<td>
+                <img src="/img/articles/thumbs/<?= $item['img'] ?>" alt="" width="150">
+              </td>
+              <td>
+        				<?= $this->Time->format($item['date'], 'dd.MM.yyyy HH:mm') ?>
+        			</td>
+        			<td class="project-actions text-right">
+        				<a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>?lang=ru">
+                  <i class="fas fa-pencil-alt"></i> rus
+                </a>
+                <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>?lang=kz">
+                  <i class="fas fa-pencil-alt"></i> kaz
+                </a>
+        				<?php echo $this->Form->postLink('Удалить', "/admin/articles/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
+        			</td>
+        		</tr>
+        	<?php endforeach ?>
+        </tbody>
+      </table>
+
+    <?php else: ?>
+      <div class="emty_data">
+        К сожалению в данном разделе еще не добавлена информация...
+      </div> 
+    <?php endif ?>
+    </div>
+  </div>
+
+</section>
+
+<ul class="pagination">
+  <?php 
+
+    $paginator_query = $this->request->getQuery();
+    unset($paginator_query['page']);
+
+    $this->Paginator->options([
+        'url' => [
+            'lang' => $l,
+            '?' => $paginator_query,
+        ]
+    ]);
+    echo $this->Paginator->numbers([
+      'first' => 1, 'last' => 1, 'modulus' => 2, 
+    ]); 
+  ?>
+</ul>

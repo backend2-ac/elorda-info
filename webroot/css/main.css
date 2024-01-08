@@ -1,0 +1,80 @@
+@font-face {
+    font-family: "Bebas Neue";
+    font-weight: 400;
+    src: url("../fonts/BebasNeue-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("../fonts/NotoSans-Regular.ttf") format("opentype");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 10px;
+    width: 1600px;
+}
+
+a {
+    cursor: pointer;
+}
+
+@media(max-width: 1920px) {
+    .container {
+        width: 1600px;
+    }
+}
+
+@media(max-width: 1650px) {
+    .container {
+        width: 1360px;
+    }
+}
+
+@media(max-width: 1460px) {
+    .container {
+        width: 1260px;
+    }
+}
+
+@media(max-width: 1360px) {
+    .container {
+        width: 1160px;
+    }
+}
+
+@media(max-width: 1260px) {
+    .container {
+        width: 1060px;
+    }
+}
+
+@media (max-width: 1160px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media(max-width: 992px) {
+    .container {
+        width: 100%;
+    }
+}
