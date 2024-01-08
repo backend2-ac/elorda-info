@@ -71,7 +71,7 @@ class AppController extends Controller
                 'action' => 'index'
             ],
             'logoutRedirect' => [
-                'controller' => 'Admin', 
+                'controller' => 'Admin',
                 'action' => 'index'
             ],
         ]);
@@ -377,11 +377,11 @@ class AppController extends Controller
 
         protected function _getFullCategories(){
             $cur_lang = Configure::read('Config.lang');
-
+            $locale = $cur_lang == 'kz' ? 'kk' : 'ru';
             $full_categories = Cache::read('full_categories_'.$cur_lang, 'eternal');
             if( !$full_categories ){
                 $categories = $this->Categories->find('all')
-                    ->where([$this->Categories->translationField('title').' is not' => null])
+                    ->where(['locale' => $locale, 'title IS NOT NULL'])
                     ->orderDesc('item_order')
                     ->toList();
 

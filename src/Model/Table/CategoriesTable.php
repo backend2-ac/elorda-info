@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Model\Table;
 
@@ -12,16 +12,6 @@ class CategoriesTable extends Table{
 		$this->setTable('categories');
 
 		$this->hasMany('Articles');
-
-		$this->addBehavior('Translate', [
-			'fields' => [
-				'title', 
-				'meta_title', 
-				'meta_keywords', 
-				'meta_description', 
-			],
-			'allowEmptyTranslations' => false
-		]);
 
 		$this->addBehavior('Timestamp', [
             'events' => [
