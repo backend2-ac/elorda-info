@@ -55,23 +55,47 @@ msgstr "Лауазымы"
 msgid "Образование"
 msgstr "Білімі"
 
-msgid ""
-msgstr ""
+msgid "Актуально"
+msgstr "Өзекті"
 
-msgid ""
-msgstr ""
+msgid "Читать далее"
+msgstr "Толығырақ оқу"
 
-msgid ""
-msgstr ""
+msgid "Новости столицы"
+msgstr "Елорда жаңалықтары"
 
-msgid ""
-msgstr ""
+msgid "На страницу новостей столицы"
+msgstr "Елорда жаңалықтары бетіне өту"
 
-msgid ""
-msgstr ""
+msgid "Политика"
+msgstr "Саясат"
 
-msgid ""
-msgstr ""
+msgid "На страницу политики"
+msgstr "Саясат жаңалықтары бетіне өту"
 
-msgid ""
-msgstr ""
+msgid "Культура"
+msgstr "Мәдениет"
+
+msgid "На страницу культуры"
+msgstr "Мәдениет жаңалықтары бетіне өту"
+
+msgid "Герои столицы"
+msgstr "Елорда үздіктері"
+
+msgid "На страницу героев столицы"
+msgstr "Елорда үздіктері бетіне өту"
+
+msgid "Культура"
+msgstr "Мәдениет"
+
+msgid "Культура"
+msgstr "Мәдениет"
+
+msgid "Культура"
+msgstr "Мәдениет"
+
+msgid "Культура"
+msgstr "Мәдениет"
+
+msgid "Культура"
+msgstr "Мәдениет"

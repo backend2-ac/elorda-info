@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
 use Cake\Validation\Validator;
 use Cake\I18n\I18n;
 
@@ -31,7 +31,7 @@ class CategoriesController extends AppController{
             'limit' => $per_page,
         ];
 
-        $data = $this->$model->find('translations') 
+        $data = $this->$model->find()
             ->orderDesc('item_order')
             ->limit($per_page)->offset($offset)
             ->toList();
@@ -41,7 +41,7 @@ class CategoriesController extends AppController{
         $this->set('pagination', $this->paginate(
             $this->$model->find('all')
             ->order([$model.'.item_order' => 'DESC'])
-            ->limit($per_page), 
+            ->limit($per_page),
             $pag_settings
         ));
     }
@@ -103,13 +103,13 @@ class CategoriesController extends AppController{
         $model = 'Categories';
         date_default_timezone_set('Asia/Almaty');
 
-        if(isset($_GET['lang']) && $_GET['lang'] == 'kz'){
-            $this->$model->setLocale('kz');
-        }elseif(isset($_GET['lang']) && $_GET['lang'] == 'en'){
-            $this->$model->setLocale('en');
-        }else{
-            $this->$model->setLocale('ru');
-        }
+//        if(isset($_GET['lang']) && $_GET['lang'] == 'kz'){
+//            $this->$model->setLocale('kz');
+//        }elseif(isset($_GET['lang']) && $_GET['lang'] == 'en'){
+//            $this->$model->setLocale('en');
+//        }else{
+//            $this->$model->setLocale('ru');
+//        }
 
         $data = $this->$model->get($item_id);
 
@@ -169,7 +169,7 @@ class CategoriesController extends AppController{
         $slug = $slug . '_' . $slug_date;
         return $slug;
     }
-    
+
 }
 
 

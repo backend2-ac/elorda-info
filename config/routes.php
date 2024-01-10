@@ -48,7 +48,7 @@ $routes->setRouteClass(DashedRoute::class);
 
 // Route static method
 Router::connect('/second-route', [
-    'controller' => 'First', 
+    'controller' => 'First',
     'action' => 'secondRoute',
 ]);
 
@@ -157,7 +157,57 @@ $builder->connect('/redactor/*', ['controller' => 'Articles', 'action' => 'redac
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
+    $builder->connect('/novosti-stolicy-ru', ['controller' => 'Articles', 'action' => 'index', 'novosti-stolicy-ru'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+    $builder->connect('/novosti-stolicy-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
 
+    $builder->connect('/politika-ru', ['controller' => 'Articles', 'action' => 'index', 'politika-ru']);
+    $builder->connect('/politika-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/sotsium-ru', ['controller' => 'Articles', 'action' => 'index', 'sotsium-ru']);
+    $builder->connect('/sotsium-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/ekonomika-ru', ['controller' => 'Articles', 'action' => 'index', 'ekonomika-ru']);
+    $builder->connect('/ekonomika-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/sport-ru', ['controller' => 'Articles', 'action' => 'index', 'sport-ru']);
+    $builder->connect('/sport-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/kultura-ru', ['controller' => 'Articles', 'action' => 'index', 'kultura-ru']);
+    $builder->connect('/kultura-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/raznoe-ru', ['controller' => 'Articles', 'action' => 'index', 'raznoe-ru']);
+    $builder->connect('/raznoe-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/mnenie-ru', ['controller' => 'Articles', 'action' => 'index', 'mnenie-ru']);
+    $builder->connect('/mnenie-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/naznacheniya-ru', ['controller' => 'Articles', 'action' => 'index', 'naznacheniya-ru']);
+    $builder->connect('/naznacheniya-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/geroi-stolicy-ru', ['controller' => 'Articles', 'action' => 'index', 'raznoe']);
+    $builder->connect('/geroi-stolicy-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
 
     $builder->connect('/news', ['controller' => 'Articles', 'action' => 'index', 'news'])
         ->setPatterns(['lang' => 'ru|kz|en'])
@@ -215,19 +265,15 @@ $builder->connect('/redactor/*', ['controller' => 'Articles', 'action' => 'redac
          $builder->connect('/get/article/*', ['controller' => 'Articles', 'action' => 'loadingview'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);;
-        
-    $builder->connect('/news-capital', ['controller' => 'Articles', 'action' => 'index', 'news-capital']);
-    $builder->connect('/news-capital/*', ['controller' => 'Articles', 'action' => 'view']);
-    
-    $builder->connect('/politika', ['controller' => 'Articles', 'action' => 'index', 'politika']);
-    $builder->connect('/politika/*', ['controller' => 'Articles', 'action' => 'view']);
 
-    $builder->connect('/news-kz', ['controller' => 'Articles', 'action' => 'index', 'news-kz']);
-    $builder->connect('/news-kz/*', ['controller' => 'Articles', 'action' => 'view']);
+    $builder->connect('/elorda-janalyktary', ['controller' => 'Articles', 'action' => 'index', 'elorda-janalyktary']);
+    $builder->connect('/elorda-janalyktary/*', ['controller' => 'Articles', 'action' => 'view']);
 
+    $builder->connect('/sayasat', ['controller' => 'Articles', 'action' => 'index', 'sayasat']);
+    $builder->connect('/sayasat/*', ['controller' => 'Articles', 'action' => 'view']);
 
-    $builder->connect('/society', ['controller' => 'Articles', 'action' => 'index', 'society']);
-    $builder->connect('/society/*', ['controller' => 'Articles', 'action' => 'view']);
+    $builder->connect('/aleumet', ['controller' => 'Articles', 'action' => 'index', 'aleumet']);
+    $builder->connect('/aleumet/*', ['controller' => 'Articles', 'action' => 'view']);
 
     $builder->connect('/ekonomika', ['controller' => 'Articles', 'action' => 'index', 'ekonomika']);
     $builder->connect('/ekonomika/*', ['controller' => 'Articles', 'action' => 'view']);
@@ -235,29 +281,20 @@ $builder->connect('/redactor/*', ['controller' => 'Articles', 'action' => 'redac
     $builder->connect('/sport', ['controller' => 'Articles', 'action' => 'index', 'sport']);
     $builder->connect('/sport/*', ['controller' => 'Articles', 'action' => 'view']);
 
+    $builder->connect('/madeniet', ['controller' => 'Articles', 'action' => 'index', 'madeniet']);
+    $builder->connect('/madeniet/*', ['controller' => 'Articles', 'action' => 'view']);
 
-     $builder->connect('/poleznoe', ['controller' => 'Articles', 'action' => 'index', 'poleznoe']);
-    $builder->connect('/poleznoe/*', ['controller' => 'Articles', 'action' => 'view']);
+    $builder->connect('/ar-turli', ['controller' => 'Articles', 'action' => 'index', 'ar-turli']);
+    $builder->connect('/ar-turli/*', ['controller' => 'Articles', 'action' => 'view']);
 
+    $builder->connect('/kozkaras', ['controller' => 'Articles', 'action' => 'index', 'kozkaras']);
+    $builder->connect('/kozkaras/*', ['controller' => 'Articles', 'action' => 'view']);
 
-     $builder->connect('/mnenie', ['controller' => 'Articles', 'action' => 'index', 'mnenie']);
-    $builder->connect('/mnenie/*', ['controller' => 'Articles', 'action' => 'view']);
+    $builder->connect('/tagaiyndau', ['controller' => 'Articles', 'action' => 'index', 'tagaiyndau']);
+    $builder->connect('/tagaiyndau/*', ['controller' => 'Articles', 'action' => 'view']);
 
-
-    $builder->connect('/poslanie', ['controller' => 'Articles', 'action' => 'index', 'poslanie']);
-    $builder->connect('/poslanie/*', ['controller' => 'Articles', 'action' => 'view']);
-
-
-    $builder->connect('/raznoe', ['controller' => 'Articles', 'action' => 'index', 'raznoe']);
-    $builder->connect('/raznoe/*', ['controller' => 'Articles', 'action' => 'view']);
-
-
-    $builder->connect('/kul-tura', ['controller' => 'Articles', 'action' => 'index', 'kul-tura']);
-    $builder->connect('/kul-tura/*', ['controller' => 'Articles', 'action' => 'view']);
-
-
-    $builder->connect('/geroi-stolicy', ['controller' => 'Articles', 'action' => 'index', 'geroi-stolicy']);
-    $builder->connect('/geroi-stolicy/*', ['controller' => 'Articles', 'action' => 'view']);
+    $builder->connect('/elorda-erzhyrektery', ['controller' => 'Articles', 'action' => 'index', 'elorda-erzhyrektery']);
+    $builder->connect('/elorda-erzhyrektery/*', ['controller' => 'Articles', 'action' => 'view']);
 
     $builder->connect('/requests/:action', ['controller' => 'Requests']);
 
@@ -272,10 +309,10 @@ $builder->connect('/redactor/*', ['controller' => 'Articles', 'action' => 'redac
  * ```
  * $routes->scope('/api', function (RouteBuilder $builder) {
  *     // No $builder->applyMiddleware() here.
- *     
+ *
  *     // Parse specified extensions from URLs
  *     // $builder->setExtensions(['json', 'xml']);
- *     
+ *
  *     // Connect API actions here.
  * });
  * ```

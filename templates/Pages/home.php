@@ -24,18 +24,20 @@
 		                                                <div class="hero__swiper-img">
 		                                                  <img src="/img/articles/<?= $item['img'] ?>" />
 		                                                </div>
-		                                                
+
 		                                                <div class="hero__swiper-tag">
-		                                                	Актуально
+		                                                	<?= __('Актуально') ?>
                                                 		</div>
-														
+
 		                                                <div class="hero__swiper-title"><?= $item['title'] ?></div>
-		                                                <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="hero__swiper-link">
-		                                                    Читать далее
-		                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-		                                                        <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-		                                                    </svg>                                                    
-		                                                </a>
+                                                        <?php if (isset($full_categories[$item['category_id']]) && isset($categories_slug_parts[$full_categories[$item['category_id']]['alias']])): ?>
+                                                            <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="hero__swiper-link">
+                                                                <?= __('Читать далее') ?>
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                                                </svg>
+                                                            </a>
+                                                        <?php endif; ?>
 		                                            </div>
 		                                        </div>
 											<?php endforeach; ?>
@@ -49,12 +51,12 @@
                         <section class="capital">
                             <div class="capital__container block">
                                 <div class="block__header">
-                                    <h2 class="capital__title block__title">Новости столицы</h2>
-                                    <a href="/<?= $lang ?>news-capital" class="capital__link block__link">
-                                        На страницу новостей столицы
+                                    <h2 class="capital__title block__title"><?= __('Новости столицы') ?></h2>
+                                    <a href="/<?= $lang . $capital_news[0]['alias'] ?>" class="capital__link block__link">
+                                        <?= __('На страницу новостей столицы') ?>
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
-                                        </svg>                                        
+                                        </svg>
                                     </a>
                                 </div>
                                 <?php foreach( $capital_news as $index => $item ): ?>
@@ -72,10 +74,10 @@
 		                                    </div>
 		                                    <div class="capital__main-title"><?= $item['title'] ?></div>
 		                                    <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="capital__main-link">
-		                                        Читать далее
+		                                        <?= __('Читать далее') ?>
 		                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 		                                            <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-		                                        </svg>                                        
+		                                        </svg>
 		                                    </a>
 		                                </div>
 									<?php endif ?>
@@ -94,7 +96,7 @@
 		                                             <?= number_format($item['views'], 0, '', ' ') ?>
 		                                        </div>
 		                                    </a>
-                                    
+
 										<?php endif ?>
 									<?php endforeach; ?>
                                 </div>
@@ -110,7 +112,7 @@
                                         На страницу социума
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
-                                        </svg>                                        
+                                        </svg>
                                     </a>
                                 </div>
                                 <div class="socium__wrapper">
@@ -130,20 +132,20 @@
 		                                            </div>
 		                                            <div class="socium__main-title"><?= $item['title'] ?></div>
 		                                            <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__main-link">
-		                                                Читать далее
+		                                                <?= __('Читать далее') ?>
 		                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 		                                                    <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-		                                                </svg>                                        
+		                                                </svg>
 		                                            </a>
 
 		                                        </div>
 											<?php endif ?>
 										<?php endforeach; ?>
-                                       
+
                                         <div class="socium__childs">
                                         	<?php foreach( $society_news as $index => $item ): ?>
 			                                	<?php if($index === 1 || $index === 2 ):?>
-					                                
+
 			                                        <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__child article__item">
 		                                                <div class="article__item-img">
 		                                                     <img src="/img/articles/<?= $item['img'] ?>" alt="">
@@ -177,7 +179,7 @@
 		                                            </a>
 												<?php endif ?>
 											<?php endforeach; ?>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -188,12 +190,12 @@
                         <section class="politic">
                             <div class="politic__container block">
                                 <div class="block__header">
-                                    <h2 class="politic__title block__title">Политика</h2>
+                                    <h2 class="politic__title block__title"><?= __('Политика') ?></h2>
                                     <a href="/<?= $lang ?>politika" class="politic__link block__link">
-                                        На страницу политики
+                                        <?= __('На страницу политики') ?>
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
-                                        </svg>                                        
+                                        </svg>
                                     </a>
                                 </div>
                                 <div class="politic__items">
@@ -203,7 +205,7 @@
 	                                             <img src="/img/articles/<?= $item['img'] ?>" alt="">
 	                                        </div>
 	                                        <div class="politic__info">
-	                                        	
+
 	                                            <div class="politic__item-title"><?= $item['title'] ?></div>
 	                                            <div class="politic__item-text"><?= $item['short_desc'] ?></div>
 	                                            <div class="politic__item-watch">
@@ -217,21 +219,21 @@
                             </div>
                         </section>
                          <?php endif; ?>
-                         <?php if( $сulture_news ): ?>
+                         <?php if( $culture_news ): ?>
                         <section class="culture">
                             <div class="culture__container block">
                                 <div class="block__header">
-                                    <h2 class="culture__title block__title">Культура</h2>
+                                    <h2 class="culture__title block__title"><?= __('Культура') ?></h2>
                                     <a href="#" class="culture__link block__link">
-                                        На страницу культуры
+                                        <?= __('На страницу культуры') ?>
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
-                                        </svg>                                        
+                                        </svg>
                                     </a>
                                 </div>
                                 <div class="culture__wrapper">
                                 	<div class="culture__main">
-	                                	<?php foreach( $сulture_news as $index => $item ): ?>
+	                                	<?php foreach( $culture_news as $index => $item ): ?>
 	                                		<?php if($index === 0): ?>
 			                                    <div class="culture__main-img">
 			                                            <img src="/img/articles/<?= $item['img'] ?>" alt="">
@@ -243,18 +245,17 @@
 			                                        </div>
 			                                        <div class="culture__main-title"><?= $item['title'] ?></div>
 			                                        <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__main-link">
-			                                            Читать далее
+			                                            <?= __('Читать далее') ?>
 			                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 			                                                <path d="M2.09998 11.55L11.55 2.09998M11.55 2.09998H2.09998M11.55 2.09998V11.55" stroke="white" stroke-width="2" stroke-linecap="round"/>
-			                                            </svg>                                            
+			                                            </svg>
 			                                        </a>
 			                                <?php endif ?>
 										<?php endforeach; ?>
                                     </div>
-                                   
-                                        
+
                                     <div class="culture__items">
-                                    	<?php foreach( $сulture_news as $index => $item ): ?>
+                                    	<?php foreach( $culture_news as $index => $item ): ?>
 	                                		<?php if($index != 0): ?>
 			                                    <a href="#" class="culture__item">
 		                                            <div class="culture__item-img">
@@ -273,7 +274,6 @@
 		                                                <div class="culture__item-title"><?= $item['title'] ?></div>
 		                                            </div>
 		                                        </a>
-
 			                                <?php endif ?>
 										<?php endforeach; ?>
                                     </div>
@@ -285,12 +285,12 @@
                         <section class="heroes">
                             <div class="heroes__container block">
                                 <div class="block__header">
-                                    <h2 class="heroes__title block__title">Герои столицы</h2>
+                                    <h2 class="heroes__title block__title"><?= __('Герои столицы') ?></h2>
                                     <a href="/<?= $lang ?>geroi-stolicy" class="heroes__link block__link">
-                                        На страницу героев столицы
+                                        <?= __('На страницу героев столицы') ?>
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
-                                        </svg>                                        
+                                        </svg>
                                     </a>
                                 </div>
                                 <div class="heroes__items">
@@ -352,12 +352,21 @@
 									<?php endforeach; ?>
 								<?php endif; ?>
                             </div>
-                            <a href="/<?= $lang ?>news-capital" class="news-actual__link">
-                                Все новости 
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.39999 12.2L12.2 1.40002M12.2 1.40002H1.39999M12.2 1.40002V12.2" stroke="#1D489C" stroke-width="2" stroke-linecap="round"/>
-                                </svg>                                
-                            </a>
+                            <?php if ($l == 'kz'): ?>
+                                <a href="/<?= $lang ?>elorda-janalyktary" class="news-actual__link">
+                                    Барлық жаңалықтар
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.39999 12.2L12.2 1.40002M12.2 1.40002H1.39999M12.2 1.40002V12.2" stroke="#1D489C" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </a>
+                            <?php else: ?>
+                                <a href="/<?= $lang ?>novosti-stolicy-ru" class="news-actual__link">
+                                    Все новости
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.39999 12.2L12.2 1.40002M12.2 1.40002H1.39999M12.2 1.40002V12.2" stroke="#1D489C" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </a>
+                            <?php endif; ?>
                         </div>
                         <div class="widget__tg">
                             <img src="/img/comps/<?=$comps[16]['img']?>" alt="">
@@ -366,9 +375,11 @@
                             <div class="widget__youtube-header">
                                 <img src="/img/comps/<?=$comps[17]['img']?>" alt="">
                             </div>
-                            <div class="widget__youtubte-frame">
-                                <?=$comps[18]['body']?>
-                            </div>
+                            <?php if (isset($comps[18]['body'])): ?>
+                                <div class="widget__youtubte-frame">
+                                    <?=$comps[18]['body']?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

@@ -41,7 +41,7 @@
 
 		<!-- front 1 -->
 
-		<?php 
+		<?php
 			$session = $this->request->getSession();
 			$msg = $session->read('Flash.flash');
 			$msg_type = '';
@@ -92,7 +92,9 @@
 	                </div>
 	            </div>
 	            <div class="alert-text box-size">
+                    <?php if (isset($msg[0])): ?>
 	                <div class="alert--title box-size"><?= $msg[0]['message'] ?></div>
+                    <?php endif; ?>
 	                <?php if( $msg && count($msg) > 1 ): ?>
 	                	<?php foreach( $msg as $index => $msg_item ): ?>
 	                		<?php if( $index != 0 ): ?>
@@ -117,9 +119,9 @@
 	    </div>
 	    <?php if( isset($msg) && $msg[0]['message'] && $msg_type ){ $session->delete('Flash'); } ?>
 
-		
+
 		<?= $this->element('header') ?>
-		
+
 		<?= $this->fetch('content') ?>
 
 		<?= $this->element('footer') ?>

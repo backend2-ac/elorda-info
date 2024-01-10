@@ -43,7 +43,7 @@ class ArticlesController extends AppController
     public function initialize(): void{
         parent::initialize();
         $this->loadModel('Articles');
-        
+
         $this->loadModel('Categories');
         $this->loadModel('Rubrics');
         $this->loadModel('Tags');
@@ -60,7 +60,7 @@ class ArticlesController extends AppController
 
         if( $alias ){
             $cur_cat = $this->Categories->findByAlias($alias)
-                ->where([$this->Categories->translationField('title').' is not' => null])
+//                ->where([$this->Categories->translationField('title').' is not' => null])
                 ->first();
 
             if( $cur_cat ){
@@ -69,7 +69,7 @@ class ArticlesController extends AppController
         }
 
         $conditions = [
-            $this->$model->translationField('title'). ' is not' => null,
+//            $this->$model->translationField('title'). ' is not' => null,
             $model.'.date <=' => $cur_date
         ];
         if( $cat_id ){
@@ -106,7 +106,7 @@ class ArticlesController extends AppController
             ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
             ->where($conditions)
             ->orderDesc('views')
-            ->toList(); 
+            ->toList();
 
          $last_news = $this->Articles->find('all')
                 ->contain([
@@ -123,7 +123,7 @@ class ArticlesController extends AppController
                 ->where($conditions)
                 ->select(['id', 'category_id', 'title', 'date'])
                 ->order([$model.'.date' => 'DESC'])
-                ->limit($per_page), 
+                ->limit($per_page),
             $pag_settings
         ));
 
@@ -148,7 +148,7 @@ class ArticlesController extends AppController
         //     $meta['keys'] = $page['meta_keywords'];
         // }
 
-        
+
 
         $this->set( compact('data', 'meta', 'cur_cat','popular_news','last_news') );
     }
@@ -164,7 +164,7 @@ class ArticlesController extends AppController
                 'Tags',
                 'Authors'
             ])
-            ->where([$this->$model->translationField('title') . ' is not' => null])
+//            ->where([$this->$model->translationField('title') . ' is not' => null])
             ->first();
 
         $item_id = $data['id'];
@@ -176,15 +176,15 @@ class ArticlesController extends AppController
         $this->$model->query()->update()->set(['views' => ($data['views'] + 1)])->where(['id' => $item_id])->execute();
 
 
-       
 
-       
+
+
         $tags_ids = array_column($data['tags'], 'id');
          $other_news = $this->$model->find()
                 ->where([
                     $model.'.id !=' => $item_id,
                     $model.'.category_id =' =>$data['category_id'],
-                    $this->$model->translationField('title') . ' is not' => null,
+//                    $this->$model->translationField('title') . ' is not' => null,
                 ])
                 ->orderDesc($model.'.date')
                 ->limit(3)
@@ -196,13 +196,13 @@ class ArticlesController extends AppController
                 ->where([
                     $model.'.id !=' => $item_id,
                     $model.'.category_id =' =>$data['category_id'],
-                    $this->$model->translationField('title') . ' is not' => null,
+//                    $this->$model->translationField('title') . ' is not' => null,
                 ])
                 ->orderDesc($model.'.date')
                 ->limit(3)
                 ->toList();
         }else {
-            
+
         }
 
         $conditions = [
@@ -221,7 +221,7 @@ class ArticlesController extends AppController
             ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
             ->where($conditions)
             ->orderDesc('views')
-            ->toList(); 
+            ->toList();
 
          $last_news = $this->Articles->find('all')
                 ->contain([
@@ -243,7 +243,7 @@ class ArticlesController extends AppController
                 ->orderDesc($model.'.date')
                 ->toList();
         }
-        
+
 
         $meta['title'] = $data['meta_title'];
         if( !$meta['title'] ){
@@ -269,7 +269,7 @@ class ArticlesController extends AppController
             ->where([$this->$model->translationField('title') . ' is not' => null,$model.'.category_id' => $_GET['category']])
             ->first();
 
-            
+
 
         debug($data);die;;
 
@@ -290,7 +290,7 @@ class ArticlesController extends AppController
          $data = [];
          $autor  = $this->$modelA->findById($id)
             ->first();
-          
+
         if($id ){
             $data = $this->$model->find('all')
             ->where([ $model.'.author_id' => $id])
@@ -317,8 +317,8 @@ class ArticlesController extends AppController
             ->select(['id', 'item_order'])
             ->orderDesc($tag.'.item_order')
             ->toList();
-           
-        $tags = $this->$tag->find('translations') 
+
+        $tags = $this->$tag->find('translations')
             ->where([$tag.'.id IN' => $tag_ids])
             ->orderDesc('item_order')
             ->toList();
@@ -412,11 +412,11 @@ class ArticlesController extends AppController
          if( isset($_GET['tags']) && $_GET['tags'] ){
                 foreach( $_GET['tags'] as $tag ){
                        $tags_ids[] = $tag;
-                        
+
                     }
                          $conditions['OR'][] = ['Tags.id IN' => $tags_ids];
             }
-       
+
 
         if( isset($_GET['sorting']) && in_array($_GET['sorting'], $allow_sorting) ){
             if( $_GET['sorting'] == 'date_asc' ){
@@ -471,7 +471,7 @@ class ArticlesController extends AppController
                     ->group([$model.'.id'])
                     ->select(['id', 'category_id', 'title', 'date'])
                     ->order($sorting)
-                    ->limit($per_page), 
+                    ->limit($per_page),
                 $pag_settings
             ));
 

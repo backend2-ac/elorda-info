@@ -56,7 +56,7 @@ class AppController extends Controller
             'authenticate' => [
                 'Form' => [
                     'fields' => [
-                        'username' => 'username', 
+                        'username' => 'username',
                         'password' => 'password'
                     ],
                     'userModel' => 'Admins'
@@ -104,7 +104,7 @@ class AppController extends Controller
         $admin = (isset($params['prefix']) && $params['prefix'] == 'Admin') ? 'admin/' : false;
 
         if( isset($params['controller']) && $params['controller'] == 'User' ){
-            
+
         } else{
             $this->Authorization->skipAuthorization();
         }
@@ -149,7 +149,7 @@ class AppController extends Controller
         $lang = ( isset($params['lang']) && $params['lang'] ) ? $params['lang'] . '/' : '';
 
         I18n::setLocale($l);
-        
+
         $request = $params;
         date_default_timezone_set('Asia/Almaty');
 
@@ -167,7 +167,7 @@ class AppController extends Controller
                 $this->Comps->setLocale($l);
                 $all_comps_lang = $this->Comps->find('all')
                     ->where([
-                        'Comps.id IN' => $langs_ids, 
+                        'Comps.id IN' => $langs_ids,
                         'Comps.id NOT IN' => $spec_ids,
                         'Comps.page_id' => 0,
                     ])
@@ -251,19 +251,43 @@ class AppController extends Controller
                 Cache::write('most_popular_'.$l, $most_popular, 'long');
             }
 
+//            $categories_slug_parts = [
+//                'news-capital' => 'news-capital',
+//                'news-kz' => 'news-kz',
+//                'politika' => 'politika',
+//                'society' => 'society',
+//                'ekonomika' => 'ekonomika',
+//                'sport' => 'sport',
+//                'poleznoe' => 'poleznoe',
+//                'mnenie' => 'mnenie',
+//                'poslanie' => 'poslanie',
+//                'raznoe' => 'raznoe',
+//                'kul-tura' => 'kul-tura',
+//                'geroi-stolicy' => 'geroi-stolicy',
+//            ];
+
             $categories_slug_parts = [
-                'news-capital' => 'news-capital',
-                'news-kz' => 'news-kz',
-                'politika' => 'politika',
-                'society' => 'society',
+                'novosti-stolicy-ru' => 'novosti-stolicy-ru',
+                'politika-ru' => 'politika-ru',
+                'sotsium-ru' => 'sotsium-ru',
+                'ekonomika-ru' => 'ekonomika-ru',
+                'sport-ru' => 'sport-ru',
+                'kultura-ru' => 'kultura-ru',
+                'raznoe-ru' => 'raznoe-ru',
+                'mnenie-ru' => 'mnenie-ru',
+                'naznacheniya-ru' => 'naznacheniya-ru',
+                'geroi-stolicy-ru' => 'geroi-stolicy-ru',
+
+                'elorda-janalyktary' => 'elorda-janalyktary',
+                'sayasat' => 'sayasat',
+                'aleumet' => 'aleumet',
                 'ekonomika' => 'ekonomika',
                 'sport' => 'sport',
-                'poleznoe' => 'poleznoe',
-                'mnenie' => 'mnenie',
-                'poslanie' => 'poslanie',
-                'raznoe' => 'raznoe',
-                'kul-tura' => 'kul-tura',
-                'geroi-stolicy' => 'geroi-stolicy',
+                'madeniet' => 'madeniet',
+                'ar-turli' => 'ar-turli',
+                'kozkaras' => 'kozkaras',
+                'tagaiyndau' => 'tagaiyndau',
+                'elorda-erzhyrektery' => 'elorda-erzhyrektery'
             ];
 
             $full_categories = $this->_getFullCategories();
@@ -371,7 +395,7 @@ class AppController extends Controller
         }
 
     /*---------- Admin Funcs END --------*/
-    
+
 
     /*---------- Other Funcs --------*/
 
@@ -392,7 +416,6 @@ class AppController extends Controller
                     Cache::write('full_categories_'.$cur_lang, $full_categories, 'eternal');
                 }
             }
-
             return $full_categories;
         }
 

@@ -79,7 +79,7 @@ class PagesController extends AppController
                     },
                 ])
                 ->where([
-                    $this->Articles->translationField('title').' is not' => null, 
+                    $this->Articles->translationField('title').' is not' => null,
                     'Articles.date <=' => $cur_date
                     // 'Articles.on_main' => 1
                 ])
@@ -91,6 +91,7 @@ class PagesController extends AppController
 
         // $last_reviews = Cache::read('last_reviews_'.$cur_lang, 'long');
         // if( !$last_reviews ){
+            $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
             $capital_news = $this->Articles->find('all')
                 ->contain([
                     'Rubrics' => function(Query $q) {
@@ -98,10 +99,11 @@ class PagesController extends AppController
                     },
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
-                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => 2, 'Articles.date <=' => $cur_date])
+                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => $capital_news_category_id, 'Articles.date <=' => $cur_date])
                 ->orderDesc('date')
                 ->limit(4)
                 ->toList();
+            $society_news_category_id = $cur_lang == 'kz' ? 16 : 6;
             $society_news = $this->Articles->find('all')
                 ->contain([
                     'Rubrics' => function(Query $q) {
@@ -109,10 +111,11 @@ class PagesController extends AppController
                     },
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
-                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => 4, 'Articles.date <=' => $cur_date])
+                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => $society_news_category_id, 'Articles.date <=' => $cur_date])
                 ->orderDesc('date')
                 ->limit(7)
                 ->toList();
+            $politica_news_category_id = $cur_lang == 'kz' ? 17 : 12;
             $politica_news = $this->Articles->find('all')
                 ->contain([
                     'Rubrics' => function(Query $q) {
@@ -120,22 +123,23 @@ class PagesController extends AppController
                     },
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
-                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => 3, 'Articles.date <=' => $cur_date])
+                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => $politica_news_category_id, 'Articles.date <=' => $cur_date])
                 ->orderDesc('date')
                 ->limit(3)
                 ->toList();
-
-            $сulture_news = $this->Articles->find('all')
+            $culture_news_category_id = $cur_lang == 'kz' ? 20 : 9;
+            $culture_news = $this->Articles->find('all')
                 ->contain([
                     'Rubrics' => function(Query $q) {
                         return $q->enableAutoFields();
                     },
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
-                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => 11, 'Articles.date <=' => $cur_date])
+                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => $culture_news_category_id, 'Articles.date <=' => $cur_date])
                 ->orderDesc('date')
                 ->limit(3)
                 ->toList();
+            $heroes_news_category_id = $cur_lang == 'kz' ? 4 : 3;
             $heroes_news = $this->Articles->find('all')
                 ->contain([
                     'Rubrics' => function(Query $q) {
@@ -143,12 +147,12 @@ class PagesController extends AppController
                     },
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
-                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => 12, 'Articles.date <=' => $cur_date])
+                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => $heroes_news_category_id, 'Articles.date <=' => $cur_date])
                 ->orderDesc('date')
                 ->limit(3)
                 ->toList();
 
-          
+
             // Cache::write('last_reviews_'.$cur_lang, $last_reviews, 'long');
         // }
 
@@ -161,7 +165,7 @@ class PagesController extends AppController
                     }
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
-                ->where([$this->Articles->translationField('title').' is not' => null,  'Articles.category_id' => 1,'Articles.date <=' => $cur_date])
+                ->where([$this->Articles->translationField('title').' is not' => null,  'Articles.category_id' => $capital_news_category_id,'Articles.date <=' => $cur_date])
                 ->orderDesc('views')
                 ->limit(15)
                 ->toList();
@@ -173,7 +177,7 @@ class PagesController extends AppController
                     },
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
-                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => 1, 'Articles.date <=' => $cur_date])
+                ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => $capital_news_category_id, 'Articles.date <=' => $cur_date])
                 ->orderDesc('date')
                 ->limit(15)
                 ->toList();
@@ -195,12 +199,12 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set( compact('meta', 'main_articles', 'capital_news', 'politica_news', 'society_news','сulture_news','heroes_news','popular_news','last_news') );
+        $this->set( compact('meta', 'main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news','popular_news','last_news') );
     }
 
 
     public function rules():void{
-        
+
         $cur_lang = Configure::read('Config.lang');
         $cur_date = date('Y-m-d H:i:s');
 
@@ -361,5 +365,5 @@ class PagesController extends AppController
             return $page_comps;
         }
     }
-    
+
 }
