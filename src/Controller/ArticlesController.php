@@ -60,16 +60,15 @@ class ArticlesController extends AppController
 
         if( $alias ){
             $cur_cat = $this->Categories->findByAlias($alias)
-//                ->where([$this->Categories->translationField('title').' is not' => null])
                 ->first();
 
             if( $cur_cat ){
                 $cat_id = $cur_cat['id'];
             }
         }
-
+//        debug($cur_cat);
+//        die();
         $conditions = [
-//            $this->$model->translationField('title'). ' is not' => null,
             $model.'.date <=' => $cur_date
         ];
         if( $cat_id ){
@@ -97,6 +96,9 @@ class ArticlesController extends AppController
             ->order([$model.'.date' => 'DESC'])
             ->limit($per_page)->offset($offset)
             ->toList();
+//        debug($data);
+//        debug($conditions);
+//        die();
          $popular_news = $this->Articles->find('all')
             ->contain([
                 'Rubrics' => function(Query $q){
@@ -116,12 +118,12 @@ class ArticlesController extends AppController
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
                 ->where($conditions)
-                ->orderDesc('date')
+                ->orderDesc('Articles.date')
                 ->toList();
         $this->set('pagination', $this->paginate(
             $this->$model->find('all')
                 ->where($conditions)
-                ->select(['id', 'category_id', 'title', 'date'])
+                ->select(['id', 'category_id', 'title', 'date', 'created_at'])
                 ->order([$model.'.date' => 'DESC'])
                 ->limit($per_page),
             $pag_settings
@@ -138,19 +140,7 @@ class ArticlesController extends AppController
             }
         }
 
-        // $page = $this->Pages->get(16);
-        // if( $page ){
-        //     $meta['title'] = $page['meta_title'];
-        //     if( !$meta['title'] ){
-        //         $meta['title'] = $page['title'];
-        //     }
-        //     $meta['desc'] = $page['meta_description'];
-        //     $meta['keys'] = $page['meta_keywords'];
-        // }
-
-
-
-        $this->set( compact('data', 'meta', 'cur_cat','popular_news','last_news') );
+        $this->set( compact('data', 'meta', 'cur_cat', 'popular_news','last_news') );
     }
 
     public function view($alias){
@@ -164,7 +154,6 @@ class ArticlesController extends AppController
                 'Tags',
                 'Authors'
             ])
-//            ->where([$this->$model->translationField('title') . ' is not' => null])
             ->first();
 
         $item_id = $data['id'];
@@ -196,7 +185,6 @@ class ArticlesController extends AppController
                 ->where([
                     $model.'.id !=' => $item_id,
                     $model.'.category_id =' =>$data['category_id'],
-//                    $this->$model->translationField('title') . ' is not' => null,
                 ])
                 ->orderDesc($model.'.date')
                 ->limit(3)
@@ -206,7 +194,6 @@ class ArticlesController extends AppController
         }
 
         $conditions = [
-            $this->$model->translationField('title'). ' is not' => null,
             $model.'.date <=' => $cur_date
         ];
         if( $cat_id ){
@@ -231,7 +218,7 @@ class ArticlesController extends AppController
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
                 ->where($conditions)
-                ->orderDesc('date')
+                ->orderDesc('Articles.date')
                 ->toList();
         // $this->set( compact('tags_ids') );
 
@@ -266,12 +253,9 @@ class ArticlesController extends AppController
                 'Tags',
                 'Authors'
             ])
-            ->where([$this->$model->translationField('title') . ' is not' => null,$model.'.category_id' => $_GET['category']])
+            ->where([$model.'.category_id' => $_GET['category']])
             ->first();
 
-
-
-        debug($data);die;;
 
         if( is_null($item_id) || !(int)$item_id || !$this->$model->get($item_id) ){
             throw new NotFoundException(__('Запись не найдена'));

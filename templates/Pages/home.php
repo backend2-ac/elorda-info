@@ -52,7 +52,7 @@
                             <div class="capital__container block">
                                 <div class="block__header">
                                     <h2 class="capital__title block__title"><?= __('Новости столицы') ?></h2>
-                                    <a href="/<?= $lang . $capital_news[0]['alias'] ?>" class="capital__link block__link">
+                                    <a href="/<?= $lang . $capital_news[0]['category']['alias'] ?>" class="capital__link block__link">
                                         <?= __('На страницу новостей столицы') ?>
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
@@ -108,7 +108,7 @@
                             <div class="socium__container block">
                                 <div class="block__header">
                                     <h2 class="socium__title block__title">Социум</h2>
-                                    <a href="/<?= $lang ?>society" class="socium__link block__link">
+                                    <a href="/<?= $lang . $society_news[0]['category']['alias'] ?>" class="socium__link block__link">
                                         На страницу социума
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
@@ -191,7 +191,7 @@
                             <div class="politic__container block">
                                 <div class="block__header">
                                     <h2 class="politic__title block__title"><?= __('Политика') ?></h2>
-                                    <a href="/<?= $lang ?>politika" class="politic__link block__link">
+                                    <a href="/<?= $lang . $politica_news[0]['category']['alias'] ?>" class="politic__link block__link">
                                         <?= __('На страницу политики') ?>
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
@@ -224,7 +224,7 @@
                             <div class="culture__container block">
                                 <div class="block__header">
                                     <h2 class="culture__title block__title"><?= __('Культура') ?></h2>
-                                    <a href="#" class="culture__link block__link">
+                                    <a href="/<?= $lang . $culture_news[0]['category']['alias'] ?>" class="culture__link block__link">
                                         <?= __('На страницу культуры') ?>
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
@@ -286,7 +286,7 @@
                             <div class="heroes__container block">
                                 <div class="block__header">
                                     <h2 class="heroes__title block__title"><?= __('Герои столицы') ?></h2>
-                                    <a href="/<?= $lang ?>geroi-stolicy" class="heroes__link block__link">
+                                    <a href="/<?= $lang . $heroes_news[0]['category']['alias'] ?>" class="heroes__link block__link">
                                         <?= __('На страницу героев столицы') ?>
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>

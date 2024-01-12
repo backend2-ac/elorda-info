@@ -96,10 +96,6 @@ Router::prefix('Admin', function(RouteBuilder $builder){
     $builder->connect('/documents', ['controller' => 'Documents', 'action' => 'index']);
     $builder->connect('/documents/:action/*', ['controller' => 'Documents']);
 
-
-
-
-
     $builder->connect('/pages', ['controller' => 'Pages', 'action' => 'index']);
     $builder->connect('/pages/:action/*', ['controller' => 'Pages']);
 
@@ -111,15 +107,6 @@ Router::prefix('Admin', function(RouteBuilder $builder){
 
     $builder->fallbacks();
 });
-
-// Router::prefix('Users', function(RouteBuilder $builder){
-//     $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
-//     $builder->connect('/registration', ['controller' => 'Users', 'action' => 'registration']);
-//     $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
-//     // $builder->connect('/:action', ['controller' => 'Users']);
-
-//     $builder->fallbacks();
-// });
 
 
 $routes->scope('/{lang}', function (RouteBuilder $builder) {
@@ -157,57 +144,66 @@ $builder->connect('/redactor/*', ['controller' => 'Articles', 'action' => 'redac
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
-    $builder->connect('/novosti-stolicy-ru', ['controller' => 'Articles', 'action' => 'index', 'novosti-stolicy-ru'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-    $builder->connect('/novosti-stolicy-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+    $builder->connect('/*', ['controller' => 'Articles', 'action' => 'index'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
-    $builder->connect('/politika-ru', ['controller' => 'Articles', 'action' => 'index', 'politika-ru']);
-    $builder->connect('/politika-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+    $builder->connect('/*/*', ['controller' => 'Articles', 'action' => 'view'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
-    $builder->connect('/sotsium-ru', ['controller' => 'Articles', 'action' => 'index', 'sotsium-ru']);
-    $builder->connect('/sotsium-ru/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
 
-    $builder->connect('/ekonomika-ru', ['controller' => 'Articles', 'action' => 'index', 'ekonomika-ru']);
-    $builder->connect('/ekonomika-ru/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-
-    $builder->connect('/sport-ru', ['controller' => 'Articles', 'action' => 'index', 'sport-ru']);
-    $builder->connect('/sport-ru/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-
-    $builder->connect('/kultura-ru', ['controller' => 'Articles', 'action' => 'index', 'kultura-ru']);
-    $builder->connect('/kultura-ru/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-
-    $builder->connect('/raznoe-ru', ['controller' => 'Articles', 'action' => 'index', 'raznoe-ru']);
-    $builder->connect('/raznoe-ru/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-
-    $builder->connect('/mnenie-ru', ['controller' => 'Articles', 'action' => 'index', 'mnenie-ru']);
-    $builder->connect('/mnenie-ru/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-
-    $builder->connect('/naznacheniya-ru', ['controller' => 'Articles', 'action' => 'index', 'naznacheniya-ru']);
-    $builder->connect('/naznacheniya-ru/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-
-    $builder->connect('/geroi-stolicy-ru', ['controller' => 'Articles', 'action' => 'index', 'raznoe']);
-    $builder->connect('/geroi-stolicy-ru/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
+//    $builder->connect('/novosti-stolicy-ru', ['controller' => 'Articles', 'action' => 'index', 'novosti-stolicy-ru'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
+//    $builder->connect('/novosti-stolicy-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
+//
+//    $builder->connect('/politika-ru', ['controller' => 'Articles', 'action' => 'index', 'politika-ru']);
+//    $builder->connect('/politika-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
+//
+//    $builder->connect('/sotsium-ru', ['controller' => 'Articles', 'action' => 'index', 'sotsium-ru']);
+//    $builder->connect('/sotsium-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
+//
+//    $builder->connect('/ekonomika-ru', ['controller' => 'Articles', 'action' => 'index', 'ekonomika-ru']);
+//    $builder->connect('/ekonomika-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
+//
+//    $builder->connect('/sport-ru', ['controller' => 'Articles', 'action' => 'index', 'sport-ru']);
+//    $builder->connect('/sport-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
+//
+//    $builder->connect('/kultura-ru', ['controller' => 'Articles', 'action' => 'index', 'kultura-ru']);
+//    $builder->connect('/kultura-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
+//
+//    $builder->connect('/raznoe-ru', ['controller' => 'Articles', 'action' => 'index', 'raznoe-ru']);
+//    $builder->connect('/raznoe-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
+//
+//    $builder->connect('/mnenie-ru', ['controller' => 'Articles', 'action' => 'index', 'mnenie-ru']);
+//    $builder->connect('/mnenie-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
+//
+//    $builder->connect('/naznacheniya-ru', ['controller' => 'Articles', 'action' => 'index', 'naznacheniya-ru']);
+//    $builder->connect('/naznacheniya-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
+//
+//    $builder->connect('/geroi-stolicy-ru', ['controller' => 'Articles', 'action' => 'index', 'geroi-stolicy-ru']);
+//    $builder->connect('/geroi-stolicy-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+//        ->setPatterns(['lang' => 'ru|kz|en'])
+//        ->setPersist(['lang']);
 
     $builder->connect('/news', ['controller' => 'Articles', 'action' => 'index', 'news'])
         ->setPatterns(['lang' => 'ru|kz|en'])
@@ -266,35 +262,41 @@ $builder->connect('/redactor/*', ['controller' => 'Articles', 'action' => 'redac
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);;
 
-    $builder->connect('/elorda-janalyktary', ['controller' => 'Articles', 'action' => 'index', 'elorda-janalyktary']);
-    $builder->connect('/elorda-janalyktary/*', ['controller' => 'Articles', 'action' => 'view']);
+//    $builder->connect('/elorda-janalyktary', ['controller' => 'Articles', 'action' => 'index', 'elorda-janalyktary']);
+//    $builder->connect('/elorda-janalyktary/*', ['controller' => 'Articles', 'action' => 'view']);
+//
+//    $builder->connect('/sayasat', ['controller' => 'Articles', 'action' => 'index', 'sayasat']);
+//    $builder->connect('/sayasat/*', ['controller' => 'Articles', 'action' => 'view']);
+//
+//    $builder->connect('/aleumet', ['controller' => 'Articles', 'action' => 'index', 'aleumet']);
+//    $builder->connect('/aleumet/*', ['controller' => 'Articles', 'action' => 'view']);
+//
+//    $builder->connect('/ekonomika', ['controller' => 'Articles', 'action' => 'index', 'ekonomika']);
+//    $builder->connect('/ekonomika/*', ['controller' => 'Articles', 'action' => 'view']);
+//
+//    $builder->connect('/sport', ['controller' => 'Articles', 'action' => 'index', 'sport']);
+//    $builder->connect('/sport/*', ['controller' => 'Articles', 'action' => 'view']);
+//
+//    $builder->connect('/madeniet', ['controller' => 'Articles', 'action' => 'index', 'madeniet']);
+//    $builder->connect('/madeniet/*', ['controller' => 'Articles', 'action' => 'view']);
+//
+//    $builder->connect('/ar-turli', ['controller' => 'Articles', 'action' => 'index', 'ar-turli']);
+//    $builder->connect('/ar-turli/*', ['controller' => 'Articles', 'action' => 'view']);
+//
+//    $builder->connect('/kozkaras', ['controller' => 'Articles', 'action' => 'index', 'kozkaras']);
+//    $builder->connect('/kozkaras/*', ['controller' => 'Articles', 'action' => 'view']);
+//
+//    $builder->connect('/tagaiyndau', ['controller' => 'Articles', 'action' => 'index', 'tagaiyndau']);
+//    $builder->connect('/tagaiyndau/*', ['controller' => 'Articles', 'action' => 'view']);
+//
+//    $builder->connect('/elorda-erzhyrektery', ['controller' => 'Articles', 'action' => 'index', 'elorda-erzhyrektery']);
+//    $builder->connect('/elorda-erzhyrektery/*', ['controller' => 'Articles', 'action' => 'view']);
 
-    $builder->connect('/sayasat', ['controller' => 'Articles', 'action' => 'index', 'sayasat']);
-    $builder->connect('/sayasat/*', ['controller' => 'Articles', 'action' => 'view']);
+    $builder->connect('/:slug', ['controller' => 'Articles', 'action' => 'index'])
+        ->setPass(['slug']);
 
-    $builder->connect('/aleumet', ['controller' => 'Articles', 'action' => 'index', 'aleumet']);
-    $builder->connect('/aleumet/*', ['controller' => 'Articles', 'action' => 'view']);
-
-    $builder->connect('/ekonomika', ['controller' => 'Articles', 'action' => 'index', 'ekonomika']);
-    $builder->connect('/ekonomika/*', ['controller' => 'Articles', 'action' => 'view']);
-
-    $builder->connect('/sport', ['controller' => 'Articles', 'action' => 'index', 'sport']);
-    $builder->connect('/sport/*', ['controller' => 'Articles', 'action' => 'view']);
-
-    $builder->connect('/madeniet', ['controller' => 'Articles', 'action' => 'index', 'madeniet']);
-    $builder->connect('/madeniet/*', ['controller' => 'Articles', 'action' => 'view']);
-
-    $builder->connect('/ar-turli', ['controller' => 'Articles', 'action' => 'index', 'ar-turli']);
-    $builder->connect('/ar-turli/*', ['controller' => 'Articles', 'action' => 'view']);
-
-    $builder->connect('/kozkaras', ['controller' => 'Articles', 'action' => 'index', 'kozkaras']);
-    $builder->connect('/kozkaras/*', ['controller' => 'Articles', 'action' => 'view']);
-
-    $builder->connect('/tagaiyndau', ['controller' => 'Articles', 'action' => 'index', 'tagaiyndau']);
-    $builder->connect('/tagaiyndau/*', ['controller' => 'Articles', 'action' => 'view']);
-
-    $builder->connect('/elorda-erzhyrektery', ['controller' => 'Articles', 'action' => 'index', 'elorda-erzhyrektery']);
-    $builder->connect('/elorda-erzhyrektery/*', ['controller' => 'Articles', 'action' => 'view']);
+    $builder->connect('/:slug/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPass(['slug']);
 
     $builder->connect('/requests/:action', ['controller' => 'Requests']);
 
