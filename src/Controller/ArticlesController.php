@@ -45,7 +45,6 @@ class ArticlesController extends AppController
         $this->loadModel('Articles');
 
         $this->loadModel('Categories');
-        $this->loadModel('Rubrics');
         $this->loadModel('Tags');
         $this->loadModel('Authors');
 
@@ -66,8 +65,6 @@ class ArticlesController extends AppController
                 $cat_id = $cur_cat['id'];
             }
         }
-//        debug($cur_cat);
-//        die();
         $conditions = [
             $model.'.date <=' => $cur_date
         ];
@@ -85,41 +82,37 @@ class ArticlesController extends AppController
             'limit' => $per_page,
         ];
 
-        $data = $this->$model->find('all')
-            ->contain([
-                'Rubrics' => function(Query $q){
-                    return $q->enableAutoFields();
-                }
-            ])
-            ->where($conditions)
-            ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'date', 'img', 'views', 'reading_time'])
-            ->order([$model.'.date' => 'DESC'])
-            ->limit($per_page)->offset($offset)
-            ->toList();
-//        debug($data);
-//        debug($conditions);
-//        die();
-         $popular_news = $this->Articles->find('all')
-            ->contain([
-                'Rubrics' => function(Query $q){
-                    return $q->enableAutoFields();
-                }
-            ])
-            ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
-            ->where($conditions)
-            ->orderDesc('views')
-            ->toList();
+        $data = Cache::read($alias . '_news', 'long');
+        if (!$data) {
+            $data = $this->$model->find('all')
+                ->where($conditions)
+                ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'date', 'img', 'views', 'reading_time'])
+                ->order([$model.'.date' => 'DESC'])
+                ->limit($per_page)->offset($offset)
+                ->toList();
+            Cache::write($alias . '_news', $data, 'long');
+        }
 
-         $last_news = $this->Articles->find('all')
-                ->contain([
-                    'Rubrics' => function(Query $q) {
-                        return $q->enableAutoFields();
-                    },
-                ])
+        $popular_news = Cache::read($alias . '_popular_news', 'long');
+        if (!$popular_news) {
+            $popular_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
+                ->where($conditions)
+                ->orderDesc('views')
+                ->toList();
+            Cache::write($alias . '_popular_news', $data, 'long');
+        }
+
+        $last_news = Cache::read($alias . '_last_news', 'long');
+        if (!$last_news) {
+            $last_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
                 ->where($conditions)
                 ->orderDesc('Articles.date')
                 ->toList();
+            Cache::write($alias . '_last_news', $data, 'long');
+        }
+
         $this->set('pagination', $this->paginate(
             $this->$model->find('all')
                 ->where($conditions)
@@ -140,7 +133,7 @@ class ArticlesController extends AppController
             }
         }
 
-        $this->set( compact('data', 'meta', 'cur_cat', 'popular_news','last_news') );
+        $this->set( compact('data', 'meta', 'cur_cat') );
     }
 
     public function view($alias){
@@ -150,7 +143,6 @@ class ArticlesController extends AppController
         $data = $this->$model->findByAlias($alias)
             ->contain([
                 'Categories',
-                'Rubrics',
                 'Tags',
                 'Authors'
             ])
@@ -163,9 +155,6 @@ class ArticlesController extends AppController
         }
 
         $this->$model->query()->update()->set(['views' => ($data['views'] + 1)])->where(['id' => $item_id])->execute();
-
-
-
 
 
         $tags_ids = array_column($data['tags'], 'id');
@@ -200,22 +189,12 @@ class ArticlesController extends AppController
             $conditions[] = [$model.'.category_id' => $cat_id];
         }
         $popular_news = $this->Articles->find('all')
-            ->contain([
-                'Rubrics' => function(Query $q){
-                    return $q->enableAutoFields();
-                }
-            ])
             ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
             ->where($conditions)
             ->orderDesc('views')
             ->toList();
 
          $last_news = $this->Articles->find('all')
-                ->contain([
-                    'Rubrics' => function(Query $q) {
-                        return $q->enableAutoFields();
-                    },
-                ])
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
                 ->where($conditions)
                 ->orderDesc('Articles.date')
@@ -225,7 +204,6 @@ class ArticlesController extends AppController
         $author_articles = [];
         if( $data['author_id'] ){
             $author_articles = $this->$model->find('all')
-                ->contain('Rubrics')
                 ->where([$model.'.id !=' => $item_id, $model.'.author_id' => $data['author_id']])
                 ->orderDesc($model.'.date')
                 ->toList();
@@ -249,7 +227,6 @@ class ArticlesController extends AppController
         $data = $this->$model->findById($id)
             ->contain([
                 'Categories',
-                'Rubrics',
                 'Tags',
                 'Authors'
             ])
@@ -428,9 +405,6 @@ class ArticlesController extends AppController
         if( $is_search ){
             $data = $this->$model->find('all')
                 ->contain([
-                    'Rubrics' => function(Query $q){
-                        return $q->enableAutoFields();
-                    },
                     'Authors' => function(Query $q){
                         return $q->enableAutoFields();
                     },
@@ -462,7 +436,6 @@ class ArticlesController extends AppController
         } else{
             $data = [];
         }
-        // debug($data);die;
 
         $this->set( compact('data', 'str', 'chkd_sort', 'chkd_types', 'chkd_date', 'search_mode','tags','tags_ids') );
     }

@@ -1,6 +1,3 @@
-<?php 
-  $langs = ['ru', 'kz', 'en']; 
-?>
 
 <section class="content-header">
   <div class="container-fluid">
@@ -34,31 +31,23 @@
         </thead>
         <tbody>
          	<?php foreach($data as $item): ?>
-        		<tr>
-        			<td>
-        				<?=$item['id']?>
-        			</td>
-              <td>
-                <?php foreach( $langs as $index => $key ): ?>
-                  <?php if( isset($item['_translations'][$key]) && $item['_translations'][$key]['title'] ): ?>
-                    <p> <b><?=$key?>:</b> <?= $item['_translations'][$key]['title'] ?></p>
-                  <?php endif; ?>
-                <?php endforeach; ?>
-              </td>
-              <td>
-        				<?= $item['item_order'] ?>
-        			</td>
-        			<td class="project-actions text-right">
-        				<a class="btn btn-info btn-sm" href="/admin/categories/edit/<?=$item['id']?>?lang=ru">
-                  <i class="fas fa-pencil-alt"></i> rus
-                </a>
-                <a class="btn btn-info btn-sm" href="/admin/categories/edit/<?=$item['id']?>?lang=kz">
-                  <i class="fas fa-pencil-alt"></i> kaz
-                </a>
-               
-        				  <?php echo $this->Form->postLink('Удалить', "/admin/categories/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
-        			</td>
-        		</tr>
+                <tr>
+                    <td>
+                        <?=$item['id']?>
+                    </td>
+                    <td>
+                        <?= $item['title'] ?>
+                    </td>
+                    <td>
+                        <?= $item['item_order'] ?>
+                    </td>
+                    <td class="project-actions text-right">
+                        <a class="btn btn-info btn-sm" href="/admin/categories/edit/<?=$item['id']?>?">
+                            <i class="fas fa-pencil-alt"></i> Редактировать
+                        </a>
+                        <?php echo $this->Form->postLink('Удалить', "/admin/categories/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
+                    </td>
+                </tr>
         	<?php endforeach ?>
         </tbody>
       </table>
@@ -66,7 +55,7 @@
     <?php else: ?>
       <div class="emty_data">
         К сожалению в данном разделе еще не добавлена информация...
-      </div> 
+      </div>
     <?php endif ?>
     </div>
   </div>
@@ -74,14 +63,14 @@
 </section>
 
 <ul class="pagination">
-  <?php 
+  <?php
     $this->Paginator->options([
         'url' => [
             'lang' => $l,
         ]
     ]);
     echo $this->Paginator->numbers([
-      'first' => 1, 'last' => 1, 'modulus' => 2, 
-    ]); 
+      'first' => 1, 'last' => 1, 'modulus' => 2,
+    ]);
   ?>
 </ul>

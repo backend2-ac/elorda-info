@@ -55,7 +55,7 @@ class PagesController extends AppController
 
         $this->loadModel('Articles');
         $this->loadModel('Categories');
-        $this->loadModel('Rubrics');
+//        $this->loadModel('Rubrics');
         $this->loadModel('Documents');
 
         $this->loadModel('Pages');
@@ -72,15 +72,9 @@ class PagesController extends AppController
          $main_articles = Cache::read('main_articles_'.$cur_lang, 'long');
          if( !$main_articles ){
         $main_articles = $this->Articles->find('all')
-                ->select(['id', 'title', 'alias', 'category_id', 'img', 'date', 'views', 'short_desc', 'on_main'])
-                ->contain([
-                    'Rubrics' => function(Query $q) {
-                        return $q->enableAutoFields();
-                    },
-                ])
+                ->select(['id', 'title', 'alias', 'category_id', 'img', 'date', 'views', 'short_desc'])
                 ->where([
                     'Articles.date <=' => $cur_date
-                    // 'Articles.on_main' => 1
                 ])
                 ->order(['Articles.date' => 'DESC'])
                 ->limit(6)
@@ -93,9 +87,6 @@ class PagesController extends AppController
         if (!$capital_news) {
             $capital_news = $this->Articles->find('all')
                 ->contain([
-                    'Rubrics' => function(Query $q) {
-                        return $q->enableAutoFields();
-                    },
                     'Categories' => function(Query $q) {
                         return $q->enableAutoFields();
                     },
@@ -113,9 +104,6 @@ class PagesController extends AppController
         if (!$society_news) {
             $society_news = $this->Articles->find('all')
                     ->contain([
-                        'Rubrics' => function(Query $q) {
-                            return $q->enableAutoFields();
-                        },
                         'Categories' => function(Query $q) {
                             return $q->enableAutoFields();
                         },
@@ -132,9 +120,6 @@ class PagesController extends AppController
         if (!$politica_news) {
             $politica_news = $this->Articles->find('all')
                 ->contain([
-                    'Rubrics' => function(Query $q) {
-                        return $q->enableAutoFields();
-                    },
                     'Categories' => function(Query $q) {
                         return $q->enableAutoFields();
                     },
@@ -152,9 +137,6 @@ class PagesController extends AppController
         if (!$culture_news) {
             $culture_news = $this->Articles->find('all')
                 ->contain([
-                    'Rubrics' => function(Query $q) {
-                        return $q->enableAutoFields();
-                    },
                     'Categories' => function(Query $q) {
                         return $q->enableAutoFields();
                     },
@@ -172,9 +154,6 @@ class PagesController extends AppController
         if (!$heroes_news) {
             $heroes_news = $this->Articles->find('all')
                 ->contain([
-                    'Rubrics' => function(Query $q) {
-                        return $q->enableAutoFields();
-                    },
                     'Categories' => function(Query $q) {
                         return $q->enableAutoFields();
                     },
@@ -191,9 +170,6 @@ class PagesController extends AppController
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
                     ->contain([
-                        'Rubrics' => function(Query $q){
-                            return $q->enableAutoFields();
-                        },
                         'Categories' => function(Query $q) {
                             return $q->enableAutoFields();
                         },
@@ -202,7 +178,7 @@ class PagesController extends AppController
                     ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
                     ->where(['Articles.category_id' => $capital_news_category_id,'Articles.date <=' => $cur_date])
                     ->orderDesc('views')
-                    ->limit(15)
+                    ->limit(6)
                     ->toList();
             Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
         }
@@ -211,9 +187,6 @@ class PagesController extends AppController
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
                     ->contain([
-                        'Rubrics' => function(Query $q) {
-                            return $q->enableAutoFields();
-                        },
                         'Categories' => function(Query $q) {
                             return $q->enableAutoFields();
                         },
@@ -221,7 +194,7 @@ class PagesController extends AppController
                     ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
                     ->where(['Articles.category_id' => $capital_news_category_id, 'Articles.date <=' => $cur_date])
                     ->orderDesc('Articles.date')
-                    ->limit(15)
+                    ->limit(6)
                     ->toList();
             Cache::write('last_news_' . $cur_lang, $last_news, 'long');
         }
@@ -237,7 +210,7 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set( compact('meta', 'main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news','popular_news','last_news') );
+        $this->set( compact('meta', 'main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news') );
     }
 
 
@@ -248,11 +221,6 @@ class PagesController extends AppController
 
         $page_comps = $this->_getPagesComps(4);
         $popular_news = $this->Articles->find('all')
-            ->contain([
-                'Rubrics' => function(Query $q){
-                    return $q->enableAutoFields();
-                }
-            ])
             ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
             ->where(['Articles.category_id' => 1,'Articles.date <=' => $cur_date])
             ->orderDesc('views')
@@ -265,11 +233,6 @@ class PagesController extends AppController
             ->where([$this->Employees->translationField('name').' is not' => null])
             ->toList();
         $last_news = $this->Articles->find('all')
-            ->contain([
-                'Rubrics' => function(Query $q) {
-                    return $q->enableAutoFields();
-                },
-            ])
             ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
             ->where(['Articles.category_id' => 1, 'Articles.date <=' => $cur_date])
             ->orderDesc('date')
@@ -292,11 +255,6 @@ class PagesController extends AppController
 
         $page_comps = $this->_getPagesComps(2);
         $popular_news = $this->Articles->find('all')
-            ->contain([
-                'Rubrics' => function(Query $q){
-                    return $q->enableAutoFields();
-                }
-            ])
             ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
             ->where(['Articles.category_id' => 1,'Articles.date <=' => $cur_date])
             ->orderDesc('views')
@@ -309,11 +267,6 @@ class PagesController extends AppController
             ->where([$this->Employees->translationField('name').' is not' => null])
             ->toList();
         $last_news = $this->Articles->find('all')
-            ->contain([
-                'Rubrics' => function(Query $q) {
-                    return $q->enableAutoFields();
-                },
-            ])
             ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
             ->where(['Articles.category_id' => 1, 'Articles.date <=' => $cur_date])
             ->orderDesc('date')

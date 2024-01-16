@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
 use Cake\Validation\Validator;
 use Cake\I18n\I18n;
 
@@ -14,7 +14,7 @@ class ArticlesController extends AppController{
     public function initialize(): void{
         parent::initialize();
         $this->loadModel('Articles');
-        
+
         $this->loadModel('Tags');
         $this->loadModel('ArticlesTags');
         $this->loadModel('Rubrics');
@@ -37,7 +37,7 @@ class ArticlesController extends AppController{
         $views_sort = '';
         if( isset($_GET['title']) && $_GET['title'] ){
             $title = trim($_GET['title']);
-            $conditions[] = [$this->$model->translationField('title').' LIKE' => '%'. $title .'%'];
+            $conditions[] = [$this->$model->get('title') . ' LIKE' => '%'. $title .'%'];
         }
         if( isset($_GET['author_id']) && $_GET['author_id'] ){
             $author_id = $_GET['author_id'];
@@ -93,8 +93,8 @@ class ArticlesController extends AppController{
 
         $data = [];
         if( $data_ids ){
-            $data = $this->$model->find('translations')
-                ->where([$model.'.id IN' => $data_ids]) 
+            $data = $this->$model->find('all')
+                ->where([$model.'.id IN' => $data_ids])
                 ->contain('Rubrics')
                 ->orderDesc('date')
                 // ->limit($per_page)->offset($offset)
@@ -108,14 +108,13 @@ class ArticlesController extends AppController{
             $this->$model->find('all')
             ->where($conditions)
             ->order([$model.'.date' => 'DESC'])
-            ->limit($per_page), 
+            ->limit($per_page),
             $pag_settings
         ));
 
         $categories = $this->_getAdminCategories();
-        $rubrics = $this->_getAdminRubrics();
         $authors = $this->_getAdminAuthors();
-        $this->set( compact('categories', 'rubrics', 'authors') );
+        $this->set( compact('categories',  'authors') );
     }
 
     public function add(){
@@ -204,10 +203,9 @@ class ArticlesController extends AppController{
         }
 
         $categories = $this->_getAdminCategories();
-        $rubrics = $this->_getAdminRubrics();
         $authors = $this->_getAdminAuthors();
         $tags_list = $this->_getAdminTags();
-        $this->set( compact('categories', 'rubrics', 'authors', 'tags_list') );
+        $this->set( compact('categories',  'authors', 'tags_list') );
     }
 
     public function edit($item_id = null){
@@ -252,7 +250,7 @@ class ArticlesController extends AppController{
                 if( !isset($data1['on_sidebar']) || !$data1['on_sidebar'] ){
                     $data1['on_sidebar'] = 0;
                 }
-                
+
                 if( isset($data1['articles_tags']) && $data1['articles_tags'] ){
                     foreach( $data1['articles_tags'] as $tag_id ){
                         if( !in_array($tag_id, $data_tags) ){
@@ -314,10 +312,9 @@ class ArticlesController extends AppController{
         $this->set( compact('data', 'data_tags') );
 
         $categories = $this->_getAdminCategories();
-        $rubrics = $this->_getAdminRubrics();
         $authors = $this->_getAdminAuthors();
         $tags_list = $this->_getAdminTags();
-        $this->set( compact('categories', 'rubrics', 'authors', 'tags_list') );
+        $this->set( compact('categories',  'authors', 'tags_list') );
     }
 
     public function delete($item_id = null){
@@ -391,7 +388,7 @@ class ArticlesController extends AppController{
         $slug = $slug . '_' . $slug_date;
         return $slug;
     }
-    
+
 }
 
 

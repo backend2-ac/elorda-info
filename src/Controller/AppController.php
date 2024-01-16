@@ -80,7 +80,6 @@ class AppController extends Controller
         $this->loadModel('Articles');
         $this->loadModel('Categories');
         $this->loadModel('Tags');
-        $this->loadModel('Rubrics');
         $this->loadModel('Authors');
         $this->loadModel('Blocks');
 
@@ -204,67 +203,6 @@ class AppController extends Controller
         /*--------- Comps END --------*/
 
         if( !$admin ){
-            $sidebar_fixed = Cache::read('sidebar_fixed_'.$l, 'long');
-            if( !$sidebar_fixed ){
-                $sidebar_fixed = $this->Articles->find()
-                    ->contain([
-                        'Rubrics' => function(Query $q){
-                            return $q->enableAutoFields();
-                        }
-                    ])
-                    ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'img', 'date', 'views', 'on_sidebar', 'reading_time'])
-                    ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.on_sidebar' => 1, 'Articles.date <=' => $cur_date])
-                    ->orderDesc('date')
-                    ->first();
-                Cache::write('sidebar_fixed_'.$l, $sidebar_fixed, 'long');
-            }
-
-            $last_news = Cache::read('last_news_'.$l, 'long');
-            if( !$last_news ){
-                $last_news = $this->Articles->find('all')
-                    ->contain([
-                        'Rubrics' => function(Query $q){
-                            return $q->enableAutoFields();
-                        }
-                    ])
-                    ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
-                    ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.category_id' => 1, 'Articles.date <=' => $cur_date])
-                    ->orderDesc('date')
-                    ->limit(5)
-                    ->toList();
-                Cache::write('last_news_'.$l, $last_news, 'long');
-            }
-
-            $most_popular = Cache::read('most_popular_'.$l, 'long');
-            if( !$most_popular ){
-                $most_popular = $this->Articles->find('all')
-                    ->contain([
-                        'Rubrics' => function(Query $q){
-                            return $q->enableAutoFields();
-                        }
-                    ])
-                    ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
-                    ->where([$this->Articles->translationField('title').' is not' => null, 'Articles.date <=' => $cur_date])
-                    ->orderDesc('views')
-                    ->limit(3)
-                    ->toList();
-                Cache::write('most_popular_'.$l, $most_popular, 'long');
-            }
-
-//            $categories_slug_parts = [
-//                'news-capital' => 'news-capital',
-//                'news-kz' => 'news-kz',
-//                'politika' => 'politika',
-//                'society' => 'society',
-//                'ekonomika' => 'ekonomika',
-//                'sport' => 'sport',
-//                'poleznoe' => 'poleznoe',
-//                'mnenie' => 'mnenie',
-//                'poslanie' => 'poslanie',
-//                'raznoe' => 'raznoe',
-//                'kul-tura' => 'kul-tura',
-//                'geroi-stolicy' => 'geroi-stolicy',
-//            ];
 
             $categories_slug_parts = [
                 'novosti-stolicy-ru' => 'novosti-stolicy-ru',
@@ -327,7 +265,7 @@ class AppController extends Controller
 
             /*------ Ads blocks END ------*/
 
-            $this->set( compact('sidebar_fixed', 'last_news', 'most_popular', 'categories_slug_parts', 'full_categories') );
+            $this->set( compact(  'categories_slug_parts', 'full_categories') );
         }
 
 
@@ -342,7 +280,7 @@ class AppController extends Controller
                         'keyField' => 'id',
                         'valueField' => 'title',
                     ])
-                    ->orderDesc('item_order')
+                    ->order(['locale', 'title'])
                     ->toArray();
                 Cache::write('admin_categories', $categories, 'eternal');
             }
@@ -364,24 +302,10 @@ class AppController extends Controller
             return $tags;
         }
 
-        protected function _getAdminRubrics(){
-            $rubrics = Cache::read('admin_rubrics', 'eternal');
-            if( !$rubrics ){
-                $rubrics = $this->Rubrics->find('list', [
-                        'keyField' => 'id',
-                        'valueField' => 'title',
-                    ])
-                    ->orderDesc('item_order')
-                    ->toArray();
-                Cache::write('admin_rubrics', $rubrics, 'eternal');
-            }
-
-            return $rubrics;
-        }
-
         protected function _getAdminAuthors(){
             $authors = Cache::read('admin_authors', 'eternal');
             if( !$authors ){
+                $this->Authors->setLocale('ru');
                 $authors = $this->Authors->find('list', [
                         'keyField' => 'id',
                         'valueField' => 'name',
