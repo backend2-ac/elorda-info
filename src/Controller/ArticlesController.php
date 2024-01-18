@@ -53,7 +53,7 @@ class ArticlesController extends AppController
     }
 
     public function index($alias = null){
-        $model = 'Articles';
+
         $cat_id = null;
         $cur_date = date('Y-m-d H:i:s');
 
@@ -63,13 +63,15 @@ class ArticlesController extends AppController
 
             if( $cur_cat ){
                 $cat_id = $cur_cat['id'];
+            } else {
+                throw new NotFoundException(__('Запись не найдена'));
             }
         }
         $conditions = [
-            $model.'.date <=' => $cur_date
+            'Articles.date <=' => $cur_date
         ];
         if( $cat_id ){
-            $conditions[] = [$model.'.category_id' => $cat_id];
+            $conditions[] = ['Articles.category_id' => $cat_id];
         }
 
         $cur_page = 1;
@@ -84,10 +86,10 @@ class ArticlesController extends AppController
 
         $data = Cache::read($alias . '_news', 'long');
         if (!$data) {
-            $data = $this->$model->find('all')
+            $data = $this->Articles->find('all')
                 ->where($conditions)
                 ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'date', 'img', 'views', 'reading_time'])
-                ->order([$model.'.date' => 'DESC'])
+                ->order(['Articles.date' => 'DESC'])
                 ->limit($per_page)->offset($offset)
                 ->toList();
             Cache::write($alias . '_news', $data, 'long');
@@ -99,8 +101,9 @@ class ArticlesController extends AppController
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
                 ->where($conditions)
                 ->orderDesc('views')
+                ->limit(6)
                 ->toList();
-            Cache::write($alias . '_popular_news', $data, 'long');
+            Cache::write($alias . '_popular_news', $popular_news, 'long');
         }
 
         $last_news = Cache::read($alias . '_last_news', 'long');
@@ -109,15 +112,16 @@ class ArticlesController extends AppController
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
                 ->where($conditions)
                 ->orderDesc('Articles.date')
+                ->limit(6)
                 ->toList();
-            Cache::write($alias . '_last_news', $data, 'long');
+            Cache::write($alias . '_last_news', $last_news, 'long');
         }
 
         $this->set('pagination', $this->paginate(
-            $this->$model->find('all')
+            $this->Articles->find('all')
                 ->where($conditions)
                 ->select(['id', 'category_id', 'title', 'date', 'created_at'])
-                ->order([$model.'.date' => 'DESC'])
+                ->order(['Articles.date' => 'DESC'])
                 ->limit($per_page),
             $pag_settings
         ));
@@ -133,14 +137,12 @@ class ArticlesController extends AppController
             }
         }
 
-        $this->set( compact('data', 'meta', 'cur_cat') );
+        $this->set( compact('data', 'meta', 'cur_cat', 'last_news', 'popular_news') );
     }
 
     public function view($alias){
-        $model = 'Articles';
-        $cat_id = null;
-         $cur_date = date('Y-m-d H:i:s');
-        $data = $this->$model->findByAlias($alias)
+        $cur_date = date('Y-m-d H:i:s');
+        $data = $this->Articles->findByAlias($alias)
             ->contain([
                 'Categories',
                 'Tags',
@@ -148,64 +150,55 @@ class ArticlesController extends AppController
             ])
             ->first();
 
-        $item_id = $data['id'];
-
-        if( is_null($item_id) || !(int)$item_id || !$this->$model->get($item_id) ){
+        $article_id = $data['id'];
+        if (empty($data) || empty($data['id']) || !$this->Articles->exists(['id' => $data['id']])) {
             throw new NotFoundException(__('Запись не найдена'));
         }
 
-        $this->$model->query()->update()->set(['views' => ($data['views'] + 1)])->where(['id' => $item_id])->execute();
+        $this->Articles->query()->update()->set(['views' => ($data['views'] + 1)])->where(['id' => $article_id])->execute();
 
-
-        $tags_ids = array_column($data['tags'], 'id');
-         $other_news = $this->$model->find()
+         $other_news = $this->Articles->find()
                 ->where([
-                    $model.'.id !=' => $item_id,
-                    $model.'.category_id =' =>$data['category_id'],
-//                    $this->$model->translationField('title') . ' is not' => null,
+                    'Articles.id !=' => $article_id,
+                    'Articles.category_id =' =>$data['category_id'],
                 ])
-                ->orderDesc($model.'.date')
+                ->orderDesc('Articles.date')
                 ->limit(3)
                 ->toList();
-        if( $tags_ids ){
-             $other_news = [];
-
-            $other_news = $this->$model->find()
-                ->where([
-                    $model.'.id !=' => $item_id,
-                    $model.'.category_id =' =>$data['category_id'],
-                ])
-                ->orderDesc($model.'.date')
-                ->limit(3)
-                ->toList();
-        }else {
-
-        }
 
         $conditions = [
-            $model.'.date <=' => $cur_date
+            'Articles.date <=' => $cur_date,
+            'Articles.category_id' => $data['category_id']
         ];
-        if( $cat_id ){
-            $conditions[] = [$model.'.category_id' => $cat_id];
+        $category_alias = $data['category']['alias'];
+        $popular_news = Cache::read($category_alias . '_popular_news', 'long');
+        if (!$popular_news) {
+            $popular_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
+                ->where($conditions)
+                ->orderDesc('views')
+                ->limit(6)
+                ->toList();
+            Cache::write($category_alias . '_popular_news', $popular_news, 'long');
         }
-        $popular_news = $this->Articles->find('all')
-            ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
-            ->where($conditions)
-            ->orderDesc('views')
-            ->toList();
 
-         $last_news = $this->Articles->find('all')
+        $last_news = Cache::read($category_alias . '_last_news', 'long');
+        if (!$last_news) {
+            $last_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
                 ->where($conditions)
                 ->orderDesc('Articles.date')
+                ->limit(6)
                 ->toList();
-        // $this->set( compact('tags_ids') );
+            Cache::write($category_alias . '_last_news', $last_news, 'long');
+        }
 
         $author_articles = [];
         if( $data['author_id'] ){
-            $author_articles = $this->$model->find('all')
-                ->where([$model.'.id !=' => $item_id, $model.'.author_id' => $data['author_id']])
-                ->orderDesc($model.'.date')
+            $author_articles = $this->Articles->find('all')
+                ->where(['Articles.id !=' => $article_id, 'Articles.author_id' => $data['author_id']])
+                ->orderDesc('Articles.date')
+                ->limit(6)
                 ->toList();
         }
 
@@ -220,11 +213,11 @@ class ArticlesController extends AppController
         $this->set( compact('data', 'meta', 'other_news', 'author_articles','popular_news','last_news') );
     }
 
-    public function loadingview($id){
+    public function loadingview($article_id){
         $model = 'Articles';
         $cat_id = null;
          $cur_date = date('Y-m-d H:i:s');
-        $data = $this->$model->findById($id)
+        $data = $this->$model->findById($article_id)
             ->contain([
                 'Categories',
                 'Tags',
@@ -234,11 +227,11 @@ class ArticlesController extends AppController
             ->first();
 
 
-        if( is_null($item_id) || !(int)$item_id || !$this->$model->get($item_id) ){
+        if( is_null($article_id) || !(int)$article_id || !$this->$model->get($article_id) ){
             throw new NotFoundException(__('Запись не найдена'));
         }
 
-        $this->$model->query()->update()->set(['views' => ($data['views'] + 1)])->where(['id' => $item_id])->execute();
+        $this->$model->query()->update()->set(['views' => ($data['views'] + 1)])->where(['id' => $article_id])->execute();
 
 
     $this->set(compact('data'));

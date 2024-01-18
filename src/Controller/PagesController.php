@@ -169,16 +169,17 @@ class PagesController extends AppController
         $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
-                    ->contain([
-                        'Categories' => function(Query $q) {
-                            return $q->enableAutoFields();
-                        },
-
-                    ])
+//                    ->contain([
+//                        'Categories' => function(Query $q) {
+//                            return $q->enableAutoFields();
+//                        },
+//
+//                    ])
                     ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
                     ->where(['Articles.category_id' => $capital_news_category_id,'Articles.date <=' => $cur_date])
                     ->orderDesc('views')
                     ->limit(6)
+                    ->offset(6)
                     ->toList();
             Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
         }
@@ -186,15 +187,16 @@ class PagesController extends AppController
         $last_news = Cache::read('last_news_' . $cur_lang, 'long');
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
-                    ->contain([
-                        'Categories' => function(Query $q) {
-                            return $q->enableAutoFields();
-                        },
-                    ])
+//                    ->contain([
+//                        'Categories' => function(Query $q) {
+//                            return $q->enableAutoFields();
+//                        },
+//                    ])
                     ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
                     ->where(['Articles.category_id' => $capital_news_category_id, 'Articles.date <=' => $cur_date])
                     ->orderDesc('Articles.date')
                     ->limit(6)
+                    ->offset(6)
                     ->toList();
             Cache::write('last_news_' . $cur_lang, $last_news, 'long');
         }
