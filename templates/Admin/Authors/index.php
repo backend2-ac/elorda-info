@@ -1,5 +1,5 @@
-<?php 
-  $langs = ['ru', 'kz', 'en']; 
+<?php
+  $langs = ['ru', 'kz', 'en'];
 ?>
 
 <section class="content-header">
@@ -28,7 +28,6 @@
             <tr>
                 <th style="width: 1%">ID</th>
                 <th style="width: 8%">ФИО</th>
-                <th style="width: 5%">Картинка</th>
                 <th style="width: 5%">Приоритет</th>
                 <th style="width: 5%; text-align: right;">Редактирование</th>
             </tr>
@@ -41,9 +40,6 @@
         			</td>
               <td>
                 <?= $item['name'] ?>
-              </td>
-              <td>
-                <img src="/img/authors/thumbs/<?= $item['img'] ?>" alt="" width="120">
               </td>
               <td>
         				<?= $item['item_order'] ?>
@@ -65,7 +61,7 @@
     <?php else: ?>
       <div class="emty_data">
         К сожалению в данном разделе еще не добавлена информация...
-      </div> 
+      </div>
     <?php endif ?>
     </div>
   </div>
@@ -73,14 +69,14 @@
 </section>
 
 <ul class="pagination">
-  <?php 
+  <?php
     $this->Paginator->options([
         'url' => [
             'lang' => $l,
         ]
     ]);
     echo $this->Paginator->numbers([
-      'first' => 1, 'last' => 1, 'modulus' => 2, 
-    ]); 
+      'first' => 1, 'last' => 1, 'modulus' => 2,
+    ]);
   ?>
 </ul>

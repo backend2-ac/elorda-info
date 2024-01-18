@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
 use Cake\Validation\Validator;
 use Cake\I18n\I18n;
 
@@ -21,8 +21,6 @@ class AuthorsController extends AppController{
         $this->loadComponent('EntityFiles');
     }
 
-    public $img_folder = 'authors';
-    public $img_fields = ['img'];
 
     public function index(){
         $model = 'Authors';
@@ -37,7 +35,7 @@ class AuthorsController extends AppController{
             'limit' => $per_page,
         ];
 
-        $data = $this->$model->find('all') 
+        $data = $this->$model->find('all')
             ->orderDesc('item_order')
             ->limit($per_page)->offset($offset)
             ->toList();
@@ -47,7 +45,7 @@ class AuthorsController extends AppController{
         $this->set('pagination', $this->paginate(
             $this->$model->find('all')
             ->order([$model.'.item_order' => 'DESC'])
-            ->limit($per_page), 
+            ->limit($per_page),
             $pag_settings
         ));
     }
@@ -67,7 +65,7 @@ class AuthorsController extends AppController{
         if( $this->request->is('post') ){
             $data = $this->request->getData();
 
-            $entity_res = $this->EntityFiles->saveEntityFiles($data, $model, $this->img_fields);
+            $entity_res = $this->EntityFiles->saveEntityFiles($data, $model);
 
             if( $entity_res['entity']->getErrors() ){
                 $errors = $entity_res['entity']->getErrors();
@@ -105,7 +103,7 @@ class AuthorsController extends AppController{
             $data1 = $this->request->getData();
             $old_data = clone $data;
 
-            $entity_res = $this->EntityFiles->saveEntityFiles($data1, $model, $this->img_fields);
+            $entity_res = $this->EntityFiles->saveEntityFiles($data1, $model);
 
             if( $entity_res['entity']->getErrors() ){
                 $errors = $entity_res['entity']->getErrors();
@@ -120,7 +118,6 @@ class AuthorsController extends AppController{
 
             if ($this->$model->save($data)) {
                 $this->Flash->success(__('Изменения сохранены'));
-                $this->_imgDelete($old_data, $entity_res['img_del']);
                 $this->_cacheDelete();
                 return $this->redirect( $this->referer() );
             }
@@ -147,7 +144,6 @@ class AuthorsController extends AppController{
 
         if ($this->$model->delete($data)) {
             $this->Flash->success(__('Элемент успешно удален'));
-            $this->_imgDelete($data, $this->img_fields);
             $this->_cacheDelete();
             return $this->redirect( $this->referer() );
         } else{
@@ -155,25 +151,6 @@ class AuthorsController extends AppController{
         }
     }
 
-    protected function _imgDelete($data = null, $fields = array()){
-        $folder = $this->img_folder;
-
-        if( $data && $fields ){
-            foreach( $fields as $item ){
-                if( isset($data[$item]) && $data[$item] ){
-                    $fileName = WWW_ROOT.'img'.DS.$folder.DS.$data[$item];
-                    $fileNameThumbs = WWW_ROOT.'img'.DS.$folder.DS.'thumbs'.DS.$data[$item];
-                    if( file_exists($fileName) ){
-                        unlink($fileName);
-                    }
-                    if( file_exists($fileNameThumbs) ){
-                        unlink($fileNameThumbs);
-                    }
-                    clearstatcache();
-                }
-            }
-        }
-    }
 
     protected function _cacheDelete(){
         Cache::delete('admin_authors', 'eternal');

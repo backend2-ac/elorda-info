@@ -32,20 +32,6 @@
 						<?= $this->Form->text('name', array('id' => 'inputName', 'class' => 'form-control', 'required')); ?>
 					</div>
 
-					<div class="form-group col_2">
-						<label for="inputPosition">Должность</label>
-						<?= $this->Form->text('position', array('id' => 'inputPosition', 'class' => 'form-control')); ?>
-					</div>
-					<div class="form-group col_2">
-						<label for="inputEducation">Образование</label>
-						<?= $this->Form->text('education', array('id' => 'inputEducation', 'class' => 'form-control')); ?>
-					</div>
-
-					<?= $this->element('admin/img_input', [
-						'custom_input_params' => ['title' => 'Картинка', 'field' => 'img'],
-						]); 
-					?>
-
 					<div class="submit_row form-group">
 						<?php echo $this->Form->button('Добавить', array('class' => 'btn btn-success')); ?>
 				    </div>
