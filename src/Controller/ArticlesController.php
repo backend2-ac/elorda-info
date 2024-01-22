@@ -238,30 +238,36 @@ class ArticlesController extends AppController
     $this->viewBuilder()->setOption('serialize', ['data']);
     }
 
-    public function redactor($id) {
-         $model = 'Articles';
-         $modelA = 'Authors';
-         $data = [];
-         $autor  = $this->$modelA->findById($id)
+    public function writer($author_alias) {
+         $author_artilces = [];
+         $author  = $this->Authors->findByAlias($author_alias)
             ->first();
-
-        if($id ){
-            $data = $this->$model->find('all')
-            ->where([ $model.'.author_id' => $id])
-            ->contain([
-                'Tags',
-            ])
-            ->orderDesc($model.'.date')
-            ->toList();
-        }
-        if( is_null($data) || !(int)$data ){
+        if (!$author) {
             throw new NotFoundException(__('Запись не найдена'));
         }
-           $this->set(compact('data','autor'));
+        $author_id = $author['id'];
+        $author_artilces = Cache::read($author_alias . '_news', 'long');
+        if (!$author_artilces) {
+            $author_artilces = $this->Articles->find('all')
+                ->where([ 'Articles.author_id' => $author_id])
+                ->contain([
+                    'Tags',
+                ])
+                ->orderDesc('Articles.date')
+                ->toList();
+            Cache::write($author_alias . '_news', $author_artilces, 'long');
+        }
+//        if( is_null($author_artilces) || !$author_artilces ){
+//            throw new NotFoundException(__('Запись не найдена'));
+//        }
+           $this->set(compact('author_artilces','author'));
     }
 
+    public function tag($tag_alias) {
+
+    }
     public function search(){
-        $model = 'Articles';
+
         $cur_date = date('Y-m-d H:i:s');
         $tag = 'Tags';
 
@@ -272,7 +278,7 @@ class ArticlesController extends AppController
             ->orderDesc($tag.'.item_order')
             ->toList();
 
-        $tags = $this->$tag->find('translations')
+        $tags = $this->$tag->find()
             ->where([$tag.'.id IN' => $tag_ids])
             ->orderDesc('item_order')
             ->toList();
@@ -285,13 +291,12 @@ class ArticlesController extends AppController
 
         $search_mode = 'full'; // full, tag
 
-        $sorting = [$model.'.date' => 'DESC'];
+        $sorting = ['Articles.date' => 'DESC'];
         $allow_search_types = ['author', 'tag', 'text'];
         $allow_sorting = ['date_desc', 'date_asc', 'title_asc', 'title_desc'];
 
         $conditions = [
-            $this->$model->translationField('title'). ' is not' => null,
-            $model.'.date <=' => $cur_date
+            'Articles.date <=' => $cur_date
         ];
 
         if( isset($_GET['tag_id']) && $_GET['tag_id'] ){
@@ -316,17 +321,17 @@ class ArticlesController extends AppController
                                     $chkd_types[] = 'text';
                                     $conditions['OR'][] = [
                                         'OR' => [
-                                            [$this->$model->translationField('title'). ' LIKE' => '%'. $str .'%'],
-                                            [$this->$model->translationField('sub_title'). ' LIKE' => '%'. $str .'%'],
-                                            [$this->$model->translationField('short_desc'). ' LIKE' => '%'. $str .'%'],
-                                            [$this->$model->translationField('img_text'). ' LIKE' => '%'. $str .'%'],
-                                            [$this->$model->translationField('body'). ' LIKE' => '%'. $str .'%'],
+                                            ['Articles.title LIKE' => '%'. $str .'%'],
+                                            ['Articles.sub_title LIKE' => '%'. $str .'%'],
+                                            ['Articles.short_desc LIKE' => '%'. $str .'%'],
+                                            ['Articles.img_text LIKE' => '%'. $str .'%'],
+                                            ['Articles.body LIKE' => '%'. $str .'%'],
                                         ]
                                     ];
 
                                 } elseif( $s_type == 'author' ){
                                     $chkd_types[] = 'author';
-                                    $conditions['OR'][] = [$this->Authors->translationField('name'). ' LIKE' => '%'. $str .'%'];
+                                    $conditions['OR'][] = ['Authors.name LIKE' => '%'. $str .'%'];
 
                                 } elseif( $s_type == 'tag' ){
                                     $chkd_types[] = 'tag';
@@ -335,7 +340,7 @@ class ArticlesController extends AppController
                                             'keyField' => 'id',
                                             'valueField' => 'id',
                                         ])
-                                        ->where([$this->Tags->translationField('title').' LIKE' => '%'.$str.'%'])
+                                        ->where(['Tags.title LIKE' => '%'.$str.'%'])
                                         ->toList();
 
                                     if( $tags_ids ){
@@ -349,7 +354,7 @@ class ArticlesController extends AppController
 
                     } else{
 
-                        $conditions[] = [$this->$model->translationField('title'). ' LIKE' => '%'. $str .'%'];
+                        $conditions[] = ['Articles.title LIKE' => '%'. $str .'%'];
 
                     }
                 }
@@ -358,8 +363,8 @@ class ArticlesController extends AppController
             if( isset($_GET['date']) && $_GET['date'] ){
                 $chkd_date = date('Y-m-d', strtotime($_GET['date']));
                 $conditions[] = [
-                    $model.'.date >=' => $chkd_date . ' 00:00:00',
-                    $model.'.date <=' => $chkd_date . ' 23:59:59',
+                    'Articles.date >=' => $chkd_date . ' 00:00:00',
+                    'Articles.date <=' => $chkd_date . ' 23:59:59',
                 ];
             }
         }
@@ -374,13 +379,13 @@ class ArticlesController extends AppController
 
         if( isset($_GET['sorting']) && in_array($_GET['sorting'], $allow_sorting) ){
             if( $_GET['sorting'] == 'date_asc' ){
-                $sorting = [$model.'.date' => 'ASC'];
+                $sorting = ['Articles.date' => 'ASC'];
                 $chkd_sort = 'date_asc';
             } elseif( $_GET['sorting'] == 'title_asc' ){
-                $sorting = [$this->$model->translationField('title') => 'ASC'];
+                $sorting = ['Articles.title' => 'ASC'];
                 $chkd_sort = 'title_asc';
             } elseif( $_GET['sorting'] == 'title_desc' ){
-                $sorting = [$this->$model->translationField('title') => 'DESC'];
+                $sorting = ['Articles.title' => 'DESC'];
                 $chkd_sort = 'title_desc';
             }
         }
@@ -396,14 +401,14 @@ class ArticlesController extends AppController
         ];
 
         if( $is_search ){
-            $data = $this->$model->find('all')
+            $data = $this->Articles->find('all')
                 ->contain([
                     'Authors' => function(Query $q){
                         return $q->enableAutoFields();
                     },
                 ])
                 ->leftJoinWith('Tags')
-                ->group([$model.'.id'])
+                ->group(['Articles.id'])
                 ->where($conditions)
                 ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'date', 'img', 'views'])
                 ->order($sorting)
@@ -411,7 +416,7 @@ class ArticlesController extends AppController
                 ->toList();
 
             $this->set('pagination', $this->paginate(
-                $this->$model->find('all')
+                $this->Articles->find('all')
                     ->contain([
                         'Authors' => function(Query $q){
                             return $q->enableAutoFields();
@@ -419,7 +424,7 @@ class ArticlesController extends AppController
                     ])
                     ->leftJoinWith('Tags')
                     ->where($conditions)
-                    ->group([$model.'.id'])
+                    ->group(['Articles.id'])
                     ->select(['id', 'category_id', 'title', 'date'])
                     ->order($sorting)
                     ->limit($per_page),

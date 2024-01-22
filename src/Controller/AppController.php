@@ -215,6 +215,17 @@ class AppController extends Controller
                 'mnenie-ru' => 'mnenie-ru',
                 'naznacheniya-ru' => 'naznacheniya-ru',
                 'geroi-stolicy-ru' => 'geroi-stolicy-ru',
+                'video-ru' => 'video-ru',
+                '30let-nezavisimosti-RK-ru' => '30let-nezavisimosti-RK-ru',
+
+                'tseny-v-astane-ru' => 'tseny-v-astane-ru',
+                'poslanie-ru' => 'poslanie-ru',
+                'vybory-2023-ru' => 'vybory-2023-ru',
+                'proisshestvie-ru' => 'proisshestvie-ru',
+                'tema-dnya-ru' => 'tema-dnya-ru',
+                'astana-25-1' => 'astana-25-1',
+                'sluzhba-komplaens-ru' => 'sluzhba-komplaens-ru',
+                'kodeks-etiki' => 'kodeks-etiki',
 
                 'elorda-janalyktary' => 'elorda-janalyktary',
                 'sayasat' => 'sayasat',
@@ -225,7 +236,22 @@ class AppController extends Controller
                 'ar-turli' => 'ar-turli',
                 'kozkaras' => 'kozkaras',
                 'tagaiyndau' => 'tagaiyndau',
-                'elorda-erzhyrektery' => 'elorda-erzhyrektery'
+                'elorda-erzhyrektery' => 'elorda-erzhyrektery',
+                'video' => 'video',
+                'tauelsizik-30-jyl' => 'tauelsizik-30-jyl',
+                'densaulyk' => 'densaulyk',
+                'Elordadagy-bagalar' => 'Elordadagy-bagalar',
+                'showbiz' => 'showbiz',
+                'bilim' => 'bilim',
+                'okiga' => 'okiga',
+                'alem' => 'alem',
+                'joldau' => 'joldau',
+                'sailau-2023' => 'sailau-2023',
+                'astana-25' => 'astana-25',
+                'sluzhba-komplaens-kz' => 'sluzhba-komplaens-kz',
+                'adep-kodeksi' => 'adep-kodeksi',
+
+
             ];
 
             $full_categories = $this->_getFullCategories();

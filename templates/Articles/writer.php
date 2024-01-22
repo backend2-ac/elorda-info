@@ -5,20 +5,20 @@
                     <div class="news__container block">
                         <ul class="breadcrumbs">
                             <li>
-                                <a href="#">Главная</a>
+                                <a href="/<?= $lang ?>"><?= __('Главная') ?></a>
                             </li>
                             <li>
                                 <a href="#">О медиахолдинге</a>
                             </li>
                             <li>
-                                <a href="/redactor/?= $autor['id'] ?>">
-                                    <?= $autor['name'] ?>
+                                <a href="/<?= $lang . 'writer/' .  $author['alias'] ?>">
+                                    <?= $author['name'] ?>
                                 </a>
                             </li>
                         </ul>
-                        <div class="media__title title">  <?= $autor['name'] ?></div>
+                        <div class="media__title title">  <?= $author['name'] ?></div>
                         <div class="news__items">
-                            <?php foreach( $data as $item ): ?>
+                            <?php foreach( $author_artilces as $item ): ?>
                                 <div class="news__item">
                                     <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-img">
                                         <img src="/img/articles/<?= $item['img'] ?>" alt="">
@@ -33,7 +33,7 @@
                                             </div>
 
                                         <?php endif; ?>
-                                         
+
                                         <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-title"><?= $item['title'] ?></a>
                                         <div class="news__item-text"><?= $item['short_desc'] ?></div>
                                         <div class="news__item-watch">
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                             <?php endforeach; ?>
-                            
+
                         </div>
                         <!-- <div class="loader">
                             <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +62,7 @@
                                 <rect width="55" height="55" fill="white"/>
                                 </clipPath>
                                 </defs>
-                            </svg>                                
+                            </svg>
                             Загрузка
                         </div> -->
                     </div>

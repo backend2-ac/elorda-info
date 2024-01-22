@@ -1,9 +1,3 @@
-<?php 
-	$ru = false;
-	if( isset($_GET['lang']) && $_GET['lang'] == 'ru' ){
-		$ru = true;
-	}
-?>
 
 <section class="content-header">
 	<div class="container-fluid">
@@ -30,12 +24,11 @@
 					</div>
 				</div>
 				<div class="card-body form_cols">
-					<?php if( $ru ): ?>
-						<div class="form-group">
-							<label for="inputItemOrder">Приоритет</label>
-							<?= $this->Form->text('item_order', array('id' => 'inputItemOrder', 'class' => 'form-control', 'required')); ?>
-						</div>
-					<?php endif; ?>
+
+                    <div class="form-group">
+                        <label for="inputItemOrder">Приоритет</label>
+                        <?= $this->Form->text('item_order', array('id' => 'inputItemOrder', 'class' => 'form-control', 'required')); ?>
+                    </div>
 					<div class="form-group">
 						<label for="inputTitle">Название</label>
 						<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required')); ?>

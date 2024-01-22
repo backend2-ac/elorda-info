@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
 use Cake\Validation\Validator;
 use Cake\I18n\I18n;
 
@@ -42,8 +42,9 @@ class TagsController extends AppController{
             ->limit($per_page)->offset($offset)
             ->toList();
 
-        $data = $this->$model->find('translations') 
+        $data = $this->$model->find()
             ->where([$model.'.id IN' => $data_ids])
+            ->order(['title', 'locale'])
             ->orderDesc('item_order')
             ->toList();
 
@@ -52,7 +53,7 @@ class TagsController extends AppController{
         $this->set('pagination', $this->paginate(
             $this->$model->find('all')
             ->order([$model.'.item_order' => 'DESC'])
-            ->limit($per_page), 
+            ->limit($per_page),
             $pag_settings
         ));
     }
@@ -61,13 +62,6 @@ class TagsController extends AppController{
         $model = 'Tags';
         date_default_timezone_set('Asia/Almaty');
 
-        if(isset($_GET['lang']) && $_GET['lang'] == 'kz'){
-            $this->$model->setLocale('kz');
-        }elseif(isset($_GET['lang']) && $_GET['lang'] == 'en'){
-            $this->$model->setLocale('en');
-        }else{
-            $this->$model->setLocale('ru');
-        }
 
         if( $this->request->is('post') ){
             $data = $this->request->getData();
@@ -95,14 +89,6 @@ class TagsController extends AppController{
     public function edit($item_id = null){
         $model = 'Tags';
         date_default_timezone_set('Asia/Almaty');
-
-        if(isset($_GET['lang']) && $_GET['lang'] == 'kz'){
-            $this->$model->setLocale('kz');
-        }elseif(isset($_GET['lang']) && $_GET['lang'] == 'en'){
-            $this->$model->setLocale('en');
-        }else{
-            $this->$model->setLocale('ru');
-        }
 
         $data = $this->$model->get($item_id);
 

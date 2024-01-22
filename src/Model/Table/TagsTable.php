@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Model\Table;
 
@@ -14,13 +14,6 @@ class TagsTable extends Table{
 		$this->belongsToMany('Articles', [
             'through' => 'ArticlesTags',
         ]);
-
-		$this->addBehavior('Translate', [
-			'fields' => [
-				'title', 
-			],
-			'allowEmptyTranslations' => false
-		]);
 
 		$this->addBehavior('Timestamp', [
             'events' => [
