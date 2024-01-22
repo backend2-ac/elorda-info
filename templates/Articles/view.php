@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$cur_url = 'https://'. $_SERVER['SERVER_NAME'] .$_SERVER['REQUEST_URI'];
 ?>
 <main>
@@ -10,7 +10,7 @@
                             <div class="inner__container block">
                                 <ul class="breadcrumbs">
                                     <li>
-                                        <a href="/<?= $lang ?>">Главная</a>
+                                        <a href="/<?= $lang ?>"><?= __('Главная') ?></a>
                                     </li>
                                     <li>
                                         <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$data['category_id']]['alias']] ?>">
@@ -32,7 +32,7 @@
 	                                        <?= $data['author']['name'] ?>
 	                                    </a>
 									<?php endif; ?>
-                                    
+
                                     <div class="inner__watch">
                                         <img src="/img/watch-gray.png" alt="">
                                         <?= number_format($data['views'], 0, '', ' ') ?>
@@ -48,18 +48,18 @@
 
                                 <div class="inner__text">
                                     <p><?= $data['short_desc']?></p>
-                                    <?= $data['body'] ?>            
+                                    <?= $data['body'] ?>
                                 </div>
                                 <?php if( $data['tags'] ): ?>
 									<div class="inner__tags-tags">
 	                                	<?php foreach( $data['tags'] as $tag ): ?>
-											<a href="/<?= $lang ?>search?tag_id=<?= $tag['id'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
+											<a href="/<?= $lang ?>tag/<?= $tag['alias'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
 										<?php endforeach; ?>
 	                                </div>
 								<?php endif; ?>
-                                
+
                                 <div class="inner__share">
-                                    <div class="inner__share-title">Поделитесь новостью в соц сетях</div>
+                                    <div class="inner__share-title"><?= __('Поделитесь новостью в соц сетях') ?></div>
                                     <div class="inner__share-items">
                                         <a href="http://www.facebook.com/sharer/sharer.php?src=sp&u=<?=$cur_url;?>&t==<?=$data['title'];?>&description&picture" target="_blank">
                                             <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +74,7 @@
                                                 <rect width="50" height="50" fill="white"/>
                                                 </clipPath>
                                                 </defs>
-                                            </svg>                                                
+                                            </svg>
                                         </a>
                                         <a href="І" target="_blank">
                                             <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@
                                                 <rect width="50" height="50" fill="white"/>
                                                 </clipPath>
                                                 </defs>
-                                            </svg>                                                
+                                            </svg>
                                         </a>
                                         <a href="https://t.me/share/url?url=<?= $cur_url ?>&text=<?= $data['title'] ?>" target="_blank">
                                             <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,7 +105,7 @@
                                                 <rect width="50" height="50" fill="white"/>
                                                 </clipPath>
                                                 </defs>
-                                            </svg>                                                
+                                            </svg>
                                         </a>
                                         <a href="http://twitter.com/intent/tweet?status=<?=$data['title'];?> <?=$cur_url;?>" target="_blank">
                                             <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +120,7 @@
                                                 <rect width="50" height="50" fill="white"/>
                                                 </clipPath>
                                                 </defs>
-                                            </svg>                                                
+                                            </svg>
                                         </a>
                                         <a href="http://vk.com/share.php?url=<?=$cur_url;?>&title=<?=$data['title'];?>&description=&image=" target="_blank">
                                             <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,7 +135,7 @@
                                                 <rect width="50" height="50" fill="white"/>
                                                 </clipPath>
                                                 </defs>
-                                            </svg>                                                
+                                            </svg>
                                         </a>
                                         <a href="https://wa.me/?text=<?= $data['title'] ?> <?= $cur_url ?>" target="_blank">
                                             <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,12 +151,12 @@
                                                 <rect width="50" height="50" fill="white"/>
                                                 </clipPath>
                                                 </defs>
-                                            </svg>                                                
+                                            </svg>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="inner__recomend">
-                                    <div class="inner__recomend-title">Похожие новости</div>
+                                    <div class="inner__recomend-title"><?= __('Похожие новости') ?></div>
                                     <div class="inner__recomend-items">
                                     	<?php if( $other_news ): ?>
 	                                    	<?php foreach( $other_news as $item ): ?>
@@ -199,8 +199,8 @@
                                         <rect width="55" height="55" fill="white"/>
                                         </clipPath>
                                         </defs>
-                                    </svg>                                
-                                    Загрузка
+                                    </svg>
+                                    <?= __('Загрузка') ?>
                                 </div>
                             </div>
                         </section>
@@ -208,8 +208,8 @@
                     <div class="wrapper-col">
                         <div class="news-actual__block">
                             <div class="news-actual__header">
-                                <a href="javascript:;" class="news-actual__header-tab active" data-id="1">Последние</a>
-                                <a href="javascript:;" class="news-actual__header-tab" data-id="2">Популярные</a>
+                                <a href="javascript:;" class="news-actual__header-tab active" data-id="1"><?= __('Последние') ?></a>
+                                <a href="javascript:;" class="news-actual__header-tab" data-id="2"><?= __('Популярные') ?></a>
                             </div>
                             <div class="news-actual__items active" data-id="1">
                             	<?php if( $last_news ): ?>

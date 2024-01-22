@@ -264,7 +264,28 @@ class ArticlesController extends AppController
     }
 
     public function tag($tag_alias) {
+//        $cur_lang = Configure::read('Config.lang');
+//        $locale = $cur_lang == 'kz' ? 'kk' : 'ru';
+        $this->loadModel('ArticlesTags');
+        $tag  = $this->Tags->findByAlias($tag_alias)
+            ->first();
+        if (!$tag) {
+            throw new NotFoundException(__('Запись не найдена'));
+        }
 
+        $tag_articles = Cache::read('tag_artcles_' . $tag_alias, 'long');
+        if (!$tag_articles) {
+            $tag_articles = $this->Articles->find()
+                ->contain(['ArticlesTags' => function ($q) use ($tag) {
+                    return $q->where(['tag_id' => $tag->id]);
+                }])
+                ->where(['Articles.locale' => $tag->locale])
+                ->orderDesc('Articles.date')
+                ->limit(25)
+                ->toList();
+            Cache::write('tag_articles_' . $tag_alias, $tag_articles, 'long');
+        }
+        $this->set(compact('tag_articles','tag'));
     }
     public function search(){
 

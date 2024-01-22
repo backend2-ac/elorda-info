@@ -18,6 +18,10 @@ class ArticlesTable extends Table{
             'through' => 'ArticlesTags',
         ]);
 
+        $this->hasMany('ArticlesTags', [
+            'foreignKey' => 'article_id',
+        ]);
+
 		$this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => [

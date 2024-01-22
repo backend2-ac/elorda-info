@@ -14,6 +14,9 @@ class TagsTable extends Table{
 		$this->belongsToMany('Articles', [
             'through' => 'ArticlesTags',
         ]);
+        $this->hasMany('ArticlesTags', [
+            'foreignKey' => 'tag_id',
+        ]);
 
 		$this->addBehavior('Timestamp', [
             'events' => [
