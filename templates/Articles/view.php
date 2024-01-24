@@ -39,10 +39,10 @@
                                     </div>
                                 </div>
                                 <div class="inner__img">
-                                    <img src="/img/articles/<?= $data['img'] ?>" alt="">
+                                    <img src="/img/articles/<?= $data['img'] ?>" alt="<?= $data['img_text'] ?>">
                                 </div>
                                 <?php if( $data['img_text'] ): ?>
-									<div class="inner__source"><?= $data['img_text'] ?></div>
+									<div class="inner__source"><?= $data['cover_photo_source'] ?></div>
 								<?php endif; ?>
 
 
