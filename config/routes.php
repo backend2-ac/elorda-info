@@ -81,8 +81,6 @@ Router::prefix('Admin', function(RouteBuilder $builder){
     $builder->connect('/articles_tags', ['controller' => 'ArticlesTags', 'action' => 'index']);
     $builder->connect('/articles_tags/:action/*', ['controller' => 'ArticlesTags']);
 
-    $builder->connect('/rubrics', ['controller' => 'Rubrics', 'action' => 'index']);
-    $builder->connect('/rubrics/:action/*', ['controller' => 'Rubrics']);
 
     $builder->connect('/authors', ['controller' => 'Authors', 'action' => 'index']);
     $builder->connect('/authors/:action/*', ['controller' => 'Authors']);
@@ -90,8 +88,6 @@ Router::prefix('Admin', function(RouteBuilder $builder){
     $builder->connect('/employees', ['controller' => 'Employees', 'action' => 'index']);
     $builder->connect('/employees/:action/*', ['controller' => 'Employees']);
 
-    $builder->connect('/blocks', ['controller' => 'Blocks', 'action' => 'index']);
-    $builder->connect('/blocks/:action/*', ['controller' => 'Blocks']);
 
     $builder->connect('/documents', ['controller' => 'Documents', 'action' => 'index']);
     $builder->connect('/documents/:action/*', ['controller' => 'Documents']);
@@ -296,6 +292,8 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/elorda-erzhyrektery', ['controller' => 'Articles', 'action' => 'index', 'elorda-erzhyrektery']);
     $builder->connect('/elorda-erzhyrektery/*', ['controller' => 'Articles', 'action' => 'view']);
 
+    $builder->connect('/astana-25', ['controller' => 'Articles', 'action' => 'index', 'astana-25']);
+    $builder->connect('/astana-25/*', ['controller' => 'Articles', 'action' => 'view']);
 //    $builder->connect('/:slug', ['controller' => 'Articles', 'action' => 'index'])
 //        ->setPass(['slug']);
 //

@@ -137,7 +137,7 @@
                             <div class="header__currency-value">4.75</div>
                         </div>
                     </div>
-                    <a href="/search" class="header__search">
+                    <a href="/<?= $lang ?>search" class="header__search">
                         <img src="/img/search-icon.svg" alt="" class="icon-svg">
                         Поиск
                     </a>

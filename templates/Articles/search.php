@@ -16,7 +16,7 @@
                         <form action="/<?= $lang ?>search" method="GET">
                             <div class="search__form">
                                 <label for="search" class="search__form-input">
-                                    <input type="text" placeholder="Запрос"  name="q_str" id="search" value="<?= $str ?>">
+                                    <input type="text" placeholder="Запрос"  name="q" id="search" value="<?= $search_text ?>">
                                     <button type="submit">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="10.9985" cy="10.7888" r="8.03854" stroke="#1D489C" stroke-width="2" stroke-linecap="square"/>
@@ -31,39 +31,20 @@
 	                                        <div>Все</div>
 	                                    </label>
                                 		<?php foreach( $tags as   $tag ): ?>
-
-			                                    <label for="<?= $tag['id'] ?>" class="search__form-tag">
-			                                        <input type="checkbox" id="<?= $tag['id'] ?>"
-			                                         <?php if( $tags_ids): ?>
-			                                         	<?php foreach( $tags_ids as   $id ): ?>
+			                                    <label for="search-<?= $tag['id'] ?>" class="search__form-tag">
+			                                        <input type="checkbox" id="search-<?= $tag['id'] ?>"
+			                                         <?php if($selected_tag_ids): ?>
+			                                         	<?php foreach( $selected_tag_ids as   $id ): ?>
 			                                         		<?=$id?>
 			                                         		 <?php if( $id == $tag['id'] ): ?>
 			                                         			checked=""
 			                                         	<?php endif; ?>
 			                                         <?php endforeach; ?>
 		                                    		 <?php endif; ?>
-
 			                                         name="tags[]" value="<?=$tag['id']?>">
 			                                        <div><?= $tag['title'] ?></div>
 			                                    </label>
-
 	                                    <?php endforeach; ?>
-                                   <!--  <label for="search-3" class="search__form-tag">
-                                        <input type="checkbox" id="search-3">
-                                        <div>Культура</div>
-                                    </label>
-                                    <label for="search-4" class="search__form-tag">
-                                        <input type="checkbox" id="search-4">
-                                        <div>Политика</div>
-                                    </label>
-                                    <label for="search-5" class="search__form-tag">
-                                        <input type="checkbox" id="search-5">
-                                        <div>Экономика</div>
-                                    </label>
-                                    <label for="search-6" class="search__form-tag">
-                                        <input type="checkbox" id="search-6">
-                                        <div>Социум</div>
-                                    </label> -->
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -82,7 +63,7 @@
 	                                		<div class="news__item-tags">
 
 	                                		<?php foreach( $item['tags']as   $tag ): ?>
-		                                        <a href="/<?= $lang ?>search?tag_id=<?= $tag['id'] ?>" class="news__item-tag"><?= $tag['title'] ?></a>
+		                                        <a href="/<?= $lang ?>tag/<?= $tag['alias'] ?>" class="news__item-tag"><?= $tag['title'] ?></a>
 		                                    <?php endforeach; ?>
 		                                    </div>
 
@@ -96,13 +77,12 @@
 	                                    </div>
 	                                </div>
 	                            </div>
-
 							<?php endforeach; ?>
 						</div>
 							<ul class="rubric__pagination pagination">
 								<?php
 									$cur_lang = '';
-									if( $l != 'ru' ){
+									if( $l != 'kz' ){
 										$cur_lang = $l;
 									}
 

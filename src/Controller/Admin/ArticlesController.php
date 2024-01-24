@@ -17,7 +17,6 @@ class ArticlesController extends AppController{
 
         $this->loadModel('Tags');
         $this->loadModel('ArticlesTags');
-        $this->loadModel('Rubrics');
         $this->loadModel('Authors');
 
         $this->loadComponent('Paginator');
@@ -95,7 +94,6 @@ class ArticlesController extends AppController{
         if( $data_ids ){
             $data = $this->$model->find('all')
                 ->where([$model.'.id IN' => $data_ids])
-                ->contain('Rubrics')
                 ->orderDesc('date')
                 // ->limit($per_page)->offset($offset)
                 ->toList();
@@ -120,14 +118,6 @@ class ArticlesController extends AppController{
     public function add(){
         $model = 'Articles';
         date_default_timezone_set('Asia/Almaty');
-
-        if(isset($_GET['lang']) && $_GET['lang'] == 'kz'){
-            $this->$model->setLocale('kz');
-        }elseif(isset($_GET['lang']) && $_GET['lang'] == 'en'){
-            $this->$model->setLocale('en');
-        }else{
-            $this->$model->setLocale('ru');
-        }
 
         if( $this->request->is('post') ){
             $data = $this->request->getData();
@@ -211,14 +201,6 @@ class ArticlesController extends AppController{
     public function edit($item_id = null){
         $model = 'Articles';
         date_default_timezone_set('Asia/Almaty');
-
-        if(isset($_GET['lang']) && $_GET['lang'] == 'kz'){
-            $this->$model->setLocale('kz');
-        }elseif(isset($_GET['lang']) && $_GET['lang'] == 'en'){
-            $this->$model->setLocale('en');
-        }else{
-            $this->$model->setLocale('ru');
-        }
 
         $data = $this->$model->get($item_id, [
             'contain' => ['Tags']

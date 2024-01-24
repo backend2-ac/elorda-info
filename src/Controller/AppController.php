@@ -81,7 +81,6 @@ class AppController extends Controller
         $this->loadModel('Categories');
         $this->loadModel('Tags');
         $this->loadModel('Authors');
-        $this->loadModel('Blocks');
 
         $this->loadModel('Pages');
         $this->loadModel('Comps');
@@ -258,36 +257,36 @@ class AppController extends Controller
 
             /*------ Ads blocks BEGIN ------*/
 
-                $header_block = Cache::read('header_block', 'eternal');
-                if( !$header_block ){
-                    $header_block = $this->Blocks->find()
-                        ->where(['Blocks.position' => 'header'])
-                        ->orderDesc('item_order')
-                        ->first();
-                    Cache::write('header_block', $header_block, 'eternal');
-                }
-
-                $main_block = Cache::read('main_block', 'eternal');
-                if( !$main_block ){
-                    $main_block = $this->Blocks->find()
-                        ->where(['Blocks.position' => 'main'])
-                        ->orderDesc('item_order')
-                        ->first();
-                    Cache::write('main_block', $main_block, 'eternal');
-                }
-
-
-                $sidebar_blocks = Cache::read('sidebar_blocks', 'eternal');
-                if( !$sidebar_blocks ){
-                    $sidebar_blocks = $this->Blocks->find('all')
-                        ->where(['Blocks.position' => 'sidebar'])
-                        ->orderDesc('item_order')
-                        ->limit(3)
-                        ->toList();
-                    Cache::write('sidebar_blocks', $sidebar_blocks, 'eternal');
-                }
-
-                $this->set( compact('header_block', 'main_block', 'sidebar_blocks') );
+//                $header_block = Cache::read('header_block', 'eternal');
+//                if( !$header_block ){
+//                    $header_block = $this->Blocks->find()
+//                        ->where(['Blocks.position' => 'header'])
+//                        ->orderDesc('item_order')
+//                        ->first();
+//                    Cache::write('header_block', $header_block, 'eternal');
+//                }
+//
+//                $main_block = Cache::read('main_block', 'eternal');
+//                if( !$main_block ){
+//                    $main_block = $this->Blocks->find()
+//                        ->where(['Blocks.position' => 'main'])
+//                        ->orderDesc('item_order')
+//                        ->first();
+//                    Cache::write('main_block', $main_block, 'eternal');
+//                }
+//
+//
+//                $sidebar_blocks = Cache::read('sidebar_blocks', 'eternal');
+//                if( !$sidebar_blocks ){
+//                    $sidebar_blocks = $this->Blocks->find('all')
+//                        ->where(['Blocks.position' => 'sidebar'])
+//                        ->orderDesc('item_order')
+//                        ->limit(3)
+//                        ->toList();
+//                    Cache::write('sidebar_blocks', $sidebar_blocks, 'eternal');
+//                }
+//
+//                $this->set( compact('header_block', 'main_block', 'sidebar_blocks') );
 
             /*------ Ads blocks END ------*/
 
@@ -331,7 +330,7 @@ class AppController extends Controller
         protected function _getAdminAuthors(){
             $authors = Cache::read('admin_authors', 'eternal');
             if( !$authors ){
-                $this->Authors->setLocale('ru');
+//                $this->Authors->setLocale('ru');
                 $authors = $this->Authors->find('list', [
                         'keyField' => 'id',
                         'valueField' => 'name',

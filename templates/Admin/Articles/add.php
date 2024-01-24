@@ -28,15 +28,11 @@
 						<label for="inputAuthorId">Автор</label>
 						<?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'empty' => 'Нет')); ?>
 					</div>
-					
+
 					<div class="form-group col_2">
 						<label for="inputCategoryId">Категория</label>
 						<?= $this->Form->select('category_id', $categories, array('id' => 'inputCategoryId', 'class' => 'form-control', 'required', 'empty' => 'Выбрать')); ?>
 					</div>
-					<!-- <div class="form-group col_2">
-						<label for="inputRubricId">Рубрика</label>
-						<?= $this->Form->select('rubric_id', $rubrics, array('id' => 'inputRubricId', 'class' => 'form-control', 'empty' => 'Выбрать')); ?>
-					</div> -->
 
 					<div class="form-group col_2">
 						<label for="inputTitle">Название</label>
@@ -59,7 +55,7 @@
 
 					<?= $this->element('admin/img_input', [
 						'custom_input_params' => ['title' => 'Картинка', 'field' => 'img', 'required' => 'required'],
-						]); 
+						]);
 					?>
 
 					<div class="form-group">
@@ -101,14 +97,14 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-					    <label for="tags">Теги</label>
-					    <select class="form-control" id="tags" name="articles_tags[]" multiple="multiple">
-					        <?php foreach( $tags_list as $item_id => $item ): ?>
-					            <option value="<?= $item_id ?>"><?= $item ?></option>
-					        <?php endforeach ?>
-					    </select>
-					</div>
+<!--					<div class="form-group">-->
+<!--					    <label for="tags">Теги</label>-->
+<!--					    <select class="form-control" id="tags" name="articles_tags[]" multiple="multiple">-->
+<!--					        --><?php //foreach( $tags_list as $item_id => $item ): ?>
+<!--					            <option value="--><?php //= $item_id ?><!--">--><?php //= $item ?><!--</option>-->
+<!--					        --><?php //endforeach ?>
+<!--					    </select>-->
+<!--					</div>-->
 
 					<div class="submit_row form-group">
 						<?php echo $this->Form->button('Добавить', array('class' => 'btn btn-success')); ?>
@@ -140,7 +136,7 @@
 	                    <label for="seoDescription">Описание</label>
 	                    <?php echo $this->Form->textarea('meta_description', array('class' => 'form-control', 'id' => 'seoDescription')); ?>
 	                </div>
-		            
+
 		            <div class="submit_row">
 						<?php echo $this->Form->button('Добавить', array('class' => 'btn btn-success')); ?>
 				    </div>

@@ -1,5 +1,5 @@
-<?php 
-  $langs = ['ru', 'kz', 'en']; 
+<?php
+  $langs = ['ru', 'kz', 'en'];
 ?>
 
 <section class="content-header">
@@ -16,7 +16,7 @@
 <section class="content">
 
     <form class="form_cols" action="/admin/articles?test=test" method="GET" onsubmit="submitForm();">
-      
+
       <div class="form-group col_2">
         <label for="inputTitle">Название</label>
         <?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'value' => $title)); ?>
@@ -26,6 +26,11 @@
         <label for="inputAuthorId">Автор</label>
         <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'value' => $author_id, 'empty' => 'Все')); ?>
       </div>
+
+        <div class="form-group col_2">
+            <label for="inputCategoryId">Категория</label>
+            <?= $this->Form->select('category_id', $categories, array('id' => 'inputCategoryId', 'class' => 'form-control', 'empty' => 'Выбрать')); ?>
+        </div>
 
       <div class="form-group col_4">
         <label for="inputViewsSort">Просмотры</label>
@@ -92,12 +97,10 @@
         				<?= $this->Time->format($item['date'], 'dd.MM.yyyy HH:mm') ?>
         			</td>
         			<td class="project-actions text-right">
-        				<a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>?lang=ru">
-                  <i class="fas fa-pencil-alt"></i> rus
-                </a>
-                <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>?lang=kz">
-                  <i class="fas fa-pencil-alt"></i> kaz
-                </a>
+
+                    <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>">
+                      <i class="fas fa-pencil-alt"></i> Редактировать
+                    </a>
         				<?php echo $this->Form->postLink('Удалить', "/admin/articles/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
         			</td>
         		</tr>
@@ -108,7 +111,7 @@
     <?php else: ?>
       <div class="emty_data">
         К сожалению в данном разделе еще не добавлена информация...
-      </div> 
+      </div>
     <?php endif ?>
     </div>
   </div>
@@ -116,7 +119,7 @@
 </section>
 
 <ul class="pagination">
-  <?php 
+  <?php
 
     $paginator_query = $this->request->getQuery();
     unset($paginator_query['page']);
@@ -128,7 +131,7 @@
         ]
     ]);
     echo $this->Paginator->numbers([
-      'first' => 1, 'last' => 1, 'modulus' => 2, 
-    ]); 
+      'first' => 1, 'last' => 1, 'modulus' => 2,
+    ]);
   ?>
 </ul>

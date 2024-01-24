@@ -1,6 +1,3 @@
-<?php
-  $langs = ['ru', 'kz', 'en'];
-?>
 
 <section class="content-header">
   <div class="container-fluid">
@@ -45,11 +42,8 @@
         				<?= $item['item_order'] ?>
         			</td>
         			<td class="project-actions text-right">
-        				<a class="btn btn-info btn-sm" href="/admin/authors/edit/<?=$item['id']?>?lang=ru">
-                  <i class="fas fa-pencil-alt"></i> rus
-                </a>
-                <a class="btn btn-info btn-sm" href="/admin/authors/edit/<?=$item['id']?>?lang=kz">
-                  <i class="fas fa-pencil-alt"></i> kaz
+                <a class="btn btn-info btn-sm" href="/admin/authors/edit/<?=$item['id']?>">
+                  <i class="fas fa-pencil-alt"></i> Редактировать
                 </a>
         				<?php echo $this->Form->postLink('Удалить', "/admin/authors/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
         			</td>

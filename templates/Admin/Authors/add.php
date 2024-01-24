@@ -31,7 +31,26 @@
 						<label for="inputName">ФИО</label>
 						<?= $this->Form->text('name', array('id' => 'inputName', 'class' => 'form-control', 'required')); ?>
 					</div>
-
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <?= $this->Form->text('email', array('id' => 'inputEmail', 'class' => 'form-control', 'required')); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPwd">Password</label>
+                        <?= $this->Form->text('password', array('id' => 'inputPwd', 'type' => 'password', 'class' => 'form-control')); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAlias">Alias</label>
+                        <?= $this->Form->text('alias', array('id' => 'inputAlias', 'class' => 'form-control', 'required')); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputBiography">Биография</label>
+                        <?= $this->Form->textarea('biography', array('id' => 'inputBiography', 'class' => 'form-control')); ?>
+                    </div>
+                    <?= $this->element('admin/img_input', [
+                        'custom_input_params' => ['title' => 'Картинка', 'field' => 'img'],
+                    ]);
+                    ?>
 					<div class="submit_row form-group">
 						<?php echo $this->Form->button('Добавить', array('class' => 'btn btn-success')); ?>
 				    </div>
@@ -42,3 +61,6 @@
 </section>
 
 <?php echo $this->Form->end(); ?>
+<script type="text/javascript">
+    CKEDITOR.replace( 'inputBiography' );
+</script>

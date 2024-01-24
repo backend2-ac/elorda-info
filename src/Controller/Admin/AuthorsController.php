@@ -21,7 +21,8 @@ class AuthorsController extends AppController{
         $this->loadComponent('EntityFiles');
     }
 
-
+    public $img_folder = 'authors';
+    public $img_fields = ['img'];
     public function index(){
         $model = 'Authors';
 
@@ -54,18 +55,24 @@ class AuthorsController extends AppController{
         $model = 'Authors';
         date_default_timezone_set('Asia/Almaty');
 
-        if(isset($_GET['lang']) && $_GET['lang'] == 'kz'){
-            $this->$model->setLocale('kz');
-        }elseif(isset($_GET['lang']) && $_GET['lang'] == 'en'){
-            $this->$model->setLocale('en');
-        }else{
-            $this->$model->setLocale('ru');
-        }
-
         if( $this->request->is('post') ){
             $data = $this->request->getData();
 
-            $entity_res = $this->EntityFiles->saveEntityFiles($data, $model);
+            $created_alias = $this->$model->find()
+                ->where(['alias' => $data['alias']])->first();
+            if( $created_alias ){
+                $this->Flash->error( __('Запись с таким alias уже существует') );
+                return $this->redirect( $this->referer() );
+            }
+
+            $created_email = $this->$model->find()
+                ->where(['email' => $data['email']])->first();
+            if( $created_email ){
+                $this->Flash->error( __('Запись с таким email уже существует') );
+                return $this->redirect( $this->referer() );
+            }
+            $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+            $entity_res = $this->EntityFiles->saveEntityFiles($data, $model, $this->img_fields);
 
             if( $entity_res['entity']->getErrors() ){
                 $errors = $entity_res['entity']->getErrors();
@@ -89,21 +96,26 @@ class AuthorsController extends AppController{
         $model = 'Authors';
         date_default_timezone_set('Asia/Almaty');
 
-        if(isset($_GET['lang']) && $_GET['lang'] == 'kz'){
-            $this->$model->setLocale('kz');
-        }elseif(isset($_GET['lang']) && $_GET['lang'] == 'en'){
-            $this->$model->setLocale('en');
-        }else{
-            $this->$model->setLocale('ru');
-        }
-
         $data = $this->$model->get($item_id);
 
         if ($this->request->is(['post', 'put'])) {
             $data1 = $this->request->getData();
             $old_data = clone $data;
+            $created_alias = $this->$model->find()
+                ->where(['alias' => $data1['alias'], $model . '.id !=' => $item_id])->first();
+            if( $created_alias ){
+                $this->Flash->error( __('Запись с таким alias уже существует') );
+                return $this->redirect( $this->referer() );
+            }
 
-            $entity_res = $this->EntityFiles->saveEntityFiles($data1, $model);
+            $created_email = $this->$model->find()
+                ->where(['email' => $data1['email'], $model . '.id !=' => $item_id])->first();
+            if( $created_email ){
+                $this->Flash->error( __('Запись с таким email уже существует') );
+                return $this->redirect( $this->referer() );
+            }
+            $data1['password'] = password_hash($data1['password'], PASSWORD_BCRYPT);
+            $entity_res = $this->EntityFiles->saveEntityFiles($data1, $model, $this->img_fields);
 
             if( $entity_res['entity']->getErrors() ){
                 $errors = $entity_res['entity']->getErrors();
@@ -144,13 +156,32 @@ class AuthorsController extends AppController{
 
         if ($this->$model->delete($data)) {
             $this->Flash->success(__('Элемент успешно удален'));
+            $this->_imgDelete($data, $this->img_fields);
             $this->_cacheDelete();
             return $this->redirect( $this->referer() );
         } else{
             $this->Flash->error(__('Ошибка удаления'));
         }
     }
+    protected function _imgDelete($data = null, $fields = array()){
+        $folder = $this->img_folder;
 
+        if( $data && $fields ){
+            foreach( $fields as $item ){
+                if( isset($data[$item]) && $data[$item] ){
+                    $fileName = WWW_ROOT.'img'.DS.$folder.DS.$data[$item];
+                    $fileNameThumbs = WWW_ROOT.'img'.DS.$folder.DS.'thumbs'.DS.$data[$item];
+                    if( file_exists($fileName) ){
+                        unlink($fileName);
+                    }
+                    if( file_exists($fileNameThumbs) ){
+                        unlink($fileNameThumbs);
+                    }
+                    clearstatcache();
+                }
+            }
+        }
+    }
 
     protected function _cacheDelete(){
         Cache::delete('admin_authors', 'eternal');
