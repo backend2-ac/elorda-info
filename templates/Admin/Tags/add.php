@@ -31,6 +31,16 @@
 						<label for="inputTitle">Название</label>
 						<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required')); ?>
 					</div>
+                    <div class="form-group">
+                        <label for="inputAlias">Ссылка</label>
+                        <?= $this->Form->text('alias', array('id' => 'inputAlias', 'class' => 'form-control', 'required')); ?>
+                    </div>
+                    <div class="form-group col_2">
+                        <label for="inputLocale">Язык</label>
+                        <?= $this->Form->select('locale', ['kk' => 'kk', 'ru' => 'ru'], array('id' => 'inputLocale', 'class' => 'form-control', 'required', 'empty' => 'Выбрать')); ?>
+                    </div>
+
+                    <?= $this->Form->hidden('created_by_id', array('value' => 1)) ?>
 
 					<div class="submit_row form-group">
 						<?php echo $this->Form->button('Добавить', array('class' => 'btn btn-success')); ?>

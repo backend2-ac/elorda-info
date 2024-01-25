@@ -1,6 +1,3 @@
-<?php
-  $langs = ['ru', 'kz', 'en'];
-?>
 
 <section class="content-header">
   <div class="container-fluid">
@@ -28,29 +25,37 @@
             <tr>
                 <th style="width: 1%">ID</th>
                 <th style="width: 8%">Название</th>
+                <th style="width: 8%">Ссылка</th>
+                <th style="width: 8%">Язык</th>
                 <th style="width: 5%">Приоритет</th>
                 <th style="width: 5%; text-align: right;">Редактирование</th>
             </tr>
         </thead>
         <tbody>
          	<?php foreach($data as $item): ?>
-        		<tr>
-        			<td>
-        				<?=$item['id']?>
-        			</td>
-              <td>
-                  <?= $item['title'] ?>
-              </td>
-              <td>
-        				<?= $item['item_order'] ?>
-        			</td>
-        			<td class="project-actions text-right">
-                <a class="btn btn-info btn-sm" href="/admin/tags/edit/<?=$item['id']?>">
-                  <i class="fas fa-pencil-alt"></i> редактировать
-                </a>
-        				<?php echo $this->Form->postLink('Удалить', "/admin/tags/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
-        			</td>
-        		</tr>
+                <tr>
+                    <td>
+                        <?=$item['id']?>
+                    </td>
+                    <td>
+                        <?= $item['title'] ?>
+                    </td>
+                    <td>
+                        <?= $item['alias'] ?>
+                    </td>
+                    <td>
+                        <?= $item['locale'] ?>
+                    </td>
+                    <td>
+                        <?= $item['item_order'] ?>
+                    </td>
+                    <td class="project-actions text-right">
+                        <a class="btn btn-info btn-sm" href="/admin/tags/edit/<?=$item['id']?>">
+                            <i class="fas fa-pencil-alt"></i> редактировать
+                        </a>
+                        <?php echo $this->Form->postLink('Удалить', "/admin/tags/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
+                    </td>
+                </tr>
         	<?php endforeach ?>
         </tbody>
       </table>

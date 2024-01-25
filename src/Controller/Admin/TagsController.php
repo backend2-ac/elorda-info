@@ -38,13 +38,14 @@ class TagsController extends AppController{
                 'valueField' => 'id'
             ])
             ->select(['id', 'item_order'])
+            ->order(['locale', 'title'])
             ->orderDesc($model.'.item_order')
             ->limit($per_page)->offset($offset)
             ->toList();
 
         $data = $this->$model->find()
             ->where([$model.'.id IN' => $data_ids])
-            ->order(['title', 'locale'])
+            ->order(['locale', 'title'])
             ->orderDesc('item_order')
             ->toList();
 
@@ -52,6 +53,7 @@ class TagsController extends AppController{
 
         $this->set('pagination', $this->paginate(
             $this->$model->find('all')
+            ->order(['locale', 'title'])
             ->order([$model.'.item_order' => 'DESC'])
             ->limit($per_page),
             $pag_settings
@@ -65,6 +67,20 @@ class TagsController extends AppController{
 
         if( $this->request->is('post') ){
             $data = $this->request->getData();
+
+            $created_title = $this->$model->find()
+                ->where(['title' => $data['title']])->first();
+            if( $created_title ){
+                $this->Flash->error( __('Запись с таким названием уже существует') );
+                return $this->redirect( $this->referer() );
+            }
+
+            $created_alias = $this->$model->find()
+                ->where(['alias' => $data['alias']])->first();
+            if($created_alias){
+                $this->Flash->error( __('Запись с таким alias уже существует') );
+                return $this->redirect( $this->referer() );
+            }
 
             $entity_res = $this->EntityFiles->saveEntityFiles($data, $model);
 
@@ -95,6 +111,20 @@ class TagsController extends AppController{
         if ($this->request->is(['post', 'put'])) {
             $data1 = $this->request->getData();
             $old_data = clone $data;
+
+            $created_title = $this->$model->find()
+                ->where(['title' => $data1['title']])->first();
+            if( $created_title ){
+                $this->Flash->error( __('Запись с таким названием уже существует') );
+                return $this->redirect( $this->referer() );
+            }
+
+            $created_alias = $this->$model->find()
+                ->where(['alias' => $data1['alias']])->first();
+            if($created_alias){
+                $this->Flash->error( __('Запись с таким alias уже существует') );
+                return $this->redirect( $this->referer() );
+            }
 
             $entity_res = $this->EntityFiles->saveEntityFiles($data1, $model);
 
