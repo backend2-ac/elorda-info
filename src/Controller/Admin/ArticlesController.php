@@ -34,6 +34,11 @@ class ArticlesController extends AppController{
         $title = '';
         $author_id = '';
         $views_sort = '';
+        $cur_admin = $this->request->getSession()->read('Auth.User');
+        if ($cur_admin['role'] == 'author') {
+            $author_id = $cur_admin['id'];
+            $conditions[] = [$model.'.author_id' => $author_id];
+        }
         if( isset($_GET['title']) && $_GET['title'] ){
             $title = trim($_GET['title']);
             $conditions[] = [$this->$model->get('title') . ' LIKE' => '%'. $title .'%'];
@@ -41,6 +46,10 @@ class ArticlesController extends AppController{
         if( isset($_GET['author_id']) && $_GET['author_id'] ){
             $author_id = $_GET['author_id'];
             $conditions[] = [$model.'.author_id' => $author_id];
+        }
+        if (isset($_GET['category_id']) && $_GET['category_id']) {
+            $category_id = $_GET['category_id'];
+            $conditions[] = [$model.'.category_id' => $category_id];
         }
         if( isset($_GET['views_sort']) && $_GET['views_sort'] ){
             if( $_GET['views_sort'] == 100 ){
@@ -68,8 +77,6 @@ class ArticlesController extends AppController{
         }
 
         $this->set( compact('title', 'author_id', 'views_sort') );
-
-
 
         $cur_page = 1;
         if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
@@ -121,7 +128,6 @@ class ArticlesController extends AppController{
 
         if( $this->request->is('post') ){
             $data = $this->request->getData();
-
             $data['alias'] = Text::slug($data['title']);
             $data['alias'] = mb_strtolower($data['alias']);
 

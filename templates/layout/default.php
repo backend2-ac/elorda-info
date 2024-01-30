@@ -51,7 +51,7 @@
 
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4" >
-               
+
                 <a href="/" class="brand-link">
                   <img src="/img/admin_img/admin_logo.svg" alt="AdminLTE Logo" class="brand-image">
                 </a>
@@ -121,12 +121,6 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <!-- <li class="nav-item">
-                                    <a href="/admin/rubrics" class="nav-link">
-                                        <i class="nav-icon fas fa-columns"></i>
-                                        <p>Рубрики</p>
-                                    </a>
-                                </li> -->
                                 <li class="nav-item">
                                     <a href="/admin/authors" class="nav-link">
                                         <i class="nav-icon fas fa-user-edit"></i>
@@ -156,12 +150,37 @@
                                     </a>
                                 </li>
 
-                                <!-- <li class="nav-item">
-                                    <a href="/admin/requests" class="nav-link">
-                                        <i class="nav-icon fab fa-wpforms"></i>
-                                        <p>Заявки</p>
+                                <li class="nav-item">
+                                    <a href="/admin/logout" class="nav-link">
+                                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                                        <p>Выход</p>
                                     </a>
-                                </li> -->
+                                </li>
+                            </ul>
+                        </nav>
+                    <?php elseif ($cur_admin == 'author'): ?>
+                        <nav class="mt-2">
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                                <li class="nav-item">
+                                    <a href="/admin" class="nav-link">
+                                        <i class="nav-icon fas fa-address-card"></i>
+                                        <p>Панель автора</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/admin/articles" class="nav-link">
+                                        <i class="nav-icon fas fa-newspaper"></i>
+                                        <p>Статьи</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/tags" class="nav-link">
+                                        <i class="nav-icon fas fa-tags"></i>
+                                        <p>Теги</p>
+                                    </a>
+                                </li>
 
                                 <li class="nav-item">
                                     <a href="/admin/logout" class="nav-link">
@@ -183,7 +202,7 @@
             </div>
 
             <footer class="main-footer">
-                <strong>Разработка сайтов в <a href="https://astanacreative.kz/" target="_blank">AstanaCreative.kz</a>.</strong> 
+                <strong>Разработка сайтов в <a href="https://astanacreative.kz/" target="_blank">AstanaCreative.kz</a>.</strong>
             </footer>
         </div>
 
@@ -219,13 +238,17 @@
                 </div>
             </div>
         </div>
+        <!-- Include jQuery -->
+        <?= $this->Html->script('https://code.jquery.com/jquery-3.6.0.min.js') ?>
 
-        <!-- jQuery -->
-        <script src="/js/admin/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
         <script src="/js/admin/bootstrap/js/bootstrap.bundle.min.js"></script>
+
         <!-- overlayScrollbars -->
         <script src="/js/admin/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
         <!-- AdminLTE App -->
         <script src="/js/admin/adminlte.min.js?v=1.11"></script>
         <script src="/js/admin/bs-custom-file-input/bs-custom-file-input.min.js"></script>
@@ -237,7 +260,6 @@
         <script src="/js/admin/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
         <script src="/js/admin/demo.js"></script>
         <script src="/js/admin/croppie.js"></script>
-
         <script type="text/javascript">
             function submitForm(){
                 $('#form_submit').show();
@@ -245,6 +267,7 @@
 
             $(document).ready(function () {
               bsCustomFileInput.init();
+              $('.js-tags-multiple').select2();
             });
             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
             //Datemask2 mm/dd/yyyy
@@ -258,7 +281,7 @@
                 format: 'YYYY-MM-DD HH:mm',
                 locale: 'ru'
             });
-            
+
             $('#reservationdate').datetimepicker({
                 format: 'YYYY-MM-DD',
                 locale: 'ru'
@@ -295,7 +318,7 @@
                 format: 'YYYY-MM-DD',
                 locale: 'ru'
             });
-            
+
         </script>
 
         <script>

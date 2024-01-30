@@ -321,8 +321,9 @@ class AppController extends Controller
                         'valueField' => 'title',
                     ])
                     ->orderDesc('item_order')
+                    ->limit(10)
                     ->toArray();
-                // Cache::write('admin_tags', $tags, 'eternal');
+                 Cache::write('admin_tags', $tags, 'eternal');
             }
             return $tags;
         }

@@ -1,5 +1,5 @@
 <?php
-  $langs = ['ru', 'kz', 'en'];
+    $cur_admin = $this->request->getSession()->read('Auth.User.role')
 ?>
 
 <section class="content-header">
@@ -22,11 +22,12 @@
         <?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'value' => $title)); ?>
       </div>
 
-      <div class="form-group col_2">
-        <label for="inputAuthorId">Автор</label>
-        <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'value' => $author_id, 'empty' => 'Все')); ?>
-      </div>
-
+        <?php if ($cur_admin == 'admin'): ?>
+          <div class="form-group col_2">
+            <label for="inputAuthorId">Автор</label>
+            <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'value' => $author_id, 'empty' => 'Все')); ?>
+          </div>
+        <?php endif; ?>
         <div class="form-group col_2">
             <label for="inputCategoryId">Категория</label>
             <?= $this->Form->select('category_id', $categories, array('id' => 'inputCategoryId', 'class' => 'form-control', 'empty' => 'Выбрать')); ?>
@@ -77,18 +78,11 @@
         				<?=$item['id']?>
         			</td>
               <td>
-                <?php foreach( $langs as $index => $key ): ?>
-                  <?php if( isset($item['_translations'][$key]) && $item['_translations'][$key]['title'] ): ?>
-                    <p> <b><?=$key?>:</b> <?= $item['_translations'][$key]['title'] ?></p>
-                  <?php endif; ?>
-                <?php endforeach; ?>
+                    <p><?= $item['title'] ?></p>
                 <p><b>Просмотров:</b> <?= number_format($item['views'], 0, '', ' ') ?></p>
               </td>
               <td>
                 <?= $categories[$item['category_id']] ?>
-                <?php if( $item['rubric'] ): ?>
-                  / <?= $item['rubric']['title'] ?>
-                <?php endif; ?>
               </td>
         			<td>
                 <img src="/img/articles/thumbs/<?= $item['img'] ?>" alt="" width="150">

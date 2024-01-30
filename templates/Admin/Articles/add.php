@@ -1,3 +1,8 @@
+<?php
+$cur_admin = $this->request->getSession()->read('Auth.User');
+$cur_admin_id = $cur_admin['id'];
+$cur_admin_role = $cur_admin['role'];
+?>
 <section class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-2">
@@ -23,12 +28,14 @@
 					</div>
 				</div>
 				<div class="card-body form_cols">
-
-					<div class="form-group">
-						<label for="inputAuthorId">Автор</label>
-						<?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'empty' => 'Нет')); ?>
-					</div>
-
+                    <?php if ($cur_admin_role == 'admin'): ?>
+                        <div class="form-group">
+                            <label for="inputAuthorId">Автор</label>
+                            <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'empty' => 'Нет')); ?>
+                        </div>
+                    <?php else: ?>
+                        <?= $this->Form->hidden('author_id', array('value' => $cur_admin_id)) ?>
+                    <?php endif; ?>
 					<div class="form-group col_2">
 						<label for="inputCategoryId">Категория</label>
 						<?= $this->Form->select('category_id', $categories, array('id' => 'inputCategoryId', 'class' => 'form-control', 'required', 'empty' => 'Выбрать')); ?>
@@ -54,13 +61,17 @@
 					</div>
 
 					<?= $this->element('admin/img_input', [
-						'custom_input_params' => ['title' => 'Картинка', 'field' => 'img', 'required' => 'required'],
+						'custom_input_params' => ['title' => 'Картинка', 'field' => 'img']
 						]);
 					?>
 
+                    <div class="form-group">
+                        <label for="inputImgText">Текст картинки (alt)</label>
+                        <?= $this->Form->text('img_text', array('id' => 'inputImgText', 'class' => 'form-control')); ?>
+                    </div>
 					<div class="form-group">
-						<label for="inputImgText">Подпись под фото</label>
-						<?= $this->Form->text('img_text', array('id' => 'inputImgText', 'class' => 'form-control')); ?>
+						<label for="inputImgSource">Подпись под фото</label>
+						<?= $this->Form->text('cover_photo_source', array('id' => 'inputImgSource', 'class' => 'form-control')); ?>
 					</div>
 
 
@@ -90,21 +101,14 @@
 							<label class="custom-control-label" for="on_main">закрепить на Главной</label>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="custom-control custom-switch">
-							<?= $this->Form->input('on_sidebar', array('class' => 'custom-control-input', 'id' => 'on_sidebar', 'type' => 'checkbox'));  ?>
-							<label class="custom-control-label" for="on_sidebar">Важное</label>
-						</div>
-					</div>
-
-<!--					<div class="form-group">-->
-<!--					    <label for="tags">Теги</label>-->
-<!--					    <select class="form-control" id="tags" name="articles_tags[]" multiple="multiple">-->
-<!--					        --><?php //foreach( $tags_list as $item_id => $item ): ?>
-<!--					            <option value="--><?php //= $item_id ?><!--">--><?php //= $item ?><!--</option>-->
-<!--					        --><?php //endforeach ?>
-<!--					    </select>-->
-<!--					</div>-->
+                    <div class="form-group">
+                        <label for="inputImgText">Теги</label>
+                        <select class="js-tags-multiple" name="articles_tags[]" multiple="multiple">
+                            <?php foreach ($tags_list as $index => $item): ?>
+                                <option value="<?= $index ?>"><?= $item ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
 
 					<div class="submit_row form-group">
 						<?php echo $this->Form->button('Добавить', array('class' => 'btn btn-success')); ?>
@@ -152,12 +156,5 @@
     CKEDITOR.replace( 'inputBody' );
 </script>
 
-<link rel="stylesheet" href="/js/plugins/css/multi-select.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="/js/plugins/js/jquery.multi-select.js"></script>
-<script>
-    $('#tags').multiSelect({
-    	selectableHeader: '<div><b>Все теги</b></div>',
-    	selectionHeader: '<div><b>Выбранные теги</b></div>',
-    });
-</script>
+
+

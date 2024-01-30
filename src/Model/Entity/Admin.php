@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Model\Entity;
 
@@ -7,6 +7,7 @@ use Cake\ORM\Entity;
 class Admin extends Entity{
 
 	protected $_accessible = [
+        'author_id' => true,
 		'username' => true,
 		'password' => true,
 		'role' => true,
