@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
 use Cake\Validation\Validator;
 use Cake\Utility\Text;
 

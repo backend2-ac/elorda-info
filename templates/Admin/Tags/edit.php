@@ -1,4 +1,9 @@
-
+<?php
+$cur_user = $this->request->getSession()->read('Auth.User');
+$cur_user_id = $cur_user['id'];
+$author_id = $cur_user['author_id'];
+$cur_user_role = $cur_user['role'];
+?>
 <section class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-2">
@@ -42,7 +47,7 @@
                         <?= $this->Form->text('locale', array('id' => 'inputLocale', 'class' => 'form-control', 'disabled', 'empty' => 'Выбрать')); ?>
                     </div>
 
-                    <?= $this->Form->hidden('updated_by_id', array('value' => 1)) ?>
+                    <?= $this->Form->hidden('updated_by_id', array('value' => $cur_user_id)) ?>
 
 					<div class="submit_row form-group">
 						<?php echo $this->Form->button('Сохранить', array('class' => 'btn btn-success')); ?>

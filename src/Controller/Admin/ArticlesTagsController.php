@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
 use Cake\Validation\Validator;
 use Cake\I18n\I18n;
 
@@ -31,7 +31,7 @@ class ArticlesTagsController extends AppController{
     //         'limit' => $per_page,
     //     ];
 
-    //     $data = $this->$model->find('all') 
+    //     $data = $this->$model->find('all')
     //         ->orderDesc('date')
     //         ->limit($per_page)->offset($offset)
     //         ->toList();
@@ -41,7 +41,7 @@ class ArticlesTagsController extends AppController{
     //     $this->set('pagination', $this->paginate(
     //         $this->$model->find('all')
     //         ->order([$model.'.date' => 'DESC'])
-    //         ->limit($per_page), 
+    //         ->limit($per_page),
     //         $pag_settings
     //     ));
     // }

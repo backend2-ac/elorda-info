@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Model\Entity;
 
@@ -15,6 +15,12 @@ class Category extends Entity{
 		'title' => true,
 		'alias' => true,
 		'item_order' => true,
+
+        'published_at' => true,
+        'created_by_id' => true,
+        'updated_by_id' => true,
+        'locale' => true,
+        'show' => true,
 
 		'meta_title' => true,
 		'meta_keywords' => true,

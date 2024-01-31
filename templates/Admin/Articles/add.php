@@ -1,7 +1,8 @@
 <?php
-$cur_admin = $this->request->getSession()->read('Auth.User');
-$cur_admin_id = $cur_admin['id'];
-$cur_admin_role = $cur_admin['role'];
+$cur_user = $this->request->getSession()->read('Auth.User');
+$cur_user_id = $cur_user['id'];
+$author_id = $cur_user['author_id'];
+$cur_user_role = $cur_user['role'];
 ?>
 <section class="content-header">
 	<div class="container-fluid">
@@ -28,19 +29,23 @@ $cur_admin_role = $cur_admin['role'];
 					</div>
 				</div>
 				<div class="card-body form_cols">
-                    <?php if ($cur_admin_role == 'admin'): ?>
+                    <?php if ($cur_user_role == 'admin'): ?>
                         <div class="form-group">
                             <label for="inputAuthorId">Автор</label>
                             <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'empty' => 'Нет')); ?>
                         </div>
                     <?php else: ?>
-                        <?= $this->Form->hidden('author_id', array('value' => $cur_admin_id)) ?>
+                        <?= $this->Form->hidden('author_id', array('value' => $author_id)) ?>
                     <?php endif; ?>
+                    <?= $this->Form->hidden('created_by_id', array('value' => $cur_user_id)) ?>
 					<div class="form-group col_2">
 						<label for="inputCategoryId">Категория</label>
 						<?= $this->Form->select('category_id', $categories, array('id' => 'inputCategoryId', 'class' => 'form-control', 'required', 'empty' => 'Выбрать')); ?>
 					</div>
-
+                    <div class="form-group col_2">
+                        <label for="inputLocale">Язык</label>
+                        <?= $this->Form->select('locale', ['kk' => 'kk', 'ru' => 'ru'], array('id' => 'inputLocale', 'class' => 'form-control', 'required', 'empty' => 'Выбрать')); ?>
+                    </div>
 					<div class="form-group col_2">
 						<label for="inputTitle">Название</label>
 						<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required')); ?>
@@ -85,6 +90,25 @@ $cur_admin_role = $cur_admin['role'];
 						</div>
 					</div>
 
+                    <div class="form-group col_4">
+                        <label>Дата старт публикации</label>
+                        <div class="input-group date col-3" id="articles_publish_start_at" data-target-input="nearest">
+                            <?= $this->Form->text('publish_start_at', array('class' => 'form-control datetimepicker-input', 'data-target' => '#articles_publish_start_at')); ?>
+                            <div class="input-group-append" data-target="#articles_publish_start_at" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col_4">
+                        <label>Дата end публикации</label>
+                        <div class="input-group date col-3" id="articles_publish_end_at" data-target-input="nearest">
+                            <?= $this->Form->text('publish_end_at', array('class' => 'form-control datetimepicker-input', 'data-target' => '#articles_publish_end_at')); ?>
+                            <div class="input-group-append" data-target="#articles_publish_end_at" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
 					<div class="form-group col_4">
 						<label for="inputReadingTime">Время чтения (мин)</label>
 						<?= $this->Form->number('reading_time', array('id' => 'inputReadingTime', 'class' => 'form-control', 'value' => 0)); ?>

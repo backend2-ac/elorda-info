@@ -59,20 +59,23 @@
                 <!-- Sidebar -->
                 <div class="sidebar">
                   <!-- Sidebar user (optional) -->
-                  <?php $cur_admin = $this->request->getSession()->read('Auth.User.role') ?>
-                  <?php $cur_admin_name = $this->request->getSession()->read('Auth.User.username') ?>
+                  <?php
+                  $cur_user = $this->request->getSession()->read('Auth.User');
+                  $cur_user_id = $cur_user['author_id'];
+                  $cur_user_role = $cur_user['role'];
+                  $cur_user_name = $cur_user['username']; ?>
 
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
                             <img src="/img/admin_img/technical-support.svg" class="img-circle " alt="User Image">
                         </div>
                         <div class="info">
-                            <div class="d-block" style="color:#fff"><?php echo $cur_admin_name ?></div>
+                            <div class="d-block" style="color:#fff"><?php echo $cur_user_name ?></div>
                         </div>
                     </div>
 
                     <!-- Sidebar Menu -->
-                    <?php if( $cur_admin == 'admin' ): ?>
+                    <?php if( $cur_user_role == 'admin' ): ?>
                         <nav class="mt-2">
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
@@ -158,7 +161,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    <?php elseif ($cur_admin == 'author'): ?>
+                    <?php elseif ($cur_user_role == 'author'): ?>
                         <nav class="mt-2">
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
@@ -168,7 +171,12 @@
                                         <p>Панель автора</p>
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="/admin/authors/edit/<?= $cur_user_id ?>" class="nav-link">
+                                        <i class="nav-icon fas fa-newspaper"></i>
+                                        <p>Профиль</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="/admin/articles" class="nav-link">
                                         <i class="nav-icon fas fa-newspaper"></i>
@@ -264,7 +272,6 @@
             function submitForm(){
                 $('#form_submit').show();
             }
-
             $(document).ready(function () {
               bsCustomFileInput.init();
               $('.js-tags-multiple').select2();
@@ -278,6 +285,16 @@
             //Date range picker
 
             $('#articles_date').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm',
+                locale: 'ru'
+            });
+
+            $('#articles_publish_start_at').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm',
+                locale: 'ru'
+            });
+
+            $('#articles_publish_end_at').datetimepicker({
                 format: 'YYYY-MM-DD HH:mm',
                 locale: 'ru'
             });

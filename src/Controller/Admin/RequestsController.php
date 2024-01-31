@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
 use Cake\Validation\Validator;
 use Cake\Utility\Text;
 use Cake\Cache\Cache;
@@ -12,9 +12,9 @@ class RequestsController extends AppController{
     public function initialize(): void{
         parent::initialize();
         $this->loadModel('Requests');
-        
+
         $this->loadModel('Services');
-        
+
         $this->loadComponent('Paginator');
     }
 
@@ -44,14 +44,14 @@ class RequestsController extends AppController{
         $this->set( compact('data') );
 
         $this->set('pagination', $this->paginate(
-            $this->$model->find('all')->limit($per_page)->order(['date' => 'DESC']), 
+            $this->$model->find('all')->limit($per_page)->order(['date' => 'DESC']),
             $pag_settings
         ));
     }
 
     public function delete($item_id = null){
         $model = 'Requests';
-        
+
         $this->request->allowMethod(['post', 'delete']);
         $data = $this->$model->get($item_id);
 

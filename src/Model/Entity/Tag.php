@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Model\Entity;
 
@@ -13,8 +13,11 @@ class Tag extends Entity{
 
 	protected $_accessible = [
 		'title' => true,
+        'alias' => true,
 		'item_order' => true,
-
+        'created_by_id' => true,
+        'updated_by_id' => true,
+        'locale' => true,
 		'created_at' => true,
 		'updated_at' => true,
 	];

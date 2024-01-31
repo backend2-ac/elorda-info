@@ -59,21 +59,21 @@
     <?php else: ?>
       <div class="emty_data">
         Список заявок пуст
-      </div> 
+      </div>
     <?php endif ?>
     </div>
   </div>
 </section>
 
 <ul class="pagination">
-	<?php 
+	<?php
 		$this->Paginator->options([
 		    'url' => [
 		        // 'lang' => $l,
 		    ]
 		]);
 		echo $this->Paginator->numbers([
-			'first' => 1, 'last' => 1, 'modulus' => 2, 
-		]); 
+			'first' => 1, 'last' => 1, 'modulus' => 2,
+		]);
 	?>
 </ul>

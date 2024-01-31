@@ -70,8 +70,14 @@ class ArticlesController extends AppController
         $conditions = [
             'Articles.date <=' => $cur_date
         ];
+        $conditions = [
+            'OR' => [
+                ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+            ]
+        ];
         if( $cat_id ){
-            $conditions[] = ['Articles.category_id' => $cat_id];
+            $conditions = ['AND' => ['Articles.category_id' => $cat_id]];
         }
 
         $cur_page = 1;

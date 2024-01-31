@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Model\Entity;
 
@@ -13,13 +13,14 @@ class Article extends Entity{
 
 	protected $_accessible = [
 		'category_id' => true,
-		'rubric_id' => true,
 		'author_id' => true,
 		'title' => true,
 		'sub_title' => true,
 		'alias' => true,
 		'img' => true,
 		'img_text' => true,
+        'img_path' => true,
+        'img_hash' => true,
 		'short_desc' => true,
 		'body' => true,
 		'date' => true,
@@ -32,6 +33,15 @@ class Article extends Entity{
 		'meta_title' => true,
 		'meta_keywords' => true,
 		'meta_description' => true,
+
+        'publish_start_at' => true,
+        'publish_end_at' => true,
+        'featured' => true,
+        'created_by_id' => true,
+        'updated_by_id' => true,
+        'locale' => true,
+        'cover_photo_source' => true,
+        'anonymous' => true,
 
 		'created_at' => true,
 		'updated_at' => true,

@@ -34,9 +34,9 @@ class ArticlesController extends AppController{
         $title = '';
         $author_id = '';
         $views_sort = '';
-        $cur_admin = $this->request->getSession()->read('Auth.User');
-        if ($cur_admin['role'] == 'author') {
-            $author_id = $cur_admin['id'];
+        $cur_user = $this->request->getSession()->read('Auth.User');
+        if ($cur_user['role'] == 'author') {
+            $author_id = $cur_user['author_id'];
             $conditions[] = [$model.'.author_id' => $author_id];
         }
         if( isset($_GET['title']) && $_GET['title'] ){
@@ -207,7 +207,16 @@ class ArticlesController extends AppController{
     public function edit($item_id = null){
         $model = 'Articles';
         date_default_timezone_set('Asia/Almaty');
-
+        $cur_user = $this->request->getSession()->read('Auth.User');
+        if ($cur_user['role'] == 'author') {
+            $is_author_article = $this->$model->find()
+                ->where(['Articles.author_id' => $cur_user['author_id'], 'Articles.id' => $item_id])
+                ->toArray();
+            if (!$is_author_article) {
+                $this->Flash->error(__('У вас нет доступа!'));
+                $this->redirect(['controller' => 'Admin', 'action' => 'index']);
+            }
+        }
         $data = $this->$model->get($item_id, [
             'contain' => ['Tags']
         ]);

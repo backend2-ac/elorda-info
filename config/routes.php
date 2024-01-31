@@ -59,6 +59,7 @@ Router::prefix('Admin', function(RouteBuilder $builder){
 
     $builder->connect('/logout', ['controller' => 'Admin', 'action' => 'logout']);
     $builder->connect('/add', ['controller' => 'Admin', 'action' => 'add']);
+    $builder->connect('/profile', ['controller' => 'Authors', 'action' => 'profile']);
     $builder->connect('/all', ['controller' => 'Admin', 'action' => 'all']);
     $builder->connect('/edit/*', ['controller' => 'Admin', 'action' => 'edit']);
     $builder->connect('/delete/*', ['controller' => 'Admin', 'action' => 'delete']);

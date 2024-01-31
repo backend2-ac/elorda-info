@@ -32,7 +32,7 @@
 	                                                    Читать далее
 	                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 	                                                        <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-	                                                    </svg>                                                    
+	                                                    </svg>
 	                                                </a>
 	                                            </div>
 	                                        </div>
@@ -136,7 +136,7 @@
                             <rect width="55" height="55" fill="white"/>
                             </clipPath>
                             </defs>
-                        </svg>                                
+                        </svg>
                         Загрузка
                     </div> -->
                 </div>

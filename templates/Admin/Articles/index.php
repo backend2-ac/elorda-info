@@ -1,5 +1,8 @@
 <?php
-    $cur_admin = $this->request->getSession()->read('Auth.User.role')
+
+use Cake\I18n\FrozenTime;
+
+$cur_user_role = $this->request->getSession()->read('Auth.User.role')
 ?>
 
 <section class="content-header">
@@ -22,7 +25,7 @@
         <?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'value' => $title)); ?>
       </div>
 
-        <?php if ($cur_admin == 'admin'): ?>
+        <?php if ($cur_user_role == 'admin'): ?>
           <div class="form-group col_2">
             <label for="inputAuthorId">Автор</label>
             <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'value' => $author_id, 'empty' => 'Все')); ?>
@@ -68,6 +71,7 @@
                 <th style="width: 5%">Категория</th>
                 <th style="width: 5%">Картинка</th>
                 <th style="width: 5%">Дата</th>
+                <th style="width: 5%">Статус</th>
                 <th style="width: 5%; text-align: right;">Редактирование</th>
             </tr>
         </thead>
@@ -90,6 +94,9 @@
               <td>
         				<?= $this->Time->format($item['date'], 'dd.MM.yyyy HH:mm') ?>
         			</td>
+                    <td>
+                        <?= FrozenTime::now() > $item['publish_start_at'] ? 'Опубликован' : 'Не опубликован' ?>
+                    </td>
         			<td class="project-actions text-right">
 
                     <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>">

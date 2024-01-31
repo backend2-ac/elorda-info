@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Controller;
 
@@ -39,13 +39,13 @@ class UsersController extends AppController{
  //    public $img_fields = ['img'];
 
 	public $articles_statuses = [
-		'sended' => 'Отправлено', // default, system - 
+		'sended' => 'Отправлено', // default, system -
 		'delivered' => 'Получено', // system
-		'on_review' => 'На рецензировании', 
-		'for_correction' => 'На доработке', 
-		'accepted' => 'Принята', 
-		'rejected' => 'Отклонена', 
-		'pending_payment' => 'Ждет оплаты', 
+		'on_review' => 'На рецензировании',
+		'for_correction' => 'На доработке',
+		'accepted' => 'Принята',
+		'rejected' => 'Отклонена',
+		'pending_payment' => 'Ждет оплаты',
 	];
 
 	public $users_articles_statuses = [
@@ -72,7 +72,7 @@ class UsersController extends AppController{
 		if( !$site_lang || $site_lang == 'ru' ){
 			$site_lang = '';
 		}
-		
+
 		return $this->redirect( $site_lang . Router::pathUrl('Users::cabinet') );
 	}
 
@@ -585,15 +585,15 @@ class UsersController extends AppController{
 			        	->where($conditions)
 			            ->select(['id', 'title'])
 			            ->order($articlesModel.'.created_at DESC')
-			            ->limit($per_page), 
+			            ->limit($per_page),
 			        $pag_settings
 			    ));
 
 				$this->set( compact('articles', 'journals_series', 'articles_statuses') );
 			/*----- Authors END -----*/
-		
+
 		} elseif( $userAuth['role'] == 'reviewer' ){
-			
+
 			/*----- Reviwers -----*/
 
 				$revModel = 'UsersArticles';
@@ -628,7 +628,7 @@ class UsersController extends AppController{
     		        	->contain('Articles')
     		            ->select(['id', 'reviewer_id', 'created_at'])
     		            ->order($revModel.'.created_at DESC')
-    		            ->limit($per_page), 
+    		            ->limit($per_page),
     		        $pag_settings
     		    ));
 
@@ -894,7 +894,7 @@ class UsersController extends AppController{
             	->where($conditions)
                 ->select(['id', 'title'])
                 ->order($model.'.created_at DESC')
-                ->limit($per_page), 
+                ->limit($per_page),
             $pag_settings
         ));
 
@@ -975,7 +975,7 @@ class UsersController extends AppController{
             	->contain('Articles')
                 ->select(['id', 'reviewer_id', 'created_at'])
                 ->order($model.'.created_at DESC')
-                ->limit($per_page), 
+                ->limit($per_page),
             $pag_settings
         ));
 
@@ -1180,7 +1180,7 @@ class UsersController extends AppController{
 
 	    		} elseif( $data['submit_type'] == 'verify_email' ){
 	    			if( $step == 3 ){
-	    				
+
 	    				if( $userAuth['verify_code'] ){
 	    					$user_code = $userAuth['verify_code'];
 	    				} else{
@@ -1305,7 +1305,7 @@ class UsersController extends AppController{
 				if( $r_id && $r_id > 0 ){
 					if( isset($data['message']) ){
 						$update = $this->$model->query()->update()->set(['comment' => htmlentities($data['message'])])->where(['id' => $r_id]);
-						
+
 						if( $update->execute() ){
 							$result['status'] = 'success';
 							$result['status_text'] = __('Комментарий успешно сохранен');

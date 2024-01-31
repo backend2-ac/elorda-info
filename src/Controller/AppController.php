@@ -19,6 +19,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 
+use Cake\I18n\FrozenTime;
 use Cake\I18n\I18n;
 
 use Cake\Cache\Cache;
@@ -97,7 +98,6 @@ class AppController extends Controller
 
     public function beforeFilter(\Cake\Event\EventInterface $event){
         parent::beforeFilter($event);
-
         $params = $this->request->getAttribute('params');
         $admin = (isset($params['prefix']) && $params['prefix'] == 'Admin') ? 'admin/' : false;
 
@@ -116,6 +116,20 @@ class AppController extends Controller
         $login = !empty($userName);
 
         $userAuth = $session->read('UserAuth');
+        $user_role = $session->read('Auth.User.role');
+        $has_access_controllers = ['Articles', 'Tags', 'Authors', 'Admin'];
+        $has_access_action = 'edit';
+        $cur_controller = $this->request->getParam('controller');
+        if ($user_role == 'author') {
+            if (isset($params['prefix']) && $params['prefix'] == 'Admin' && !in_array($cur_controller, $has_access_controllers)) {
+                $this->Flash->error(__('У вас нет доступа к этой странице!'));
+                $this->redirect(['controller' => 'Admin', 'action' => 'index']);
+            }
+            if (isset($params['prefix']) && $params['prefix'] == 'Admin' && $cur_controller == 'Authors' && $params['action'] != $has_access_action) {
+                $this->Flash->error(__('У вас нет доступа к этой странице!'));
+                $this->redirect(['controller' => 'Admin', 'action' => 'index']);
+            }
+        }
 
         if( $login ){
             $_SESSION['KCFINDER'] = array(
@@ -255,40 +269,25 @@ class AppController extends Controller
 
             $full_categories = $this->_getFullCategories();
 
-            /*------ Ads blocks BEGIN ------*/
-
-//                $header_block = Cache::read('header_block', 'eternal');
-//                if( !$header_block ){
-//                    $header_block = $this->Blocks->find()
-//                        ->where(['Blocks.position' => 'header'])
-//                        ->orderDesc('item_order')
-//                        ->first();
-//                    Cache::write('header_block', $header_block, 'eternal');
-//                }
-//
-//                $main_block = Cache::read('main_block', 'eternal');
-//                if( !$main_block ){
-//                    $main_block = $this->Blocks->find()
-//                        ->where(['Blocks.position' => 'main'])
-//                        ->orderDesc('item_order')
-//                        ->first();
-//                    Cache::write('main_block', $main_block, 'eternal');
-//                }
-//
-//
-//                $sidebar_blocks = Cache::read('sidebar_blocks', 'eternal');
-//                if( !$sidebar_blocks ){
-//                    $sidebar_blocks = $this->Blocks->find('all')
-//                        ->where(['Blocks.position' => 'sidebar'])
-//                        ->orderDesc('item_order')
-//                        ->limit(3)
-//                        ->toList();
-//                    Cache::write('sidebar_blocks', $sidebar_blocks, 'eternal');
-//                }
-//
-//                $this->set( compact('header_block', 'main_block', 'sidebar_blocks') );
-
-            /*------ Ads blocks END ------*/
+            /*------ cache cleaning ------*/
+            $interval_minute = 5;
+            $check_start_date = Cache::read('check_start_date', 'eternal');
+            $current_date = FrozenTime::now();
+            if (!$check_start_date) {
+                Cache::write('check_start_date', $current_date, 'eternal');
+            } else {
+                $new_start_date = $check_start_date->addMinutes($interval_minute);
+                if ($current_date >= $new_start_date) {
+                    $has_article = $this->Articles->find()
+                        ->where(['Articles.publish_start_at >=' => $check_start_date, 'Articles.publish_end_at <=' => $current_date])
+                        ->first();
+                    if ($has_article) {
+                        Cache::clear();
+                    }
+                    Cache::write('check_start_date', $current_date, 'eternal');
+                }
+            }
+            /*------ Cache cleaning END ------*/
 
             $this->set( compact(  'categories_slug_parts', 'full_categories') );
         }
@@ -321,7 +320,6 @@ class AppController extends Controller
                         'valueField' => 'title',
                     ])
                     ->orderDesc('item_order')
-                    ->limit(10)
                     ->toArray();
                  Cache::write('admin_tags', $tags, 'eternal');
             }
