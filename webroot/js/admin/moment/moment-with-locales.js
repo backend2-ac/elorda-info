@@ -3161,7 +3161,7 @@
             setMonth(mom, get(mom, 'Month') + months * isAdding);
         }
         if (days) {
-            set$1(mom, 'Date', get(mom, 'Date') + days * isAdding);
+            set$1(mom, 'date', get(mom, 'date') + days * isAdding);
         }
         if (milliseconds) {
             mom._d.setTime(mom._d.valueOf() + milliseconds * isAdding);
@@ -3768,7 +3768,7 @@
 
     // MOMENTS
 
-    var getSetDayOfMonth = makeGetSet('Date', true);
+    var getSetDayOfMonth = makeGetSet('date', true);
 
     // FORMATTING
 

@@ -67,12 +67,12 @@
 			                                        </tr>
 			                                    <?php endif ?>
 	                                        <?php endforeach; ?>
-	                                        
+
 	                                    </tbody>
 	                                </table>
 	                            </div>
 							<?php endforeach; ?>
-                            
+
                         </div>
                     </section>
                 </div>

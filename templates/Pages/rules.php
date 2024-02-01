@@ -40,7 +40,7 @@
                             <div class="media__text">
                                 <?= $page_comps[19]['body'] ?>
                             </div>
-                            
+
                         </div>
                     </section>
                 </div>
