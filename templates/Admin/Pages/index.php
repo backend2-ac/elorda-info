@@ -1,3 +1,6 @@
+<?php
+$langs = array('ru', 'kz', 'en');
+?>
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -34,7 +37,11 @@
         				<?=$item['id']?>
         			</td>
         			<td>
-        				<?=$item['title']?>
+                        <?php foreach( $langs as $index => $key ): ?>
+                            <?php if( isset($item['_translations'][$key]) && $item['_translations'][$key]['title'] ): ?>
+                                <p> <b><?=$key?>:</b> <?= $item['_translations'][$key]['title'] ?></p>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
         			</td>
         			<td class="project-actions text-right">
         				<a class="btn btn-info btn-sm" href="/admin/pages/edit/<?=$item['id']?>?lang=ru">
@@ -53,21 +60,21 @@
     <?php else: ?>
       <div class="emty_data">
         К сожалению в данном разделе еще не добавлена информация...
-      </div> 
+      </div>
     <?php endif ?>
     </div>
   </div>
 </section>
 
 <ul class="pagination">
-	<?php 
+	<?php
 		$this->Paginator->options([
 		    'url' => [
 		        // 'lang' => $l,
 		    ]
 		]);
 		echo $this->Paginator->numbers([
-			'first' => 1, 'last' => 1, 'modulus' => 2, 
-		]); 
+			'first' => 1, 'last' => 1, 'modulus' => 2,
+		]);
 	?>
 </ul>
