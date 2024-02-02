@@ -146,7 +146,6 @@ class ArticlesController extends AppController{
                 }
             }
 
-            // $cur_time = date('H:i:s');
             if( !$data['date'] ){
                 $data['date'] = date('Y-m-d H:i:s');
             } else{
@@ -234,36 +233,31 @@ class ArticlesController extends AppController{
             $data1 = $this->request->getData();
             $old_data = clone $data;
             $articles_tags = [];
-
-            // $cur_time = date('H:i:s');
             if( isset($data1['date']) && $data1['date'] ){
                 $data1['date'] = date('Y-m-d H:i:s', strtotime($data1['date']));
             }
 
-            if( isset($_GET['lang']) && $_GET['lang'] == 'ru' ){
-                if( !isset($data1['on_main']) || !$data1['on_main'] ){
-                    $data1['on_main'] = 0;
-                }
-                if( !isset($data1['on_sidebar']) || !$data1['on_sidebar'] ){
-                    $data1['on_sidebar'] = 0;
-                }
-
-                if( isset($data1['articles_tags']) && $data1['articles_tags'] ){
-                    foreach( $data1['articles_tags'] as $tag_id ){
-                        if( !in_array($tag_id, $data_tags) ){
-                            $articles_tags[] = [
-                                'article_id' => $item_id,
-                                'tag_id' => $tag_id,
-                            ];
-                        }
-                    }
-
-                    $del_tags = array_diff($data_tags, $data1['articles_tags']);
-                } else{
-                    $del_tags = $data_tags;
-                }
+            if( !isset($data1['on_main']) || !$data1['on_main'] ){
+                $data1['on_main'] = 0;
+            }
+            if( !isset($data1['on_sidebar']) || !$data1['on_sidebar'] ){
+                $data1['on_sidebar'] = 0;
             }
 
+            if( isset($data1['articles_tags']) && $data1['articles_tags'] ){
+                foreach( $data1['articles_tags'] as $tag_id ){
+                    if( !in_array($tag_id, $data_tags) ){
+                        $articles_tags[] = [
+                            'article_id' => $item_id,
+                            'tag_id' => $tag_id,
+                        ];
+                    }
+                }
+
+                $del_tags = array_diff($data_tags, $data1['articles_tags']);
+            } else{
+                $del_tags = $data_tags;
+            }
 
             $entity_res = $this->EntityFiles->saveEntityFiles($data1, $model, $this->img_fields);
 
