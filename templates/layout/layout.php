@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-<!--    Test-->
 	<title>Custom Layout</title>
 </head>
 <body>
