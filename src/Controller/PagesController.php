@@ -107,7 +107,7 @@ class PagesController extends AppController
 //        $cur_date = FrozenTime::now(); // Получаем текущую дату и время
 
         $main_articles = Cache::read('main_articles_' . $cur_lang, 'long');
-
+        $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
         if (!$main_articles) {
             $main_articles = $this->Articles->find('all')
                 ->select(['id', 'title', 'alias', 'category_id', 'img', 'date', 'views', 'short_desc'])
@@ -117,6 +117,7 @@ class PagesController extends AppController
                         ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date],
                     ],
                 ])
+                ->where(['locale' => $locale])
                 ->order(['date' => 'DESC'])
                 ->limit(6)
                 ->toList();
