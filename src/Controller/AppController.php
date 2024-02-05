@@ -171,47 +171,47 @@ class AppController extends Controller
 
         /*--------- Comps --------*/
 
-            $langs_ids = [4, 9, 10, 11,19];
-            $spec_ids = [2, 3,4];
-
-            $comps_lang = Cache::read('comps_'.$l, 'long');
-            if( !$comps_lang ){
-                $this->Comps->setLocale($l);
-                $all_comps_lang = $this->Comps->find('all')
-                    ->where([
-                        'Comps.id IN' => $langs_ids,
-                        'Comps.id NOT IN' => $spec_ids,
-                        'Comps.page_id' => 0,
-                    ])
-                    ->toList();
-
-                $comps_lang = [];
-                foreach( $all_comps_lang as $comp_item ){
-                    $comps_lang[$comp_item['id']] = $comp_item;
-                }
-                Cache::write('comps_'.$l, $comps_lang, 'long');
-            }
-
-            $total_ids = array_merge($langs_ids, $spec_ids);
-
-            $comps = Cache::read('comps', 'long');
-            if( !$comps ){
-                $this->Comps->setLocale('ru');
-                $all_comps = $this->Comps->find('all')
-                    ->where([
-                        'Comps.id NOT IN' => $total_ids,
-                        'Comps.page_id' => 0,
-                    ])
-                    ->toList();
-
-                $comps = [];
-                foreach( $all_comps as $comp_item ){
-                    $comps[$comp_item['id']] = $comp_item;
-                }
-                Cache::write('comps', $comps, 'long');
-            }
-
-            $this->set( compact('comps', 'comps_lang') );
+//            $langs_ids = [4, 9, 10, 11,19];
+//            $spec_ids = [2, 3,4];
+//
+//            $comps_lang = Cache::read('comps_'.$l, 'long');
+//            if( !$comps_lang ){
+//                $this->Comps->setLocale($l);
+//                $all_comps_lang = $this->Comps->find('all')
+//                    ->where([
+//                        'Comps.id IN' => $langs_ids,
+//                        'Comps.id NOT IN' => $spec_ids,
+//                        'Comps.page_id' => 0,
+//                    ])
+//                    ->toList();
+//
+//                $comps_lang = [];
+//                foreach( $all_comps_lang as $comp_item ){
+//                    $comps_lang[$comp_item['id']] = $comp_item;
+//                }
+//                Cache::write('comps_'.$l, $comps_lang, 'long');
+//            }
+//
+//            $total_ids = array_merge($langs_ids, $spec_ids);
+//
+//            $comps = Cache::read('comps', 'long');
+//            if( !$comps ){
+//                $this->Comps->setLocale('ru');
+//                $all_comps = $this->Comps->find('all')
+//                    ->where([
+//                        'Comps.id NOT IN' => $total_ids,
+//                        'Comps.page_id' => 0,
+//                    ])
+//                    ->toList();
+//
+//                $comps = [];
+//                foreach( $all_comps as $comp_item ){
+//                    $comps[$comp_item['id']] = $comp_item;
+//                }
+//                Cache::write('comps', $comps, 'long');
+//            }
+//
+//            $this->set( compact('comps', 'comps_lang') );
 
         /*--------- Comps END --------*/
 
