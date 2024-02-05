@@ -9,9 +9,9 @@
   </div>
 </section>
 
-<?php 
+<?php
   $langs = array('ru', 'kz', 'en');
-  $langs_ids = [4, 9, 10, 11];
+  $langs_ids = [4, 9, 10, 11, 28];
   $spec_ids = [1, 2, 3];
 ?>
 
@@ -19,7 +19,7 @@
 <section class="content">
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Элементы</h3>		
+      <h3 class="card-title">Элементы</h3>
     </div>
     <div class="card-body p-0">
     <?php if(!empty($data)): ?>
@@ -53,22 +53,16 @@
                       <?php endif; ?>
                     <?php endforeach; ?>
           				<?php endif; ?>
-                
+
                 <?php endif; ?>
         			</td>
         			<td class="project-actions text-right">
-                <?php if( in_array($item['id'], $langs_ids) ): ?>
-          				<a class="btn btn-info btn-sm" href="/admin/comps/edit/<?=$item['id']?>?lang=ru">
-          					<i class="fas fa-pencil-alt"></i> rus
-          				</a>
-                  <a class="btn btn-info btn-sm" href="/admin/comps/edit/<?=$item['id']?>?lang=kz">
-                    <i class="fas fa-pencil-alt"></i> kaz
-                  </a>
-                <?php else: ?>
-                  <a class="btn btn-info btn-sm" href="/admin/comps/edit/<?=$item['id']?>?lang=ru">
-                    <i class="fas fa-pencil-alt"></i> Редактировать
-                  </a>
-                <?php endif; ?>
+                    <a class="btn btn-info btn-sm" href="/admin/comps/edit/<?=$item['id']?>?lang=ru">
+                        <i class="fas fa-pencil-alt"></i> рус
+                    </a>
+                    <a class="btn btn-info btn-sm" href="/admin/comps/edit/<?=$item['id']?>?lang=kz">
+                        <i class="fas fa-pencil-alt"></i> қаз
+                    </a>
         				<?php # echo $this->Form->postLink('Удалить', "/admin/comps/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
         			</td>
         		</tr>
@@ -78,7 +72,7 @@
     <?php else: ?>
       <div class="emty_data">
         К сожалению в данном разделе еще не добавлена информация...
-      </div> 
+      </div>
     <?php endif ?>
     </div>
   </div>
@@ -86,14 +80,14 @@
 </section>
 
 <ul class="pagination">
-	<?php 
+	<?php
 		$this->Paginator->options([
 		    'url' => [
 		        'lang' => $l,
 		    ]
 		]);
 		echo $this->Paginator->numbers([
-			'first' => 1, 'last' => 1, 'modulus' => 2, 
-		]); 
+			'first' => 1, 'last' => 1, 'modulus' => 2,
+		]);
 	?>
 </ul>
