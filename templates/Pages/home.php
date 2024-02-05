@@ -257,7 +257,7 @@
                                     <div class="culture__items">
                                     	<?php foreach( $culture_news as $index => $item ): ?>
 	                                		<?php if($index != 0): ?>
-			                                    <a href="#" class="culture__item">
+			                                    <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__item">
 		                                            <div class="culture__item-img">
 		                                               <img src="/img/articles/<?= $item['img'] ?>" alt="">
 		                                            </div>
