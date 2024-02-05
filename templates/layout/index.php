@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Test-->
 <html lang="ru">
 	<head>
 		<meta charset="UTF-8">

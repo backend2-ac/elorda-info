@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
 use Cake\I18n\I18n;
 use Cake\Validation\Validator;
 
@@ -13,7 +13,7 @@ class PagesController extends AppController{
 
     public function initialize(): void{
         parent::initialize();
-        
+
         $this->loadModel('Documents');
 
         $this->loadModel('Pages');
@@ -42,7 +42,7 @@ class PagesController extends AppController{
 
         $this->set('pagination', $this->paginate(
             $this->$model->find('all')->order([$model.'.id' => 'ASC'])
-            ->limit($per_page), 
+            ->limit($per_page),
             $pag_settings
         ));
     }
@@ -149,7 +149,7 @@ class PagesController extends AppController{
 
             $this->set( compact('page_comps') );
 
-           
+
                 $documents = $this->Documents->find('all')
                     ->where(['Documents.lang' => $cur_locale])
                     ->orderDesc('item_order')
@@ -157,13 +157,13 @@ class PagesController extends AppController{
                 $this->set( compact('documents') );
         }
 
-        
+
         $this->set( compact('data', 'cur_locale') );
     }
 
     public function delete($item_id = null){
         $model = 'Pages';
-        
+
         $this->request->allowMethod(['post', 'delete']);
         $data = $this->$model->get($item_id);
 
@@ -183,9 +183,9 @@ class PagesController extends AppController{
     }
 
     protected function _cacheDelete(){
-        // Cache::delete('nav_pages_list_ru', 'eternal');
-        // Cache::delete('nav_pages_list_kz', 'eternal');
-        // Cache::delete('nav_pages_list_en', 'eternal');
+         Cache::delete('nav_pages_list_ru', 'eternal');
+         Cache::delete('nav_pages_list_kz', 'eternal');
+         Cache::delete('nav_pages_list_en', 'eternal');
     }
 }
 

@@ -349,9 +349,29 @@ class ArticlesController extends AppController{
         Cache::delete('main_articles_kz', 'long');
         Cache::delete('main_articles_en', 'long');
 
-        Cache::delete('sidebar_fixed_ru', 'long');
-        Cache::delete('sidebar_fixed_kz', 'long');
-        Cache::delete('sidebar_fixed_en', 'long');
+        Cache::delete('capital_news_ru', 'long');
+        Cache::delete('capital_news_kz', 'long');
+        Cache::delete('capital_news_en', 'long');
+
+        Cache::delete('society_news_ru', 'long');
+        Cache::delete('society_news_kz', 'long');
+        Cache::delete('society_news_en', 'long');
+
+        Cache::delete('politica_news_ru', 'long');
+        Cache::delete('politica_news_kz', 'long');
+        Cache::delete('politica_news_en', 'long');
+
+        Cache::delete('culture_news_ru', 'long');
+        Cache::delete('culture_news_kz', 'long');
+        Cache::delete('culture_news_en', 'long');
+
+        Cache::delete('heroes_news_ru', 'long');
+        Cache::delete('heroes_news_kz', 'long');
+        Cache::delete('heroes_news_en', 'long');
+
+        Cache::delete('popular_news_ru', 'long');
+        Cache::delete('popular_news_kz', 'long');
+        Cache::delete('popular_news_en', 'long');
 
         Cache::delete('last_news_ru', 'long');
         Cache::delete('last_news_kz', 'long');
@@ -365,13 +385,6 @@ class ArticlesController extends AppController{
         Cache::delete('last_reviews_kz', 'long');
         Cache::delete('last_reviews_en', 'long');
 
-        Cache::delete('last_opinions_ru', 'long');
-        Cache::delete('last_opinions_kz', 'long');
-        Cache::delete('last_opinions_en', 'long');
-
-        Cache::delete('last_feedbacks_ru', 'long');
-        Cache::delete('last_feedbacks_kz', 'long');
-        Cache::delete('last_feedbacks_en', 'long');
     }
 
     protected function _slug_render($slug){

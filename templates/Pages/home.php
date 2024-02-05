@@ -68,7 +68,7 @@
 		                                    <div class="capital__main-header block-elems">
 		                                        <div class="capital__main-date date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                                        <div class="capital__main-watch watch">
-		                                            <img src="img/watch.png" alt="" class="svg-icon">
+		                                            <img src="/img/watch.png" alt="" class="svg-icon">
 		                                            <?= number_format($item['views'], 0, '', ' ') ?>
 		                                        </div>
 		                                    </div>

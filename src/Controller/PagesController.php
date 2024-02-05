@@ -16,18 +16,11 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
-use Cake\Core\Configure;
-use Cake\Http\Exception\ForbiddenException;
-use Cake\Http\Exception\NotFoundException;
-use Cake\Http\Response;
-use Cake\View\Exception\MissingTemplateException;
-
 use Cake\Cache\Cache;
-
+use Cake\Core\Configure;
 use Cake\ORM\Query;
-
-
-
+use TelegramBot\Api;
+use TelegramBot\Api\Types;
 /**
  * Static content controller
  *
@@ -50,7 +43,8 @@ class PagesController extends AppController
      * @throws \Cake\View\Exception\MissingTemplateException In debug mode.
      */
 
-    public function initialize(): void{
+    public function initialize(): void
+    {
         parent::initialize();
 
         $this->loadModel('Articles');
@@ -64,13 +58,55 @@ class PagesController extends AppController
         $this->loadComponent('Paginator');
     }
 
-    public function home(): void{
+    public function getArticlesFromTelegram()
+    {
+//        $botToken = '6507471270:AAEyN3F9y73mhbInFxSU_LSkKCVKf98qHLI';
+//        $chat_id = '@elorda_aqparat';
+
+        $botToken = '6869063207:AAGcKUDRLq7cFDcR9iOIpOogIg2BOefkQU0';
+        $chat_id = '@my_books_list_for';
+        $bot = new \TelegramBot\Api\BotApi($botToken);
+        $botan = new \TelegramBot\Api\Botan($botToken);
+        $updates = $bot->getUpdates();
+        $channelInfo = $bot->getChat($chat_id);
+        foreach ($updates as $update) {
+            $channelPost = $update->getChannelPost();
+
+            // Получение текста сообщения
+            $title = $channelPost->getText();
+//            $botan_data = $botan->track($channelPost);
+//            debug($botan_data);
+        }
+        debug($updates);
+        debug($channelInfo);
+        die();
+//        $bot = new \TelegramBot\Api\Client($botToken);
+//        $params = [
+//            'chat_id' => '1177565106',
+//            'text' => 'You are hacked!',
+//            'parse_mode' => 'html'
+//        ];
+//        $api_url = "https://api.telegram.org/bot$botToken/sendMessage";
+//        $ch =curl_init();
+//        curl_setopt($ch, CURLOPT_URL, $api_url);
+//        curl_setopt($ch, CURLOPT_POST, count($params));
+//        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//        $res = curl_exec($ch);
+//        curl_close($ch);
+//        debug($res);
+//        die();
+//        return $latestMessages;
+    }
+
+    public function home(): void
+    {
         $cur_lang = Configure::read('Config.lang');
         $cur_date = date('Y-m-d H:i:s');
-
+        $this->getArticlesFromTelegram();
 //        $cur_date = FrozenTime::now(); // Получаем текущую дату и время
 
-        $main_articles = Cache::read('main_articles_'.$cur_lang, 'long');
+        $main_articles = Cache::read('main_articles_' . $cur_lang, 'long');
 
         if (!$main_articles) {
             $main_articles = $this->Articles->find('all')
@@ -79,13 +115,13 @@ class PagesController extends AppController
                     'OR' => [
                         ['publish_start_at IS NULL', 'date <' => $cur_date],
                         ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date],
-                    ]
+                    ],
                 ])
                 ->order(['date' => 'DESC'])
                 ->limit(6)
                 ->toList();
 
-            Cache::write('main_articles_'.$cur_lang, $main_articles, 'long');
+            Cache::write('main_articles_' . $cur_lang, $main_articles, 'long');
         }
 
         $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
@@ -93,7 +129,7 @@ class PagesController extends AppController
         if (!$capital_news) {
             $capital_news = $this->Articles->find('all')
                 ->contain([
-                    'Categories' => function(Query $q) {
+                    'Categories' => function (Query $q) {
                         return $q->enableAutoFields();
                     },
                 ])
@@ -103,7 +139,7 @@ class PagesController extends AppController
                     'OR' => [
                         ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
                         ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ]
+                    ],
                 ])
                 ->orderDesc('Articles.date')
                 ->limit(4)
@@ -116,7 +152,7 @@ class PagesController extends AppController
         if (!$society_news) {
             $society_news = $this->Articles->find('all')
                     ->contain([
-                        'Categories' => function(Query $q) {
+                        'Categories' => function (Query $q) {
                             return $q->enableAutoFields();
                         },
                     ])
@@ -126,7 +162,7 @@ class PagesController extends AppController
                         'OR' => [
                             ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
                             ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                        ]
+                        ],
                     ])
                     ->orderDesc('Articles.date')
                     ->limit(7)
@@ -138,7 +174,7 @@ class PagesController extends AppController
         if (!$politica_news) {
             $politica_news = $this->Articles->find('all')
                 ->contain([
-                    'Categories' => function(Query $q) {
+                    'Categories' => function (Query $q) {
                         return $q->enableAutoFields();
                     },
                 ])
@@ -148,7 +184,7 @@ class PagesController extends AppController
                     'OR' => [
                         ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
                         ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ]
+                    ],
                 ])
                 ->orderDesc('Articles.date')
                 ->limit(3)
@@ -161,7 +197,7 @@ class PagesController extends AppController
         if (!$culture_news) {
             $culture_news = $this->Articles->find('all')
                 ->contain([
-                    'Categories' => function(Query $q) {
+                    'Categories' => function (Query $q) {
                         return $q->enableAutoFields();
                     },
                 ])
@@ -171,7 +207,7 @@ class PagesController extends AppController
                     'OR' => [
                         ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
                         ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ]
+                    ],
                 ])
                 ->orderDesc('Articles.date')
                 ->limit(3)
@@ -184,7 +220,7 @@ class PagesController extends AppController
         if (!$heroes_news) {
             $heroes_news = $this->Articles->find('all')
                 ->contain([
-                    'Categories' => function(Query $q) {
+                    'Categories' => function (Query $q) {
                         return $q->enableAutoFields();
                     },
                 ])
@@ -194,7 +230,7 @@ class PagesController extends AppController
                     'OR' => [
                         ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
                         ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ]
+                    ],
                 ])
                 ->orderDesc('Articles.date')
                 ->limit(3)
@@ -217,7 +253,7 @@ class PagesController extends AppController
                         'OR' => [
                             ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
                             ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                        ]
+                        ],
                     ])
                     ->orderDesc('views')
                     ->limit(6)
@@ -240,7 +276,7 @@ class PagesController extends AppController
                         'OR' => [
                             ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
                             ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                        ]
+                        ],
                     ])
                     ->orderDesc('Articles.date')
                     ->limit(6)
@@ -249,22 +285,21 @@ class PagesController extends AppController
             Cache::write('last_news_' . $cur_lang, $last_news, 'long');
         }
 
-
         $page = $this->Pages->get(1);
-        if( $page ){
+        if ($page) {
             $meta['title'] = $page['meta_title'];
-            if( !$meta['title'] ){
+            if (!$meta['title']) {
                 $meta['title'] = $page['title'];
             }
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set( compact('meta', 'main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news') );
+        $this->set(compact('meta', 'main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news'));
     }
 
-
-    public function rules():void{
+    public function rules(): void
+    {
 
         $cur_lang = Configure::read('Config.lang');
         $cur_date = date('Y-m-d H:i:s');
@@ -277,10 +312,10 @@ class PagesController extends AppController
             ->toList();
         $branches = $this->Branches->find('all')
             ->select(['id',  'title',])
-            ->where([$this->Branches->translationField('title').' is not' => null])
+            ->where([$this->Branches->translationField('title') . ' is not' => null])
             ->toList();
         $employees = $this->Employees->find('all')
-            ->where([$this->Employees->translationField('name').' is not' => null])
+            ->where([$this->Employees->translationField('name') . ' is not' => null])
             ->toList();
         $last_news = $this->Articles->find('all')
             ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
@@ -288,18 +323,20 @@ class PagesController extends AppController
             ->orderDesc('date')
             ->toList();
         $page = $this->Pages->get(4);
-        if( $page ){
+        if ($page) {
             $meta['title'] = $page['meta_title'];
-            if( !$meta['title'] ){
+            if (!$meta['title']) {
                 $meta['title'] = $page['title'];
             }
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set( compact('meta', 'page_comps', 'page','popular_news','last_news','branches','employees') );
+        $this->set(compact('meta', 'page_comps', 'page', 'popular_news', 'last_news', 'branches', 'employees'));
     }
-    public function about(){
+
+    public function about()
+    {
         $cur_lang = Configure::read('Config.lang');
         $cur_date = date('Y-m-d H:i:s');
 
@@ -311,10 +348,10 @@ class PagesController extends AppController
             ->toList();
         $branches = $this->Branches->find('all')
             ->select(['id',  'title',])
-            ->where([$this->Branches->translationField('title').' is not' => null])
+            ->where([$this->Branches->translationField('title') . ' is not' => null])
             ->toList();
         $employees = $this->Employees->find('all')
-            ->where([$this->Employees->translationField('name').' is not' => null])
+            ->where([$this->Employees->translationField('name') . ' is not' => null])
             ->toList();
         $last_news = $this->Articles->find('all')
             ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
@@ -322,19 +359,20 @@ class PagesController extends AppController
             ->orderDesc('date')
             ->toList();
         $page = $this->Pages->get(2);
-        if( $page ){
+        if ($page) {
             $meta['title'] = $page['meta_title'];
-            if( !$meta['title'] ){
+            if (!$meta['title']) {
                 $meta['title'] = $page['title'];
             }
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set( compact('meta', 'page_comps', 'page','popular_news','last_news','branches','employees') );
+        $this->set(compact('meta', 'page_comps', 'page', 'popular_news', 'last_news', 'branches', 'employees'));
     }
 
-    public function cooperation(){
+    public function cooperation()
+    {
 
         $cur_lang = Configure::read('Config.lang');
 
@@ -346,65 +384,67 @@ class PagesController extends AppController
         $page_comps = $this->_getPagesComps(3);
 
         $page = $this->Pages->get(3);
-        if( $page ){
+        if ($page) {
             $meta['title'] = $page['meta_title'];
-            if( !$meta['title'] ){
+            if (!$meta['title']) {
                 $meta['title'] = $page['title'];
             }
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set( compact('meta', 'page_comps', 'page', 'docs') );
+        $this->set(compact('meta', 'page_comps', 'page', 'docs'));
     }
-     public function contact(){
+
+    public function contact()
+    {
 
         $cur_lang = Configure::read('Config.lang');
 
         $docs = $this->Documents->find('all')
-            ->where(['Documents.lang' => $cur_lang])
-            ->orderDesc('item_order')
-            ->toList();
+           ->where(['Documents.lang' => $cur_lang])
+           ->orderDesc('item_order')
+           ->toList();
 
         $page_comps = $this->_getPagesComps(5);
 
         $page = $this->Pages->get(5);
-        if( $page ){
+        if ($page) {
             $meta['title'] = $page['meta_title'];
-            if( !$meta['title'] ){
+            if (!$meta['title']) {
                 $meta['title'] = $page['title'];
             }
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set( compact('meta', 'page_comps', 'page', 'docs') );
+        $this->set(compact('meta', 'page_comps', 'page', 'docs'));
     }
 
-    protected function _getPagesComps($page_id){
+    protected function _getPagesComps($page_id)
+    {
         $cur_lang = Configure::read('Config.lang');
 
-        if( $page_id && $page_id > 0 ){
+        if ($page_id && $page_id > 0) {
             $page_comps = [];
-            $all_page_comps = Cache::read('page_comps_'.$cur_lang, 'long');
+            $all_page_comps = Cache::read('page_comps_' . $cur_lang, 'long');
 
-            if( isset($all_page_comps[$page_id]) && $all_page_comps[$page_id] ){
+            if (isset($all_page_comps[$page_id]) && $all_page_comps[$page_id]) {
                 $page_comps = $all_page_comps[$page_id];
-            } else{
+            } else {
                 $all_comps = $this->Comps->find('all')
                     ->where(['Comps.page_id' => $page_id])
                     ->toList();
 
-                foreach( $all_comps as $item ){
+                foreach ($all_comps as $item) {
                     $page_comps[$item['id']] = $item;
                 }
 
                 $all_page_comps[$page_id] = $page_comps;
-                Cache::write('page_comps_'.$cur_lang, $all_page_comps, 'long');
+                Cache::write('page_comps_' . $cur_lang, $all_page_comps, 'long');
             }
 
             return $page_comps;
         }
     }
-
 }
