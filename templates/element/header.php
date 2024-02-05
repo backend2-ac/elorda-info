@@ -172,16 +172,29 @@
             <div class="header__menu-wrap">
                 <div class="header__menu-scroll">
                     <div class="header__menu-links">
-                        <a href="/<?= $lang ?>news-capital" class="header__menu-link">Все новости</a>
-                        <a href="#" class="header__menu-link">Новости дня</a>
-                        <a href="/<?= $lang ?>travel" class="header__menu-link">Travel</a>
-                        <a href="/<?= $lang ?>nauka-tehnologii" class="header__menu-link">Наука/технологии</a>
-                        <a href="/<?= $lang ?>biznes" class="header__menu-link">Бизнес</a>
-                        <a href="/<?= $lang ?>zdorove" class="header__menu-link">Здоровье</a>
-                        <a href="/<?= $lang ?>about" class="header__menu-link">О редакции</a>
-                        <a href="/<?= $lang ?>contact" class="header__menu-link">Контакты</a>
-                        <a href="/<?= $lang ?>cooperation" class="header__menu-link">Для рекламы</a>
-                        <a href="/<?= $lang ?>rules" class="header__menu-link">Правила сайта</a>
+                        <?php if ($l == 'kz'): ?>
+                            <a href="/<?= $lang ?>elorda-janalyktary" class="header__menu-link">Все новости</a>
+<!--                            <a href="/--><?php //= $lang ?><!--" class="header__menu-link">Новости дня</a>-->
+<!--                            <a href="/--><?php //= $lang ?><!--travel" class="header__menu-link">Travel</a>-->
+<!--                            <a href="/--><?php //= $lang ?><!--nauka-tehnologii" class="header__menu-link">Наука/технологии</a>-->
+<!--                            <a href="/--><?php //= $lang ?><!--biznes" class="header__menu-link">Бизнес</a>-->
+<!--                            <a href="/--><?php //= $lang ?><!--zdorove" class="header__menu-link">Здоровье</a>-->
+                            <a href="/<?= $lang ?>about" class="header__menu-link">Редакция туралы</a>
+                            <a href="/<?= $lang ?>contact" class="header__menu-link">Байланыс</a>
+                            <a href="/<?= $lang ?>cooperation" class="header__menu-link">Жарнама үшін</a>
+                            <a href="/<?= $lang ?>rules" class="header__menu-link">Сайт ережесі</a>
+                        <?php else: ?>
+                            <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__menu-link">Все новости</a>
+<!--                            <a href="#" class="header__menu-link">Новости дня</a>-->
+<!--                            <a href="/--><?php //= $lang ?><!--travel" class="header__menu-link">Travel</a>-->
+<!--                            <a href="/--><?php //= $lang ?><!--nauka-tehnologii" class="header__menu-link">Наука/технологии</a>-->
+<!--                            <a href="/--><?php //= $lang ?><!--biznes" class="header__menu-link">Бизнес</a>-->
+<!--                            <a href="/--><?php //= $lang ?><!--zdorove" class="header__menu-link">Здоровье</a>-->
+                            <a href="/<?= $lang ?>about" class="header__menu-link">О редакции</a>
+                            <a href="/<?= $lang ?>contact" class="header__menu-link">Контакты</a>
+                            <a href="/<?= $lang ?>cooperation" class="header__menu-link">Для рекламы</a>
+                            <a href="/<?= $lang ?>rules" class="header__menu-link">Правила сайта</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
