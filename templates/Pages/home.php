@@ -131,7 +131,7 @@
 		                                                </div>
 		                                            </div>
 		                                            <div class="socium__main-title"><?= $item['title'] ?></div>
-		                                            <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__main-link">
+		                                            <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__main-link">
 		                                                <?= __('Читать далее') ?>
 		                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 		                                                    <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -146,7 +146,7 @@
                                         	<?php foreach( $society_news as $index => $item ): ?>
 			                                	<?php if($index === 1 || $index === 2 ):?>
 
-			                                        <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__child article__item">
+			                                        <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__child article__item">
 		                                                <div class="article__item-img">
 		                                                     <img src="/img/articles/<?= $item['img'] ?>" alt="">
 		                                                    <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
@@ -167,7 +167,7 @@
 
 			                                	<?php if($index != 0 && $index != 1  && $index != 2 ):?>
 
-		                                            <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__item">
+		                                            <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__item">
 		                                                <div class="socium__item-header">
 		                                                    <div class="date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?></div>
 		                                                    <div class="watch">
@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="politic__items">
                                 	<?php foreach( $politica_news as $index => $item ): ?>
-                                        <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="politic__item">
+                                        <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="politic__item">
 	                                        <div class="politic__item-img">
 	                                             <img src="/img/articles/<?= $item['img'] ?>" alt="">
 	                                        </div>
@@ -244,7 +244,7 @@
 			                                            356
 			                                        </div>
 			                                        <div class="culture__main-title"><?= $item['title'] ?></div>
-			                                        <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__main-link">
+			                                        <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__main-link">
 			                                            <?= __('Читать далее') ?>
 			                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 			                                                <path d="M2.09998 11.55L11.55 2.09998M11.55 2.09998H2.09998M11.55 2.09998V11.55" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -257,7 +257,7 @@
                                     <div class="culture__items">
                                     	<?php foreach( $culture_news as $index => $item ): ?>
 	                                		<?php if($index != 0): ?>
-			                                    <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__item">
+			                                    <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__item">
 		                                            <div class="culture__item-img">
 		                                               <img src="/img/articles/<?= $item['img'] ?>" alt="">
 		                                            </div>
@@ -295,7 +295,7 @@
                                 </div>
                                 <div class="heroes__items">
                                 	<?php foreach( $heroes_news as $index => $item ): ?>
-		                                <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="heroes__child article__item">
+		                                <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="heroes__child article__item">
 	                                        <div class="article__item-img">
 	                                            <img src="/img/articles/<?= $item['img'] ?>" alt="">
 	                                            <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
@@ -321,7 +321,7 @@
                             <div class="news-actual__items active" data-id="1">
                             	 <?php if( $last_news ): ?>
                                <?php foreach( $last_news as $index => $item ): ?>
-                                    <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
+                                    <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
 	                                    <div class="news-actual__item-img">
 	                                        <img src="/img/articles/<?= $item['img'] ?>" alt="<?= $item['title'] ?>">
 	                                    </div>
@@ -338,7 +338,7 @@
                             <div class="news-actual__items" data-id="2">
                             	<?php if( $popular_news ): ?>
 	                            	<?php foreach( $popular_news as $index => $item ): ?>
-	                                    <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
+	                                    <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
 		                                    <div class="news-actual__item-img">
 		                                        <img src="/img/articles/<?= $item['img'] ?>" alt="<?= $item['title'] ?>">
 		                                    </div>
