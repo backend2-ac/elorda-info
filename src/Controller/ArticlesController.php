@@ -289,7 +289,7 @@ class ArticlesController extends AppController
                 ->where([
                     'ArticlesTags.tag_id' => $tag->id,
                     'Articles.locale' => $tag->locale,
-                    'Articles.published_at <=' => $cur_date
+                    'Articles.publish_start_at <=' => $cur_date
                 ])
                 ->orderDesc('Articles.date')
                 ->limit(25)
