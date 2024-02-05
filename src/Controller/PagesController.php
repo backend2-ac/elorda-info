@@ -19,8 +19,8 @@ namespace App\Controller;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\ORM\Query;
-use TelegramBot\Api;
-use TelegramBot\Api\Types;
+//use TelegramBot\Api;
+//use TelegramBot\Api\Types;
 /**
  * Static content controller
  *
@@ -103,7 +103,7 @@ class PagesController extends AppController
     {
         $cur_lang = Configure::read('Config.lang');
         $cur_date = date('Y-m-d H:i:s');
-        $this->getArticlesFromTelegram();
+//        $this->getArticlesFromTelegram();
 //        $cur_date = FrozenTime::now(); // Получаем текущую дату и время
 
         $main_articles = Cache::read('main_articles_' . $cur_lang, 'long');
