@@ -211,7 +211,7 @@ class PagesController extends AppController
                     ],
                 ])
                 ->orderDesc('Articles.date')
-                ->limit(3)
+                ->limit(4)
                 ->toList();
             Cache::write('culture_news_' . $cur_lang, $culture_news, 'long');
         }
