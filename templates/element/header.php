@@ -173,7 +173,7 @@
                 <div class="header__menu-scroll">
                     <div class="header__menu-links">
                         <?php if ($l == 'kz'): ?>
-                            <a href="/<?= $lang ?>elorda-janalyktary" class="header__menu-link">Все новости</a>
+                            <a href="/<?= $lang ?>elorda-janalyktary" class="header__menu-link">Елорда жаңалықтары</a>
 <!--                            <a href="/--><?php //= $lang ?><!--" class="header__menu-link">Новости дня</a>-->
 <!--                            <a href="/--><?php //= $lang ?><!--travel" class="header__menu-link">Travel</a>-->
 <!--                            <a href="/--><?php //= $lang ?><!--nauka-tehnologii" class="header__menu-link">Наука/технологии</a>-->
@@ -184,7 +184,7 @@
                             <a href="/<?= $lang ?>cooperation" class="header__menu-link">Жарнама үшін</a>
                             <a href="/<?= $lang ?>rules" class="header__menu-link">Сайт ережесі</a>
                         <?php else: ?>
-                            <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__menu-link">Все новости</a>
+                            <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__menu-link">Новости столицы</a>
 <!--                            <a href="#" class="header__menu-link">Новости дня</a>-->
 <!--                            <a href="/--><?php //= $lang ?><!--travel" class="header__menu-link">Travel</a>-->
 <!--                            <a href="/--><?php //= $lang ?><!--nauka-tehnologii" class="header__menu-link">Наука/технологии</a>-->
