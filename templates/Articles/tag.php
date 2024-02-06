@@ -68,6 +68,20 @@
                         </div> -->
                     </div>
                 </section>
+                <ul class="pagination">
+                    <?php
+                    $this->Paginator->options([
+                        'url' => [
+                            $tag['alias'],
+                            'lang' => $l,
+                        ]
+                    ]);
+                    echo $this->Paginator->numbers([
+                        'first' => 1, 'last' => 1, 'modulus' => $modulus,
+                    ]);
+                    ?>
+                </ul>
+
             </div>
         </div>
     </main>

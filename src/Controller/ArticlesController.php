@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Core\Configure;
+use Cake\Datasource\Paginator;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
@@ -280,10 +281,19 @@ class ArticlesController extends AppController
         if (!$tag) {
             throw new NotFoundException(__('Запись не найдена'));
         }
-
-        $tag_articles = Cache::read('tag_articles_' . $tag_alias, 'long');
-
-        if (!$tag_articles) {
+        $cur_page = 1;
+        if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
+            $cur_page = $_GET['page'];
+        }
+        $per_page = 5;
+        $offset = ($cur_page * $per_page) - $per_page;
+        $pag_settings = [
+            'limit' => $per_page,
+            'maxLimit' => 25
+        ];
+//        $tag_articles = Cache::read('tag_articles_' . $tag_alias, 'long');
+//
+//        if (!$tag_articles) {
             $tag_articles = $this->Articles->find()
                 ->innerJoinWith('ArticlesTags')
                 ->where([
@@ -292,11 +302,22 @@ class ArticlesController extends AppController
                     'Articles.publish_start_at <=' => $cur_date
                 ])
                 ->orderDesc('Articles.date')
-                ->limit(25)
-                ->toList();
+                ->limit($per_page)
+                ->offset($offset)
+                ->toArray();
 
-            Cache::write('tag_articles_' . $tag_alias, $tag_articles, 'long');
-        }
+//            Cache::write('tag_articles_' . $tag_alias, $tag_articles, 'long');
+//        }
+        $this->set('pagination', $this->paginate(
+            $this->Articles->find()
+                ->innerJoinWith('ArticlesTags')
+                ->where([
+                    'ArticlesTags.tag_id' => $tag->id,
+                    'Articles.locale' => $tag->locale,
+                    'Articles.publish_start_at <=' => $cur_date
+                ])
+                ->orderDesc('Articles.date')
+                ->limit($per_page), $pag_settings));
 
         $this->set(compact('tag_articles','tag'));
     }
