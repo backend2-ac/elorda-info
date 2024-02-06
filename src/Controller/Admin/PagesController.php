@@ -141,7 +141,7 @@ class PagesController extends AppController{
             $this->Flash->error(__('Ошибка сохранения'));
         }
 
-        if( $cur_locale == 'ru' ){
+        if( $cur_locale == 'kz' ){
             $page_comps = $this->Comps->find('translations')
                 ->where(['Comps.page_id' => $item_id])
                 ->order('Comps.id')
