@@ -1,10 +1,10 @@
-<?php 
-	$ru = false;
-	if( isset($cur_locale) && $cur_locale == 'ru' ){
-		$ru = true;
-	} 
+<?php
+	$kz = false;
+	if( isset($cur_locale) && $cur_locale == 'kz' ){
+		$kz = true;
+	}
 
-	$langs = ['ru', 'kz', 'en']; 
+	$langs = ['ru', 'kz', 'en'];
 	$langs_ids = [4, 9, 10];
 ?>
 
@@ -31,7 +31,7 @@
 							<a class="nav-link" id="custom-tabs-one-docs-tab" data-toggle="pill" href="#custom-tabs-one-docs" role="tab" aria-controls="custom-tabs-one-docs" aria-selected="true">Документы</a>
 						</li> -->
 
-						<?php if( $ru ): ?>
+						<?php if( $kz ): ?>
 							<?php if( $page_comps ): ?>
 								<li class="nav-item">
 									<a class="nav-link" id="custom-tabs-one-comps-tab" data-toggle="pill" href="#custom-tabs-one-comps" role="tab" aria-controls="custom-tabs-one-comps" aria-selected="true">Элементы</a>
@@ -46,13 +46,13 @@
 						<div class="tab-pane fade show active" id="custom-tabs-one-main" role="tabpanel" aria-labelledby="custom-tabs-main-tab">
 							<?php echo $this->Form->create($data, ['type' => 'file', 'onsubmit' => 'submitForm()']); ?>
 								<div class="card-body">
-									<?php if( $ru ): ?>
+									<?php if( $kz ): ?>
 										<div class="form-group">
 											<label for="inputItemOrder">Приоритет</label>
 											<?= $this->Form->number('item_order', array('id' => 'inputItemOrder', 'class' => 'form-control', 'required', 'value' => 0)); ?>
 										</div>
 									<?php endif; ?>
-									
+
 									<div class="form-group">
 										<label for="inputTitle">Название</label>
 										<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required' => 'required')); ?>
@@ -85,7 +85,7 @@
 												<label for="seoDescription">Описание</label>
 												<?php echo $this->Form->textarea('meta_description', array('class' => 'form-control', 'id' => 'seoDescription')); ?>
 											</div>
-											
+
 											<div class="submit_row">
 												<?php echo $this->Form->button('Сохранить', array('class' => 'btn btn-success')); ?>
 											</div>
@@ -98,7 +98,7 @@
 						<div class="tab-pane fade show" id="custom-tabs-one-docs" role="tabpanel" aria-labelledby="custom-tabs-docs-tab">
 							<?php echo $this->Form->create(null, [
 									'url' => '/admin/documents/add',
-									'type' => 'file', 
+									'type' => 'file',
 									'onsubmit' => 'submitForm()'
 								]); ?>
 								<div class="card-body">
@@ -114,7 +114,7 @@
 
 									<?= $this->element('admin/img_input', [
 										'custom_input_params' => ['title' => 'Файл', 'field' => 'doc', 'model' => 'Documents', 'required' => 'required'],
-										]); 
+										]);
 									?>
 
 									<?= $this->Form->hidden('lang', array('value' => $cur_locale)) ?>
@@ -161,12 +161,12 @@
 								<?php else: ?>
 									<div class="emty_data">
 										К сожалению в данном разделе еще не добавлена информация...
-									</div> 
+									</div>
 								<?php endif ?>
 							</div>
 						</div>
 
-						<?php if( $ru ): ?>
+						<?php if( $kz ): ?>
 							<?php if( $page_comps ): ?>
 								<div class="tab-pane fade show" id="custom-tabs-one-comps" role="tabpanel" aria-labelledby="custom-tabs-comps-tab">
 									<div class="card-body p-0">
