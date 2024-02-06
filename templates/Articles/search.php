@@ -6,13 +6,13 @@
                     <div class="search__container block">
                         <ul class="breadcrumbs">
                             <li>
-                                <a href="#">Главная</a>
+                                <a href="/<?= $lang ?>"><?= __('Главная') ?></a>
                             </li>
                             <li>
-                                <a href="#">О медиахолдинге</a>
+                                <a href="#"><?= __('Поиск') ?></a>
                             </li>
                         </ul>
-                        <h2 class="search__title title">Результаты по вашему запросу</h2>
+                        <h2 class="search__title title"><?= __('Результаты по вашему запросу') ?></h2>
                         <form action="/<?= $lang ?>search" method="GET">
                             <div class="search__form">
                                 <label for="search" class="search__form-input">
@@ -28,7 +28,7 @@
                                 	<?php if( $tags ): ?>
                                 		 <label for="search-1" class="search__form-tag">
 	                                        <input type="checkbox" id="search-1">
-	                                        <div>Все</div>
+	                                        <div><?= __('Все') ?></div>
 	                                    </label>
                                 		<?php foreach( $tags as   $tag ): ?>
 			                                    <label for="search-<?= $tag['id'] ?>" class="search__form-tag">
@@ -120,7 +120,7 @@
 						</div>
 
 						<?php else: ?>
-							<p>К сожалению по вашему запросу ничего не найдено ...</p>
+							<p><?= __('К сожалению по вашему запросу ничего не найдено') ?> ...</p>
 						<?php endif; ?>
 
 
