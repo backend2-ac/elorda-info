@@ -113,6 +113,10 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
+    $builder->connect('/contact', ['controller' => 'Pages', 'action' => 'contact'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
     $builder->connect('/about', ['controller' => 'Pages', 'action' => 'about'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
