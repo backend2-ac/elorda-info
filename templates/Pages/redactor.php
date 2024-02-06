@@ -18,7 +18,7 @@
                         <div class="news__items">
                             <div class="news__item">
                                 <a href="#" class="news__item-img">
-                                    <img src="img/hero-1.jpg" alt="">
+                                    <img src="/img/hero-1.jpg" alt="">
                                     <div class="news__item-date">11.10.23</div>
                                 </a>
                                 <div class="news__item-info">
@@ -30,7 +30,7 @@
                                     <a href="#" class="news__item-title">Димаш выступил на большом концерте Бурака Йетера в Анталье</a>
                                     <div class="news__item-text">На стадионе Университета Акдениз в Анталье всемирно известный диджей Бурак Йетер воплотил в жизнь свою мечту — проект «Космос».</div>
                                     <div class="news__item-watch">
-                                        <img src="img/watch-gray.png" alt="">
+                                        <img src="/img/watch-gray.png" alt="">
                                         356
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                 <rect width="55" height="55" fill="white"/>
                                 </clipPath>
                                 </defs>
-                            </svg>                                
+                            </svg>
                             Загрузка
                         </div>
                     </div>

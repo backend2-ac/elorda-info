@@ -92,7 +92,7 @@
 		                                        </div>
 		                                        <div class="article__item-title"><?= $item['title'] ?></div>
 		                                        <div class="article__item-watch">
-		                                            <img src="img/watch-gray.png" alt="">
+		                                            <img src="/img/watch-gray.png" alt="">
 		                                             <?= number_format($item['views'], 0, '', ' ') ?>
 		                                        </div>
 		                                    </a>
@@ -126,7 +126,7 @@
 		                                            <div class="socium__main-header block-elems">
 		                                                <div class="socium__main-date date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                                                <div class="socium__main-watch watch">
-		                                                    <img src="img/watch.png" alt="" class="svg-icon">
+		                                                    <img src="/img/watch.png" alt="" class="svg-icon">
 		                                                    <?= number_format($item['views'], 0, '', ' ') ?>
 		                                                </div>
 		                                            </div>
@@ -153,7 +153,7 @@
 		                                                </div>
 		                                                <div class="article__item-title"><?= $item['title'] ?></div>
 		                                                <div class="article__item-watch">
-		                                                    <img src="img/watch-gray.png" alt="">
+		                                                    <img src="/img/watch-gray.png" alt="">
 		                                                    <?= number_format($item['views'], 0, '', ' ') ?>
 		                                                </div>
 		                                            </a>
@@ -171,7 +171,7 @@
 		                                                <div class="socium__item-header">
 		                                                    <div class="date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?></div>
 		                                                    <div class="watch">
-		                                                        <img src="img/watch-gray.png" alt="">
+		                                                        <img src="/img/watch-gray.png" alt="">
 		                                                        <?= number_format($item['views'], 0, '', ' ') ?>
 		                                                    </div>
 		                                                </div>
@@ -209,7 +209,7 @@
 	                                            <div class="politic__item-title"><?= $item['title'] ?></div>
 	                                            <div class="politic__item-text"><?= $item['short_desc'] ?></div>
 	                                            <div class="politic__item-watch">
-	                                                <img src="img/watch-gray.png" alt="">
+	                                                <img src="/img/watch-gray.png" alt="">
 	                                                <?= number_format($item['views'], 0, '', ' ') ?>
 	                                            </div>
 	                                        </div>
@@ -240,7 +240,7 @@
 			                                        </div>
 			                                        <div class="culture__main-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 			                                        <div class="culture__main-watch">
-			                                            <img src="img/watch.png" alt="">
+			                                            <img src="/img/watch.png" alt="">
 			                                            356
 			                                        </div>
 			                                        <div class="culture__main-title"><?= $item['title'] ?></div>
@@ -267,7 +267,7 @@
 		                                                        <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
 		                                                    </div>
 		                                                    <div class="watch">
-		                                                        <img src="img/watch-gray.png" alt="">
+		                                                        <img src="/img/watch-gray.png" alt="">
 		                                                        <?= number_format($item['views'], 0, '', ' ') ?>
 		                                                    </div>
 		                                                </div>
@@ -302,7 +302,7 @@
 	                                        </div>
 	                                        <div class="article__item-title"><?= $item['title'] ?></div>
 	                                        <div class="article__item-watch">
-	                                            <img src="img/watch-gray.png" alt="">
+	                                            <img src="/img/watch-gray.png" alt="">
 	                                             <?= number_format($item['views'], 0, '', ' ') ?>
 	                                        </div>
 	                                    </a>

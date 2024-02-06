@@ -241,7 +241,7 @@
                     <div class="header__form-items">
                         <a href="#" class="news-actual__item">
                             <div class="news-actual__item-img">
-                                <img src="img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
+                                <img src="/img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
                             </div>
                             <div class="news-actual__item-info">
                                 <div class="news-actual__item-date">
@@ -252,7 +252,7 @@
                         </a>
                         <a href="#" class="news-actual__item">
                             <div class="news-actual__item-img">
-                                <img src="img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
+                                <img src="/img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
                             </div>
                             <div class="news-actual__item-info">
                                 <div class="news-actual__item-date">
@@ -263,7 +263,7 @@
                         </a>
                         <a href="#" class="news-actual__item">
                             <div class="news-actual__item-img">
-                                <img src="img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
+                                <img src="/img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
                             </div>
                             <div class="news-actual__item-info">
                                 <div class="news-actual__item-date">
@@ -274,7 +274,7 @@
                         </a>
                         <a href="#" class="news-actual__item">
                             <div class="news-actual__item-img">
-                                <img src="img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
+                                <img src="/img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
                             </div>
                             <div class="news-actual__item-info">
                                 <div class="news-actual__item-date">
