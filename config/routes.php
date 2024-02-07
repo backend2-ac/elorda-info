@@ -156,7 +156,9 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
 //        ->setPatterns(['lang' => 'ru|kz|en'])
 //        ->setPersist(['lang']);
 
-
+    $builder->connect('/latest-news', ['controller' => 'Articles', 'action' => 'index', 'latest-news'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
     $builder->connect('/novosti-stolicy-ru', ['controller' => 'Articles', 'action' => 'index', 'novosti-stolicy-ru'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
@@ -265,8 +267,9 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
          $builder->connect('/get/article/*', ['controller' => 'Articles', 'action' => 'loadingview'])
         ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);;
+        ->setPersist(['lang']);
 
+    $builder->connect('/latest-news', ['controller' => 'Articles', 'action' => 'index', 'latest-news']);
     $builder->connect('/elorda-janalyktary', ['controller' => 'Articles', 'action' => 'index', 'elorda-janalyktary']);
     $builder->connect('/elorda-janalyktary/*', ['controller' => 'Articles', 'action' => 'view']);
 

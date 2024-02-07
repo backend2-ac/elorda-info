@@ -57,17 +57,8 @@ class ArticlesController extends AppController
 
         $cat_id = null;
         $cur_date = date('Y-m-d H:i:s');
-
-        if( $alias ){
-            $cur_cat = $this->Categories->findByAlias($alias)
-                ->first();
-
-            if( $cur_cat ){
-                $cat_id = $cur_cat['id'];
-            } else {
-                throw new NotFoundException(__('Запись не найдена'));
-            }
-        }
+        $cur_lang = Configure::read('Config.lang');
+        $locale = $cur_lang == 'kz' ? 'kk' : 'ru';
         $conditions = [
             'Articles.date <=' => $cur_date
         ];
@@ -77,9 +68,20 @@ class ArticlesController extends AppController
                 ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
             ]
         ];
-        if( $cat_id ){
-            $conditions = ['AND' => ['Articles.category_id' => $cat_id]];
+        if($alias != 'latest-news'){
+            $cur_cat = $this->Categories->findByAlias($alias)
+                ->first();
+
+            if( $cur_cat ){
+                $cat_id = $cur_cat['id'];
+                $conditions = ['AND' => ['Articles.category_id' => $cat_id]];
+            } else {
+                throw new NotFoundException(__('Запись не найдена'));
+            }
+        } else {
+            $conditions = ['AND' => ['Articles.locale' => $locale]];
         }
+
 
         $cur_page = 1;
         if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
@@ -95,7 +97,7 @@ class ArticlesController extends AppController
         if (!$data) {
             $data = $this->Articles->find('all')
                 ->where($conditions)
-                ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'date', 'img', 'views', 'reading_time'])
+                ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'date', 'img', 'views'])
                 ->order(['Articles.date' => 'DESC'])
                 ->limit($per_page)->offset($offset)
                 ->toList();
@@ -226,7 +228,7 @@ class ArticlesController extends AppController
     public function loadingview($article_id){
         $model = 'Articles';
         $cat_id = null;
-         $cur_date = date('Y-m-d H:i:s');
+        $cur_date = date('Y-m-d H:i:s');
         $data = $this->$model->findById($article_id)
             ->contain([
                 'Categories',
