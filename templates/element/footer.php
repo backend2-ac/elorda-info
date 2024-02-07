@@ -7,7 +7,7 @@
                     <a href="/<?= $lang ?>" class="footer__logo">
                         <img src="/img/f-logo.png" alt="">
                     </a>
-                    <div class="footer__street"><?= $comps[28]['body'] ?></div>
+                    <div class="footer__street"><?= $comps[33]['body'] ?></div>
                 </div>
                 <?php if ($l == 'kz'): ?>
                     <div class="footer__list">
