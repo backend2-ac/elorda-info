@@ -7,10 +7,10 @@
                         <div class="hero__container">
                             <ul class="breadcrumbs-absolute">
                                 <li>
-                                    <a href="/<?= $lang ?>">Главная</a>
+                                    <a href="/<?= $lang ?>"><?= __('Главная') ?></a>
                                 </li>
                                 <li>
-                                    <a href="<?= $cur_cat['title'] ?>">Новости</a>
+                                    <a href="<?= $cur_cat['title'] ?>"><?= __('Новости') ?></a>
                                 </li>
                             </ul>
                             <div class="hero__swiper swiper">
@@ -25,11 +25,11 @@
 	                                                  <img src="/img/articles/<?= $item['img'] ?>" />
 	                                                </div>
 	                                                <div class="hero__swiper-tag">
-		                                                	Актуально
+		                                                	<?= __('Актуально') ?>
                                                 		</div>
 	                                                <div class="hero__swiper-title"><?= $item['title'] ?></div>
 	                                                <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="hero__swiper-link">
-	                                                    Читать далее
+	                                                    <?= __('Читать далее') ?>
 	                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 	                                                        <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
 	                                                    </svg>
@@ -48,8 +48,8 @@
                 <div class="wrapper-col">
                     <div class="news-actual__block">
                         <div class="news-actual__header">
-                            <a href="javascript:;" class="news-actual__header-tab active" data-id="1">Последние</a>
-                            <a href="javascript:;" class="news-actual__header-tab" data-id="2">Популярные</a>
+                            <a href="javascript:;" class="news-actual__header-tab active" data-id="1"><?= __('Последние') ?></a>
+                            <a href="javascript:;" class="news-actual__header-tab" data-id="2"><?= __('Популярные') ?></a>
                         </div>
                         <div class="news-actual__items active" data-id="1">
                         	<?php if( $data ): ?>

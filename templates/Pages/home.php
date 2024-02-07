@@ -107,9 +107,9 @@
                         <section class="socium">
                             <div class="socium__container block">
                                 <div class="block__header">
-                                    <h2 class="socium__title block__title">Социум</h2>
+                                    <h2 class="socium__title block__title"><?= __('Социум') ?></h2>
                                     <a href="/<?= $lang . $society_news[0]['category']['alias'] ?>" class="socium__link block__link">
-                                        На страницу социума
+                                        <?= __('На страницу социума') ?>
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.7 15.35L14.85 3.19995M14.85 3.19995H2.7M14.85 3.19995V15.35" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
                                         </svg>
@@ -315,8 +315,8 @@
                     <div class="wrapper-col">
                         <div class="news-actual__block">
                             <div class="news-actual__header">
-                                <a href="javascript:;" class="news-actual__header-tab active" data-id="1">Последние</a>
-                                <a href="javascript:;" class="news-actual__header-tab" data-id="2">Популярные</a>
+                                <a href="javascript:;" class="news-actual__header-tab active" data-id="1"><?= __('Последние') ?></a>
+                                <a href="javascript:;" class="news-actual__header-tab" data-id="2"><?= __('Популярные') ?></a>
                             </div>
                             <div class="news-actual__items active" data-id="1">
                             	 <?php if( $last_news ): ?>
@@ -353,15 +353,15 @@
 								<?php endif; ?>
                             </div>
                             <?php if ($l == 'kz'): ?>
-                                <a href="/<?= $lang ?>elorda-janalyktary" class="news-actual__link">
+                                <a href="/<?= $lang ?>latest-news" class="news-actual__link">
                                     Барлық жаңалықтар
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1.39999 12.2L12.2 1.40002M12.2 1.40002H1.39999M12.2 1.40002V12.2" stroke="#1D489C" stroke-width="2" stroke-linecap="round"/>
                                     </svg>
                                 </a>
                             <?php else: ?>
-                                <a href="/<?= $lang ?>novosti-stolicy-ru" class="news-actual__link">
-                                    Все новости
+                                <a href="/<?= $lang ?>latest-news" class="news-actual__link">
+                                    <?= __('Все новости') ?>
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1.39999 12.2L12.2 1.40002M12.2 1.40002H1.39999M12.2 1.40002V12.2" stroke="#1D489C" stroke-width="2" stroke-linecap="round"/>
                                     </svg>
