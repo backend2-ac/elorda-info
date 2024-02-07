@@ -1,25 +1,3 @@
-<!-- <main>
-	<section class="breadcrumbs">
-		<div class="container">
-			<div class="breadcrumbs__container">
-				<h1><?= $page['title'] ?></h1>
-				<ul class="breadcrumbs__list">
-					<li><a href="/<?= $lang ?>"><?= __('Главная') ?></a></li>
-					<li class="active"><?= $page['title'] ?></li>
-				</ul>
-			</div>
-		</div>
-	</section>
-	<section class="about section">
-		<div class="container">
-			<div class="about__container">
-				<div class="about__desc">
-					<?= $page_comps[9]['body'] ?>
-				</div>
-			</div>
-		</div>
-	</section>
-</main> -->
 
 <main>
     <div class="container">
@@ -46,8 +24,8 @@
 	                                <table>
 	                                    <thead>
 	                                        <tr>
-	                                            <th>ФИО сотрудника</th>
-	                                            <th>Должность</th>
+	                                            <th><?= __('ФИО сотрудника') ?></th>
+	                                            <th><?= __('Должность') ?></th>
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>
@@ -79,8 +57,8 @@
                 <div class="wrapper-col">
                     <div class="news-actual__block">
                         <div class="news-actual__header">
-                            <a href="javascript:;" class="news-actual__header-tab active" data-id="1">Последние</a>
-                            <a href="javascript:;" class="news-actual__header-tab" data-id="2">Популярные</a>
+                            <a href="javascript:;" class="news-actual__header-tab active" data-id="1"><?= __('Последние') ?></a>
+                            <a href="javascript:;" class="news-actual__header-tab" data-id="2"><?= __('Популярные') ?></a>
                         </div>
                         <div class="news-actual__items active" data-id="1">
                             <?php foreach( $last_news as $index => $item ): ?>

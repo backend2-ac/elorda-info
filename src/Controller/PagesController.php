@@ -381,24 +381,62 @@ class PagesController extends AppController
         $cur_lang = Configure::read('Config.lang');
         $cur_date = date('Y-m-d H:i:s');
 
+        $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
+
+        $branches = Cache::read('branches_' . $cur_lang, 'long');
+        if (!$branches) {
+            $branches = $this->Branches->find('all')
+                ->select(['id',  'title',])
+                ->where([$this->Branches->translationField('title') . ' is not' => null])
+                ->toList();
+            Cache::write('branches_' . $cur_lang, $branches, 'long');
+        }
+
+        $employees = Cache::read('employees_' . $cur_lang, 'long');
+        if (!$employees) {
+            $employees = $this->Employees->find('all')
+                ->where([$this->Employees->translationField('name') . ' is not' => null])
+                ->toList();
+            Cache::write('employees_' . $cur_lang, $employees, 'long');
+        }
+
+        $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
+        if (!$popular_news) {
+            $popular_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date'])
+                ->where(['Articles.category_id' => $capital_news_category_id])
+                ->where([
+                    'OR' => [
+                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                    ],
+                ])
+                ->orderDesc('views')
+                ->limit(6)
+                ->offset(6)
+                ->toList();
+            Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
+        }
+
+        $last_news = Cache::read('last_news_' . $cur_lang, 'long');
+        if (!$last_news) {
+            $last_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                ->where(['Articles.category_id' => $capital_news_category_id])
+                ->where([
+                    'OR' => [
+                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                    ],
+                ])
+                ->orderDesc('Articles.date')
+                ->limit(6)
+                ->offset(6)
+                ->toList();
+            Cache::write('last_news_' . $cur_lang, $last_news, 'long');
+        }
+
         $page_comps = $this->_getPagesComps(2);
-        $popular_news = $this->Articles->find('all')
-            ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
-            ->where(['Articles.category_id' => 1,'Articles.date <=' => $cur_date])
-            ->orderDesc('views')
-            ->toList();
-        $branches = $this->Branches->find('all')
-            ->select(['id',  'title',])
-            ->where([$this->Branches->translationField('title') . ' is not' => null])
-            ->toList();
-        $employees = $this->Employees->find('all')
-            ->where([$this->Employees->translationField('name') . ' is not' => null])
-            ->toList();
-        $last_news = $this->Articles->find('all')
-            ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
-            ->where(['Articles.category_id' => 1, 'Articles.date <=' => $cur_date])
-            ->orderDesc('date')
-            ->toList();
         $page = $this->Pages->get(2);
         if ($page) {
             $meta['title'] = $page['meta_title'];
