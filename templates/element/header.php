@@ -139,7 +139,7 @@
                     </div>
                     <a href="/<?= $lang ?>search" class="header__search">
                         <img src="/img/search-icon.svg" alt="" class="icon-svg">
-                        Поиск
+                        <?= __('Поиск') ?>
                     </a>
                     <div class="header__lang">
                         <a href="javascript:;" class="header__lang-active">
