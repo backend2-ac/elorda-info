@@ -26,7 +26,7 @@ msgid "Новости"
 msgstr "Жаңалықтар"
 
 msgid "Популярное"
-msgstr "Танымал"
+msgstr "Көп қаралған"
 
 msgid "Назад"
 msgstr "Артқа"
@@ -106,17 +106,17 @@ msgstr "Өкінішке орай сіздің сұранымыңыз бойын
 msgid "Все"
 msgstr "Барлығы"
 
-msgid "Поиск"
-msgstr "Іздеу"
+msgid "ФИО сотрудника"
+msgstr "Жұмысшының аты-жөні"
 
-msgid "Поиск"
-msgstr "Іздеу"
+msgid "Популярные"
+msgstr "Көп қаралған"
 
-msgid "Поиск"
-msgstr "Іздеу"
+msgid "Последние"
+msgstr "Соңғы"
 
-msgid "Поиск"
-msgstr "Іздеу"
+msgid "Должность"
+msgstr "Қызметі"
 
 msgid "Поиск"
 msgstr "Іздеу"
