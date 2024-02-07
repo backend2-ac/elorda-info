@@ -51,7 +51,7 @@
                     </div>
                 <?php else: ?>
                     <div class="footer__list">
-                        <div class="footer__list-title">рубрикалар</div>
+                        <div class="footer__list-title">рубрики</div>
                         <ul>
 <!--                            <li>-->
 <!--                                <a 	href="/--><?php //= $lang ?><!--novosti-dna">Новости дня</a>-->
