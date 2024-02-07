@@ -19,8 +19,7 @@ namespace App\Controller;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\ORM\Query;
-//use TelegramBot\Api;
-//use TelegramBot\Api\Types;
+
 /**
  * Static content controller
  *
@@ -58,6 +57,11 @@ class PagesController extends AppController
         $this->loadComponent('Paginator');
     }
 
+    /**
+     * @throws Exception
+     * @throws InvalidArgumentException
+     * @throws \Exception
+     */
     public function getArticlesFromTelegram()
     {
 //        $botToken = '6507471270:AAEyN3F9y73mhbInFxSU_LSkKCVKf98qHLI';
@@ -66,7 +70,7 @@ class PagesController extends AppController
         $botToken = '6869063207:AAGcKUDRLq7cFDcR9iOIpOogIg2BOefkQU0';
         $chat_id = '@my_books_list_for';
         $bot = new \TelegramBot\Api\BotApi($botToken);
-        $botan = new \TelegramBot\Api\Botan($botToken);
+//        $botan = new \TelegramBot\Api\Botan($botToken);
         $updates = $bot->getUpdates();
         $channelInfo = $bot->getChat($chat_id);
         foreach ($updates as $update) {
@@ -86,7 +90,7 @@ class PagesController extends AppController
 //            'text' => 'You are hacked!',
 //            'parse_mode' => 'html'
 //        ];
-//        $api_url = "https://api.telegram.org/bot$botToken/sendMessage";
+//        $api_url = "https://api.telegram.org/bot6869063207:AAGcKUDRLq7cFDcR9iOIpOogIg2BOefkQU0/getUpdates";
 //        $ch =curl_init();
 //        curl_setopt($ch, CURLOPT_URL, $api_url);
 //        curl_setopt($ch, CURLOPT_POST, count($params));
@@ -248,7 +252,7 @@ class PagesController extends AppController
 //                        },
 //
 //                    ])
-                    ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
+                    ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date'])
                     ->where(['Articles.category_id' => $capital_news_category_id])
                     ->where([
                         'OR' => [
@@ -301,28 +305,64 @@ class PagesController extends AppController
 
     public function rules(): void
     {
-
         $cur_lang = Configure::read('Config.lang');
         $cur_date = date('Y-m-d H:i:s');
+        $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
+
+        $branches = Cache::read('branches_' . $cur_lang, 'long');
+        if (!$branches) {
+            $branches = $this->Branches->find('all')
+                ->select(['id',  'title',])
+                ->where([$this->Branches->translationField('title') . ' is not' => null])
+                ->toList();
+            Cache::write('branches_' . $cur_lang, $branches, 'long');
+        }
+
+        $employees = Cache::read('employees_' . $cur_lang, 'long');
+        if (!$employees) {
+            $employees = $this->Employees->find('all')
+                ->where([$this->Employees->translationField('name') . ' is not' => null])
+                ->toList();
+            Cache::write('employees_' . $cur_lang, $employees, 'long');
+        }
+
+        $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
+        if (!$popular_news) {
+            $popular_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date'])
+                ->where(['Articles.category_id' => $capital_news_category_id])
+                ->where([
+                    'OR' => [
+                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                    ],
+                ])
+                ->orderDesc('views')
+                ->limit(6)
+                ->offset(6)
+                ->toList();
+            Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
+        }
+
+        $last_news = Cache::read('last_news_' . $cur_lang, 'long');
+        if (!$last_news) {
+            $last_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                ->where(['Articles.category_id' => $capital_news_category_id])
+                ->where([
+                    'OR' => [
+                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                    ],
+                ])
+                ->orderDesc('Articles.date')
+                ->limit(6)
+                ->offset(6)
+                ->toList();
+            Cache::write('last_news_' . $cur_lang, $last_news, 'long');
+        }
 
         $page_comps = $this->_getPagesComps(4);
-        $popular_news = $this->Articles->find('all')
-            ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
-            ->where(['Articles.category_id' => 1,'Articles.date <=' => $cur_date])
-            ->orderDesc('views')
-            ->toList();
-        $branches = $this->Branches->find('all')
-            ->select(['id',  'title',])
-            ->where([$this->Branches->translationField('title') . ' is not' => null])
-            ->toList();
-        $employees = $this->Employees->find('all')
-            ->where([$this->Employees->translationField('name') . ' is not' => null])
-            ->toList();
-        $last_news = $this->Articles->find('all')
-            ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
-            ->where(['Articles.category_id' => 1, 'Articles.date <=' => $cur_date])
-            ->orderDesc('date')
-            ->toList();
         $page = $this->Pages->get(4);
         if ($page) {
             $meta['title'] = $page['meta_title'];
