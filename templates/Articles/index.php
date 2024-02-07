@@ -10,7 +10,11 @@
                                     <a href="/<?= $lang ?>"><?= __('Главная') ?></a>
                                 </li>
                                 <li>
-                                    <a href="<?= $cur_cat['title'] ?>"><?= __('Новости') ?></a>
+                                    <?php if ($cur_cat): ?>
+                                        <a href="#"><?= $cur_cat['title'] ?></a>
+                                    <?php else: ?>
+                                        <a href="#"><?= $l == 'kz' ? 'Барлық жаңалықтар' : 'Все новости' ?></a>
+                                    <?php endif; ?>
                                 </li>
                             </ul>
                             <div class="hero__swiper swiper">

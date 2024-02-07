@@ -68,6 +68,7 @@ class ArticlesController extends AppController
                 ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
             ]
         ];
+        $cur_cat = null;
         if($alias != 'latest-news'){
             $cur_cat = $this->Categories->findByAlias($alias)
                 ->first();
@@ -146,9 +147,18 @@ class ArticlesController extends AppController
                 $meta['title'] = $cur_cat['title'];
 
             }
+        } else {
+            $meta_text = $locale == 'kk' ? 'Барлық жаңалықтар' : 'Все новости';
+            $meta['title'] = $meta_text;
+            $meta['keys'] = $meta_text;
+            $meta['desc'] = $meta_text;
+            if( !$meta['title'] ){
+                $meta['title'] = $meta_text;
+
+            }
         }
 
-        $this->set( compact('data', 'meta', 'cur_cat', 'last_news', 'popular_news') );
+        $this->set( compact('data','meta', 'cur_cat', 'last_news', 'popular_news') );
     }
 
     public function view($alias){
