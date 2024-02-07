@@ -200,18 +200,12 @@
 															<?php endif; ?>
 														</td>
 														<td class="project-actions text-right">
-															<?php if( in_array($item['id'], $langs_ids) ): ?>
-																<a class="btn btn-info btn-sm" href="/admin/comps/edit/<?=$item['id']?>?lang=ru">
-																	<i class="fas fa-pencil-alt"></i> rus
-																</a>
-																<a class="btn btn-info btn-sm" href="/admin/comps/edit/<?=$item['id']?>?lang=kz">
-																	<i class="fas fa-pencil-alt"></i> kaz
-																</a>
-															<?php else: ?>
-																<a class="btn btn-info btn-sm" href="/admin/comps/edit/<?=$item['id']?>?lang=ru">
-																	<i class="fas fa-pencil-alt"></i> Редактировать
-																</a>
-															<?php endif; ?>
+                                                            <a class="btn btn-info btn-sm" href="/admin/comps/edit/<?=$item['id']?>?lang=ru">
+                                                                <i class="fas fa-pencil-alt"></i> rus
+                                                            </a>
+                                                            <a class="btn btn-info btn-sm" href="/admin/comps/edit/<?=$item['id']?>?lang=kz">
+                                                                <i class="fas fa-pencil-alt"></i> kaz
+                                                            </a>
 														</td>
 													</tr>
 												<?php endforeach ?>
