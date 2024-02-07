@@ -1,8 +1,8 @@
 
-<?php 
+<?php
 	$editor_id = [9, 10,19];
 	$docs_ids = [2, 3];
-	$embed_id = 1; 
+	$embed_id = 1;
 ?>
 
 <section class="content-header">
@@ -25,7 +25,7 @@
 					<h3 class="card-title">Данные</h3>
 					<div class="card-tools">
 						<?php if( $data['page_id'] > 0 ): ?>
-							<a href="/admin/pages/edit/<?= $data['page_id'] ?>?lang=ru" type="button" class="btn btn-tool">
+							<a href="/admin/pages/edit/<?= $data['page_id'] ?>?lang=kz" type="button" class="btn btn-tool">
 						<?php else: ?>
 							<a href="/admin/comps" type="button" class="btn btn-tool">
 						<?php endif; ?>
@@ -85,7 +85,7 @@
 									<label class="custom-file-label" for="reviewimg"></label>
 								</div>
 							</div>
-						</div>		
+						</div>
 					<?php endif; ?>
 
 					<?php if( in_array($data['id'], $docs_ids) ): ?>

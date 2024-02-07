@@ -5,7 +5,7 @@
 	}
 
 	$langs = ['ru', 'kz', 'en'];
-	$langs_ids = [4, 9, 10];
+	$langs_ids = [4, 9, 10, 19];
 ?>
 
 <section class="content-header">
