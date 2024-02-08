@@ -101,13 +101,13 @@
 								 <div class="news__item">
 		                            <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-img">
 		                                <img src="/img/articles/<?= $item['img'] ?>" />
-		                                <div class="news__item-date">11.10.23</div>
+		                                <div class="news__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                            </a>
 		                            <div class="news__item-info">
 		                            	<?php if( $item['tags'] ): ?>
 											<div class="news__item-tags">
 			                                	<?php foreach( $item['tags'] as $tag ): ?>
-													<a href="/<?= $lang ?>search?tag_id=<?= $tag['id'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
+													<a href="/<?= $lang ?>tag/<?= $tag['alias'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
 												<?php endforeach; ?>
 			                                </div>
 										<?php endif; ?>
