@@ -461,7 +461,7 @@ class PagesController extends AppController
             ->toList();
 
         $page_comps = $this->_getPagesComps(3);
-
+        $contact_comps = $this->_getPagesComps(5);
         $page = $this->Pages->get(3);
         if ($page) {
             $meta['title'] = $page['meta_title'];
@@ -472,7 +472,7 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set(compact('meta', 'page_comps', 'page', 'docs'));
+        $this->set(compact('meta', 'contact_comps','page_comps', 'page', 'docs'));
     }
 
     public function contact()

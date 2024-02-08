@@ -8,7 +8,7 @@
                                 <a href="/<?= $lang ?>"><?= __('Главная') ?></a>
                             </li>
                             <li>
-                                <a href="#">О медиахолдинге</a>
+                                <a href="#">Автор</a>
                             </li>
                             <li>
                                 <a href="/<?= $lang . 'writer/' .  $author['alias'] ?>">
@@ -19,6 +19,7 @@
                         <div class="media__title title">  <?= $author['name'] ?></div>
                         <div class="news__items">
                             <?php foreach( $author_artilces as $item ): ?>
+
                                 <div class="news__item">
                                     <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-img">
                                         <img src="/img/articles/<?= $item['img'] ?>" alt="">
@@ -28,7 +29,7 @@
                                         <?php if( $item['tags'] ): ?>
                                             <div class="news__item-tags">
                                             <?php foreach( $item['tags'] as  $tag ): ?>
-                                                <a href="/<?= $lang ?>search?tag_id=<?= $tag['id'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
+                                                <a href="/<?= $lang ?>search?tag=<?= $tag['alias'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
                                             <?php endforeach; ?>
                                             </div>
 

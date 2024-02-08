@@ -5,15 +5,15 @@
                 <div class="contact__container block">
                     <ul class="breadcrumbs">
                         <li>
-                            <a href="/<?= $lang ?>">Главная</a>
+                            <a href="/<?= $lang ?>"><?= __('Главная') ?></a>
                         </li>
                         <li>
-                            <a href="#">Контакты</a>
+                            <a href="#"><?= __('Контакты') ?></a>
                         </li>
                     </ul>
                     <div class="contact__block">
                         <div class="contact__info">
-                            <h2 class="contact__info-title title">Контакты</h2>
+                            <h2 class="contact__info-title title"><?= __('Контакты') ?></h2>
                             <ul class="contact__info-list">
                                 <li>
                                     <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +51,7 @@
                                         <?=$page_comps[24]['body']?>
                                     </li>
                                 </ul>
-                            <a href="<?=$page_comps[27]['body']?>" target="_blank" class="contact__info-path">Как добраться?</a>
+                            <a href="<?=$page_comps[27]['body']?>" target="_blank" class="contact__info-path"><?= __('Как добраться?') ?></a>
                         </div>
                         <div class="contact__map">
                             <iframe src="<?=$page_comps[25]['body']?>" width="100%" height="400" frameborder="0"></iframe>
