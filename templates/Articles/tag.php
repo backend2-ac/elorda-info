@@ -77,7 +77,7 @@
                         ]
                     ]);
                     echo $this->Paginator->numbers([
-                        'first' => 1, 'last' => 1, 'modulus' => $modulus,
+                        'first' => 1, 'last' => 1, 'modulus' => 2,
                     ]);
                     ?>
                 </ul>
