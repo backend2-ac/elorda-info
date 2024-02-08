@@ -89,6 +89,21 @@
                             <?php endforeach; ?>
                             <?php endif ?>
                         </div>
+                        <?php if ($l == 'kz'): ?>
+                            <a href="/<?= $lang ?>latest-news" class="news-actual__link">
+                                Барлық жаңалықтар
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.39999 12.2L12.2 1.40002M12.2 1.40002H1.39999M12.2 1.40002V12.2" stroke="#1D489C" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </a>
+                        <?php else: ?>
+                            <a href="/<?= $lang ?>latest-news" class="news-actual__link">
+                                <?= __('Все новости') ?>
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.39999 12.2L12.2 1.40002M12.2 1.40002H1.39999M12.2 1.40002V12.2" stroke="#1D489C" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
