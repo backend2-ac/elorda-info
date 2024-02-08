@@ -131,12 +131,12 @@
                                     </a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a href="/admin/blocks" class="nav-link">
-                                        <i class="nav-icon fas fa-coins"></i>
-                                        <p>Рекламные баннеры</p>
-                                    </a>
-                                </li>
+<!--                                <li class="nav-item">-->
+<!--                                    <a href="/admin/blocks" class="nav-link">-->
+<!--                                        <i class="nav-icon fas fa-coins"></i>-->
+<!--                                        <p>Рекламные баннеры</p>-->
+<!--                                    </a>-->
+<!--                                </li>-->
 
 
 
