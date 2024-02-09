@@ -58,7 +58,8 @@ $cur_user_role = $this->request->getSession()->read('Auth.User.role')
     <div class="card-header">
       <h3 class="card-title">Статьи</h3>
       <div class="card-tools">
-        <a href="/admin/articles/add" class="btn btn-success">Добавить новый материал</a>
+        <a href="/admin/articles/add?lang=kz" class="btn btn-success">Добавить новый материал (Қаз.)</a>
+        <a href="/admin/articles/add?lang=ru" class="btn btn-success">Добавить новый материал (Рус.)</a>
       </div>
     </div>
     <div class="card-body p-0">

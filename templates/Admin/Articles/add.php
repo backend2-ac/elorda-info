@@ -42,10 +42,6 @@ $cur_user_role = $cur_user['role'];
 						<label for="inputCategoryId">Категория</label>
 						<?= $this->Form->select('category_id', $categories, array('id' => 'inputCategoryId', 'class' => 'form-control', 'required', 'empty' => 'Выбрать')); ?>
 					</div>
-                    <div class="form-group col_2">
-                        <label for="inputLocale">Язык</label>
-                        <?= $this->Form->select('locale', ['kk' => 'kk', 'ru' => 'ru'], array('id' => 'inputLocale', 'class' => 'form-control', 'required', 'empty' => 'Выбрать')); ?>
-                    </div>
 					<div class="form-group col_2">
 						<label for="inputTitle">Название</label>
 						<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required')); ?>

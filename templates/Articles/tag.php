@@ -20,7 +20,6 @@
                         <div class="news__items">
                             <?php foreach( $tag_articles as $item ): ?>
                                 <div class="news__item">
-<!--                                    --><?php //debug($full_categories[$item['category_id']]); die(); ?>
                                     <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-img">
                                         <img src="/img/articles/<?= $item['img'] ?>" alt="">
                                         <div class="news__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>

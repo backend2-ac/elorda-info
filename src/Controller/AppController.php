@@ -312,16 +312,18 @@ class AppController extends Controller
             return $categories;
         }
 
-        protected function _getAdminTags(){
-            $tags = Cache::read('admin_tags', 'eternal');
+        protected function _getAdminTags($locale){
+            $tags = Cache::read('admin_tags_' . $locale, 'eternal');
             if( !$tags ){
                 $tags = $this->Tags->find('list', [
                         'keyField' => 'id',
                         'valueField' => 'title',
                     ])
+                    ->where(['Tags.locale' => $locale])
                     ->orderDesc('item_order')
                     ->toArray();
-                 Cache::write('admin_tags', $tags, 'eternal');
+
+                 Cache::write('admin_tags_' . $locale, $tags, 'eternal');
             }
             return $tags;
         }

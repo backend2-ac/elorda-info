@@ -125,7 +125,10 @@ class ArticlesController extends AppController{
     public function add(){
         $model = 'Articles';
         date_default_timezone_set('Asia/Almaty');
-
+        $locale = 'kk';
+        if (isset($_GET['lang']) && $_GET['lang']) {
+            $locale = $_GET['lang'] == 'kz' ? 'kk' : 'ru';
+        }
         if( $this->request->is('post') ){
             $data = $this->request->getData();
             $data['alias'] = Text::slug($data['title']);
@@ -199,7 +202,7 @@ class ArticlesController extends AppController{
 
         $categories = $this->_getAdminCategories();
         $authors = $this->_getAdminAuthors();
-        $tags_list = $this->_getAdminTags();
+        $tags_list = $this->_getAdminTags($locale);
         $this->set( compact('categories',  'authors', 'tags_list') );
     }
 
