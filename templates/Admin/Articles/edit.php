@@ -86,7 +86,7 @@ $cur_user_role = $cur_user['role'];
                     <div class="form-group col_4">
                         <label>Дата</label>
                         <div class="input-group date col-3" id="articles_date" data-target-input="nearest">
-                            <?= $this->Form->text('date', array('class' => 'form-control datetimepicker-input', 'data-target' => '#articles_date', 'value' => $this->Time->format($data['date'], 'Y-MM-dd HH:mm') )); ?>
+                            <?= $this->Form->text('date', array('class' => 'form-control datetimepicker-input', 'data-target' => '#articles_date', 'required' => 'required', 'value' => $this->Time->format($data['date'], 'Y-MM-dd HH:mm') )); ?>
                             <div class="input-group-append" data-target="#articles_date" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>

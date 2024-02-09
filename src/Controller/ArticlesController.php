@@ -311,7 +311,10 @@ class ArticlesController extends AppController
                 ->where([
                     'ArticlesTags.tag_id' => $tag->id,
                     'Articles.locale' => $tag->locale,
-                    'Articles.publish_start_at <=' => $cur_date
+                    'OR' => [
+                        ['Articles.publish_start_at <=' => $cur_date],
+                        ['Articles.publish_start_at IS NULL', 'Articles.date <=' => $cur_date]
+                    ]
                 ])
                 ->orderDesc('Articles.date')
                 ->limit($per_page)
@@ -326,7 +329,10 @@ class ArticlesController extends AppController
                 ->where([
                     'ArticlesTags.tag_id' => $tag->id,
                     'Articles.locale' => $tag->locale,
-                    'Articles.publish_start_at <=' => $cur_date
+                    'OR' => [
+                        ['Articles.publish_start_at <=' => $cur_date],
+                        ['Articles.publish_start_at IS NULL', 'Articles.date <=' => $cur_date]
+                    ]
                 ])
                 ->orderDesc('Articles.date')
                 ->limit($per_page), $pag_settings));
