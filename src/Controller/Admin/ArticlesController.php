@@ -209,9 +209,9 @@ class ArticlesController extends AppController{
     public function edit($item_id = null){
         $model = 'Articles';
         date_default_timezone_set('Asia/Almaty');
-        $locale = 'kz';
+        $locale = 'kk';
         if (isset($_GET['lang']) && $_GET['lang']) {
-            $locale = $_GET['lang'];
+            $locale = $_GET['lang'] == 'kz' ? 'kk' : 'ru';
         }
         $cur_user = $this->request->getSession()->read('Auth.User');
         if ($cur_user['role'] == 'author') {
