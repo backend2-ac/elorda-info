@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
 
 use Cake\I18n\I18n;
 use Cake\Cache\Cache;
@@ -44,7 +44,7 @@ class CompsController extends AppController{
             	$model.'.page_id' => 0,
             ])
             ->order(['Comps.id' => 'DESC'])
-            ->limit($per_page), 
+            ->limit($per_page),
             $pag_settings
         ));
 	}
@@ -191,7 +191,8 @@ class CompsController extends AppController{
 		Cache::delete('comps', 'long');
         Cache::delete('comps_ru', 'long');
 		Cache::delete('comps_kz', 'long');
-		Cache::delete('comps_en', 'long');
+		Cache::delete('comps_lang_kz', 'long');
+        Cache::delete('comps_lang_ru', 'long');
 
 		Cache::delete('page_comps_ru', 'long');
 		Cache::delete('page_comps_kz', 'long');

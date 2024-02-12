@@ -174,8 +174,8 @@ class AppController extends Controller
             $langs_ids = [4, 9, 10, 11,19];
             $spec_ids = [2, 3,4];
 
-            $comps_lang = Cache::read('comps_'.$l, 'long');
-            if( !$comps_lang ){
+            $comps_lang = Cache::read('comps_lang_'.$l, 'long');
+            if( !$comps_lang ) {
                 $this->Comps->setLocale($l);
                 $all_comps_lang = $this->Comps->find('all')
                     ->where([
@@ -184,17 +184,16 @@ class AppController extends Controller
                         'Comps.page_id' => 0,
                     ])
                     ->toList();
-
                 $comps_lang = [];
                 foreach( $all_comps_lang as $comp_item ){
                     $comps_lang[$comp_item['id']] = $comp_item;
                 }
-                Cache::write('comps_'.$l, $comps_lang, 'long');
+                Cache::write('comps_lang'.$l, $comps_lang, 'long');
             }
 
             $total_ids = array_merge($langs_ids, $spec_ids);
 
-            $comps = Cache::read('comps', 'long');
+            $comps = Cache::read('comps_' . $l, 'long');
             if( !$comps ){
                 $this->Comps->setLocale($l);
                 $all_comps = $this->Comps->find('all')
@@ -208,7 +207,8 @@ class AppController extends Controller
                 foreach( $all_comps as $comp_item ){
                     $comps[$comp_item['id']] = $comp_item;
                 }
-                Cache::write('comps', $comps, 'long');
+
+                Cache::write('comps_' . $l, $comps, 'long');
             }
 
             $this->set( compact('comps', 'comps_lang') );
