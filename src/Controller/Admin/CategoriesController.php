@@ -142,6 +142,8 @@ class CategoriesController extends AppController{
 
     protected function _cacheDelete(){
         Cache::delete('admin_categories', 'eternal');
+        Cache::delete('admin_categories_kk', 'eternal');
+        Cache::delete('admin_categories_ru', 'eternal');
 
         Cache::delete('full_categories_ru', 'eternal');
         Cache::delete('full_categories_kz', 'eternal');
