@@ -108,7 +108,7 @@ class ArticlesController extends AppController
         $popular_news = Cache::read($alias . '_popular_news', 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'reading_time'])
+                ->select(['id', 'category_id', 'title', 'short_desc',  'img', 'alias', 'views', 'date'])
                 ->where($conditions)
                 ->orderDesc('views')
                 ->limit(6)
@@ -130,7 +130,7 @@ class ArticlesController extends AppController
         $this->set('pagination', $this->paginate(
             $this->Articles->find('all')
                 ->where($conditions)
-                ->select(['id', 'category_id', 'title', 'date', 'created_at'])
+                ->select(['id', 'category_id', 'title', 'date', 'alias', 'short_desc', 'views'])
                 ->order(['Articles.date' => 'DESC'])
                 ->limit($per_page),
             $pag_settings
