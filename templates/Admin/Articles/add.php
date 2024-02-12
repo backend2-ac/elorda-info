@@ -30,7 +30,7 @@ $cur_user_role = $cur_user['role'];
 				</div>
 				<div class="card-body form_cols">
                     <?php if ($cur_user_role == 'admin'): ?>
-                        <div class="form-group">
+                        <div class="form-group col_2">
                             <label for="inputAuthorId">Автор</label>
                             <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'empty' => 'Нет')); ?>
                         </div>
@@ -42,13 +42,13 @@ $cur_user_role = $cur_user['role'];
 						<label for="inputCategoryId">Категория</label>
 						<?= $this->Form->select('category_id', $categories, array('id' => 'inputCategoryId', 'class' => 'form-control', 'required', 'empty' => 'Выбрать')); ?>
 					</div>
-					<div class="form-group col_2">
+					<div class="form-group">
 						<label for="inputTitle">Название</label>
 						<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required')); ?>
 					</div>
-					<div class="form-group col_2">
+					<div class="form-group">
 						<label for="inputShortDesc">Краткое описание</label>
-						<?= $this->Form->text('short_desc', array('id' => 'inputShortDesc', 'class' => 'form-control')); ?>
+						<?= $this->Form->textarea('short_desc', array('id' => 'inputShortDesc', 'class' => 'form-control')); ?>
 					</div>
 
 					<div class="form-group">
