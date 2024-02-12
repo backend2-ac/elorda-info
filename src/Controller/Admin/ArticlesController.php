@@ -353,45 +353,46 @@ class ArticlesController extends AppController{
     }
 
     protected function _cacheDelete(){
-        Cache::delete('main_articles_ru', 'long');
-        Cache::delete('main_articles_kz', 'long');
-        Cache::delete('main_articles_en', 'long');
-
-        Cache::delete('capital_news_ru', 'long');
-        Cache::delete('capital_news_kz', 'long');
-        Cache::delete('capital_news_en', 'long');
-
-        Cache::delete('society_news_ru', 'long');
-        Cache::delete('society_news_kz', 'long');
-        Cache::delete('society_news_en', 'long');
-
-        Cache::delete('politica_news_ru', 'long');
-        Cache::delete('politica_news_kz', 'long');
-        Cache::delete('politica_news_en', 'long');
-
-        Cache::delete('culture_news_ru', 'long');
-        Cache::delete('culture_news_kz', 'long');
-        Cache::delete('culture_news_en', 'long');
-
-        Cache::delete('heroes_news_ru', 'long');
-        Cache::delete('heroes_news_kz', 'long');
-        Cache::delete('heroes_news_en', 'long');
-
-        Cache::delete('popular_news_ru', 'long');
-        Cache::delete('popular_news_kz', 'long');
-        Cache::delete('popular_news_en', 'long');
-
-        Cache::delete('last_news_ru', 'long');
-        Cache::delete('last_news_kz', 'long');
-        Cache::delete('last_news_en', 'long');
-
-        Cache::delete('most_popular_ru', 'long');
-        Cache::delete('most_popular_kz', 'long');
-        Cache::delete('most_popular_en', 'long');
-
-        Cache::delete('last_reviews_ru', 'long');
-        Cache::delete('last_reviews_kz', 'long');
-        Cache::delete('last_reviews_en', 'long');
+        Cache::clearGroup('long', 'default');
+//        Cache::delete('main_articles_ru', 'long');
+//        Cache::delete('main_articles_kz', 'long');
+//        Cache::delete('main_articles_en', 'long');
+//
+//        Cache::delete('capital_news_ru', 'long');
+//        Cache::delete('capital_news_kz', 'long');
+//        Cache::delete('capital_news_en', 'long');
+//
+//        Cache::delete('society_news_ru', 'long');
+//        Cache::delete('society_news_kz', 'long');
+//        Cache::delete('society_news_en', 'long');
+//
+//        Cache::delete('politica_news_ru', 'long');
+//        Cache::delete('politica_news_kz', 'long');
+//        Cache::delete('politica_news_en', 'long');
+//
+//        Cache::delete('culture_news_ru', 'long');
+//        Cache::delete('culture_news_kz', 'long');
+//        Cache::delete('culture_news_en', 'long');
+//
+//        Cache::delete('heroes_news_ru', 'long');
+//        Cache::delete('heroes_news_kz', 'long');
+//        Cache::delete('heroes_news_en', 'long');
+//
+//        Cache::delete('popular_news_ru', 'long');
+//        Cache::delete('popular_news_kz', 'long');
+//        Cache::delete('popular_news_en', 'long');
+//
+//        Cache::delete('last_news_ru', 'long');
+//        Cache::delete('last_news_kz', 'long');
+//        Cache::delete('last_news_en', 'long');
+//
+//        Cache::delete('most_popular_ru', 'long');
+//        Cache::delete('most_popular_kz', 'long');
+//        Cache::delete('most_popular_en', 'long');
+//
+//        Cache::delete('last_reviews_ru', 'long');
+//        Cache::delete('last_reviews_kz', 'long');
+//        Cache::delete('last_reviews_en', 'long');
 
     }
 
