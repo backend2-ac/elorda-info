@@ -100,7 +100,7 @@ $cur_user_role = $this->request->getSession()->read('Auth.User.role')
                     </td>
         			<td class="project-actions text-right">
 
-                    <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>">
+                    <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>?lang=<?= $item['locale'] == 'kk' ? 'kz' : 'ru'; ?>">
                       <i class="fas fa-pencil-alt"></i> Редактировать
                     </a>
         				<?php echo $this->Form->postLink('Удалить', "/admin/articles/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>

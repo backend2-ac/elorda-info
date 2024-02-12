@@ -312,6 +312,22 @@ class AppController extends Controller
             return $categories;
         }
 
+    protected function _getAdminCategoriesWithLocale($locale) {
+        $categories = Cache::read('admin_categories_' . $locale, 'eternal');
+        if( !$categories ) {
+            $categories = $this->Categories->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'title',
+            ])
+                ->where(['Categories.locale' => $locale])
+                ->order(['locale', 'title'])
+                ->toArray();
+            Cache::write('admin_categories_' . $locale, $categories, 'eternal');
+        }
+
+        return $categories;
+    }
+
         protected function _getAdminTags($locale){
             $tags = Cache::read('admin_tags_' . $locale, 'eternal');
             if( !$tags ){

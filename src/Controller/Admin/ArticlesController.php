@@ -200,7 +200,7 @@ class ArticlesController extends AppController{
             }
         }
 
-        $categories = $this->_getAdminCategories();
+        $categories = $this->_getAdminCategoriesWithLocale($locale);
         $authors = $this->_getAdminAuthors();
         $tags_list = $this->_getAdminTags($locale);
         $this->set( compact('categories',  'authors', 'tags_list') );
@@ -209,6 +209,10 @@ class ArticlesController extends AppController{
     public function edit($item_id = null){
         $model = 'Articles';
         date_default_timezone_set('Asia/Almaty');
+        $locale = 'kz';
+        if (isset($_GET['lang']) && $_GET['lang']) {
+            $locale = $_GET['lang'];
+        }
         $cur_user = $this->request->getSession()->read('Auth.User');
         if ($cur_user['role'] == 'author') {
             $is_author_article = $this->$model->find()
@@ -305,9 +309,9 @@ class ArticlesController extends AppController{
 
         $this->set( compact('data', 'data_tags') );
 
-        $categories = $this->_getAdminCategories();
+        $categories = $this->_getAdminCategoriesWithLocale($locale);
         $authors = $this->_getAdminAuthors();
-        $tags_list = $this->_getAdminTags();
+        $tags_list = $this->_getAdminTags($locale);
         $this->set( compact('categories',  'authors', 'tags_list') );
     }
 
