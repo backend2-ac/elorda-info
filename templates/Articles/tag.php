@@ -20,27 +20,29 @@
                         <div class="news__items">
                             <?php foreach( $tag_articles as $item ): ?>
                                 <div class="news__item">
-                                    <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-img">
-                                        <img src="/img/articles/<?= $item['img'] ?>" alt="">
-                                        <div class="news__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
-                                    </a>
-                                    <div class="news__item-info">
-                                        <?php if( $item['tags'] ): ?>
-                                            <div class="news__item-tags">
-                                            <?php foreach( $item['tags'] as  $tag ): ?>
-                                                <a href="/<?= $lang ?>tag/<?= $tag['alias'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
-                                            <?php endforeach; ?>
+                                    <?php if (isset($full_categories[$item['category_id']])): ?>
+                                        <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-img">
+                                            <img src="/img/articles/<?= $item['img'] ?>" alt="">
+                                            <div class="news__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
+                                        </a>
+                                        <div class="news__item-info">
+                                            <?php if( $item['tags'] ): ?>
+                                                <div class="news__item-tags">
+                                                <?php foreach( $item['tags'] as  $tag ): ?>
+                                                    <a href="/<?= $lang ?>tag/<?= $tag['alias'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
+                                                <?php endforeach; ?>
+                                                </div>
+
+                                            <?php endif; ?>
+
+                                            <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-title"><?= $item['title'] ?></a>
+                                            <div class="news__item-text"><?= $item['short_desc'] ?></div>
+                                            <div class="news__item-watch">
+                                                <img src="/img/watch-gray.png" alt="">
+                                                <?= number_format($item['views'], 0, '', ' ') ?>
                                             </div>
-
-                                        <?php endif; ?>
-
-                                        <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-title"><?= $item['title'] ?></a>
-                                        <div class="news__item-text"><?= $item['short_desc'] ?></div>
-                                        <div class="news__item-watch">
-                                            <img src="/img/watch-gray.png" alt="">
-                                            <?= number_format($item['views'], 0, '', ' ') ?>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
                                 </div>
                             <?php endforeach; ?>
 
