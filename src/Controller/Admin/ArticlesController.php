@@ -133,7 +133,7 @@ class ArticlesController extends AppController{
             $data = $this->request->getData();
             $data['alias'] = Text::slug($data['title']);
             $data['alias'] = mb_strtolower($data['alias']);
-
+            $data['locale'] = $locale;
             $created = $this->$model->find()
                 ->where(['alias' => $data['alias']])->first();
 
@@ -240,6 +240,7 @@ class ArticlesController extends AppController{
             $data1 = $this->request->getData();
             $old_data = clone $data;
             $articles_tags = [];
+            $data1['locale'] = $locale;
             if( isset($data1['date']) && $data1['date'] ){
                 $data1['date'] = date('Y-m-d H:i:s', strtotime($data1['date']));
             }
