@@ -263,7 +263,7 @@ class AppController extends Controller
                 'astana-25' => 'astana-25',
                 'sluzhba-komplaens-kz' => 'sluzhba-komplaens-kz',
                 'adep-kodeksi' => 'adep-kodeksi',
-
+                'bilim' => 'bilim'
 
             ];
 

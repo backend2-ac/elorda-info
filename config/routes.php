@@ -276,6 +276,9 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/sayasat', ['controller' => 'Articles', 'action' => 'index', 'sayasat']);
     $builder->connect('/sayasat/*', ['controller' => 'Articles', 'action' => 'view']);
 
+    $builder->connect('/bilim', ['controller' => 'Articles', 'action' => 'index', 'bilim']);
+    $builder->connect('/bilim/*', ['controller' => 'Articles', 'action' => 'view']);
+
     $builder->connect('/aleumet', ['controller' => 'Articles', 'action' => 'index', 'aleumet']);
     $builder->connect('/aleumet/*', ['controller' => 'Articles', 'action' => 'view']);
 
