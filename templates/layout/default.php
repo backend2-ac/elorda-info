@@ -85,7 +85,12 @@
                                         <p>Панель администратора</p>
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="/admin/requests" class="nav-link">
+                                        <i class="nav-icon fab fa-elementor"></i>
+                                        <p>Заявки</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="/admin/categories" class="nav-link">
                                         <i class="nav-icon fas fa-bars"></i>

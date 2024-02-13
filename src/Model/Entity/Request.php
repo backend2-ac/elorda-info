@@ -6,13 +6,10 @@ use Cake\ORM\Entity;
 
 class Request extends Entity{
 
-	protected $_accessible = [
-		'service_id' => true,
-		'name' => true,
-		'email' => true,
-		'phone' => true,
-		'date' => true,
-	];
+    protected $_accessible = [
+        'email' => true,
+        'created_at' => true,
+    ];
 }
 
- ?>
+?>

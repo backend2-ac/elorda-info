@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Model\Table;
 
@@ -8,20 +8,18 @@ use Cake\ORM\RulesChecker;
 
 class RequestsTable extends Table{
 
-	public function initialize(array $config): void{
-		$this->setTable('requests');
+    public function initialize(array $config): void{
+        $this->setTable('requests');
 
-		$this->belongsTo('Services');
-	}
-
-	// public function validationDefault(Validator $validator): Validator{
-
-	// 	$validator
-	// 	->allowEmptyString('message');
-
-	// 	return $validator;
-	// }
+        $this->addBehavior('Timestamp', [
+            'events' => [
+                'Model.beforeSave' => [
+                    'created_at' => 'new',
+                ]
+            ]
+        ]);
+    }
 }
 
 
- ?>
+?>

@@ -5,6 +5,9 @@ namespace App\Controller\Admin;
 use App\Controller\AppController;
 use Cake\Validation\Validator;
 use Cake\Utility\Text;
+
+use Cake\Mailer\Mailer;
+
 use Cake\Cache\Cache;
 
 class RequestsController extends AppController{
@@ -12,9 +15,7 @@ class RequestsController extends AppController{
     public function initialize(): void{
         parent::initialize();
         $this->loadModel('Requests');
-
-        $this->loadModel('Services');
-
+        $this->loadComponent('EntityFiles');
         $this->loadComponent('Paginator');
     }
 
@@ -32,19 +33,15 @@ class RequestsController extends AppController{
         ];
 
         $data = $this->$model->find('all')
-            ->contain([
-                'Services' => [
-                    'fields' => ['id', 'title']
-                ]
-            ])
-            ->order([$model.'.date' => 'DESC'])
+            ->order([$model.'.created_at' => 'DESC'])
             ->limit($per_page)->offset($offset)
             ->toList();
 
         $this->set( compact('data') );
 
         $this->set('pagination', $this->paginate(
-            $this->$model->find('all')->limit($per_page)->order(['date' => 'DESC']),
+            $this->$model->find('all')
+                ->limit($per_page)->order(['created_at' => 'DESC']),
             $pag_settings
         ));
     }
@@ -62,7 +59,8 @@ class RequestsController extends AppController{
             $this->Flash->error(__('Ошибка удаления'));
         }
     }
+
 }
 
 
- ?>
+?>

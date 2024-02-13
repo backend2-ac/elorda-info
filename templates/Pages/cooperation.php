@@ -165,17 +165,22 @@
                     </section>
                     <section class="feedback">
                         <div class="feedback__container">
-                            <form action="">
+                            <?= $this->Form->create(null, [
+                                'url' => '/'.$lang.'requests/send',
+                                'accept-charset' => 'utf-8',
+                                'id' => 'footer_form_2',
+                                'onsubmit' => 'submitForm()'
+                            ]) ?>
                                 <div class="feedback__form">
                                     <div class="feedback__form-logo"><img src="/img/form-logo.png" alt=""></div>
                                     <h2 class="feedback__title title"><?= __('Оставьте заявку на сотрудничество') ?></h2>
                                     <div class="feedback__text"><?= __('Оставьте свои контактные данные и мы с вами свяжемся для обсуждения деталей') ?></div>
                                     <div class="feedback__elems">
-                                        <input type="text" placeholder="zarina.zarina@mail.ru">
+                                        <input type="text" name="email" placeholder="zarina.zarina@mail.ru" required="required">
                                         <button type="submit"><?= __('Оставить заявку') ?></button>
                                     </div>
                                 </div>
-                            </form>
+                            <?= $this->Form->end(); ?>
                         </div>
                     </section>
                     <section class="contact">
