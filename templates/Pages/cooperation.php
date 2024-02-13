@@ -60,16 +60,20 @@
                                     <div class="stats__item-text"><?= __('новых посетителей') ?></div>
                                     <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>
                                 </div>
-                                <form action="">
+                                <?= $this->Form->create(null, [
+                                    'url' => '/'.$lang.'requests/send',
+                                    'accept-charset' => 'utf-8',
+                                    'onsubmit' => 'submitForm()'
+                                ]) ?>
                                     <div class="stats__form">
                                         <div class="stats__form-title"><?= __('Оставьте заявку на сотрудничество') ?></div>
                                         <div class="stats__form-text"><?= __('Разместите рекламу на нашем сайте, чтобы гарантировать себе просмотры и постоянных читателей. Оставьте свои контактные данные и мы с вами свяжемся для обсуждения деталей') ?></div>
                                         <div class="stats__form-elems">
-                                            <input type="text" placeholder="zarina.zarina@mail.ru">
+                                            <input type="text" name="email" placeholder="zarina.zarina@mail.ru" required="required">
                                             <button type="submit"><?= __('Оставить заявку') ?></button>
                                         </div>
                                     </div>
-                                </form>
+                                <?= $this->Form->end(); ?>
                             </div>
                         </div>
                     </section>
@@ -168,7 +172,6 @@
                             <?= $this->Form->create(null, [
                                 'url' => '/'.$lang.'requests/send',
                                 'accept-charset' => 'utf-8',
-                                'id' => 'footer_form_2',
                                 'onsubmit' => 'submitForm()'
                             ]) ?>
                                 <div class="feedback__form">
