@@ -268,6 +268,7 @@ return [
             'charset' => 'utf-8',
             'headerCharset' => 'utf-8',
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+
         ],
     ],
 
