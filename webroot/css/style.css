@@ -3070,6 +3070,7 @@ select {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  background: none;
 }
 
 .search__form-input input,
