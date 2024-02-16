@@ -51,9 +51,9 @@
                                     <?= $data['body'] ?>
                                 </div>
                                 <?php if( $data['tags'] ): ?>
-									<div class="inner__tags-tags">
+									<div class="inner__tags">
 	                                	<?php foreach( $data['tags'] as $tag ): ?>
-											<a href="/<?= $lang ?>tag/<?= $tag['alias'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
+											<a href="/<?= $lang ?>tag/<?= $tag['alias'] ?>">#<?= $tag['title'] ?></a>
 										<?php endforeach; ?>
 	                                </div>
 								<?php endif; ?>

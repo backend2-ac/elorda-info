@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -15,7 +14,7 @@ declare(strict_types=1);
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
 namespace App\Controller;
-
+require __DIR__ . '/../../vendor/autoload.php';
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 
@@ -24,6 +23,8 @@ use Cake\I18n\I18n;
 
 use Cake\Cache\Cache;
 use Cake\ORM\Query;
+
+use Facebook\Facebook;
 
 
 /**
@@ -255,7 +256,6 @@ class AppController extends Controller
                 'densaulyk' => 'densaulyk',
                 'Elordadagy-bagalar' => 'Elordadagy-bagalar',
                 'showbiz' => 'showbiz',
-                'bilim' => 'bilim',
                 'okiga' => 'okiga',
                 'alem' => 'alem',
                 'joldau' => 'joldau',
@@ -270,22 +270,33 @@ class AppController extends Controller
             $full_categories = $this->_getFullCategories();
 
             /*------ cache cleaning ------*/
-            $interval_minute = 5;
+            $interval_minute = 10;
             $check_start_date = Cache::read('check_start_date', 'eternal');
+//            $current_date = date('Y-m-d H:i:s');
             $current_date = FrozenTime::now();
             if (!$check_start_date) {
                 Cache::write('check_start_date', $current_date, 'eternal');
             } else {
+//                $new_start_date = date('Y-m-d H:i:s', strtotime($check_start_date . ' + ' . $interval_minute . ' minutes'));
                 $new_start_date = $check_start_date->addMinutes($interval_minute);
+
                 if ($current_date >= $new_start_date) {
-                    $has_article = $this->Articles->find()
-                        ->where(['Articles.publish_start_at >=' => $check_start_date, 'Articles.publish_end_at <=' => $current_date])
-                        ->first();
-                    if ($has_article) {
+                    $new_articles = $this->Articles->find()
+                        ->select(['Articles.title', 'Articles.alias', 'Categories.alias'])
+                        ->contain(['Categories'])
+                        ->where([
+                            'Articles.publish_start_at >=' => $check_start_date,
+                            'Articles.publish_start_at <=' => $new_start_date
+                        ])
+                        ->toList();
+                    if ($new_articles) {
+//                        $fb_data = $this->prepareDataForSendingToFacebook($new_articles);
+//                        $this->sendPostsToFacebook($fb_data);
                         Cache::clear();
                     }
-                    Cache::write('check_start_date', $current_date, 'eternal');
+                    Cache::write('check_start_date', $new_start_date, 'eternal');
                 }
+//                $this->sendPostsToFacebook();
             }
             /*------ Cache cleaning END ------*/
 
@@ -295,6 +306,68 @@ class AppController extends Controller
 
     }
 
+    protected function prepareDataForSendingToFacebook($new_articles) {
+        $fb_data = [];
+        foreach ($new_articles as $new_article) {
+            $news_link = $_SERVER['HTTP_HOST'] . '/' . $new_article['category']['alias']. '/' . $new_article['alias'];
+            $fb_data[] = ['title' => $new_article['title'], 'link' => $news_link];
+        }
+        return $fb_data;
+    }
+
+    protected function sendPostsToFacebook() {
+        $app_id = '227135263803105';
+        $app_key = '4bc99def88cd6ede6abcfebc602176a7';
+        $page_id = '217495024786444'; //https://www.facebook.com/profile.php?id=61556114499643&sk=about_profile_transparency
+        $access_token = 'EAADOlAy3BuEBOZCiVZBr2jTeBd5BuMKo990e602jjLhxPKnAGnyseoVFG2EasthfPmZAD2ikp8NpAOiIWNSp2huTueAradQZBO799xwp0nUceNngcIXiEHqnBzclYdC0ZBVdajJjF7Lppd8tJjFRpJGf94WQNZAJw5B5sK1agOywBW5ykuDEQtJTRevcWnKeoPH4SZCDgHm3BxIMVz1rdwXoKKweNriNVwXLyfx';
+        $appsecret_proof = hash_hmac('sha256', $access_token, $app_key);
+        $fb = new Facebook([
+            'app_id' => $app_id, //Замените на ваш id приложения
+            'app_secret' => '12345678901234567890123456789012', //Ваш секрет приложения
+            'default_access_token' => $access_token,
+            'appsecret_proof' => $appsecret_proof,
+        ]);
+        $fb_data = [
+             [
+                'title' => 'Астанадан бір түнде 44 мың текше метр қар шығарылды',
+                'link' => 'http://elorda/elorda-janalyktary/astanadan-bir-tnde-44-my-tekse-metr-kar-sygaryldy',
+            ],
+            [
+                'title' => 'Елордада жастарға арналған тегін коворкинг орталығы ашылды',
+                'link' => 'http://elorda/elorda-janalyktary/elordada-zastarga-arnalgan-tegin-kovorking-ortalygy-asyldy',
+            ],
+        ];
+        foreach ($fb_data as $post) {
+            $link = $post['link'];
+            $message = $post['title'];
+            try {
+                $response = $fb->post('/' . $page_id . '/feed', ['message' => $message, 'link' => $link]);
+                $graphNode = $response->getGraphNode();
+                echo 'Пост успешно опубликован на Facebook! ID поста: ' . $graphNode['id'] . "\n";
+            } catch (Facebook\Exceptions\FacebookResponseException $e) {
+                echo 'Ошибка при публикации поста на Facebook: ' . $e->getMessage() . "\n";
+            } catch (Facebook\Exceptions\FacebookSDKException $e) {
+                echo 'Ошибка при использовании SDK Facebook: ' . $e->getMessage() . "\n";
+            }
+        }
+    }
+
+    private function facebookAcces() {
+        $fb = new Facebook([
+            'app_id' => 'ваш_app_id',
+            'app_secret' => 'ваш_app_secret',
+            'default_graph_version' => 'v12.0',
+        ]);
+
+        $response = $fb->get('/oauth/access_token', [
+            'grant_type' => 'fb_exchange_token',
+            'client_id' => 'ваш_app_id',
+            'client_secret' => 'ваш_app_secret',
+            'fb_exchange_token' => 'ваш_временный_токен_доступа',
+        ]);
+
+        $longLivedAccessToken = $response->getDecodedBody()['access_token'];
+    }
     /*---------- Admin Funcs  --------*/
 
         protected function _getAdminCategories(){
