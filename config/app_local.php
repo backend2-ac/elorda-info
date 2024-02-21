@@ -36,7 +36,7 @@ return [
      */
     'Datasources' => [
         'default' => [
-            'host' => 'srv-db-plesk04.ps.kz:3306',
+            'host' => 'localhost:3306',
 //        'host' => 'localhost',
             /*
              * CakePHP will use the default DB port based on the driver selected
@@ -45,10 +45,10 @@ return [
              */
             //'port' => 'non_standard_port_number',
 
-            'username' => 'kz123857_elorda',
-            'password' => 'Kazakhstan94@@',
+            'username' => 'user_elorda_db',
+            'password' => '1Kd$dd274',
 
-            'database' => 'kz123857_elorda',
+            'database' => 'elorda_db',
 //            'username' => 'root',
 //            'password' => '',
 //
