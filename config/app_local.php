@@ -46,7 +46,7 @@ return [
             //'port' => 'non_standard_port_number',
 
             'username' => 'user_elorda_db',
-            'password' => '1Kd$dd274',
+            'password' => 'evV6&23t5',
 
             'database' => 'elorda_db',
 //            'username' => 'root',
