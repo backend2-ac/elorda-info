@@ -173,7 +173,7 @@
                 <div class="header__menu-scroll">
                     <div class="header__menu-links">
                         <?php if ($l == 'kz'): ?>
-                            <a href="/<?= $lang ?>elorda-janalyktary" class="header__menu-link">Елорда жаңалықтары</a>
+                            <a href="/<?= $lang ?>elorda-janalyktary" class="header__menu-link">Елорда жаңалықтары123</a>
 <!--                            <a href="/--><?php //= $lang ?><!--" class="header__menu-link">Новости дня</a>-->
 <!--                            <a href="/--><?php //= $lang ?><!--travel" class="header__menu-link">Travel</a>-->
 <!--                            <a href="/--><?php //= $lang ?><!--nauka-tehnologii" class="header__menu-link">Наука/технологии</a>-->
