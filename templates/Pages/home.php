@@ -22,7 +22,7 @@
 												 <div class="swiper-slide">
 		                                            <div class="hero__swiper-slide">
 		                                                <div class="hero__swiper-img">
-		                                                  <img src="/img/articles/<?= $item['img'] ?>" />
+		                                                  <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" />
 		                                                </div>
 
 		                                                <div class="hero__swiper-tag">
@@ -63,7 +63,7 @@
                                 	<?php if($index === 0):?>
                                 		<div class="capital__main">
 		                                    <div class="capital__main-img">
-		                                        <img src="/img/articles/<?= $item['img'] ?>" alt="">
+		                                        <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 		                                    </div>
 		                                    <div class="capital__main-header block-elems">
 		                                        <div class="capital__main-date date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
@@ -87,7 +87,7 @@
 	                                	<?php if($index != 0):?>
 			                                <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="capital__item article__item">
 		                                        <div class="article__item-img">
-		                                             <img src="/img/articles/<?= $item['img'] ?>" alt="">
+		                                             <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 		                                            <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                                        </div>
 		                                        <div class="article__item-title"><?= $item['title'] ?></div>
@@ -121,7 +121,7 @@
 		                                	<?php if($index === 0):?>
 				                                <div class="socium__main">
 		                                            <div class="socium__main-img">
-		                                                 <img src="/img/articles/<?= $item['img'] ?>" alt="">
+		                                                 <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 		                                            </div>
 		                                            <div class="socium__main-header block-elems">
 		                                                <div class="socium__main-date date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
@@ -148,7 +148,7 @@
 
 			                                        <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__child article__item">
 		                                                <div class="article__item-img">
-		                                                     <img src="/img/articles/<?= $item['img'] ?>" alt="">
+		                                                     <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 		                                                    <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                                                </div>
 		                                                <div class="article__item-title"><?= $item['title'] ?></div>
@@ -202,7 +202,7 @@
                                 	<?php foreach( $politica_news as $index => $item ): ?>
                                         <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="politic__item">
 	                                        <div class="politic__item-img">
-	                                             <img src="/img/articles/<?= $item['img'] ?>" alt="">
+	                                             <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 	                                        </div>
 	                                        <div class="politic__info">
 
@@ -236,7 +236,7 @@
 	                                	<?php foreach( $culture_news as $index => $item ): ?>
 	                                		<?php if($index === 0): ?>
 			                                    <div class="culture__main-img">
-			                                            <img src="/img/articles/<?= $item['img'] ?>" alt="">
+			                                            <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 			                                        </div>
 			                                        <div class="culture__main-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 			                                        <div class="culture__main-watch">
@@ -259,7 +259,7 @@
 	                                		<?php if($index != 0): ?>
 			                                    <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__item">
 		                                            <div class="culture__item-img">
-		                                               <img src="/img/articles/<?= $item['img'] ?>" alt="">
+		                                               <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 		                                            </div>
 		                                            <div class="culture__item-info">
 		                                                <div class="culture__item-header">
@@ -297,7 +297,7 @@
                                 	<?php foreach( $heroes_news as $index => $item ): ?>
 		                                <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="heroes__child article__item">
 	                                        <div class="article__item-img">
-	                                            <img src="/img/articles/<?= $item['img'] ?>" alt="">
+	                                            <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 	                                            <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 	                                        </div>
 	                                        <div class="article__item-title"><?= $item['title'] ?></div>
@@ -323,7 +323,7 @@
                                <?php foreach( $last_news as $index => $item ): ?>
                                     <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
 	                                    <div class="news-actual__item-img">
-	                                        <img src="/img/articles/<?= $item['img'] ?>" alt="<?= $item['title'] ?>">
+	                                        <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
 	                                    </div>
 	                                    <div class="news-actual__item-info">
 	                                        <div class="news-actual__item-date">
@@ -340,7 +340,7 @@
 	                            	<?php foreach( $popular_news as $index => $item ): ?>
 	                                    <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
 		                                    <div class="news-actual__item-img">
-		                                        <img src="/img/articles/<?= $item['img'] ?>" alt="<?= $item['title'] ?>">
+		                                        <img src="<?= file_exists('/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
 		                                    </div>
 		                                    <div class="news-actual__item-info">
 		                                        <div class="news-actual__item-date">
