@@ -32,7 +32,7 @@
                             <?php foreach( $last_news as $index => $item ): ?>
                                 <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
                                     <div class="news-actual__item-img">
-                                        <img src="/img/articles/<?= $item['img'] ?>" alt="<?= $item['title'] ?>">
+                                        <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
                                     </div>
                                     <div class="news-actual__item-info">
                                         <div class="news-actual__item-date">
@@ -47,7 +47,7 @@
                             <?php foreach( $popular_news as $index => $item ): ?>
                                 <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
                                     <div class="news-actual__item-img">
-                                        <img src="/img/articles/<?= $item['img'] ?>" alt="<?= $item['title'] ?>">
+                                        <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
                                     </div>
                                     <div class="news-actual__item-info">
                                         <div class="news-actual__item-date">
