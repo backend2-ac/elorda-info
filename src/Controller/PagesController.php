@@ -114,7 +114,7 @@ class PagesController extends AppController
         $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
         if (!$main_articles) {
             $main_articles = $this->Articles->find('all')
-                ->select(['id', 'title', 'alias', 'category_id', 'img', 'date', 'views', 'short_desc'])
+                ->select(['id', 'title', 'alias', 'category_id', 'img', 'img_path', 'date', 'views', 'short_desc'])
                 ->where([
                     'OR' => [
                         ['publish_start_at IS NULL', 'date <' => $cur_date],
@@ -138,7 +138,7 @@ class PagesController extends AppController
                         return $q->enableAutoFields();
                     },
                 ])
-                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                 ->where(['Categories.id' => $capital_news_category_id, 'Articles.category_id' => $capital_news_category_id])
                 ->where([
                     'OR' => [
@@ -161,7 +161,7 @@ class PagesController extends AppController
                             return $q->enableAutoFields();
                         },
                     ])
-                    ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                     ->where(['Categories.id' => $society_news_category_id, 'Articles.category_id' => $society_news_category_id])
                     ->where([
                         'OR' => [
@@ -183,7 +183,7 @@ class PagesController extends AppController
                         return $q->enableAutoFields();
                     },
                 ])
-                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                 ->where(['Categories.id' => $politica_news_category_id, 'Articles.category_id' => $politica_news_category_id])
                 ->where([
                     'OR' => [
@@ -206,7 +206,7 @@ class PagesController extends AppController
                         return $q->enableAutoFields();
                     },
                 ])
-                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                 ->where(['Categories.id' => $culture_news_category_id, 'Articles.category_id' => $culture_news_category_id])
                 ->where([
                     'OR' => [
@@ -229,7 +229,7 @@ class PagesController extends AppController
                         return $q->enableAutoFields();
                     },
                 ])
-                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                 ->where(['Categories.id' => $heroes_news_category_id, 'Articles.category_id' => $heroes_news_category_id])
                 ->where([
                     'OR' => [
@@ -252,7 +252,7 @@ class PagesController extends AppController
 //                        },
 //
 //                    ])
-                    ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                     ->where(['Articles.category_id' => $capital_news_category_id])
                     ->where([
                         'OR' => [
@@ -275,7 +275,7 @@ class PagesController extends AppController
 //                            return $q->enableAutoFields();
 //                        },
 //                    ])
-                    ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                     ->where(['Articles.category_id' => $capital_news_category_id])
                     ->where([
                         'OR' => [
@@ -329,7 +329,7 @@ class PagesController extends AppController
         $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where([
                     'OR' => [
@@ -347,7 +347,7 @@ class PagesController extends AppController
         $last_news = Cache::read('last_news_' . $cur_lang, 'long');
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where([
                     'OR' => [
@@ -403,7 +403,7 @@ class PagesController extends AppController
         $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where([
                     'OR' => [
@@ -421,7 +421,7 @@ class PagesController extends AppController
         $last_news = Cache::read('last_news_' . $cur_lang, 'long');
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'alias', 'views', 'date', 'short_desc'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where([
                     'OR' => [
