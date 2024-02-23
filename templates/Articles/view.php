@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                                 <div class="inner__img">
-                                    <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $data['img_text'] ?>">
+                                    <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $data['img']) ? '/img/articles/' . $data['img'] : '/img/articles' . $data['img_path'] ?>" alt="<?= $data['img_text'] ?>">
                                 </div>
                                 <?php if( $data['img_text'] ): ?>
 									<div class="inner__source"><?= $data['cover_photo_source'] ?></div>
