@@ -268,7 +268,8 @@ class AppController extends Controller
             ];
 
             $full_categories = $this->_getFullCategories();
-
+            Cache::clear();
+            die();
             /*------ cache cleaning ------*/
             $interval_minute = 10;
             $check_start_date = Cache::read('check_start_date', 'eternal');
