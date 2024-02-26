@@ -53,7 +53,7 @@ class ArticlesController extends AppController
         $this->loadComponent('Paginator');
     }
 
-    public function index($alias = null){
+    public function index($category_alias = null){
 
         $cat_id = null;
         $cur_date = date('Y-m-d H:i:s');
@@ -69,8 +69,8 @@ class ArticlesController extends AppController
             ]
         ];
         $cur_cat = null;
-        if($alias != 'latest-news'){
-            $cur_cat = $this->Categories->findByAlias($alias)
+        if($category_alias != 'latest-news'){
+            $cur_cat = $this->Categories->findByAlias($category_alias)
                 ->first();
 
             if( $cur_cat ){
@@ -105,7 +105,7 @@ class ArticlesController extends AppController
 //            Cache::write($alias . '_news', $data, 'long');
 //        }
 
-        $popular_news = Cache::read($alias . '_popular_news', 'long');
+        $popular_news = Cache::read($category_alias . '_popular_news', 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'short_desc',  'img', 'img_path', 'alias', 'views', 'date'])
@@ -113,10 +113,10 @@ class ArticlesController extends AppController
                 ->orderDesc('views')
                 ->limit(6)
                 ->toList();
-            Cache::write($alias . '_popular_news', $popular_news, 'long');
+            Cache::write($category_alias . '_popular_news', $popular_news, 'long');
         }
 
-        $last_news = Cache::read($alias . '_last_news', 'long');
+        $last_news = Cache::read($category_alias . '_last_news', 'long');
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
@@ -124,7 +124,7 @@ class ArticlesController extends AppController
                 ->orderDesc('Articles.date')
                 ->limit(6)
                 ->toList();
-            Cache::write($alias . '_last_news', $last_news, 'long');
+            Cache::write($category_alias . '_last_news', $last_news, 'long');
         }
 
         $this->set('pagination', $this->paginate(
@@ -158,12 +158,12 @@ class ArticlesController extends AppController
             }
         }
 
-        $this->set( compact('data','meta', 'cur_cat', 'last_news', 'popular_news') );
+        $this->set( compact('data','meta', 'cur_cat', 'category_alias',  'last_news', 'popular_news') );
     }
 
-    public function view($alias){
+    public function view($article_alias){
         $cur_date = date('Y-m-d H:i:s');
-        $data = $this->Articles->findByAlias($alias)
+        $data = $this->Articles->findByAlias($article_alias)
             ->contain([
                 'Categories',
                 'Tags',
@@ -232,7 +232,7 @@ class ArticlesController extends AppController
         $meta['desc'] = $data['meta_description'];
         $meta['keys'] = $data['meta_keywords'];
 
-        $this->set( compact('data', 'meta', 'other_news', 'author_articles','popular_news','last_news') );
+        $this->set( compact('data', 'meta', 'other_news', 'category_alias', 'article_alias', 'author_articles','popular_news','last_news') );
     }
 
     public function loadingview($article_id){

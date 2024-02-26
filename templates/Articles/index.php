@@ -32,7 +32,7 @@
 		                                                	<?= __('Актуально') ?>
                                                 		</div>
 	                                                <div class="hero__swiper-title"><?= $item['title'] ?></div>
-	                                                <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="hero__swiper-link">
+	                                                <a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="hero__swiper-link">
 	                                                    <?= __('Читать далее') ?>
 	                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 	                                                        <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -58,7 +58,8 @@
                         <div class="news-actual__items active" data-id="1">
                         	<?php if( $data ): ?>
                             <?php foreach( $last_news as $index => $item ): ?>
-                                <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
+
+                                <a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news-actual__item">
                                     <div class="news-actual__item-img">
                                         <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
                                     </div>
@@ -66,7 +67,7 @@
                                         <div class="news-actual__item-date">
                                             <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
                                         </div>
-                                        <div href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item-title"><?= $item['title'] ?></div>
+                                        <div href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news-actual__item-title"><?= $item['title'] ?></div>
                                     </div>
                                 </a>
                             <?php endforeach; ?>
@@ -75,7 +76,7 @@
                         <div class="news-actual__items" data-id="2">
                         	<?php if( $popular_news ): ?>
                             <?php foreach( $popular_news as $index => $item ): ?>
-                                <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
+                                <a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news-actual__item">
                                     <div class="news-actual__item-img">
                                         <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
                                     </div>
@@ -83,7 +84,7 @@
                                         <div class="news-actual__item-date">
                                             <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
                                         </div>
-                                        <div href='/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>' class="news-actual__item-title"><?= $item['title'] ?></div>
+                                        <div href='/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>' class="news-actual__item-title"><?= $item['title'] ?></div>
                                     </div>
                                 </a>
                             <?php endforeach; ?>
@@ -114,7 +115,7 @@
 	                    	<?php foreach( $data as $index => $item ): ?>
 								<?php if($index >= 2 ): ?>
 								 <div class="news__item">
-		                            <a href="<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-img">
+		                            <a href="<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news__item-img">
 		                                <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" />
 		                                <div class="news__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                            </a>
@@ -126,7 +127,7 @@
 												<?php endforeach; ?>
 			                                </div>
 										<?php endif; ?>
-		                                <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-title"><?= $item['title'] ?></a>
+		                                <a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news__item-title"><?= $item['title'] ?></a>
 		                                <div class="news__item-text"><?= $item['short_desc'] ?></div>
 		                                <div class="news__item-watch">
 		                                    <img src="/img/watch-gray.png" alt="">
@@ -148,7 +149,7 @@
 
                                 $this->Paginator->options([
                                     'url' => [
-                                         $cur_cat['alias'],
+                                        $category_alias,
                                         'lang' => $cur_lang,
                                         '?' => $paginator_query,
                                     ],
