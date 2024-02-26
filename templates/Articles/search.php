@@ -70,7 +70,12 @@
 										<?php endif; ?>
 
 	                                    <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-title"><?= $item['title'] ?></a>
-	                                    <div class="news__item-text"><?= $item['short_desc'] ?></div>
+                                        <?php
+                                        $body_text = strip_tags($item['body']);
+                                        $short_desc = mb_substr($body_text, 0, 260);
+                                        $short_desc = substr($short_desc, 0, strrpos($short_desc, ' '));
+                                        ?>
+                                        <div class="news__item-text"><?= $short_desc ?></div>
 	                                    <div class="news__item-watch">
 	                                        <img src="/img/watch-gray.png" alt="">
 	                                        <?= number_format($item['views'], 0, '', ' ') ?>

@@ -207,7 +207,12 @@
 	                                        <div class="politic__info">
 
 	                                            <div class="politic__item-title"><?= $item['title'] ?></div>
-	                                            <div class="politic__item-text"><?= $item['short_desc'] ?></div>
+                                                <?php
+                                                $body_text = strip_tags($item['body']);
+                                                $short_desc = mb_substr($body_text, 0, 260);
+                                                $short_desc = substr($short_desc, 0, strrpos($short_desc, ' '));
+                                                ?>
+	                                            <div class="politic__item-text"><?= $short_desc ?></div>
 	                                            <div class="politic__item-watch">
 	                                                <img src="/img/watch-gray.png" alt="">
 	                                                <?= number_format($item['views'], 0, '', ' ') ?>

@@ -47,7 +47,7 @@
 
 
                                 <div class="inner__text">
-                                    <p><?= $data['short_desc']?></p>
+<!--                                    <p>--><?php //= $data['short_desc']?><!--</p>-->
                                     <?= $data['body'] ?>
                                 </div>
                                 <?php if( $data['tags'] ): ?>
