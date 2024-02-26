@@ -46,15 +46,6 @@ $cur_user_role = $cur_user['role'];
 						<label for="inputTitle">Название</label>
 						<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required')); ?>
 					</div>
-					<div class="form-group">
-						<label for="inputShortDesc">Краткое описание</label>
-						<?= $this->Form->textarea('short_desc', array('id' => 'inputShortDesc', 'class' => 'form-control')); ?>
-					</div>
-
-					<div class="form-group">
-						<label for="inputSubTitle">Подзаголовок</label>
-						<?= $this->Form->text('sub_title', array('id' => 'inputSubTitle', 'class' => 'form-control')); ?>
-					</div>
 
 					<div class="form-group">
 						<label for="inputBody">Описание</label>
@@ -105,10 +96,6 @@ $cur_user_role = $cur_user['role'];
                             </div>
                         </div>
                     </div>
-					<div class="form-group col_4">
-						<label for="inputReadingTime">Время чтения (мин)</label>
-						<?= $this->Form->number('reading_time', array('id' => 'inputReadingTime', 'class' => 'form-control', 'value' => 0)); ?>
-					</div>
 
 					<div class="form-group col_4">
 						<label for="views">Просмотры</label>

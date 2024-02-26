@@ -195,7 +195,7 @@ class ArticlesController extends AppController
         $popular_news = Cache::read($category_alias . '_popular_news', 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'reading_time'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date'])
                 ->where($conditions)
                 ->orderDesc('views')
                 ->limit(6)
