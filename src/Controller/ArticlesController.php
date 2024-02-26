@@ -94,16 +94,16 @@ class ArticlesController extends AppController
             'limit' => $per_page,
         ];
 
-        $data = Cache::read($alias . '_news', 'long');
-        if (!$data) {
-            $data = $this->Articles->find('all')
-                ->where($conditions)
-                ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'date', 'img', 'img_path', 'views'])
-                ->order(['Articles.date' => 'DESC'])
-                ->limit($per_page)->offset($offset)
-                ->toList();
-            Cache::write($alias . '_news', $data, 'long');
-        }
+//        $data = Cache::read($alias . '_news', 'long');
+//        if (!$data) {
+        $data = $this->Articles->find('all')
+            ->where($conditions)
+            ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'date', 'img', 'img_path', 'views'])
+            ->order(['Articles.date' => 'DESC'])
+            ->limit($per_page)->offset($offset)
+            ->toList();
+//            Cache::write($alias . '_news', $data, 'long');
+//        }
 
         $popular_news = Cache::read($alias . '_popular_news', 'long');
         if (!$popular_news) {

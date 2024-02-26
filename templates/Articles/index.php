@@ -136,7 +136,47 @@
 		                        </div>
 		                        <?php endif ?>
 							<?php endforeach; ?>
-						<?php endif ?>
+                            <ul class="rubric__pagination pagination">
+                                <?php
+                                $cur_lang = '';
+                                if( $l != 'kz' ){
+                                    $cur_lang = $l;
+                                }
+
+                                $paginator_query = $this->request->getQuery();
+                                unset($paginator_query['page']);
+
+                                $this->Paginator->options([
+                                    'url' => [
+                                         $cur_cat['alias'],
+                                        'lang' => $cur_lang,
+                                        '?' => $paginator_query,
+                                    ],
+                                ]);
+
+                                $this->Paginator->setTemplates([
+                                    'prevActive' => '<li class="prev"><a href="{{url}}">'. __('Назад') .'</a></li>',
+                                    'nextActive' => '<li class="next"><a href="{{url}}">'. __('Вперед') .'</a></li>',
+                                    'number' => '<li><a href="{{url}}">{{text}}</a></li>',
+                                    'current' => '<li class="active"><a>{{text}}</a></li>',
+                                ]);
+
+                                if( $this->Paginator->hasPrev() ){
+                                    echo $this->Paginator->prev('<');
+                                }
+
+                                echo $this->Paginator->numbers([
+                                    'first' => 1, 'last' => 1, 'modulus' => 2,
+                                ]);
+
+                                if( $this->Paginator->hasNext() ){
+                                    echo $this->Paginator->next('>');
+                                }
+                                ?>
+                            </ul>
+                        <?php else: ?>
+                            <p><?= __('К сожалению по вашему запросу ничего не найдено') ?> ...</p>
+                        <?php endif; ?>
                     </div>
                     <!-- <div class="loader">
                         <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
