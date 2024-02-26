@@ -3,7 +3,7 @@
         'name' => 'cakephp/app',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'd67bb51f3709655d13794c22733240dffded1cce',
+        'reference' => 'f38f7f37c9fab463ae1aec93eb663d9db906f130',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'cakephp/app' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'd67bb51f3709655d13794c22733240dffded1cce',
+            'reference' => 'f38f7f37c9fab463ae1aec93eb663d9db906f130',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -270,6 +270,15 @@
             'install_path' => __DIR__ . '/../doctrine/instantiator',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'facebook/graph-sdk' => array(
+            'pretty_version' => '5.7.0',
+            'version' => '5.7.0.0',
+            'reference' => '2d8250638b33d73e7a87add65f47fabf91f8ad9b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../facebook/graph-sdk',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'jasny/twig-extensions' => array(
             'pretty_version' => 'v1.3.0',
