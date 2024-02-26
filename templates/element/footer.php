@@ -117,7 +117,7 @@
                             <img src="/img/TG-icon.svg" alt="" class="icon-svg">
                         </a>
                     </div>
-                    <a href="mailto:<?= $comps[6]['body'] ?>" class="footer__mail"><?= $comps[6]['body'] ?></a>
+<!--                    <a href="mailto:--><?php //= $comps[6]['body'] ?><!--" class="footer__mail">--><?php //= $comps[6]['body'] ?><!--</a>-->
                     <a href="https://wa.me/<?=$comps[26]['body']?>" target="_blank" class="footer__feedback"><?= __('Напишите нам') ?></a>
                 </div>
             </div>

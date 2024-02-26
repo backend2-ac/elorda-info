@@ -88,7 +88,7 @@ class ArticlesController extends AppController
         if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
             $cur_page = $_GET['page'];
         }
-        $per_page = 6; // 9
+        $per_page = 10; // 9
         $offset = ($cur_page * $per_page) - $per_page;
         $pag_settings = [
             'limit' => $per_page,
@@ -297,7 +297,7 @@ class ArticlesController extends AppController
         if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
             $cur_page = $_GET['page'];
         }
-        $per_page = 5;
+        $per_page = 10;
         $offset = ($cur_page * $per_page) - $per_page;
         $pag_settings = [
             'limit' => $per_page,
@@ -356,7 +356,7 @@ class ArticlesController extends AppController
         if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
             $cur_page = $_GET['page'];
         }
-        $per_page = 9; // 9
+        $per_page = 10; // 9
         $offset = ($cur_page * $per_page) - $per_page;
         $pag_settings = [
             'limit' => $per_page,
