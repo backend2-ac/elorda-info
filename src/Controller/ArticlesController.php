@@ -98,7 +98,7 @@ class ArticlesController extends AppController
 //        if (!$data) {
         $data = $this->Articles->find('all')
             ->where($conditions)
-            ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'date', 'img', 'img_path', 'views'])
+            ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path', 'views'])
             ->order(['Articles.date' => 'DESC'])
             ->limit($per_page)->offset($offset)
             ->toList();
@@ -108,7 +108,7 @@ class ArticlesController extends AppController
         $popular_news = Cache::read($category_alias . '_popular_news', 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'short_desc',  'img', 'img_path', 'alias', 'views', 'date'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date'])
                 ->where($conditions)
                 ->orderDesc('views')
                 ->limit(6)
@@ -119,7 +119,7 @@ class ArticlesController extends AppController
         $last_news = Cache::read($category_alias . '_last_news', 'long');
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date'])
                 ->where($conditions)
                 ->orderDesc('Articles.date')
                 ->limit(6)
@@ -130,7 +130,7 @@ class ArticlesController extends AppController
         $this->set('pagination', $this->paginate(
             $this->Articles->find('all')
                 ->where($conditions)
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'date', 'alias', 'short_desc', 'views'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'date', 'alias', 'body', 'views'])
                 ->order(['Articles.date' => 'DESC'])
                 ->limit($per_page),
             $pag_settings
@@ -206,7 +206,7 @@ class ArticlesController extends AppController
         $last_news = Cache::read($category_alias . '_last_news', 'long');
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'short_desc'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date'])
                 ->where($conditions)
                 ->orderDesc('Articles.date')
                 ->limit(6)
@@ -380,7 +380,7 @@ class ArticlesController extends AppController
                 ->group(['Articles.id'])
                 ->where($conditions)
                 ->andWhere(['Articles.locale' => $locale])
-                ->select(['id', 'category_id', 'title', 'alias', 'short_desc', 'date', 'img', 'img_path', 'views'])
+                ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path', 'views'])
                 ->orderDesc('Articles.date')
                 ->limit($per_page)->offset($offset)
                 ->toList();
