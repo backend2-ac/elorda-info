@@ -67,10 +67,10 @@
 		                                    </div>
 		                                    <div class="capital__main-header block-elems">
 		                                        <div class="capital__main-date date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
-		                                        <div class="capital__main-watch watch">
-		                                            <img src="/img/watch.png" alt="" class="svg-icon">
-		                                            <?= number_format($item['views'], 0, '', ' ') ?>
-		                                        </div>
+<!--		                                        <div class="capital__main-watch watch">-->
+<!--		                                            <img src="/img/watch.png" alt="" class="svg-icon">-->
+<!--		                                            --><?php //= number_format($item['views'], 0, '', ' ') ?>
+<!--		                                        </div>-->
 		                                    </div>
 		                                    <div class="capital__main-title"><?= $item['title'] ?></div>
 		                                    <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="capital__main-link">
@@ -91,10 +91,10 @@
 		                                            <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                                        </div>
 		                                        <div class="article__item-title"><?= $item['title'] ?></div>
-		                                        <div class="article__item-watch">
-		                                            <img src="/img/watch-gray.png" alt="">
-		                                             <?= number_format($item['views'], 0, '', ' ') ?>
-		                                        </div>
+<!--		                                        <div class="article__item-watch">-->
+<!--		                                            <img src="/img/watch-gray.png" alt="">-->
+<!--		                                             --><?php //= number_format($item['views'], 0, '', ' ') ?>
+<!--		                                        </div>-->
 		                                    </a>
 
 										<?php endif ?>
@@ -125,10 +125,10 @@
 		                                            </div>
 		                                            <div class="socium__main-header block-elems">
 		                                                <div class="socium__main-date date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
-		                                                <div class="socium__main-watch watch">
-		                                                    <img src="/img/watch.png" alt="" class="svg-icon">
-		                                                    <?= number_format($item['views'], 0, '', ' ') ?>
-		                                                </div>
+<!--		                                                <div class="socium__main-watch watch">-->
+<!--		                                                    <img src="/img/watch.png" alt="" class="svg-icon">-->
+<!--		                                                    --><?php //= number_format($item['views'], 0, '', ' ') ?>
+<!--		                                                </div>-->
 		                                            </div>
 		                                            <div class="socium__main-title"><?= $item['title'] ?></div>
 		                                            <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__main-link">
@@ -152,10 +152,10 @@
 		                                                    <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                                                </div>
 		                                                <div class="article__item-title"><?= $item['title'] ?></div>
-		                                                <div class="article__item-watch">
-		                                                    <img src="/img/watch-gray.png" alt="">
-		                                                    <?= number_format($item['views'], 0, '', ' ') ?>
-		                                                </div>
+<!--		                                                <div class="article__item-watch">-->
+<!--		                                                    <img src="/img/watch-gray.png" alt="">-->
+<!--		                                                    --><?php //= number_format($item['views'], 0, '', ' ') ?>
+<!--		                                                </div>-->
 		                                            </a>
 												<?php endif ?>
 											<?php endforeach; ?>
@@ -170,10 +170,10 @@
 		                                            <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__item">
 		                                                <div class="socium__item-header">
 		                                                    <div class="date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?></div>
-		                                                    <div class="watch">
-		                                                        <img src="/img/watch-gray.png" alt="">
-		                                                        <?= number_format($item['views'], 0, '', ' ') ?>
-		                                                    </div>
+<!--		                                                    <div class="watch">-->
+<!--		                                                        <img src="/img/watch-gray.png" alt="">-->
+<!--		                                                        --><?php //= number_format($item['views'], 0, '', ' ') ?>
+<!--		                                                    </div>-->
 		                                                </div>
 		                                                <div class="socium__item-title"><?= $item['title'] ?></div>
 		                                            </a>
@@ -213,10 +213,10 @@
                                                 $short_desc = substr($short_desc, 0, strrpos($short_desc, ' '));
                                                 ?>
 	                                            <div class="politic__item-text"><?= $short_desc ?></div>
-	                                            <div class="politic__item-watch">
-	                                                <img src="/img/watch-gray.png" alt="">
-	                                                <?= number_format($item['views'], 0, '', ' ') ?>
-	                                            </div>
+<!--	                                            <div class="politic__item-watch">-->
+<!--	                                                <img src="/img/watch-gray.png" alt="">-->
+<!--	                                                --><?php //= number_format($item['views'], 0, '', ' ') ?>
+<!--	                                            </div>-->
 	                                        </div>
 	                                    </a>
 									<?php endforeach; ?>
@@ -244,10 +244,10 @@
 			                                            <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 			                                        </div>
 			                                        <div class="culture__main-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
-			                                        <div class="culture__main-watch">
-			                                            <img src="/img/watch.png" alt="">
-			                                            356
-			                                        </div>
+<!--			                                        <div class="culture__main-watch">-->
+<!--			                                            <img src="/img/watch.png" alt="">-->
+<!--			                                            356-->
+<!--			                                        </div>-->
 			                                        <div class="culture__main-title"><?= $item['title'] ?></div>
 			                                        <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__main-link">
 			                                            <?= __('Читать далее') ?>
@@ -271,10 +271,10 @@
 		                                                    <div class="date">
 		                                                        <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
 		                                                    </div>
-		                                                    <div class="watch">
-		                                                        <img src="/img/watch-gray.png" alt="">
-		                                                        <?= number_format($item['views'], 0, '', ' ') ?>
-		                                                    </div>
+<!--		                                                    <div class="watch">-->
+<!--		                                                        <img src="/img/watch-gray.png" alt="">-->
+<!--		                                                        --><?php //= number_format($item['views'], 0, '', ' ') ?>
+<!--		                                                    </div>-->
 		                                                </div>
 		                                                <div class="culture__item-title"><?= $item['title'] ?></div>
 		                                            </div>
@@ -306,10 +306,10 @@
 	                                            <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 	                                        </div>
 	                                        <div class="article__item-title"><?= $item['title'] ?></div>
-	                                        <div class="article__item-watch">
-	                                            <img src="/img/watch-gray.png" alt="">
-	                                             <?= number_format($item['views'], 0, '', ' ') ?>
-	                                        </div>
+<!--	                                        <div class="article__item-watch">-->
+<!--	                                            <img src="/img/watch-gray.png" alt="">-->
+<!--	                                             --><?php //= number_format($item['views'], 0, '', ' ') ?>
+<!--	                                        </div>-->
 	                                    </a>
 									<?php endforeach; ?>
                                 </div>

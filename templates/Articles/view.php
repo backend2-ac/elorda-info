@@ -166,10 +166,10 @@
 		                                                <div class="article__item-date"> <?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                                            </div>
 		                                            <div class="article__item-title"><?= $item['title'] ?></div>
-		                                            <div class="article__item-watch">
-		                                                <img src="/img/watch-gray.png" alt="">
-		                                                 <?= number_format($item['views'], 0, '', ' ') ?>
-		                                            </div>
+<!--		                                            <div class="article__item-watch">-->
+<!--		                                                <img src="/img/watch-gray.png" alt="">-->
+<!--		                                                 --><?php //= number_format($item['views'], 0, '', ' ') ?>
+<!--		                                            </div>-->
 		                                        </a>
 	                           				<?php endforeach; ?>
 										<?php endif ?>

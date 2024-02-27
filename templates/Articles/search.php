@@ -76,10 +76,10 @@
                                         $short_desc = substr($short_desc, 0, strrpos($short_desc, ' '));
                                         ?>
                                         <div class="news__item-text"><?= $short_desc ?></div>
-	                                    <div class="news__item-watch">
-	                                        <img src="/img/watch-gray.png" alt="">
-	                                        <?= number_format($item['views'], 0, '', ' ') ?>
-	                                    </div>
+<!--	                                    <div class="news__item-watch">-->
+<!--	                                        <img src="/img/watch-gray.png" alt="">-->
+<!--	                                        --><?php //= number_format($item['views'], 0, '', ' ') ?>
+<!--	                                    </div>-->
 	                                </div>
 	                            </div>
 							<?php endforeach; ?>
