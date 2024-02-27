@@ -11,6 +11,24 @@
 </section>
 
 <section class="content">
+    <form class="form_cols" action="/admin/tags?test=test" method="GET" onsubmit="submitForm();">
+
+        <div class="form-group col_2">
+            <label for="inputTitle">Название тега</label>
+            <?= $this->Form->text('tag_title', array('id' => 'inputTagTitle', 'class' => 'form-control', 'value' => $tag_title)); ?>
+        </div>
+
+        <div class="form-group col_2">
+            <label for="inputaLocale">Язык</label>
+            <?= $this->Form->select('locale', ['kk' => 'қаз', 'ru' => 'рус'], array('id' => 'inputLocale', 'class' => 'form-control', 'empty' => 'Выбрать')); ?>
+        </div>
+
+        <div class="submit_row form-group">
+            <?php echo $this->Form->button('Поиск', array('class' => 'btn btn-success')); ?>
+            <a href="/admin/tags?test=test" class="btn btn-danger">Сбросить</a>
+        </div>
+
+    </form>
   <div class="card">
     <div class="card-header">
       <h3 class="card-title">Теги</h3>
@@ -25,7 +43,7 @@
             <tr>
                 <th style="width: 1%">ID</th>
                 <th style="width: 8%">Название</th>
-                <th style="width: 8%">Ссылка</th>
+                <th style="width: 8%">Alias</th>
                 <th style="width: 8%">Язык</th>
                 <th style="width: 5%">Приоритет</th>
                 <th style="width: 5%; text-align: right;">Редактирование</th>

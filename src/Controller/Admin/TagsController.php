@@ -23,6 +23,17 @@ class TagsController extends AppController{
 
     public function index(){
         $model = 'Tags';
+        $tag_title = '';
+        $conditions = [];
+        if (isset($_GET['tag_title']) && $_GET['tag_title']) {
+            $tag_title = $_GET['tag_title'];
+            $conditions[] = [$model . '.title LIKE' => '%'. $tag_title .'%'];
+        }
+
+        if (isset($_GET['locale']) && $_GET['locale']) {
+            $locale = $_GET['locale'];
+            $conditions[] = [$model . '.locale' => $locale];
+        }
 
         $cur_page = 1;
         if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
@@ -38,6 +49,7 @@ class TagsController extends AppController{
                 'valueField' => 'id'
             ])
             ->select(['id', 'item_order'])
+            ->where($conditions)
             ->order(['locale', 'title'])
             ->orderDesc($model.'.item_order')
             ->limit($per_page)->offset($offset)
@@ -49,7 +61,7 @@ class TagsController extends AppController{
             ->orderDesc('item_order')
             ->toList();
 
-        $this->set( compact('data') );
+        $this->set( compact('data', 'tag_title') );
 
         $this->set('pagination', $this->paginate(
             $this->$model->find('all')

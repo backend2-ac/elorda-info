@@ -38,7 +38,7 @@ $cur_user_role = $cur_user['role'];
 						<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required')); ?>
 					</div>
                     <div class="form-group">
-                        <label for="inputAlias">Ссылка</label>
+                        <label for="inputAlias">Alias (с латинскими буквами *)</label>
                         <?= $this->Form->text('alias', array('id' => 'inputAlias', 'class' => 'form-control', 'required')); ?>
                     </div>
                     <div class="form-group col_2">
