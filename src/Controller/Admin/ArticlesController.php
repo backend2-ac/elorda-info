@@ -41,13 +41,13 @@ class ArticlesController extends AppController{
         }
         if( isset($_GET['title']) && $_GET['title'] ){
             $title = trim($_GET['title']);
-            $conditions[] = [$this->$model->get('title') . ' LIKE' => '%'. $title .'%'];
+            $conditions[] = [$model . '.title LIKE' => '%'. $title .'%'];
         }
         if( isset($_GET['author_id']) && $_GET['author_id'] ){
             $author_id = $_GET['author_id'];
             $conditions[] = [$model.'.author_id' => $author_id];
         }
-        if (isset($_GET['category_id']) && $_GET['category_id']) {
+        if (isset($_GET['category_id']) && $_GET['category_id']) {;
             $category_id = $_GET['category_id'];
             $conditions[] = [$model.'.category_id' => $category_id];
         }
