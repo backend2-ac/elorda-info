@@ -308,6 +308,9 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
     $builder->connect('/showbiz', ['controller' => 'Articles', 'action' => 'index', 'showbiz']);
     $builder->connect('/showbiz/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/densaulyk', ['controller' => 'Articles', 'action' => 'index', 'densaulyk']);
+    $builder->connect('/densaulyk/*', ['controller' => 'Articles', 'action' => 'view']);
 //    $builder->connect('/:slug', ['controller' => 'Articles', 'action' => 'index'])
 //        ->setPass(['slug']);
 //
