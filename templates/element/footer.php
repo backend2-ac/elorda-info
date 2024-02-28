@@ -104,16 +104,16 @@
                 <?php endif; ?>
                 <div class="footer__items">
                     <div class="footer__socials">
-                        <a href="#" target="_blank">
+                        <a href="<?= $comps[14]['body'] ?>" target="_blank">
                             <img src="/img/TT-icon.svg" alt="" class="icon-svg">
                         </a>
-                        <a href="#" target="_blank">
+                        <a href="<?= $comps[7]['body'] ?>" target="_blank">
                             <img src="/img/F-icon.svg" alt="" class="icon-svg">
                         </a>
-                        <a href="#" target="_blank">
+                        <a href="<?= $comps[8]['body'] ?>" target="_blank">
                             <img src="/img/INST-icon.svg" alt="" class="icon-svg">
                         </a>
-                        <a href="#" target="_blank">
+                        <a href="<?= $comps[32]['body'] ?>" target="_blank">
                             <img src="/img/TG-icon.svg" alt="" class="icon-svg">
                         </a>
                     </div>

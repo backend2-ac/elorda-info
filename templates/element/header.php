@@ -100,20 +100,20 @@
                             </span>
                         </div>
                     </div>
-<!--                    <div class="header__socials">-->
-<!--                        <a href="--><?php //= $comps[14]['body'] ?><!--" target="_blank" class="header__socials-item">-->
-<!--                            <img src="/img/TT-icon.svg" class="icon-svg" alt="">-->
-<!--                        </a>-->
-<!--                        <a href="--><?php //= $comps[7]['body'] ?><!--" target="_blank" class="header__socials-item">-->
-<!--                            <img src="/img/F-icon.svg" class="icon-svg" alt="">-->
-<!--                        </a>-->
-<!--                        <a href="--><?php //= $comps[8]['body'] ?><!--" target="_blank" class="header__socials-item">-->
-<!--                            <img src="/img/INST-icon.svg" class="icon-svg" alt="">-->
-<!--                        </a>-->
-<!--                        <a href="--><?php //= $comps[32]['body'] ?><!--" target="_blank" class="header__socials-item">-->
-<!--                            <img src="/img/TG-icon.svg" class="icon-svg" alt="">-->
-<!--                        </a>-->
-<!--                    </div>-->
+                    <div class="header__socials">
+                        <a href="<?= $comps[14]['body'] ?>" target="_blank" class="header__socials-item">
+                            <img src="/img/TT-icon.svg" class="icon-svg" alt="">
+                        </a>
+                        <a href="<?= $comps[7]['body'] ?>" target="_blank" class="header__socials-item">
+                            <img src="/img/F-icon.svg" class="icon-svg" alt="">
+                        </a>
+                        <a href="<?= $comps[8]['body'] ?>" target="_blank" class="header__socials-item">
+                            <img src="/img/INST-icon.svg" class="icon-svg" alt="">
+                        </a>
+                        <a href="<?= $comps[32]['body'] ?>" target="_blank" class="header__socials-item">
+                            <img src="/img/TG-icon.svg" class="icon-svg" alt="">
+                        </a>
+                    </div>
                     <div class="header__currency">
                         <div class="header__currency-item">
                             <div class="header__currency-icon">
