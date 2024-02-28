@@ -21,7 +21,6 @@
                             	<div class="swiper-wrapper">
                             		<?php if( $data ): ?>
 										<?php foreach( $data as $index => $item ): ?>
-                                            <?=$index?>
 											<?php if($index < 2 ): ?>
 											 <div class="swiper-slide">
 	                                            <div class="hero__swiper-slide">
