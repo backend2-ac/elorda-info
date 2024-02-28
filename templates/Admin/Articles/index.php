@@ -89,9 +89,10 @@ $cur_user_role = $this->request->getSession()->read('Auth.User.role')
               <td>
                 <?= $categories[$item['category_id']] ?>
               </td>
-        			<td>
-                <img src="/img/articles/thumbs/<?= $item['img'] ?>" alt="" width="150">
-              </td>
+                <td>
+
+                    <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $data['img']) ? '/img/articles/thumbs/' . $data['img'] : '/img/articles' . $data['img_path'] ?>" alt="" width="150">
+                </td>
               <td>
         				<?= $this->Time->format($item['date'], 'dd.MM.yyyy HH:mm') ?>
         			</td>

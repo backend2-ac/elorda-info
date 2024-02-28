@@ -55,9 +55,16 @@ $cur_user_role = $cur_user['role'];
 						<?= $this->Form->textarea('body', array('id' => 'inputBody', 'class' => 'form-control')); ?>
 					</div>
 
-
+                    <?php
+                    $img_path = '/img/articles/thumbs/';
+                    $img_name = $data['img'];
+                    if (!file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $data['img'])) {
+                        $img_path = '/img/articles';
+                        $img_name = $data['img_path'];
+                    }
+                    ?>
                     <?= $this->element('admin/img_input', [
-                        'custom_input_params' => ['title' => 'Картинка', 'field' => 'img', 'path' => '/img/articles/thumbs/', 'file_name' => $data['img']],
+                        'custom_input_params' => ['title' => 'Картинка', 'field' => 'img', 'path' => $img_path, 'file_name' => $img_name],
                         ]);
                     ?>
 
