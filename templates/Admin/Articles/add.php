@@ -87,27 +87,27 @@ $cur_user_role = $cur_user['role'];
                         </div>
                     </div>
 
-                    <div class="form-group col_4">
-                        <label>Дата end публикации</label>
-                        <div class="input-group date col-3" id="articles_publish_end_at" data-target-input="nearest">
-                            <?= $this->Form->text('publish_end_at', array('class' => 'form-control datetimepicker-input', 'data-target' => '#articles_publish_end_at')); ?>
-                            <div class="input-group-append" data-target="#articles_publish_end_at" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="form-group col_4">-->
+<!--                        <label>Дата end публикации</label>-->
+<!--                        <div class="input-group date col-3" id="articles_publish_end_at" data-target-input="nearest">-->
+<!--                            --><?php //= $this->Form->text('publish_end_at', array('class' => 'form-control datetimepicker-input', 'data-target' => '#articles_publish_end_at')); ?>
+<!--                            <div class="input-group-append" data-target="#articles_publish_end_at" data-toggle="datetimepicker">-->
+<!--                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
 					<div class="form-group col_4">
 						<label for="views">Просмотры</label>
 						<?= $this->Form->number('views', array('id' => 'views', 'class' => 'form-control', 'value' => 0)); ?>
 					</div>
 
-					<div class="form-group">
-						<div class="custom-control custom-switch">
-							<?= $this->Form->input('on_main', array('class' => 'custom-control-input', 'id' => 'on_main', 'type' => 'checkbox'));  ?>
-							<label class="custom-control-label" for="on_main">закрепить на Главной</label>
-						</div>
-					</div>
+<!--					<div class="form-group">-->
+<!--						<div class="custom-control custom-switch">-->
+<!--							--><?php //= $this->Form->input('on_main', array('class' => 'custom-control-input', 'id' => 'on_main', 'type' => 'checkbox'));  ?>
+<!--							<label class="custom-control-label" for="on_main">закрепить на Главной</label>-->
+<!--						</div>-->
+<!--					</div>-->
                     <div class="form-group">
                         <label for="inputImgText">Теги</label>
                         <select class="js-tags-multiple" name="articles_tags[]" multiple="multiple">
