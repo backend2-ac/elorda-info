@@ -15,7 +15,7 @@
     <div class="card-header">
       <h3 class="card-title">Категории</h3>
       <div class="card-tools">
-         <a href="/admin/categories/add" class="btn btn-success">Добавить новый материал</a>
+<!--         <a href="/admin/categories/add" class="btn btn-success">Добавить новый материал</a>-->
       </div>
     </div>
     <div class="card-body p-0">
