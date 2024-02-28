@@ -58,7 +58,7 @@ $cur_user_role = $cur_user['role'];
                     <?php
                     $img_path = '/img/articles/thumbs/';
                     $img_name = $data['img'];
-                    if (!file_exists('/img/articles/' . $data['img'])) {
+                    if (!file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $data['img'])) {
                         $img_path = '/img/articles';
                         $img_name = $data['img_path'];
                     }
