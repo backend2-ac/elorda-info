@@ -16,7 +16,7 @@
                         <form action="/<?= $lang ?>search" method="GET">
                             <div class="search__form">
                                 <label for="search" class="search__form-input">
-                                    <input type="text" placeholder="Запрос"  name="q" id="search" value="<?= $search_text ?>" required>
+                                    <input type="text" placeholder="<?= __('Запрос') ?>"  name="q" id="search" value="<?= $search_text ?>" required>
                                     <button type="submit">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="10.9985" cy="10.7888" r="8.03854" stroke="#1D489C" stroke-width="2" stroke-linecap="square"/>
