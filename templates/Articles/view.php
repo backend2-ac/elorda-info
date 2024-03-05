@@ -17,9 +17,6 @@
                                         	<?= $full_categories[$data['category_id']]['title'] ?>
                                     	</a>
                                     </li>
-                                    <li>
-                                        <a href="#"><?=$data['title'];?></a>
-                                    </li>
                                 </ul>
                                 <h1 class="inner__title title"><?=$data['title'];?></h1>
                                 <div class="inner__header">
