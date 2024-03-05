@@ -229,7 +229,7 @@ class ArticlesController extends AppController
         if( !$meta['title'] ){
             $meta['title'] = $data['title'];
         }
-        $meta['desc'] = strip($data['meta_description']);
+        $meta['desc'] = strip_tags($data['meta_description']);
         $meta['keys'] = $data['meta_keywords'];
 
         $this->set( compact('data', 'meta', 'other_news', 'category_alias', 'article_alias', 'author_articles','popular_news','last_news') );
