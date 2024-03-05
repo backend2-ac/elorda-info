@@ -142,7 +142,7 @@ class ArticlesController extends AppController
         if( $cur_cat ){
             $meta['title'] = $cur_cat['meta_title'];
             $meta['keys'] = $cur_cat['meta_keywords'];
-            $meta['desc'] = $cur_cat['meta_description'];
+            $meta['desc'] = strip_tags($cur_cat['meta_description']);
             if( !$meta['title'] ){
                 $meta['title'] = $cur_cat['title'];
 
@@ -229,7 +229,7 @@ class ArticlesController extends AppController
         if( !$meta['title'] ){
             $meta['title'] = $data['title'];
         }
-        $meta['desc'] = $data['meta_description'];
+        $meta['desc'] = strip($data['meta_description']);
         $meta['keys'] = $data['meta_keywords'];
 
         $this->set( compact('data', 'meta', 'other_news', 'category_alias', 'article_alias', 'author_articles','popular_news','last_news') );
@@ -259,6 +259,76 @@ class ArticlesController extends AppController
     $this->set(compact('data'));
     $this->viewBuilder()->setOption('serialize', ['data']);
     }
+//    public function loadingview($id){
+//
+//        $this->layout = 'ajax';
+//
+//        $this->Article->locale = Configure::read('Config.language');
+//        $limit = 1;
+//        $page = intval(@$id);
+//        $page = (empty($page)) ? 1 : $page;
+//        $start = ($page != 1) ? $page * $limit - $limit : 0;
+//        $datas = $this->Article->find('all', array(
+//            'conditions' => array(array('Article.id !=' => $_GET['id']), array('Article.category_id' => $_GET['category'])),
+//            'order' => array('Article.date' => 'DESC'),
+//            'limit' => $start, $limit,
+//        ));
+//        foreach ($datas as $data) {
+//
+//            if (!$data) {
+//                throw new NotFoundException("Такой страницы нету");
+//            }
+//            $this->Article->query("UPDATE `articles` SET `views` = `views` + 1 WHERE `id`='" . $data['Article']['id'] . "'");
+//
+//            $title_for_layout = ($data['Article']['meta_title']) ? $data['Article']['meta_title'] : $data['Article']['title'];
+//            $meta['keywords'] = $data['Article']['keywords'];
+//            if ($data['Article']['description']) {
+//                $meta['description'] = $data['Article']['description'];
+//            } else {
+//                $meta['description'] = mb_substr(strip_tags($data['Article']['body']), 0, 100) . "...";
+//            }
+//
+//            $l = Configure::read('Config.language');
+//
+//            $comment = $this->Comment->find('all', array(
+//                'conditions' => array('Comment.material_id' => $data['Article']['id']),
+//                'order' => array('Comment.created' => 'DESC')
+//            ));
+//
+//            $countComment = count($comment);
+//            $comments_tree = $this->Comment->find('threaded', array(
+//                'conditions' => array('Comment.material_id' => $data['Article']['id']),
+//                'order' => array('Comment.created' => 'DESC')
+//            ));
+//
+//            $comments = $this->_commentsHtml($comments_tree,$data);
+//
+//            $question = '';
+//            $answers = '';
+//            $tags = '';
+//
+//            if( $data['Article']['articles_question_id'] != null && $data['Article']['articles_question_id'] != 0 ){
+//                $question = $this->ArticlesQuestion->findById($data['Article']['articles_question_id']);
+//                $answers = $this->ArticlesAnswer->find('all', array(
+//                    'conditions' => array(
+//                        'ArticlesAnswer.articles_question_id' => $data['Article']['articles_question_id'],
+//                    )
+//                ));
+//            }
+//
+//            if( $data['Article']['tags'] ){
+//                $tags = explode(', ', $data['Article']['tags']);
+//            }
+//
+//
+//            $lview = 'loadview';
+//            $title = '$(document).ready(function() {
+//						document.title = "'.$title_for_layout.'";
+//					});';
+//
+//            $this->set(compact('data', 'title_for_layout', 'meta', 'lview', 'title', 'comment', 'countComment', 'comments', 'question', 'answers', 'tags'));
+//        }
+//    }
 
     public function writer($author_alias) {
          $author_artilces = [];
