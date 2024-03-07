@@ -11,28 +11,6 @@
                 </div>
                 <?php if ($l == 'kz'): ?>
                     <div class="footer__list">
-                        <div class="footer__list-title">рубрикалар</div>
-                        <ul>
-                            <li>
-                                <a href="/<?= $lang ?>sport">Спорт</a>
-                            </li>
-                            <li>
-                                <a href="/<?= $lang ?>aleumet">Әлеумет</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__list">
-                        <div class="footer__list-title">рубрикалар</div>
-                        <ul>
-                            <li>
-                                <a href="/<?= $lang ?>densaulyk">Денсаулық</a>
-                            </li>
-                            <li>
-                                <a href="/<?= $lang ?>sayasat">Саясат</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__list">
                         <div class="footer__list-title">Жоба жайлы</div>
                         <ul>
                             <li>
@@ -50,40 +28,6 @@
                         </ul>
                     </div>
                 <?php else: ?>
-                    <div class="footer__list">
-                        <div class="footer__list-title">рубрики</div>
-                        <ul>
-<!--                            <li>-->
-<!--                                <a 	href="/--><?php //= $lang ?><!--novosti-dna">Новости дня</a>-->
-<!--                            </li>-->
-                            <li>
-                                <a href="/<?= $lang ?>sport-ru">Спорт</a>
-                            </li>
-<!--                            <li>-->
-<!--                                <a href="/--><?php //= $lang ?><!--travel">Travel</a>-->
-<!--                            </li>-->
-                            <li>
-                                <a href="/<?= $lang ?>sotsium-ru">Социум</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__list">
-                        <div class="footer__list-title">рубрики</div>
-                        <ul>
-<!--                            <li>-->
-<!--                                <a href="/--><?php //= $lang ?><!--nauka-tehnologii">Наука/технологии</a>-->
-<!--                            </li>-->
-<!--                            <li>-->
-<!--                                <a href="/--><?php //= $lang ?><!--showbiz">Шоу-бизнес</a>-->
-<!--                            </li>-->
-<!--                            <li>-->
-<!--                                <a href="/--><?php //= $lang ?><!--zdorove">Здоровье</a>-->
-<!--                            </li>-->
-                            <li>
-                                <a href="/<?= $lang ?>politika-ru">Политика</a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="footer__list">
                         <div class="footer__list-title">О проекте</div>
                         <ul>
