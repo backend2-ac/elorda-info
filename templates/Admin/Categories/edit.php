@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$ru = false;
 	if( isset($_GET['lang']) && $_GET['lang'] == 'ru' ){
 		$ru = true;
@@ -40,12 +40,11 @@
 						<label for="inputTitle">Название</label>
 						<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required')); ?>
 					</div>
-					<?php if( $ru ): ?>
-						<!-- <div class="form-group">
-							<label for="inputAlias">URL</label>
-							<?= $this->Form->text('alias', array('id' => 'inputAlias', 'class' => 'form-control')); ?>
-						</div> -->
-					<?php endif; ?>
+
+                    <div class="form-group">
+                        <label for="inputAlias">Alias</label>
+                        <?= $this->Form->text('alias', array('id' => 'inputAlias', 'class' => 'form-control', 'disabled')); ?>
+                    </div>
 
 					<div class="submit_row form-group">
 						<?php echo $this->Form->button('Сохранить', array('class' => 'btn btn-success')); ?>
@@ -77,7 +76,7 @@
 	                    <label for="seoDescription">Описание</label>
 	                    <?php echo $this->Form->textarea('meta_description', array('class' => 'form-control', 'id' => 'seoDescription')); ?>
 	                </div>
-		            
+
 		            <div class="submit_row">
 						<?php echo $this->Form->button('Добавить', array('class' => 'btn btn-success')); ?>
 				    </div>

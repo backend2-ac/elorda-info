@@ -211,6 +211,71 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
+    $builder->connect('/zdoroviye', ['controller' => 'Articles', 'action' => 'index', 'zdoroviye']);
+    $builder->connect('/zdoroviye/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/show-biznes-ru', ['controller' => 'Articles', 'action' => 'index', 'show-biznes-ru']);
+    $builder->connect('/show-biznes-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/sobytiye', ['controller' => 'Articles', 'action' => 'index', 'sobytiye']);
+    $builder->connect('/sobytiye/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/mir', ['controller' => 'Articles', 'action' => 'index', 'mir']);
+    $builder->connect('/mir/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/obrazovaniye', ['controller' => 'Articles', 'action' => 'index', 'obrazovaniye']);
+    $builder->connect('/obrazovaniye/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/lichnost', ['controller' => 'Articles', 'action' => 'index', 'lichnost']);
+    $builder->connect('/lichnost/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/interview-ru', ['controller' => 'Articles', 'action' => 'index', 'interview-ru']);
+    $builder->connect('/interview-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/obchestvo', ['controller' => 'Articles', 'action' => 'index', 'obchestvo']);
+    $builder->connect('/obchestvo/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/pravitelstvo', ['controller' => 'Articles', 'action' => 'index', 'pravitelstvo']);
+    $builder->connect('/pravitelstvo/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/prezident-ru', ['controller' => 'Articles', 'action' => 'index', 'prezident-ru']);
+    $builder->connect('/prezident-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/akorda-ru', ['controller' => 'Articles', 'action' => 'index', 'akorda-ru']);
+    $builder->connect('/akorda-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/zasedaniye', ['controller' => 'Articles', 'action' => 'index', 'zasedaniye']);
+    $builder->connect('/zasedaniye/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/senat-ru', ['controller' => 'Articles', 'action' => 'index', 'senat-ru']);
+    $builder->connect('/senat-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
     $builder->connect('/news', ['controller' => 'Articles', 'action' => 'index', 'news'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
@@ -311,6 +376,49 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
     $builder->connect('/densaulyk', ['controller' => 'Articles', 'action' => 'index', 'densaulyk']);
     $builder->connect('/densaulyk/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/alem', ['controller' => 'Articles', 'action' => 'index', 'alem']);
+    $builder->connect('/alem/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/parlament', ['controller' => 'Articles', 'action' => 'index', 'parlament']);
+    $builder->connect('/parlament/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/senat', ['controller' => 'Articles', 'action' => 'index', 'senat']);
+    $builder->connect('/senat/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/mazhilis', ['controller' => 'Articles', 'action' => 'index', 'mazhilis']);
+    $builder->connect('/mazhilis/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/akorda', ['controller' => 'Articles', 'action' => 'index', 'akorda']);
+    $builder->connect('/akorda/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/prezident', ['controller' => 'Articles', 'action' => 'index', 'prezident']);
+    $builder->connect('/prezident/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/ukimet', ['controller' => 'Articles', 'action' => 'index', 'ukimet']);
+    $builder->connect('/ukimet/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/kogam', ['controller' => 'Articles', 'action' => 'index', 'kogam']);
+    $builder->connect('/kogam/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/sukhbat', ['controller' => 'Articles', 'action' => 'index', 'sukhbat']);
+    $builder->connect('/sukhbat/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/tulga', ['controller' => 'Articles', 'action' => 'index', 'tulga']);
+    $builder->connect('/tulga/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/adep-kodeksi', ['controller' => 'Articles', 'action' => 'index', 'adep-kodeksi']);
+    $builder->connect('/adep-kodeksi/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/sluzhba-komplaens-kz', ['controller' => 'Articles', 'action' => 'index', 'sluzhba-komplaens-kz']);
+    $builder->connect('/sluzhba-komplaens-kz/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/joldau', ['controller' => 'Articles', 'action' => 'index', 'joldau']);
+    $builder->connect('/joldau/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/video', ['controller' => 'Articles', 'action' => 'index', 'video']);
+    $builder->connect('/video/*', ['controller' => 'Articles', 'action' => 'view']);
+
 //    $builder->connect('/:slug', ['controller' => 'Articles', 'action' => 'index'])
 //        ->setPass(['slug']);
 //

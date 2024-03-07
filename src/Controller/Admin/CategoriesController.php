@@ -52,10 +52,15 @@ class CategoriesController extends AppController{
 
         if( $this->request->is('post') ){
             $data = $this->request->getData();
-
-            $data['alias'] = Text::slug($data['title']);
-            $data['alias'] = mb_strtolower($data['alias']);
-
+            $locale = 'kk';
+            if (isset($_GET['lang']) && $_GET['lang']) {
+                $locale = $_GET['lang'] == 'ru' ? 'ru' : 'kk';
+            }
+            if (!$data['alias']) {
+                $data['alias'] = Text::slug($data['title']);
+                $data['alias'] = mb_strtolower($data['alias']);
+            }
+            $data['locale'] = $locale;
             $created = $this->$model->find()
                 ->where(['alias' => $data['alias']])->first();
 

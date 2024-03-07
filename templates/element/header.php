@@ -174,26 +174,62 @@
                     <div class="header__menu-links">
                         <?php if ($l == 'kz'): ?>
                             <a href="/<?= $lang ?>elorda-janalyktary" class="header__menu-link">Елорда жаңалықтары</a>
-<!--                            <a href="/--><?php //= $lang ?><!--" class="header__menu-link">Новости дня</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--travel" class="header__menu-link">Travel</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--nauka-tehnologii" class="header__menu-link">Наука/технологии</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--biznes" class="header__menu-link">Бизнес</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--zdorove" class="header__menu-link">Здоровье</a>-->
-                            <a href="/<?= $lang ?>about" class="header__menu-link">Редакция туралы</a>
-                            <a href="/<?= $lang ?>contact" class="header__menu-link">Байланыс</a>
-                            <a href="/<?= $lang ?>cooperation" class="header__menu-link">Жарнама үшін</a>
-                            <a href="/<?= $lang ?>rules" class="header__menu-link">Сайт ережесі</a>
+                            <a href="/<?= $lang ?>sayasat" class="header__menu-link">Саясат</a>
+                            <a href="/<?= $lang ?>aleumet" class="header__menu-link">Әлеумет</a>
+                            <a href="/<?= $lang ?>ekonomika" class="header__menu-link">Экономика</a>
+                            <a href="/<?= $lang ?>sport" class="header__menu-link">Спорт</a>
+                            <a href="/<?= $lang ?>madeniet" class="header__menu-link">Мәдениет</a>
+                            <a href="/<?= $lang ?>ar-turli" class="header__menu-link">Әртүрлі</a>
+                            <a href="/<?= $lang ?>kozkaras" class="header__menu-link">Көзқарас</a>
+                            <a href="/<?= $lang ?>tagaiyndau" class="header__menu-link">Тағайындау</a>
+                            <a href="/<?= $lang ?>elorda-yzdikteri" class="header__menu-link">Елорда үздіктері</a>
+                            <a href="/<?= $lang ?>video" class="header__menu-link">Видео</a>
+                            <a href="/<?= $lang ?>densaulyk" class="header__menu-link">Денсаулық</a>
+                            <a href="/<?= $lang ?>showbiz" class="header__menu-link">Шоу-бизнес</a>
+                            <a href="/<?= $lang ?>okiga" class="header__menu-link">Оқиға</a>
+                            <a href="/<?= $lang ?>alem" class="header__menu-link">Әлем</a>
+                            <a href="/<?= $lang ?>joldau" class="header__menu-link">Жолдау</a>
+                            <a href="/<?= $lang ?>sluzhba-komplaens-kz" class="header__menu-link">Комплаенс қызметі</a>
+                            <a href="/<?= $lang ?>adep-kodeksi" class="header__menu-link">Әдеп кодексі</a>
+                            <a href="/<?= $lang ?>bilim" class="header__menu-link">Білім</a>
+                            <a href="/<?= $lang ?>tulga" class="header__menu-link">Тұлға</a>
+                            <a href="/<?= $lang ?>sukhbat" class="header__menu-link">Сұхбат</a>
+                            <a href="/<?= $lang ?>kogam" class="header__menu-link">Қоғам</a>
+                            <a href="/<?= $lang ?>ukimet" class="header__menu-link">Үкімет</a>
+                            <a href="/<?= $lang ?>prezident" class="header__menu-link">Президент</a>
+                            <a href="/<?= $lang ?>akorda" class="header__menu-link">Ақорда</a>
+                            <a href="/<?= $lang ?>mazhilis" class="header__menu-link">Мәжіліс</a>
+                            <a href="/<?= $lang ?>senat" class="header__menu-link">Сенат</a>
+                            <a href="/<?= $lang ?>parlament" class="header__menu-link">Парламент</a>
                         <?php else: ?>
                             <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__menu-link">Новости столицы</a>
-<!--                            <a href="#" class="header__menu-link">Новости дня</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--travel" class="header__menu-link">Travel</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--nauka-tehnologii" class="header__menu-link">Наука/технологии</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--biznes" class="header__menu-link">Бизнес</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--zdorove" class="header__menu-link">Здоровье</a>-->
-                            <a href="/<?= $lang ?>about" class="header__menu-link">О редакции</a>
-                            <a href="/<?= $lang ?>contact" class="header__menu-link">Контакты</a>
-                            <a href="/<?= $lang ?>cooperation" class="header__menu-link">Для рекламы</a>
-                            <a href="/<?= $lang ?>rules" class="header__menu-link">Правила сайта</a>
+                            <a href="/<?= $lang ?>politika-ru" class="header__menu-link">Политика</a>
+                            <a href="/<?= $lang ?>sotsium-ru" class="header__menu-link">Социум</a>
+                            <a href="/<?= $lang ?>ekonomika-ru" class="header__menu-link">Экономика</a>
+                            <a href="/<?= $lang ?>sport-ru" class="header__menu-link">Спорт</a>
+                            <a href="/<?= $lang ?>kultura-ru" class="header__menu-link">Культура</a>
+                            <a href="/<?= $lang ?>raznoe-ru" class="header__menu-link">Разное</a>
+                            <a href="/<?= $lang ?>mnenie-ru" class="header__menu-link">Мнение</a>
+                            <a href="/<?= $lang ?>naznacheniya-ru" class="header__menu-link">Назначение</a>
+                            <a href="/<?= $lang ?>geroi-stolicy-ru" class="header__menu-link">Герои столицы</a>
+                            <a href="/<?= $lang ?>video-ru" class="header__menu-link">Видео</a>
+                            <a href="/<?= $lang ?>zdoroviye" class="header__menu-link">Здоровье</a>
+                            <a href="/<?= $lang ?>show-biznes-ru" class="header__menu-link">Шоу-бизнес</a>
+                            <a href="/<?= $lang ?>sobytiye" class="header__menu-link">Событие</a>
+                            <a href="/<?= $lang ?>mir" class="header__menu-link">Мир</a>
+                            <a href="/<?= $lang ?>poslanie-ru" class="header__menu-link">Послание</a>
+                            <a href="/<?= $lang ?>sluzhba-komplaens-ru" class="header__menu-link">Служба Комплаенс</a>
+                            <a href="/<?= $lang ?>kodeks-etiki" class="header__menu-link">Этический кодекс</a>
+                            <a href="/<?= $lang ?>obrazovaniye" class="header__menu-link">Образование</a>
+                            <a href="/<?= $lang ?>lichnost" class="header__menu-link">Личность</a>
+                            <a href="/<?= $lang ?>interview-ru" class="header__menu-link">Интервью</a>
+                            <a href="/<?= $lang ?>obchestvo" class="header__menu-link">Общество</a>
+                            <a href="/<?= $lang ?>pravitelstvo" class="header__menu-link">Правительство</a>
+                            <a href="/<?= $lang ?>prezident-ru" class="header__menu-link">Президент</a>
+                            <a href="/<?= $lang ?>akorda-ru" class="header__menu-link">Акорда</a>
+                            <a href="/<?= $lang ?>zasedaniye" class="header__menu-link">Заседание</a>
+                            <a href="/<?= $lang ?>senat-ru" class="header__menu-link">Сенат</a>
+                            <a href="/<?= $lang ?>parlament-ru" class="header__menu-link">Парламент</a>
                         <?php endif; ?>
                     </div>
                 </div>

@@ -31,10 +31,10 @@
 						<label for="inputTitle">Название</label>
 						<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required')); ?>
 					</div>
-					<!-- <div class="form-group">
-						<label for="inputAlias">URL</label>
+					<div class="form-group">
+						<label for="inputAlias">Alias</label>
 						<?= $this->Form->text('alias', array('id' => 'inputAlias', 'class' => 'form-control')); ?>
-					</div> -->
+					</div>
 
 
 					<div class="submit_row form-group">
@@ -67,7 +67,7 @@
 	                    <label for="seoDescription">Описание</label>
 	                    <?php echo $this->Form->textarea('meta_description', array('class' => 'form-control', 'id' => 'seoDescription')); ?>
 	                </div>
-		            
+
 		            <div class="submit_row">
 						<?php echo $this->Form->button('Добавить', array('class' => 'btn btn-success')); ?>
 				    </div>
