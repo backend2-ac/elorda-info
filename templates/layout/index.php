@@ -30,7 +30,7 @@
 	    <!-- <link rel="stylesheet" href="/css/fancybox.css"> -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?_v=20231128123125">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.css?_v=20231128123125">
-	    <link rel="stylesheet" href="/css/style.css?_v=2.97">
+	    <link rel="stylesheet" href="/css/style.css?_v=2.98">
 
 	    <?= $this->Html->meta('csrfToken', $this->request->getAttribute('csrfToken')); ?>
 

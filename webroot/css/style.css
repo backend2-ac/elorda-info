@@ -3875,7 +3875,7 @@ select {
 
   .header__menu-text {
     left: 16px;
-    top: 60px;
+    top: 10px;
     font-size: 22px;
   }
 
@@ -4056,6 +4056,9 @@ select {
 }
 
 @media (max-width: 992px) {
+  .header__menu-text {
+    top: 70px;
+  }
   body {
     font-size: 14px;
   }
