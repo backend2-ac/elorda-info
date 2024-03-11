@@ -74,12 +74,12 @@
 <!--		                                        </div>-->
 		                                    </div>
 		                                    <div class="capital__main-title"><?= $item['title'] ?></div>
-		                                    <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="capital__main-link">
+		                                    <div class="capital__main-link">
 		                                        <?= __('Читать далее') ?>
 		                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 		                                            <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
 		                                        </svg>
-		                                    </a>
+		                                    </div>
 		                                </a>
 									<?php endif ?>
 								<?php endforeach; ?>
@@ -132,12 +132,12 @@
 <!--		                                                </div>-->
 		                                            </div>
 		                                            <div class="socium__main-title"><?= $item['title'] ?></div>
-		                                            <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__main-link">
+		                                            <div class="socium__main-link">
 		                                                <?= __('Читать далее') ?>
 		                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 		                                                    <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
 		                                                </svg>
-		                                            </a>
+		                                            </div>
 
 		                                        </a>
 											<?php endif ?>
@@ -250,12 +250,12 @@
 <!--			                                            356-->
 <!--			                                        </div>-->
 			                                        <div class="culture__main-title"><?= $item['title'] ?></div>
-			                                        <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__main-link">
+			                                        <div class="culture__main-link">
 			                                            <?= __('Читать далее') ?>
 			                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 			                                                <path d="M2.09998 11.55L11.55 2.09998M11.55 2.09998H2.09998M11.55 2.09998V11.55" stroke="white" stroke-width="2" stroke-linecap="round"/>
 			                                            </svg>
-			                                        </a>
+			                                        </div>
 			                                <?php endif ?>
 										<?php endforeach; ?>
                                     </a>
