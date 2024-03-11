@@ -3855,7 +3855,7 @@ select {
 
   .header__nav {
     margin-bottom: 10px;
-    width: max-content;
+    width: 100%;
   }
 
   .header__menu-scroll {
