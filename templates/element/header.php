@@ -71,12 +71,21 @@
                         </ul>
                     </nav>
                     <a href="javascript:;" class="header__burger">
-                        <span><?= __('Меню') ?></span>
-                        <svg width="29" height="18" viewBox="0 0 29 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.5 2C12.0523 2 12.5 1.55228 12.5 1C12.5 0.447715 12.0523 0 11.5 0V2ZM11.5 0H0L0 2H11.5V0Z" fill="#1D489C"/>
-                            <path d="M28 10C28.5523 10 29 9.55228 29 9C29 8.44772 28.5523 8 28 8V10ZM0 10H28V8H0V10Z" fill="#1D489C"/>
-                            <path d="M28 18C28.5523 18 29 17.5523 29 17C29 16.4477 28.5523 16 28 16V18ZM0 18H28V16H0V18Z" fill="#1D489C"/>
-                        </svg>
+                        <div>                        
+                            <span><?= __('Меню') ?></span>
+                            <svg width="29" height="18" viewBox="0 0 29 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.5 2C12.0523 2 12.5 1.55228 12.5 1C12.5 0.447715 12.0523 0 11.5 0V2ZM11.5 0H0L0 2H11.5V0Z" fill="#1D489C"/>
+                                <path d="M28 10C28.5523 10 29 9.55228 29 9C29 8.44772 28.5523 8 28 8V10ZM0 10H28V8H0V10Z" fill="#1D489C"/>
+                                <path d="M28 18C28.5523 18 29 17.5523 29 17C29 16.4477 28.5523 16 28 16V18ZM0 18H28V16H0V18Z" fill="#1D489C"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span><?= __('Закрыть') ?></span>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 21L20.9706 4.02944" stroke="#1D489C" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M4 4L20.9706 20.9706" stroke="#1D489C" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
                     </a>
                 </div>
                 </div>
