@@ -3190,10 +3190,6 @@ select {
     width: 400px;
   }
 
-  .header__menu {
-    padding-top: 80px;
-  }
-
   .header__form-search_wrapper {
     padding: 20px 0;
     margin-bottom: 15px;
@@ -3538,10 +3534,6 @@ select {
     font-size: 14px;
   }
 
-  .header__menu {
-    padding-top: 70px;
-  }
-
   .header-space {
     padding-top: 129px;
   }
@@ -3839,8 +3831,9 @@ select {
   }
 
   .header__nav-list {
-    flex-direction: column;
-    row-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 8px 40px;
   }
 
   .header__nav-link {
@@ -3879,10 +3872,6 @@ select {
 
   .header__search {
     margin-left: auto;
-  }
-
-  .header__menu {
-    padding-top: 45px;
   }
 
   .header__menu-scroll {
