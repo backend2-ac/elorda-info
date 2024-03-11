@@ -678,6 +678,7 @@ select {
   max-width: 660px;
   background: #fff;
   padding-top: 102px;
+  padding-left: 60px;
 }
 
 .header__menu-wrap::-webkit-scrollbar-track {
