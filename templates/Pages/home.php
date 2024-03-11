@@ -20,7 +20,7 @@
 	                                    <div class="swiper-wrapper">
 											<?php foreach( $main_articles as $index => $item ): ?>
 												 <div class="swiper-slide">
-		                                            <div class="hero__swiper-slide">
+		                                            <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="hero__swiper-slide">
 		                                                <div class="hero__swiper-img">
 		                                                  <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" />
 		                                                </div>
@@ -38,7 +38,7 @@
                                                                 </svg>
                                                             </a>
                                                         <?php endif; ?>
-		                                            </div>
+		                                            </a>
 		                                        </div>
 											<?php endforeach; ?>
 		                                    <div class="swiper-pagination"></div>
@@ -61,7 +61,7 @@
                                 </div>
                                 <?php foreach( $capital_news as $index => $item ): ?>
                                 	<?php if($index === 0):?>
-                                		<div class="capital__main">
+                                		<a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="capital__main">
 		                                    <div class="capital__main-img">
 		                                        <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 		                                    </div>
@@ -79,7 +79,7 @@
 		                                            <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
 		                                        </svg>
 		                                    </a>
-		                                </div>
+		                                </a>
 									<?php endif ?>
 								<?php endforeach; ?>
                                 <div class="capital__items">
@@ -119,7 +119,7 @@
                                     <div class="socium__left">
                                     	 <?php foreach( $society_news as $index => $item ): ?>
 		                                	<?php if($index === 0):?>
-				                                <div class="socium__main">
+				                                <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__main">
 		                                            <div class="socium__main-img">
 		                                                 <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 		                                            </div>
@@ -138,7 +138,7 @@
 		                                                </svg>
 		                                            </a>
 
-		                                        </div>
+		                                        </a>
 											<?php endif ?>
 										<?php endforeach; ?>
 
@@ -237,7 +237,7 @@
                                     </a>
                                 </div>
                                 <div class="culture__wrapper">
-                                	<div class="culture__main">
+                                	<a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__main">
 	                                	<?php foreach( $culture_news as $index => $item ): ?>
 	                                		<?php if($index === 0): ?>
 			                                    <div class="culture__main-img">
@@ -257,7 +257,7 @@
 			                                        </a>
 			                                <?php endif ?>
 										<?php endforeach; ?>
-                                    </div>
+                                    </a>
 
                                     <div class="culture__items">
                                     	<?php foreach( $culture_news as $index => $item ): ?>
