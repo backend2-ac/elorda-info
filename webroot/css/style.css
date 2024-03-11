@@ -445,11 +445,11 @@ select {
 }
 
 .header__nav-link.active {
-  color: #1D489C;
+  color: #C93;
 }
 
 .header__nav-link:hover {
-  color: #1D489C;
+  color: #C93;
 }
 
 .header__burger {
@@ -718,7 +718,7 @@ select {
 }
 
 .header__menu-link:hover {
-  color: #1D489C;
+  color: #C93;
 }
 
 .header__form-search {
