@@ -3855,7 +3855,7 @@ select {
 
   .header__nav {
     margin-bottom: 10px;
-    width: 100%;
+    width: max-content;
   }
 
   .header__menu-scroll {
@@ -3864,14 +3864,19 @@ select {
 
   .header__menu-wrap {
     padding-left: 16px;
-    max-width: unset;
   }
 
   .header__nav-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 8px 40px;
-    width: 100%;
+    width: max-content;
+  }
+
+  .header__menu-text {
+    left: 16px;
+    top: 60px;
+    font-size: 22px;
   }
 
   .header__nav-link {
