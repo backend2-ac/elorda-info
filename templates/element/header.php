@@ -179,6 +179,7 @@
         </div>
         <div class="header__menu">
             <div class="header__menu-wrap">
+                <div class="header__menu-text">Меню</div>
                 <div class="header__menu-scroll">
                     <div class="header__menu-links">
                         <?php if ($l == 'kz'): ?>
