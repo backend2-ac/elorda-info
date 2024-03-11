@@ -3828,6 +3828,15 @@ select {
 
   .header__nav {
     margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .header__menu-scroll {
+    max-width: unset;
+  }
+
+  .header__menu-wrap {
+    padding-left: 16px;
   }
 
   .header__nav-list {
