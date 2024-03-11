@@ -3834,6 +3834,7 @@ select {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 8px 40px;
+    width: 100%;
   }
 
   .header__nav-link {
