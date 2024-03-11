@@ -9,7 +9,7 @@
                     <nav class="header__nav">
                         <ul class="header__nav-list">
                             <li class="header__nav-item">
-                                <a href="/<?= $lang ?>" class="header__nav-link"><?= __('Главная') ?></a>
+                                <a href="/<?= $lang ?>" class="header__nav-link active"><?= __('Главная') ?></a>
                             </li>
                             <?php if ($l == 'kz'): ?>
                                 <li class="header__nav-item">
