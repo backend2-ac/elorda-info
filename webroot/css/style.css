@@ -3837,6 +3837,7 @@ select {
 
   .header__menu-wrap {
     padding-left: 16px;
+    max-width: unset;
   }
 
   .header__nav-list {
