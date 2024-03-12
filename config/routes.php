@@ -276,6 +276,33 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
+    $builder->connect('/sluzhba-komplaens-ru', ['controller' => 'Articles', 'action' => 'index', 'sluzhba-komplaens-ru']);
+    $builder->connect('/sluzhba-komplaens-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/poslanie-ru', ['controller' => 'Articles', 'action' => 'index', 'poslanie-ru']);
+    $builder->connect('/poslanie-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/kodeks-etiki', ['controller' => 'Articles', 'action' => 'index', 'kodeks-etiki']);
+    $builder->connect('/kodeks-etiki/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/parlament-ru', ['controller' => 'Articles', 'action' => 'index', 'parlament-ru']);
+    $builder->connect('/parlament-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+    $builder->connect('/video-ru', ['controller' => 'Articles', 'action' => 'index', 'video-ru']);
+    $builder->connect('/video-ru/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
+
+
     $builder->connect('/news', ['controller' => 'Articles', 'action' => 'index', 'news'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
@@ -421,6 +448,9 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
     $builder->connect('/okiga', ['controller' => 'Articles', 'action' => 'index', 'okiga']);
     $builder->connect('/okiga/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $builder->connect('/elorda-yzdikteri', ['controller' => 'Articles', 'action' => 'index', 'elorda-yzdikteri']);
+    $builder->connect('/elorda-yzdikteri/*', ['controller' => 'Articles', 'action' => 'view']);
 
 //    $builder->connect('/:slug', ['controller' => 'Articles', 'action' => 'index'])
 //        ->setPass(['slug']);
