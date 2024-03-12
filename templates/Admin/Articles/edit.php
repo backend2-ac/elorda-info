@@ -105,10 +105,6 @@ $cur_user_role = $cur_user['role'];
 <!--                            </div>-->
 <!--                        </div>-->
 <!--                    </div>-->
-                    <div class="form-group col_4">
-                        <label for="views">Просмотры</label>
-                        <?= $this->Form->text('views', array('id' => 'views', 'class' => 'form-control')); ?>
-                    </div>
 
 <!--                    <div class="form-group">-->
 <!--                        <div class="custom-control custom-switch">-->
