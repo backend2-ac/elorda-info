@@ -419,6 +419,9 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/video', ['controller' => 'Articles', 'action' => 'index', 'video']);
     $builder->connect('/video/*', ['controller' => 'Articles', 'action' => 'view']);
 
+    $builder->connect('/okiga', ['controller' => 'Articles', 'action' => 'index', 'okiga']);
+    $builder->connect('/okiga/*', ['controller' => 'Articles', 'action' => 'view']);
+
 //    $builder->connect('/:slug', ['controller' => 'Articles', 'action' => 'index'])
 //        ->setPass(['slug']);
 //
