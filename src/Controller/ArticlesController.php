@@ -446,8 +446,8 @@ class ArticlesController extends AppController
             if ($search_text) {
                 $conditions['AND'][] = ['Articles.title LIKE' => '%'. $search_text .'%'];
                 $data = $this->Articles->find('all')
-                ->leftJoinWith('Tags')
-                ->group(['Articles.id'])
+//                ->leftJoinWith('Tags')
+//                ->group(['Articles.id'])
                 ->where($conditions)
                 ->andWhere(['Articles.locale' => $locale])
                 ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path'])
