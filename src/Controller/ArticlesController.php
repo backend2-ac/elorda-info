@@ -413,14 +413,14 @@ class ArticlesController extends AppController
     public function search() {
         $cur_lang = Configure::read('Config.lang');
         $locale = $cur_lang == 'kz' ? 'kk' : 'ru';
-        $tags_ids = [32, 239, 77,  122, 436];
-        if ($cur_lang == 'ru') {
-            $tags_ids = [2673, 2874, 2916, 3706, 5952];
-        }
-        $tags = $this->Tags->find()
-            ->where(['Tags.id IN' => $tags_ids])
-            ->orderDesc('Tags.item_order')
-            ->toList();
+//        $tags_ids = [32, 239, 77,  122, 436];
+//        if ($cur_lang == 'ru') {
+//            $tags_ids = [2673, 2874, 2916, 3706, 5952];
+//        }
+//        $tags = $this->Tags->find()
+//            ->where(['Tags.id IN' => $tags_ids])
+//            ->orderDesc('Tags.item_order')
+//            ->toList();
 
         $cur_page = 1;
         if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
@@ -437,12 +437,12 @@ class ArticlesController extends AppController
         $selected_tag_ids = [];
         if (isset($_GET['q']) && $_GET['q']) {
             $search_text = htmlentities($_GET['q']);
-            if( isset($_GET['tags']) && $_GET['tags'] ){
-                foreach( $_GET['tags'] as $tag ){
-                       $selected_tag_ids[] = $tag;
-                    }
-                $conditions['AND'][] = ['Tags.id IN' => $selected_tag_ids];
-            }
+//            if( isset($_GET['tags']) && $_GET['tags'] ){
+//                foreach( $_GET['tags'] as $tag ){
+//                       $selected_tag_ids[] = $tag;
+//                    }
+//                $conditions['AND'][] = ['Tags.id IN' => $selected_tag_ids];
+//            }
             if ($search_text) {
                 $conditions['AND'][] = ['Articles.title LIKE' => '%'. $search_text .'%'];
                 $data = $this->Articles->find('all')
@@ -450,7 +450,7 @@ class ArticlesController extends AppController
                 ->group(['Articles.id'])
                 ->where($conditions)
                 ->andWhere(['Articles.locale' => $locale])
-                ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path', 'views'])
+                ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path'])
                 ->orderDesc('Articles.date')
                 ->limit($per_page)->offset($offset)
                 ->toList();
@@ -468,7 +468,7 @@ class ArticlesController extends AppController
                 ));
             }
         }
-        $this->set( compact('data', 'search_text', 'tags','tags_ids', 'selected_tag_ids') );
+        $this->set( compact('data', 'search_text') );
     }
 
 }
