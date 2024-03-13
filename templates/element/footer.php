@@ -11,7 +11,7 @@
                 </div>
                 <?php if ($l == 'kz'): ?>
                     <div class="footer__list">
-                        <div class="footer__list-title">Жоба жайлы</div>
+<!--                        <div class="footer__list-title">Жоба жайлы</div>-->
                         <ul>
                             <li>
                                 <a href="/<?= $lang ?>about">Редакция туралы</a>
@@ -29,7 +29,7 @@
                     </div>
                 <?php else: ?>
                     <div class="footer__list">
-                        <div class="footer__list-title">О проекте</div>
+<!--                        <div class="footer__list-title">О проекте</div>-->
                         <ul>
                             <li>
                                 <a href="/<?= $lang ?>about">О редакции</a>
