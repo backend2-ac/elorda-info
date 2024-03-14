@@ -240,6 +240,17 @@ class AppController extends Controller
                 'astana-25-1' => 'astana-25-1',
                 'sluzhba-komplaens-ru' => 'sluzhba-komplaens-ru',
                 'kodeks-etiki' => 'kodeks-etiki',
+                'parlament-ru' => 'parlament-ru',
+                'senat-ru' => 'senat-ru',
+                'zasedaniye' => 'zasedaniye',
+                'akorda-ru' => 'akorda-ru',
+                'prezident-ru' => 'prezident-ru',
+                'pravitelstvo' => 'pravitelstvo',
+                'obchestvo' => 'obchestvo',
+                'interview-ru' => 'interview-ru',
+                'lichnost' => 'lichnost',
+                'obrazovaniye' => 'obrazovaniye',
+                'naznachenie-ru' => 'naznachenie-ru',
 
                 'elorda-janalyktary' => 'elorda-janalyktary',
                 'sayasat' => 'sayasat',
@@ -263,7 +274,17 @@ class AppController extends Controller
                 'astana-25' => 'astana-25',
                 'sluzhba-komplaens-kz' => 'sluzhba-komplaens-kz',
                 'adep-kodeksi' => 'adep-kodeksi',
-                'bilim' => 'bilim'
+                'bilim' => 'bilim',
+                'elorda-yzdikteri'=> 'elorda-yzdikteri',
+                'parlament' => 'parlament',
+                'senat' => 'senat',
+                'mazhilis' => 'mazhilis',
+                'akorda' => 'akorda',
+                'prezident' => 'prezident',
+                'ukimet' => 'ukimet',
+                'kogam' => 'kogam',
+                'sukhbat' => 'sukhbat',
+                'tulga' => 'tulga',
 
             ];
 
@@ -302,7 +323,7 @@ class AppController extends Controller
 
             $this->set( compact(  'categories_slug_parts', 'full_categories') );
         }
-
+//        $this->sendPostsToFacebook();
 
     }
 
@@ -317,15 +338,17 @@ class AppController extends Controller
 
     protected function sendPostsToFacebook() {
         $app_id = '227135263803105';
-        $app_key = '4bc99def88cd6ede6abcfebc602176a7';
+        $app_user = '122094842840217749';
+        $app_secret = '4bc99def88cd6ede6abcfebc602176a7';
         $page_id = '217495024786444'; //https://www.facebook.com/profile.php?id=61556114499643&sk=about_profile_transparency
-        $access_token = 'EAADOlAy3BuEBOZCiVZBr2jTeBd5BuMKo990e602jjLhxPKnAGnyseoVFG2EasthfPmZAD2ikp8NpAOiIWNSp2huTueAradQZBO799xwp0nUceNngcIXiEHqnBzclYdC0ZBVdajJjF7Lppd8tJjFRpJGf94WQNZAJw5B5sK1agOywBW5ykuDEQtJTRevcWnKeoPH4SZCDgHm3BxIMVz1rdwXoKKweNriNVwXLyfx';
-        $appsecret_proof = hash_hmac('sha256', $access_token, $app_key);
+        $access_token = 'EAADOlAy3BuEBO9QDvqoSN1nZA8KmfnU4t3EgZCV7ziNVHslrVUwudndjMGtDg5DZCqcPAnnO3fg3RaZCl3Gn3jsYoZA6ZBZAMfRZB8CGoI23U4tAIdRdKAIZCQDeXV7sYUQRZAQIsKIUuCuZCkA4fNZAWjDGs50IorktkMYUcZAh57KlhCdpryVXoOJHM3PqjcmqBaZBLL0NSlpUYd636nNE0FWAcyZCZA2xVTTnR38ZD';
+//        $appsecret_proof = hash_hmac('sha256', $access_token, $app_key);
         $fb = new Facebook([
             'app_id' => $app_id, //Замените на ваш id приложения
-            'app_secret' => '12345678901234567890123456789012', //Ваш секрет приложения
+            'app_secret' => $app_secret, //Ваш секрет приложения
             'default_access_token' => $access_token,
-            'appsecret_proof' => $appsecret_proof,
+            'default_graph_version' => 'v19.0',
+//            'appsecret_proof' => $appsecret_proof,
         ]);
         $fb_data = [
              [

@@ -438,14 +438,14 @@ class ArticlesController extends AppController
                     ->orderDesc('Articles.date')
                     ->limit($per_page)
                     ->offset($offset);
-                $countQuery = $this->Articles->find()
+                $count_query = $this->Articles->find()
                     ->where([
                         'Articles.locale' => $locale,
                         'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                     ])
                     ->count();
 
-                $this->set('pagination', $this->paginate($data, ['total' => $countQuery]));
+                $this->set('pagination', $this->paginate($data, ['total' => $count_query]));
             }
         }
         $this->set( compact('data', 'search_text') );
