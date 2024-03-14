@@ -454,7 +454,7 @@ class ArticlesController extends AppController
                 $data = $this->Articles->find()
                     ->where([
                         'Articles.locale' => $locale,
-                        'MATCH(Articles.title) AGAINST(:search)' => $search_text
+                        'MATCH(Articles.title) AGAINST(:search)' => true
                     ])
                     ->bind(':search', $search_text, 'string')
                     ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path'])
@@ -466,13 +466,14 @@ class ArticlesController extends AppController
                 $countQuery = $this->Articles->find()
                     ->where([
                         'Articles.locale' => $locale,
-                        'MATCH(Articles.title) AGAINST(:search)' => $search_text
+                        'MATCH(Articles.title) AGAINST(:search)' => true
                     ])
                     ->bind(':search', $search_text, 'string')
                     ->count();
 
 // Установка данных пагинации
                 $this->set('pagination', $this->paginate($data, ['total' => $countQuery]));
+
 
             }
         }
