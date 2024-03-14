@@ -376,7 +376,6 @@
                         </div>
                         <div class="widget__tg">
                             <img src="/img/comps/<?=$comps[16]['img']?>" alt="">
-                            <script>(function () { var widget = document.createElement('script'); widget.dataset.pfId = '30ef47eb-6d07-4356-a16f-92dcd8e0408a'; widget.src = 'https://widget.yourgood.app/script/widget.js?id=30ef47eb-6d07-4356-a16f-92dcd8e0408a&now='+Date.now(); document.querySelector('.widget__tg').appendChild(widget); })()</script>
                         </div>
                         <div class="widget__youtube">
                             <div class="widget__youtube-header">
