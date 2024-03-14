@@ -450,29 +450,25 @@ class ArticlesController extends AppController
 //                        ->limit($per_page),
 //                    $pag_settings
 //                ));
-                // Запрос для получения данных на текущей странице
                 $data = $this->Articles->find()
                     ->where([
                         'Articles.locale' => $locale,
-                        'MATCH(Articles.title) AGAINST(:search)' => true
+                        'MATCH(Articles.title) AGAINST("' . $search_text . '" IN BOOLEAN MODE)' => true
                     ])
-                    ->bind(':search', $search_text, 'string')
                     ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path'])
                     ->orderDesc('Articles.date')
                     ->limit($per_page)
                     ->offset($offset);
 
-// Запрос для получения общего количества результатов для пагинации
                 $countQuery = $this->Articles->find()
                     ->where([
                         'Articles.locale' => $locale,
-                        'MATCH(Articles.title) AGAINST(:search)' => true
+                        'MATCH(Articles.title) AGAINST("' . $search_text . '" IN BOOLEAN MODE)' => true
                     ])
-                    ->bind(':search', $search_text, 'string')
                     ->count();
 
-// Установка данных пагинации
                 $this->set('pagination', $this->paginate($data, ['total' => $countQuery]));
+
 
 
             }
