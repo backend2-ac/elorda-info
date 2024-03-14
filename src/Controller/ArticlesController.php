@@ -429,27 +429,51 @@ class ArticlesController extends AppController
             $search_text = htmlentities($_GET['q']);
             if ($search_text) {
 //                $conditions['AND'][] = ['Articles.title LIKE' => '%'. $search_text .'%'];
-                $data = $this->Articles->find('all')
-                ->where([
-                    'Articles.locale' => $locale,
-                    'Articles.title LIKE' => '%'. $search_text .'%'
+//                $data = $this->Articles->find('all')
+//                ->where([
+//                    'Articles.locale' => $locale,
+//                    'Articles.title LIKE' => '%'. $search_text .'%'
+//                    ])
+//                ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path'])
+//                ->orderDesc('Articles.date')
+//                ->limit($per_page)->offset($offset)
+//                ->toList();
+//
+//                $this->set('pagination', $this->paginate(
+//                    $this->Articles->find('all')
+//                        ->where([
+//                            'Articles.title LIKE' => '%'. $search_text .'%',
+//                            'Articles.locale' => $locale
+//                        ])
+//                        ->select(['id', 'category_id', 'title', 'date'])
+//                        ->order('Articles.date')
+//                        ->limit($per_page),
+//                    $pag_settings
+//                ));
+                // Запрос для получения данных на текущей странице
+                $data = $this->Articles->find()
+                    ->where([
+                        'Articles.locale' => $locale,
+                        'MATCH(Articles.title) AGAINST(:search)' => $search_text
                     ])
-                ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path'])
-                ->orderDesc('Articles.date')
-                ->limit($per_page)->offset($offset)
-                ->toList();
+                    ->bind(':search', $search_text, 'string')
+                    ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path'])
+                    ->orderDesc('Articles.date')
+                    ->limit($per_page)
+                    ->offset($offset);
 
-                $this->set('pagination', $this->paginate(
-                    $this->Articles->find('all')
-                        ->where([
-                            'Articles.title LIKE' => '%'. $search_text .'%',
-                            'Articles.locale' => $locale
-                        ])
-                        ->select(['id', 'category_id', 'title', 'date'])
-                        ->order('Articles.date')
-                        ->limit($per_page),
-                    $pag_settings
-                ));
+// Запрос для получения общего количества результатов для пагинации
+                $countQuery = $this->Articles->find()
+                    ->where([
+                        'Articles.locale' => $locale,
+                        'MATCH(Articles.title) AGAINST(:search)' => $search_text
+                    ])
+                    ->bind(':search', $search_text, 'string')
+                    ->count();
+
+// Установка данных пагинации
+                $this->set('pagination', $this->paginate($data, ['total' => $countQuery]));
+
             }
         }
         $this->set( compact('data', 'search_text') );
