@@ -428,28 +428,7 @@ class ArticlesController extends AppController
         if (isset($_GET['q']) && $_GET['q']) {
             $search_text = htmlentities($_GET['q']);
             if ($search_text) {
-//                $conditions['AND'][] = ['Articles.title LIKE' => '%'. $search_text .'%'];
-//                $data = $this->Articles->find('all')
-//                ->where([
-//                    'Articles.locale' => $locale,
-//                    'Articles.title LIKE' => '%'. $search_text .'%'
-//                    ])
-//                ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path'])
-//                ->orderDesc('Articles.date')
-//                ->limit($per_page)->offset($offset)
-//                ->toList();
-//
-//                $this->set('pagination', $this->paginate(
-//                    $this->Articles->find('all')
-//                        ->where([
-//                            'Articles.title LIKE' => '%'. $search_text .'%',
-//                            'Articles.locale' => $locale
-//                        ])
-//                        ->select(['id', 'category_id', 'title', 'date'])
-//                        ->order('Articles.date')
-//                        ->limit($per_page),
-//                    $pag_settings
-//                ));
+
                 $data = $this->Articles->find()
                     ->where([
                         'Articles.locale' => $locale,
@@ -467,10 +446,6 @@ class ArticlesController extends AppController
                     ->count();
 
                 $this->set('pagination', $this->paginate($data, ['total' => $countQuery]));
-
-
-
-
             }
         }
         $this->set( compact('data', 'search_text') );
