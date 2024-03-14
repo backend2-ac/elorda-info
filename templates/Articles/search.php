@@ -24,29 +24,29 @@
                                         </svg>
                                     </button>
                                 </label>
-                                <div class="search__form-tags">
-                                	<?php if( $tags ): ?>
-                                		 <label for="search-1" class="search__form-tag">
-	                                        <input type="checkbox" id="search-1">
-	                                        <div><?= __('Все') ?></div>
-	                                    </label>
-                                		<?php foreach( $tags as   $tag ): ?>
-			                                    <label for="search-<?= $tag['id'] ?>" class="search__form-tag">
-			                                        <input type="checkbox" id="search-<?= $tag['id'] ?>"
-			                                         <?php if($selected_tag_ids): ?>
-			                                         	<?php foreach( $selected_tag_ids as   $id ): ?>
-			                                         		<?=$id?>
-			                                         		 <?php if( $id == $tag['id'] ): ?>
-			                                         			checked=""
-			                                         	<?php endif; ?>
-			                                         <?php endforeach; ?>
-		                                    		 <?php endif; ?>
-			                                         name="tags[]" value="<?=$tag['id']?>">
-			                                        <div><?= $tag['title'] ?></div>
-			                                    </label>
-	                                    <?php endforeach; ?>
-                                    <?php endif; ?>
-                                </div>
+<!--                                <div class="search__form-tags">-->
+<!--                                	--><?php //if( $tags ): ?>
+<!--                                		 <label for="search-1" class="search__form-tag">-->
+<!--	                                        <input type="checkbox" id="search-1">-->
+<!--	                                        <div>--><?php //= __('Все') ?><!--</div>-->
+<!--	                                    </label>-->
+<!--                                		--><?php //foreach( $tags as   $tag ): ?>
+<!--			                                    <label for="search---><?php //= $tag['id'] ?><!--" class="search__form-tag">-->
+<!--			                                        <input type="checkbox" id="search---><?php //= $tag['id'] ?><!--"-->
+<!--			                                         --><?php //if($selected_tag_ids): ?>
+<!--			                                         	--><?php //foreach( $selected_tag_ids as   $id ): ?>
+<!--			                                         		--><?php //=$id?>
+<!--			                                         		 --><?php //if( $id == $tag['id'] ): ?>
+<!--			                                         			checked=""-->
+<!--			                                         	--><?php //endif; ?>
+<!--			                                         --><?php //endforeach; ?>
+<!--		                                    		 --><?php //endif; ?>
+<!--			                                         name="tags[]" value="--><?php //=$tag['id']?><!--">-->
+<!--			                                        <div>--><?php //= $tag['title'] ?><!--</div>-->
+<!--			                                    </label>-->
+<!--	                                    --><?php //endforeach; ?>
+<!--                                    --><?php //endif; ?>
+<!--                                </div>-->
                             </div>
                         </form>
                         	<?php if( $data ): ?>

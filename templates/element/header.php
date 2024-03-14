@@ -21,24 +21,24 @@
                                 <li class="header__nav-item">
                                     <a href="/<?= $lang ?>aleumet" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'aleumet') ? 'active' : '' ?>"><?= $full_categories[16]['title'] ?></a>
                                 </li>
-                                <li class="header__nav-item">
-                                     <a href="/<?= $lang ?>ekonomika" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'ekonomika') ? 'active' : '' ?>"><?= $full_categories[15]['title'] ?></a>
-                                </li>
-                                <li class="header__nav-item">
-                                     <a href="/<?= $lang ?>sport" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'sport') ? 'active' : '' ?>"><?= $full_categories[19]['title'] ?></a>
-                                </li>
+<!--                                <li class="header__nav-item">-->
+<!--                                     <a href="/--><?php //= $lang ?><!--ekonomika" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'ekonomika') ? 'active' : '' ?><!--">--><?php //= $full_categories[15]['title'] ?><!--</a>-->
+<!--                                </li>-->
+<!--                                <li class="header__nav-item">-->
+<!--                                     <a href="/--><?php //= $lang ?><!--sport" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'sport') ? 'active' : '' ?><!--">--><?php //= $full_categories[19]['title'] ?><!--</a>-->
+<!--                                </li>-->
                                 <li class="header__nav-item">
                                      <a href="/<?= $lang ?>madeniet" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'madeniet') ? 'active' : '' ?>"><?= $full_categories[20]['title'] ?></a>
                                 </li>
-                                <li class="header__nav-item">
-                                      <a href="/<?= $lang ?>ar-turli" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'ar-turli') ? 'active' : '' ?>"><?= $full_categories[18]['title'] ?></a>
-                                </li>
-                                <li class="header__nav-item">
-                                      <a href="/<?= $lang ?>kozkaras" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'kozkaras') ? 'active' : '' ?>"><?= $full_categories[30]['title'] ?></a>
-                                </li>
-                                <li class="header__nav-item">
-                                     <a href="/<?= $lang ?>tagaiyndau" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'tagaiyndau') ? 'active' : '' ?>"><?= $full_categories[21]['title'] ?></a>
-                                </li>
+<!--                                <li class="header__nav-item">-->
+<!--                                      <a href="/--><?php //= $lang ?><!--ar-turli" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'ar-turli') ? 'active' : '' ?><!--">--><?php //= $full_categories[18]['title'] ?><!--</a>-->
+<!--                                </li>-->
+<!--                                <li class="header__nav-item">-->
+<!--                                      <a href="/--><?php //= $lang ?><!--kozkaras" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'kozkaras') ? 'active' : '' ?><!--">--><?php //= $full_categories[30]['title'] ?><!--</a>-->
+<!--                                </li>-->
+<!--                                <li class="header__nav-item">-->
+<!--                                     <a href="/--><?php //= $lang ?><!--tagaiyndau" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'tagaiyndau') ? 'active' : '' ?><!--">--><?php //= $full_categories[21]['title'] ?><!--</a>-->
+<!--                                </li>-->
                             <?php else: ?>
                                 <li class="header__nav-item">
                                      <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'novosti-stolicy-ru') ? 'active' : '' ?>"><?= $full_categories[2]['title'] ?></a>
@@ -49,29 +49,29 @@
                                 <li class="header__nav-item">
                                     <a href="/<?= $lang ?>sotsium-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'sotsium-ru') ? 'active' : '' ?>"><?= $full_categories[6]['title'] ?></a>
                                 </li>
-                                <li class="header__nav-item">
-                                    <a href="/<?= $lang ?>ekonomika-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'ekonomika-ru') ? 'active' : '' ?>"><?= $full_categories[11]['title'] ?></a>
-                                </li>
-                                <li class="header__nav-item">
-                                    <a href="/<?= $lang ?>sport-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'sport-ru') ? 'active' : '' ?>"><?= $full_categories[8]['title'] ?></a>
-                                </li>
+<!--                                <li class="header__nav-item">-->
+<!--                                    <a href="/--><?php //= $lang ?><!--ekonomika-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'ekonomika-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[11]['title'] ?><!--</a>-->
+<!--                                </li>-->
+<!--                                <li class="header__nav-item">-->
+<!--                                    <a href="/--><?php //= $lang ?><!--sport-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'sport-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[8]['title'] ?><!--</a>-->
+<!--                                </li>-->
                                 <li class="header__nav-item">
                                     <a href="/<?= $lang ?>kultura-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'kultura-ru') ? 'active' : '' ?>"><?= $full_categories[9]['title'] ?></a>
                                 </li>
-                                <li class="header__nav-item">
-                                    <a href="/<?= $lang ?>raznoe-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'raznoe-ru') ? 'active' : '' ?>"><?= $full_categories[10]['title'] ?></a>
-                                </li>
-                                <li class="header__nav-item">
-                                    <a href="/<?= $lang ?>mnenie-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'mnenie-ru') ? 'active' : '' ?>"><?= $full_categories[36]['title'] ?></a>
-                                </li>
-                                <li class="header__nav-item">
-                                    <a href="/<?= $lang ?>naznacheniya-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'naznacheniya-ru') ? 'active' : '' ?>"><?= $full_categories[34]['title'] ?></a>
-                                </li>
+<!--                                <li class="header__nav-item">-->
+<!--                                    <a href="/--><?php //= $lang ?><!--raznoe-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'raznoe-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[10]['title'] ?><!--</a>-->
+<!--                                </li>-->
+<!--                                <li class="header__nav-item">-->
+<!--                                    <a href="/--><?php //= $lang ?><!--mnenie-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'mnenie-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[36]['title'] ?><!--</a>-->
+<!--                                </li>-->
+<!--                                <li class="header__nav-item">-->
+<!--                                    <a href="/--><?php //= $lang ?><!--naznacheniya-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'naznacheniya-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[34]['title'] ?><!--</a>-->
+<!--                                </li>-->
                             <?php endif; ?>
                         </ul>
                     </nav>
                     <a href="javascript:;" class="header__burger">
-                        <div>                        
+                        <div>
                             <span><?= __('Меню') ?></span>
                             <svg width="29" height="18" viewBox="0 0 29 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11.5 2C12.0523 2 12.5 1.55228 12.5 1C12.5 0.447715 12.0523 0 11.5 0V2ZM11.5 0H0L0 2H11.5V0Z" fill="#1D489C"/>
