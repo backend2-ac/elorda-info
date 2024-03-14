@@ -453,21 +453,21 @@ class ArticlesController extends AppController
                 $data = $this->Articles->find()
                     ->where([
                         'Articles.locale' => $locale,
-                        'MATCH(Articles.title) AGAINST("' . $search_text . '" IN BOOLEAN MODE)' => true
+                        'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                     ])
                     ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'img', 'img_path'])
                     ->orderDesc('Articles.date')
                     ->limit($per_page)
                     ->offset($offset);
-
                 $countQuery = $this->Articles->find()
                     ->where([
                         'Articles.locale' => $locale,
-                        'MATCH(Articles.title) AGAINST("' . $search_text . '" IN BOOLEAN MODE)' => true
+                        'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                     ])
                     ->count();
 
                 $this->set('pagination', $this->paginate($data, ['total' => $countQuery]));
+
 
 
 
