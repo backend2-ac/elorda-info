@@ -496,8 +496,6 @@
                                     <?=$comps[18]['body']?>
                                 </div>
                             <?php endif; ?> -->
-                            <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                            <div class="elfsight-app-9ea89643-731e-4a66-b929-310bafa259aa" data-elfsight-app-lazy></div>
                         </div>
                     </div>
                 </div>
