@@ -198,6 +198,11 @@ window.onload = () => {
         direction: 'left',
         speed: 100,
     });
+
+    let ytWidget = document.querySelector('.yottie-widget-inner > a');
+    if(ytWidget) {
+        ytWidget.remove();
+    }
 };
 
 // loader func
