@@ -201,7 +201,9 @@ window.onload = () => {
 
     let ytWidget = document.querySelector('.yottie-widget-inner > a');
     if(ytWidget) {
-        ytWidget.remove();
+        setTimeout(() => {
+            ytWidget.remove();
+        }, 5000);
     }
 };
 
