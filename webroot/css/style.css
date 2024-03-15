@@ -1185,7 +1185,7 @@ select {
 .widget__tg-header {
   display: flex;
   align-items: center;
-  max-width: 340px;
+  max-width: 350px;
   gap: 10px;
   font-size: 26px;
   font-weight: 500;
@@ -1199,6 +1199,20 @@ select {
   flex-direction: column;
   height: 100%;
   overflow: auto;
+  padding-right: 34px;
+}
+
+.widget__tg-block::-webkit-scrollbar-track {
+  background: #E5E9F1;
+}
+
+.widget__tg-block::-webkit-scrollbar {
+  width: 8px;
+  background: #E5E9F1;
+}
+
+.widget__tg-block::-webkit-scrollbar-thumb {
+  background: #1D489C;
 }
 
 .widget__tg-items {
@@ -1212,10 +1226,15 @@ select {
   border-bottom: 2px solid rgba(27, 34, 39, 0.08);
 }
 
+.widget__tg-item:hover .widget__tg-title {
+  color: #1D489C;
+}
+
 .widget__tg-title {
   margin-bottom: 14px;
   color: #1B2227;
   line-height: 145%;
+  transition: .2s ease-in-out;
 }
 
 .widget__tg-elems {
