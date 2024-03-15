@@ -1175,27 +1175,62 @@ select {
 
 .widget__tg {
   position: relative;
-  border-radius: 46px;
+  height: 550px;
+  padding: 30px;
+  border-radius: 8px;
+  background: #fff;
   overflow: hidden;
 }
 
-.widget__tg::before {
-  display: block;
-  content: "";
+.widget__tg-header {
+  display: flex;
+  align-items: center;
+  max-width: 340px;
+  gap: 10px;
+  font-size: 26px;
+  font-weight: 500;
+  color: #1D489C;
+  line-height: 145%;
+  margin-bottom: 20px;
 }
 
-.widget__tg img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+.widget__tg-block {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  overflow: auto;
 }
 
-.widget__tg::before {
-  padding-top: 100%;
+.widget__tg-items {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.widget__tg-item {
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(27, 34, 39, 0.08);
+}
+
+.widget__tg-title {
+  margin-bottom: 14px;
+  color: #1B2227;
+  line-height: 145%;
+}
+
+.widget__tg-elems {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.widget__tg-elem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8D9093;
+  font-weight: 500;
+  line-height: 140%;
 }
 
 .widget__youtube {
