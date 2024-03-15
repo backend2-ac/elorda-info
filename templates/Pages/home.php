@@ -379,7 +379,7 @@
                             <div class="widget__tg-block">
                                 <a href="#" target="_blank" class="widget__tg-header">
                                     Популярное в нашем Telegram-канале
-                                    <img src="/img/widget-tg-icon.png" alt="">
+                                    <img src="/img/tg-widget-icon.png" alt="">
                                 </a>
                                 <div class="widget__tg-items">
                                     <a href="#" target="_blank" class="widget__tg-item">
