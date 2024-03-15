@@ -488,17 +488,17 @@
                             </div>
                         </div>
                         <div class="widget__youtube">
-                            <div class="widget__youtube-header">
+                            <!-- <div class="widget__youtube-header">
                                 <img src="/img/comps/<?=$comps[17]['img']?>" alt="">
                             </div>
                             <?php if (isset($comps[18]['body'])): ?>
                                 <div class="widget__youtubte-frame">
                                     <?=$comps[18]['body']?>
                                 </div>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
+                            <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+                            <div class="elfsight-app-9ea89643-731e-4a66-b929-310bafa259aa" data-elfsight-app-lazy></div>
                         </div>
-						<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-						<div class="elfsight-app-2c94841c-7e6d-4006-aba2-7f879d2f12a0" data-elfsight-app-lazy></div>
                     </div>
                 </div>
             </div>
