@@ -3696,6 +3696,14 @@ select {
     height: 50px;
   } */
 
+  .widget__youtube::before {
+    height: 120px;
+  }
+
+  .widget__youtube {
+    padding-top: 120px;
+  }
+
   .hero.news-page .breadcrumbs-absolute {
     top: 25px;
     left: 25px;
