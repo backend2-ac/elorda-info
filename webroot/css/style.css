@@ -2276,7 +2276,7 @@ select {
   text-decoration: underline;
 }
 
-.inner__text blockquote {
+/* .inner__text blockquote {
   position: relative;
   color: #1D489C;
   font-style: italic;
@@ -2293,7 +2293,7 @@ select {
   bottom: 100%;
   left: 0;
   background: url("../img/blockquote-icon.png") center/contain no-repeat;
-}
+} */
 
 .inner__tags {
   display: flex;
@@ -3448,9 +3448,9 @@ select {
     font-size: 18px;
   }
 
-  .inner__text blockquote {
+  /* .inner__text blockquote {
     font-size: 18px;
-  }
+  } */
 
   .inner__share-title {
     font-size: 22px;
@@ -4358,9 +4358,9 @@ select {
     font-size: 14px;
   }
 
-  .inner__text blockquote {
+  /* .inner__text blockquote {
     font-size: 14px;
-  }
+  } */
 
   .inner__share-title {
     font-size: 18px;
