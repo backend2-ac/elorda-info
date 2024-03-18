@@ -1260,6 +1260,18 @@ select {
   /* height: 710px; */
   border-radius: 8px;
   overflow: hidden;
+  padding-top: 100px;
+}
+
+.widget__youtube::before {
+  position: absolute;
+  content: '';
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  background: url('../img/youtube-header.jpg') center/cover no-repeat;
 }
 
 /* .widget__youtube-header {
