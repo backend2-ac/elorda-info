@@ -1257,6 +1257,7 @@ select {
 }
 
 .widget__youtube {
+  position: relative;
   /* height: 710px; */
   border-radius: 8px;
   overflow: hidden;
