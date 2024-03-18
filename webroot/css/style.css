@@ -4252,6 +4252,12 @@ select {
 }
 
 @media (max-width: 768px) {
+  .widget__youtube::before {
+    height: 100px;
+  }
+  .widget__youtube {
+    padding-top: 100px;
+  }
   .widget__tg {
     height: 320px;
   }
@@ -4425,6 +4431,12 @@ select {
 }
 
 @media (max-width: 576px) {
+  .widget__youtube::before {
+    height: 80px;
+  }
+  .widget__youtube {
+    padding-top: 80px;
+  }
   .holiday__container {
     padding: 15px;
   }
@@ -4694,6 +4706,12 @@ select {
 }
 
 @media (max-width: 420px) {
+  .widget__youtube::before {
+    height: 60px;
+  }
+  .widget__youtube {
+    padding-top: 60px;
+  }
   .socium__childs {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
