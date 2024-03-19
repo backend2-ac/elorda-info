@@ -3696,13 +3696,13 @@ select {
     height: 50px;
   } */
 
-  .widget__youtube::before {
+  /* .widget__youtube::before {
     height: 120px;
   }
 
   .widget__youtube {
     padding-top: 120px;
-  }
+  } */
 
   .hero.news-page .breadcrumbs-absolute {
     top: 25px;
@@ -4132,6 +4132,13 @@ select {
 
   .search__form-tag div {
     font-size: 16px;
+  }
+  .widget__youtube::before {
+    height: 120px;
+  }
+
+  .widget__youtube {
+    padding-top: 120px;
   }
 }
 
