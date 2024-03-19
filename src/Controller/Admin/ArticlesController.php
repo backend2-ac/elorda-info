@@ -34,6 +34,8 @@ class ArticlesController extends AppController{
         $title = '';
         $author_id = '';
         $views_sort = '';
+        $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
+        $conditions[] = [$model.'.locale' => $locale];
         $cur_user = $this->request->getSession()->read('Auth.User');
         if ($cur_user['role'] == 'author') {
             $author_id = $cur_user['author_id'];
@@ -88,24 +90,13 @@ class ArticlesController extends AppController{
             'limit' => $per_page,
         ];
 
-        $data_ids = $this->$model->find('list', [
-                'valueField' => 'id'
-            ])
+        $data = $this->$model->find('all')
+            ->select(['id', 'title', 'views', 'author_id', 'category_id', 'locale', 'publish_start_at', 'img', 'img_path', 'date'])
             ->where($conditions)
-            ->select(['id', 'date', 'author_id', 'views'])
-            ->orderDesc($model.'.date')
-            ->limit($per_page)->offset($offset)
+            ->order([$model.'.date' => 'DESC'])
+            ->limit($per_page)
+            ->offset($offset)
             ->toList();
-
-        $data = [];
-        if( $data_ids ){
-            $data = $this->$model->find('all')
-                ->where([$model.'.id IN' => $data_ids])
-                ->orderDesc('date')
-                // ->limit($per_page)->offset($offset)
-                ->toList();
-        }
-
 
         $this->set( compact('data') );
 
@@ -125,10 +116,7 @@ class ArticlesController extends AppController{
     public function add(){
         $model = 'Articles';
         date_default_timezone_set('Asia/Almaty');
-        $locale = 'kk';
-        if (isset($_GET['lang']) && $_GET['lang']) {
-            $locale = $_GET['lang'] == 'kz' ? 'kk' : 'ru';
-        }
+        $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
         if( $this->request->is('post') ){
             $data = $this->request->getData();
             $data['alias'] = Text::slug($data['title']);
@@ -207,12 +195,9 @@ class ArticlesController extends AppController{
     }
 
     public function edit($item_id = null){
+        $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
         $model = 'Articles';
         date_default_timezone_set('Asia/Almaty');
-        $locale = 'kk';
-        if (isset($_GET['lang']) && $_GET['lang']) {
-            $locale = $_GET['lang'] == 'kz' ? 'kk' : 'ru';
-        }
         $cur_user = $this->request->getSession()->read('Auth.User');
         if ($cur_user['role'] == 'author') {
             $is_author_article = $this->$model->find()
@@ -240,16 +225,12 @@ class ArticlesController extends AppController{
             $data1 = $this->request->getData();
             $old_data = clone $data;
             $articles_tags = [];
-            $data1['locale'] = $locale;
             if( isset($data1['date']) && $data1['date'] ){
                 $data1['date'] = date('Y-m-d H:i:s', strtotime($data1['date']));
             }
 
             if( !isset($data1['on_main']) || !$data1['on_main'] ){
                 $data1['on_main'] = 0;
-            }
-            if( !isset($data1['on_sidebar']) || !$data1['on_sidebar'] ){
-                $data1['on_sidebar'] = 0;
             }
 
             if( isset($data1['articles_tags']) && $data1['articles_tags'] ){
@@ -354,46 +335,6 @@ class ArticlesController extends AppController{
 
     protected function _cacheDelete(){
         Cache::clearGroup('long', 'default');
-//        Cache::delete('main_articles_ru', 'long');
-//        Cache::delete('main_articles_kz', 'long');
-//        Cache::delete('main_articles_en', 'long');
-//
-//        Cache::delete('capital_news_ru', 'long');
-//        Cache::delete('capital_news_kz', 'long');
-//        Cache::delete('capital_news_en', 'long');
-//
-//        Cache::delete('society_news_ru', 'long');
-//        Cache::delete('society_news_kz', 'long');
-//        Cache::delete('society_news_en', 'long');
-//
-//        Cache::delete('politica_news_ru', 'long');
-//        Cache::delete('politica_news_kz', 'long');
-//        Cache::delete('politica_news_en', 'long');
-//
-//        Cache::delete('culture_news_ru', 'long');
-//        Cache::delete('culture_news_kz', 'long');
-//        Cache::delete('culture_news_en', 'long');
-//
-//        Cache::delete('heroes_news_ru', 'long');
-//        Cache::delete('heroes_news_kz', 'long');
-//        Cache::delete('heroes_news_en', 'long');
-//
-//        Cache::delete('popular_news_ru', 'long');
-//        Cache::delete('popular_news_kz', 'long');
-//        Cache::delete('popular_news_en', 'long');
-//
-//        Cache::delete('last_news_ru', 'long');
-//        Cache::delete('last_news_kz', 'long');
-//        Cache::delete('last_news_en', 'long');
-//
-//        Cache::delete('most_popular_ru', 'long');
-//        Cache::delete('most_popular_kz', 'long');
-//        Cache::delete('most_popular_en', 'long');
-//
-//        Cache::delete('last_reviews_ru', 'long');
-//        Cache::delete('last_reviews_kz', 'long');
-//        Cache::delete('last_reviews_en', 'long');
-
     }
 
     protected function _slug_render($slug){

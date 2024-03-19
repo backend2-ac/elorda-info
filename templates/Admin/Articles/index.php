@@ -2,7 +2,9 @@
 
 use Cake\I18n\FrozenTime;
 
-$cur_user_role = $this->request->getSession()->read('Auth.User.role')
+$cur_user_role = $this->request->getSession()->read('Auth.User.role');
+
+$is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 ?>
 
 <section class="content-header">
@@ -58,8 +60,11 @@ $cur_user_role = $this->request->getSession()->read('Auth.User.role')
     <div class="card-header">
       <h3 class="card-title">Статьи</h3>
       <div class="card-tools">
-        <a href="/admin/articles/add?lang=kz" class="btn btn-success">Добавить новый материал (Қаз.)</a>
-        <a href="/admin/articles/add?lang=ru" class="btn btn-success">Добавить новый материал (Рус.)</a>
+          <?php if ($is_kz_articles): ?>
+                <a href="/admin/articles-kz/add" class="btn btn-success">Добавить новый материал (Қаз.)</a>
+          <?php else: ?>
+                <a href="/admin/articles-ru/add" class="btn btn-success">Добавить новый материал (Рус.)</a>
+          <?php endif; ?>
       </div>
     </div>
     <div class="card-body p-0">
@@ -100,12 +105,18 @@ $cur_user_role = $this->request->getSession()->read('Auth.User.role')
                         <?= FrozenTime::now() > $item['publish_start_at'] ? 'Опубликован' : 'Не опубликован' ?>
                     </td>
         			<td class="project-actions text-right">
-
-                    <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>?lang=<?= $item['locale'] == 'kk' ? 'kz' : 'ru'; ?>">
-                      <i class="fas fa-pencil-alt"></i> Редактировать
-                    </a>
-        				<?php echo $this->Form->postLink('Удалить', "/admin/articles/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
-        			</td>
+                    <?php if ($is_kz_articles): ?>
+                        <a class="btn btn-info btn-sm" href="/admin/articles-kz/edit/<?=$item['id']?>">
+                          <i class="fas fa-pencil-alt"></i> Редактировать
+                        </a>
+                        <?php echo $this->Form->postLink('Удалить', "/admin/articles-kz/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
+        			<?php else: ?>
+                        <a class="btn btn-info btn-sm" href="/admin/articles-ru/edit/<?=$item['id']?>">
+                            <i class="fas fa-pencil-alt"></i> Редактировать
+                        </a>
+                        <?php echo $this->Form->postLink('Удалить', "/admin/articles-ru/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
+                    <?php endif; ?>
+                    </td>
         		</tr>
         	<?php endforeach ?>
         </tbody>
