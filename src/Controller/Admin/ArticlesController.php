@@ -98,8 +98,6 @@ class ArticlesController extends AppController{
             ->offset($offset)
             ->toList();
 
-        $this->set( compact('data') );
-
         $this->set('pagination', $this->paginate(
             $this->$model->find('all')
             ->where($conditions)
@@ -108,9 +106,9 @@ class ArticlesController extends AppController{
             $pag_settings
         ));
 
-        $categories = $this->_getAdminCategories();
+        $categories = $this->_getAdminCategoriesWithLocale($locale);
         $authors = $this->_getAdminAuthors();
-        $this->set( compact('categories',  'authors') );
+        $this->set( compact('data', 'categories',  'authors') );
     }
 
     public function add(){
