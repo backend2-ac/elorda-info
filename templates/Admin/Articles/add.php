@@ -24,7 +24,7 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 				<div class="card-header">
 					<h3 class="card-title">Данные</h3>
 					<div class="card-tools">
-						<a href="/admin/articles-<?= $is_kz_articles ? 'kk' : 'ru' ?>" type="button" class="btn btn-tool">
+						<a href="/admin/articles-<?= $is_kz_articles ? 'kz' : 'ru' ?>" type="button" class="btn btn-tool">
 							<i class="fas fa-arrow-left"></i>
 						</a>
 					</div>
