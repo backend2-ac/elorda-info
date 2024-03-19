@@ -183,9 +183,15 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/articles" class="nav-link">
+                                    <a href="/admin/articles-kz" class="nav-link">
                                         <i class="nav-icon fas fa-newspaper"></i>
-                                        <p>Статьи</p>
+                                        <p>Статьи на каз</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/articles-ru" class="nav-link">
+                                        <i class="nav-icon fas fa-newspaper"></i>
+                                        <p>Статьи на рус</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
