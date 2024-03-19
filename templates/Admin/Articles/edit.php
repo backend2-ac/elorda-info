@@ -3,6 +3,7 @@ $cur_user = $this->request->getSession()->read('Auth.User');
 $cur_user_id = $cur_user['id'];
 $author_id = $cur_user['author_id'];
 $cur_user_role = $cur_user['role'];
+$is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 ?>
 <section class="content-header">
 	<div class="container-fluid">
@@ -23,7 +24,7 @@ $cur_user_role = $cur_user['role'];
 				<div class="card-header">
 					<h3 class="card-title">Данные</h3>
 					<div class="card-tools">
-						<a href="/admin/articles" type="button" class="btn btn-tool">
+						<a href="/admin/articles-<?= $is_kz_articles ? 'kk' : 'ru' ?>" type="button" class="btn btn-tool">
 							<i class="fas fa-arrow-left"></i>
 						</a>
 					</div>

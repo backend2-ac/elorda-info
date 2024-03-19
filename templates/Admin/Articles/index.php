@@ -20,7 +20,7 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 
 <section class="content">
 
-    <form class="form_cols" action="/admin/articles?test=test" method="GET" onsubmit="submitForm();">
+    <form class="form_cols" action="/admin/articles-<?= $is_kz_articles ? 'kk' : 'ru' ?>?test=test" method="GET" onsubmit="submitForm();">
 
       <div class="form-group col_2">
         <label for="inputTitle">Название</label>
@@ -51,7 +51,7 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 
       <div class="submit_row form-group">
         <?php echo $this->Form->button('Поиск', array('class' => 'btn btn-success')); ?>
-        <a href="/admin/articles?test=test" class="btn btn-danger">Сбросить</a>
+        <a href="/admin/articles-<?= $is_kz_articles ? 'kk' : 'ru' ?>?test=test" class="btn btn-danger">Сбросить</a>
       </div>
 
     </form>
