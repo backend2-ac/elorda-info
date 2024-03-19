@@ -251,6 +251,7 @@ class AppController extends Controller
                 'lichnost' => 'lichnost',
                 'obrazovaniye' => 'obrazovaniye',
                 'naznachenie-ru' => 'naznachenie-ru',
+                'sluzhu-strane' => 'sluzhu-strane',
 
                 'elorda-janalyktary' => 'elorda-janalyktary',
                 'sayasat' => 'sayasat',
@@ -285,6 +286,7 @@ class AppController extends Controller
                 'kogam' => 'kogam',
                 'sukhbat' => 'sukhbat',
                 'tulga' => 'tulga',
+                'elge-kyzmet' => 'elge-kyzmet'
 
             ];
 

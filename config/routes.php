@@ -301,6 +301,10 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
+    $builder->connect('/sluzhu-strane', ['controller' => 'Articles', 'action' => 'index', 'sluzhu-strane']);
+    $builder->connect('/sluzhu-strane/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
 
 
     $builder->connect('/news', ['controller' => 'Articles', 'action' => 'index', 'news'])
@@ -452,6 +456,8 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/elorda-yzdikteri', ['controller' => 'Articles', 'action' => 'index', 'elorda-yzdikteri']);
     $builder->connect('/elorda-yzdikteri/*', ['controller' => 'Articles', 'action' => 'view']);
 
+    $builder->connect('/elge-kyzmet', ['controller' => 'Articles', 'action' => 'index', 'elge-kyzmet']);
+    $builder->connect('/elge-kyzmet/*', ['controller' => 'Articles', 'action' => 'view']);
 //    $builder->connect('/:slug', ['controller' => 'Articles', 'action' => 'index'])
 //        ->setPass(['slug']);
 //
