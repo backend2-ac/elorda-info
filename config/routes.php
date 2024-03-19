@@ -69,8 +69,11 @@ Router::prefix('Admin', function(RouteBuilder $builder){
     $builder->connect('/categories', ['controller' => 'Categories', 'action' => 'index']);
     $builder->connect('/categories/:action/*', ['controller' => 'Categories']);
 
-    $builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index']);
-    $builder->connect('/articles/:action/*', ['controller' => 'Articles']);
+    $builder->connect('/articles-kz', ['controller' => 'Articles', 'action' => 'index']);
+    $builder->connect('/articles-kz/:action/*', ['controller' => 'Articles']);
+
+    $builder->connect('/articles-ru', ['controller' => 'Articles', 'action' => 'index']);
+    $builder->connect('/articles-ru/:action/*', ['controller' => 'Articles']);
 
     $builder->connect('/tags', ['controller' => 'Tags', 'action' => 'index']);
     $builder->connect('/tags/:action/*', ['controller' => 'Tags']);
@@ -301,6 +304,10 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
+    $builder->connect('/sluzhu-strane', ['controller' => 'Articles', 'action' => 'index', 'sluzhu-strane']);
+    $builder->connect('/sluzhu-strane/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
 
 
     $builder->connect('/news', ['controller' => 'Articles', 'action' => 'index', 'news'])
@@ -452,6 +459,8 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/elorda-yzdikteri', ['controller' => 'Articles', 'action' => 'index', 'elorda-yzdikteri']);
     $builder->connect('/elorda-yzdikteri/*', ['controller' => 'Articles', 'action' => 'view']);
 
+    $builder->connect('/elge-kyzmet', ['controller' => 'Articles', 'action' => 'index', 'elge-kyzmet']);
+    $builder->connect('/elge-kyzmet/*', ['controller' => 'Articles', 'action' => 'view']);
 //    $builder->connect('/:slug', ['controller' => 'Articles', 'action' => 'index'])
 //        ->setPass(['slug']);
 //
