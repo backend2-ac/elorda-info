@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
 use Cake\Validation\Validator;
 use Cake\I18n\I18n;
 
@@ -38,7 +38,7 @@ class EmployeesController extends AppController{
             'limit' => $per_page,
         ];
 
-        $data = $this->$model->find('all') 
+        $data = $this->$model->find('all')
             ->orderDesc('item_order')
             ->limit($per_page)->offset($offset)
             ->toList();
@@ -48,7 +48,7 @@ class EmployeesController extends AppController{
         $this->set('pagination', $this->paginate(
             $this->$model->find('all')
             ->order([$model.'.item_order' => 'DESC'])
-            ->limit($per_page), 
+            ->limit($per_page),
             $pag_settings
         ));
     }
@@ -148,15 +148,6 @@ class EmployeesController extends AppController{
 
         $this->request->allowMethod(['post', 'delete']);
         $data = $this->$model->get($item_id);
-
-        $has_article = $this->Articles->find()
-            ->where(['Articles.author_id' => $item_id])
-            ->first();
-
-        if( $has_article ){
-            $this->Flash->error(__('Ошибка! Нельзя удалить Автора который прикреплен к Статье'));
-            return $this->redirect( $this->referer() );
-        }
 
         if ($this->$model->delete($data)) {
             $this->Flash->success(__('Элемент успешно удален'));
