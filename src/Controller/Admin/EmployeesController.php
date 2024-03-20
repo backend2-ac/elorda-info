@@ -181,10 +181,9 @@ class EmployeesController extends AppController{
 
     protected function _cacheDelete(){
         Cache::delete('admin_employees', 'eternal');
+        Cache::delete('employees_kz', 'long');
+        Cache::delete('employees_ru', 'long');
 
-        // Cache::delete('main_articles_ru', 'long');
-        // Cache::delete('main_articles_kz', 'long');
-        // Cache::delete('main_articles_en', 'long');
     }
 }
 

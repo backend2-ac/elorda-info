@@ -150,6 +150,9 @@ class BranchesController extends AppController{
 
     protected function _cacheDelete(){
         Cache::delete('admin_branches', 'eternal');
+        Cache::delete('branches_ru', 'long');
+        Cache::delete('branches_kz', 'long');
+
     }
 }
 
