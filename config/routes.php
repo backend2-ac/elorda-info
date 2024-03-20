@@ -63,6 +63,8 @@ Router::prefix('Admin', function(RouteBuilder $builder){
     $builder->connect('/all', ['controller' => 'Admin', 'action' => 'all']);
     $builder->connect('/edit/*', ['controller' => 'Admin', 'action' => 'edit']);
     $builder->connect('/delete/*', ['controller' => 'Admin', 'action' => 'delete']);
+    $builder->connect('/clear-cache', ['controller' => 'Admin', 'action' => 'clearAllCache']);
+
 
     $builder->connect('/', ['controller' => 'Admin', 'action' => 'index']);
 

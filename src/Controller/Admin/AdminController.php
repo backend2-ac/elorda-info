@@ -2,7 +2,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController; 
+use App\Controller\AppController;
+use Cake\Cache\Cache;
 
 class AdminController extends AppController{
 
@@ -111,6 +112,10 @@ class AdminController extends AppController{
 	    	$this->Flash->error(__('Ошибка удаления'));
 	    }
 	}
+
+    public function clearAllCache() {
+        Cache::clearAll();
+    }
 }
 
 
