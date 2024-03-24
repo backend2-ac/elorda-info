@@ -13,7 +13,7 @@
                                         <a href="/<?= $lang ?>"><?= __('Главная') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/<?= $lang ?><?= $categories_alias ?>">
+                                        <a href="/<?= $lang ?><?= $category_alias ?>">
                                         	<?= $full_categories[$data['category_id']]['title'] ?>
                                     	</a>
                                     </li>
