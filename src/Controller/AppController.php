@@ -252,6 +252,7 @@ class AppController extends Controller
                 'obrazovaniye' => 'obrazovaniye',
                 'naznachenie-ru' => 'naznachenie-ru',
                 'sluzhu-strane' => 'sluzhu-strane',
+                'show-biznes-ru' => 'show-biznes-ru',
 
                 'elorda-janalyktary' => 'elorda-janalyktary',
                 'sayasat' => 'sayasat',
