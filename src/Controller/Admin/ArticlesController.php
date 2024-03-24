@@ -222,6 +222,9 @@ class ArticlesController extends AppController{
         if ($this->request->is(['post', 'put'])) {
             $data1 = $this->request->getData();
             $old_data = clone $data;
+//            debug($data1['img']->getClientFilename());
+//            $data1['img']->setClientFilename('test.jpeg');
+//            debug($data1['img']);
             $articles_tags = [];
             if( isset($data1['date']) && $data1['date'] ){
                 $data1['date'] = date('Y-m-d H:i:s', strtotime($data1['date']));

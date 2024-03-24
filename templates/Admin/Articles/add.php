@@ -53,10 +53,20 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 						<?= $this->Form->textarea('body', array('id' => 'inputBody', 'class' => 'form-control')); ?>
 					</div>
 
-					<?= $this->element('admin/img_input', [
-						'custom_input_params' => ['title' => 'Картинка', 'field' => 'img']
-						]);
-					?>
+<!--					--><?php //= $this->element('admin/img_input', [
+//						'custom_input_params' => ['title' => 'Картинка', 'field' => 'img',
+//                                'accept' => '.jpg,.jpeg,.png,.gif,.webp' // Добавляем поддержку формата WebP
+//                        ]
+//						]);
+//					?>
+                    <?= $this->element('admin/img_input', [
+                        'custom_input_params' => [
+                            'title' => 'Картинка',
+                            'field' => 'img',
+                            'accept' => '.jpg,.jpeg,.png,.gif,.webp' // Добавляем поддержку формата WebP
+                        ]
+                    ]); ?>
+
 
                     <div class="form-group">
                         <label for="inputImgText">Текст картинки (alt)</label>

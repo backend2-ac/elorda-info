@@ -64,10 +64,22 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
                         $img_name = $data['img_path'];
                     }
                     ?>
+<!--                    --><?php //= $this->element('admin/img_input', [
+//                        'custom_input_params' => ['title' => 'Картинка', 'field' => 'img', 'path' => $img_path, 'file_name' => $img_name],
+//                        ]);
+//                    ?>
+
                     <?= $this->element('admin/img_input', [
-                        'custom_input_params' => ['title' => 'Картинка', 'field' => 'img', 'path' => $img_path, 'file_name' => $img_name],
-                        ]);
-                    ?>
+                        'custom_input_params' => [
+                            'title' => 'Картинка',
+                            'field' => 'img',
+                            'path' => $img_path,
+                            'file_name' => $img_name,
+                            'accept' => '.jpg,.jpeg,.png,.gif,.webp' // Добавляем поддержку формата WebP
+                        ]
+                    ]); ?>
+
+
 
                     <div class="form-group">
                         <label for="inputImgText">Текст картинки (alt)</label>

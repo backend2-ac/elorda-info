@@ -35,6 +35,7 @@
                                         <?= number_format($data['views'], 0, '', ' ') ?>
                                     </div>
                                 </div>
+
                                 <div class="inner__img">
                                     <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $data['img']) ? '/img/articles/' . $data['img'] : '/img/articles' . $data['img_path'] ?>" alt="<?= $data['img_text'] ?>">
                                 </div>
