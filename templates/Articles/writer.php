@@ -73,6 +73,21 @@
                         </div> -->
                     </div>
                 </section>
+                <ul class="pagination">
+                    <?php
+                    $this->Paginator->options([
+                        'url' => [
+                            $author['alias'],
+                            'lang' => $l,
+                        ]
+                    ]);
+                    echo $this->Paginator->numbers([
+                        'first' => 1, 'last' => 1, 'modulus' => 2,
+                    ]);
+                    ?>
+                </ul>
+
+
             </div>
         </div>
     </main>

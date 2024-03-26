@@ -338,20 +338,34 @@ class ArticlesController extends AppController
             throw new NotFoundException(__('Запись не найдена'));
         }
         $author_id = $author['id'];
-        $author_artilces = Cache::read($author_alias . '_news', 'long');
-        if (!$author_artilces) {
-            $author_artilces = $this->Articles->find('all')
+        $cur_page = 1;
+        if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
+            $cur_page = $_GET['page'];
+        }
+        $per_page = 5;
+        $offset = ($cur_page * $per_page) - $per_page;
+        $pag_settings = [
+            'limit' => $per_page,
+        ];
+        $author_artilces = $this->Articles->find('all')
+            ->where([ 'Articles.author_id' => $author_id])
+            ->contain([
+                'Tags',
+            ])
+            ->orderDesc('Articles.date')
+            ->limit($per_page)
+            ->offset($offset)
+            ->toList();
+
+        $this->set('pagination', $this->paginate(
+            $this->Articles->find()
                 ->where([ 'Articles.author_id' => $author_id])
                 ->contain([
                     'Tags',
                 ])
                 ->orderDesc('Articles.date')
-                ->toList();
-            Cache::write($author_alias . '_news', $author_artilces, 'long');
-        }
-//        if( is_null($author_artilces) || !$author_artilces ){
-//            throw new NotFoundException(__('Запись не найдена'));
-//        }
+                ->limit($per_page), $pag_settings));
+
            $this->set(compact('author_artilces','author'));
     }
 
@@ -373,9 +387,7 @@ class ArticlesController extends AppController
             'limit' => $per_page,
             'maxLimit' => 25
         ];
-//        $tag_articles = Cache::read('tag_articles_' . $tag_alias, 'long');
-//
-//        if (!$tag_articles) {
+
             $tag_articles = $this->Articles->find()
                 ->innerJoinWith('ArticlesTags')
                 ->where([
@@ -391,8 +403,6 @@ class ArticlesController extends AppController
                 ->offset($offset)
                 ->toArray();
 
-//            Cache::write('tag_articles_' . $tag_alias, $tag_articles, 'long');
-//        }
         $this->set('pagination', $this->paginate(
             $this->Articles->find()
                 ->innerJoinWith('ArticlesTags')
