@@ -63,29 +63,19 @@
                     </div>
 <!--                    <a href="mailto:--><?php //= $comps[6]['body'] ?><!--" class="footer__mail">--><?php //= $comps[6]['body'] ?><!--</a>-->
                     <!-- <a href="https://wa.me/<?=$comps[26]['body']?>" target="_blank" class="footer__feedback"><?= __('Напишите нам') ?></a> -->
+                    <!-- Google Tag Manager (noscript) -->
+                    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M964JQBS"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+                    <!-- End Google Tag Manager (noscript) -->
                     <!-- Google tag (gtag.js) -->
-<!--                             <script async src="https://www.googletagmanager.com/gtag/js?id=G-PDHW8VYRX9"></script>-->
-<!--                             <script>-->
-<!--                               window.dataLayer = window.dataLayer || [];-->
-<!--                               function gtag(){dataLayer.push(arguments);}-->
-<!--                               gtag('js', new Date());-->
-<!--                            -->
-<!--                               gtag('config', 'G-PDHW8VYRX9');-->
-<!--                             </script>-->
-                            
-                            <!-- Google Tag Manager (noscript) -->
-                            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M964JQBS"
-                            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-                            <!-- End Google Tag Manager (noscript) -->
-                            <!-- Google tag (gtag.js) -->
-                            <script async src="https://www.googletagmanager.com/gtag/js?id=G-14414JMZLQ"></script>
-                            <script>
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            
-                            gtag('config', 'G-14414JMZLQ');
-                            </script>
+                    <script async src="https://www.googletagmanager.com/gtag/js?id=G-14414JMZLQ"></script>
+                    <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    
+                    gtag('config', 'G-14414JMZLQ');
+                    </script>
                     <!-- Yandex.Metrika informer -->
                         <a href="https://metrika.yandex.ru/stat/?id=45707448&amp;from=informer"
                             target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/45707448/3_1_FFFFFFFF_EFEFEFFF_0_visits"
