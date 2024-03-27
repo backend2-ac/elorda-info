@@ -121,7 +121,7 @@ class PagesController extends AppController
                         ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date],
                     ],
                 ])
-                ->where(['locale' => $locale])
+                ->where(['locale' => $locale, 'on_main' => 1])
                 ->order(['date' => 'DESC'])
                 ->limit(3)
                 ->toList();

@@ -119,12 +119,12 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 <!--                        </div>-->
 <!--                    </div>-->
 
-<!--                    <div class="form-group">-->
-<!--                        <div class="custom-control custom-switch">-->
-<!--                            --><?php //= $this->Form->input('on_main', array('class' => 'custom-control-input', 'id' => 'on_main', 'type' => 'checkbox'));  ?>
-<!--                            <label class="custom-control-label" for="on_main">закрепить на Главной</label>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <?= $this->Form->input('on_main', array('class' => 'custom-control-input', 'id' => 'on_main', 'type' => 'checkbox'));  ?>
+                            <label class="custom-control-label" for="on_main">закрепить на Главной</label>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="inputImgText">Теги</label>
