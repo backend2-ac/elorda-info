@@ -102,7 +102,7 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
                     <div class="form-group col_4">
                         <label>Дата старт публикации</label>
                         <div class="input-group date col-3" id="articles_publish_start_at" data-target-input="nearest">
-                            <?= $this->Form->text('publish_start_at', array('class' => 'form-control datetimepicker-input', 'data-target' => '#articles_publish_start_at')); ?>
+                            <?= $this->Form->text('publish_start_at', array('class' => 'form-control datetimepicker-input', 'data-target' => '#articles_publish_start_at', 'value' => $this->Time->format($data['publish_start_at'], 'Y-MM-dd HH:mm'))); ?>
                             <div class="input-group-append" data-target="#articles_publish_start_at" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
