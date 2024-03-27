@@ -21,7 +21,7 @@
                                 <h1 class="inner__title title"><?=$data['title'];?></h1>
                                 <div class="inner__header">
                                     <div class="inner__date">
-                                         <?= $this->Time->format($data['date'], 'dd.MM.yyyy | HH:mm') ?>
+                                         <?= $data['publish_start_at'] ? $this->Time->format($data['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($data['date'], 'dd.MM.yyyy | HH:mm') ?>
                                     </div>
                                     <?php if( $data['author'] ): ?>
 										<a href="/<?= $lang ?>writer/<?= $data['author']['alias'] ?>" class="inner__author">
