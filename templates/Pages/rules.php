@@ -36,8 +36,7 @@
                                     </div>
                                     <div class="news-actual__item-info">
                                         <div class="news-actual__item-date">
-                                            <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
-                                        </div>
+                                            <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>                                        </div>
                                         <div class="news-actual__item-title"><?= $item['title'] ?></div>
                                     </div>
                                 </a>
@@ -51,8 +50,7 @@
                                     </div>
                                     <div class="news-actual__item-info">
                                         <div class="news-actual__item-date">
-                                            <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
-                                        </div>
+                                            <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>                                        </div>
                                         <div class="news-actual__item-title"><?= $item['title'] ?></div>
                                     </div>
                                 </a>

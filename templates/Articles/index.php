@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="news-actual__item-info">
                                         <div class="news-actual__item-date">
-                                            <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
+                                            <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
                                         </div>
                                         <div href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news-actual__item-title"><?= $item['title'] ?></div>
                                     </div>
@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="news-actual__item-info">
                                         <div class="news-actual__item-date">
-                                            <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
+                                            <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
                                         </div>
                                         <div href='/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>' class="news-actual__item-title"><?= $item['title'] ?></div>
                                     </div>
@@ -116,7 +116,7 @@
 								 <div class="news__item">
 		                            <a href="<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news__item-img">
 		                                <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" />
-		                                <div class="news__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
+		                                <div class="news__item-date"><?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy') : $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                            </a>
 		                            <div class="news__item-info">
 		                            	<?php if( $item['tags'] ): ?>

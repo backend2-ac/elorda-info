@@ -67,7 +67,7 @@
 		                                        <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 		                                    </div>
 		                                    <div class="capital__main-header block-elems">
-		                                        <div class="capital__main-date date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
+		                                        <div class="capital__main-date date"><?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy') : $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 <!--		                                        <div class="capital__main-watch watch">-->
 <!--		                                            <img src="/img/watch.png" alt="" class="svg-icon">-->
 <!--		                                            --><?php //= number_format($item['views'], 0, '', ' ') ?>
@@ -89,7 +89,7 @@
 			                                <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="capital__item article__item">
 		                                        <div class="article__item-img">
 		                                             <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
-		                                            <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
+		                                            <div class="article__item-date"><?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy') : $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                                        </div>
 		                                        <div class="article__item-title"><?= $item['title'] ?></div>
 <!--		                                        <div class="article__item-watch">-->
@@ -127,7 +127,7 @@
 		                                            </div>
                                                     <?php endif; ?>
                                                     <div class="socium__main-header block-elems">
-		                                                <div class="socium__main-date date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
+		                                                <div class="socium__main-date date"><?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy') : $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 <!--		                                                <div class="socium__main-watch watch">-->
 <!--		                                                    <img src="/img/watch.png" alt="" class="svg-icon">-->
 <!--		                                                    --><?php //= number_format($item['views'], 0, '', ' ') ?>
@@ -152,7 +152,7 @@
 			                                        <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__child article__item">
 		                                                <div class="article__item-img">
 		                                                     <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
-		                                                    <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
+		                                                    <div class="article__item-date"><?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy') : $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 		                                                </div>
 		                                                <div class="article__item-title"><?= $item['title'] ?></div>
 <!--		                                                <div class="article__item-watch">-->
@@ -172,7 +172,7 @@
 
 		                                            <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__item">
 		                                                <div class="socium__item-header">
-		                                                    <div class="date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?></div>
+		                                                    <div class="date"><?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?></div>
 <!--		                                                    <div class="watch">-->
 <!--		                                                        <img src="/img/watch-gray.png" alt="">-->
 <!--		                                                        --><?php //= number_format($item['views'], 0, '', ' ') ?>
@@ -250,7 +250,7 @@
 			                                            <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 			                                        </div>
                                                 <?php endif; ?>
-                                                <div class="culture__main-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
+                                                <div class="culture__main-date"><?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy') : $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 			                                        <div class="culture__main-title"><?= $item['title'] ?></div>
 			                                        <div class="culture__main-link">
 			                                            <?= __('Читать далее') ?>
@@ -275,8 +275,7 @@
                                                     <div class="culture__item-info">
 		                                                <div class="culture__item-header">
 		                                                    <div class="date">
-		                                                        <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
-		                                                    </div>
+                                                                <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>		                                                    </div>
 <!--		                                                    <div class="watch">-->
 <!--		                                                        <img src="/img/watch-gray.png" alt="">-->
 <!--		                                                        --><?php //= number_format($item['views'], 0, '', ' ') ?>
@@ -309,7 +308,7 @@
 		                                <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="heroes__child article__item">
 	                                        <div class="article__item-img">
 	                                            <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
-	                                            <div class="article__item-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
+	                                            <div class="article__item-date"><?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy') : $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 	                                        </div>
 	                                        <div class="article__item-title"><?= $item['title'] ?></div>
 <!--	                                        <div class="article__item-watch">-->
@@ -340,8 +339,7 @@
                                         <?php endif; ?>
 	                                    <div class="news-actual__item-info">
 	                                        <div class="news-actual__item-date">
-	                                            <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
-	                                        </div>
+                                                <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>	                                        </div>
 	                                        <div class="news-actual__item-title"><?= $item['title'] ?></div>
 	                                    </div>
 	                                </a>
@@ -359,8 +357,7 @@
                                             <?php endif; ?>
                                             <div class="news-actual__item-info">
 		                                        <div class="news-actual__item-date">
-		                                            <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
-		                                        </div>
+                                                    <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>		                                        </div>
 		                                        <div class="news-actual__item-title"><?= $item['title'] ?></div>
 		                                    </div>
 		                                </a>
