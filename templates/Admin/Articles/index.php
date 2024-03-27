@@ -76,7 +76,8 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
                 <th style="width: 8%">Название</th>
                 <th style="width: 5%">Категория</th>
                 <th style="width: 5%">Картинка</th>
-                <th style="width: 5%">Дата</th>
+                <th style="width: 5%">Дата создание</th>
+                <th style="width: 5%">Дата старт публикации</th>
                 <th style="width: 5%">Статус</th>
                 <th style="width: 5%; text-align: right;">Редактирование</th>
             </tr>
@@ -101,6 +102,9 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
               <td>
         				<?= $this->Time->format($item['date'], 'dd.MM.yyyy HH:mm') ?>
         			</td>
+                    <td>
+                        <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy HH:mm') : '' ?>
+                    </td>
                     <td>
                         <?= FrozenTime::now() > $item['publish_start_at'] ? 'Опубликован' : 'Не опубликован' ?>
                     </td>
