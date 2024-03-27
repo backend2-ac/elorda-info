@@ -247,7 +247,6 @@ class PagesController extends AppController
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date'])
-                    ->where(['Articles.category_id' => $capital_news_category_id])
                     ->where([
                         'OR' => [
                             ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
@@ -265,7 +264,6 @@ class PagesController extends AppController
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date'])
-                    ->where(['Articles.category_id' => $capital_news_category_id])
                     ->where([
                         'OR' => [
                             ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
