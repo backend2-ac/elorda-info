@@ -2276,13 +2276,16 @@ select {
   text-decoration: underline;
 }
 
-/* .inner__text blockquote {
+.inner__text blockquote {
   position: relative;
-  color: #1D489C;
+  /* color: #1D489C; */
   font-style: italic;
-  font-size: 22px;
+  /* font-size: 22px; */
   font-weight: 500;
   margin-top: 20px;
+  border-left: 3px solid #1D489C;
+  background: rgba(29, 72, 156, 0.1);
+  padding: 30px 20px;
 }
 
 .inner__text blockquote::before {
@@ -2290,10 +2293,10 @@ select {
   content: "";
   width: 13px;
   height: 8px;
-  bottom: 100%;
-  left: 0;
+  top: 15px;
+  left: 20px;
   background: url("../img/blockquote-icon.png") center/contain no-repeat;
-} */
+}
 
 .inner__tags {
   display: flex;
