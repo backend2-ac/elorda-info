@@ -121,10 +121,12 @@
                                     	 <?php foreach( $society_news as $index => $item ): ?>
 		                                	<?php if($index === 0):?>
 				                                <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="socium__main">
-		                                            <div class="socium__main-img">
+                                                    <?php if ($item['img'] || $item['img_path']): ?>
+                                                    <div class="socium__main-img">
 		                                                 <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 		                                            </div>
-		                                            <div class="socium__main-header block-elems">
+                                                    <?php endif; ?>
+                                                    <div class="socium__main-header block-elems">
 		                                                <div class="socium__main-date date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 <!--		                                                <div class="socium__main-watch watch">-->
 <!--		                                                    <img src="/img/watch.png" alt="" class="svg-icon">-->
@@ -202,10 +204,12 @@
                                 <div class="politic__items">
                                 	<?php foreach( $politica_news as $index => $item ): ?>
                                         <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="politic__item">
-	                                        <div class="politic__item-img">
+                                            <?php if ($item['img'] || $item['img_path']): ?>
+                                                <div class="politic__item-img">
 	                                             <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 	                                        </div>
-	                                        <div class="politic__info">
+                                            <?php endif; ?>
+                                            <div class="politic__info">
 
 	                                            <div class="politic__item-title"><?= $item['title'] ?></div>
                                                 <?php
@@ -241,14 +245,12 @@
                                 	<a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__main">
 	                                	<?php foreach( $culture_news as $index => $item ): ?>
 	                                		<?php if($index === 0): ?>
-			                                    <div class="culture__main-img">
+                                                <?php if ($item['img'] || $item['img_path']): ?>
+                                                    <div class="culture__main-img">
 			                                            <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
 			                                        </div>
-			                                        <div class="culture__main-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
-<!--			                                        <div class="culture__main-watch">-->
-<!--			                                            <img src="/img/watch.png" alt="">-->
-<!--			                                            356-->
-<!--			                                        </div>-->
+                                                <?php endif; ?>
+                                                <div class="culture__main-date"><?= $this->Time->format($item['date'], 'dd.MM.yyyy') ?></div>
 			                                        <div class="culture__main-title"><?= $item['title'] ?></div>
 			                                        <div class="culture__main-link">
 			                                            <?= __('Читать далее') ?>
@@ -264,10 +266,13 @@
                                     	<?php foreach( $culture_news as $index => $item ): ?>
 	                                		<?php if($index != 0): ?>
 			                                    <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__item">
-		                                            <div class="culture__item-img">
-		                                               <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
-		                                            </div>
-		                                            <div class="culture__item-info">
+                                                    <?php if ($item['img'] || $item['img_path']): ?>
+                                                        <div class="culture__item-img">
+                                                           <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
+                                                        </div>
+                                                    <?php endif; ?>
+
+                                                    <div class="culture__item-info">
 		                                                <div class="culture__item-header">
 		                                                    <div class="date">
 		                                                        <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
@@ -328,9 +333,11 @@
                             	 <?php if( $last_news ): ?>
                                <?php foreach( $last_news as $index => $item ): ?>
                                     <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
-	                                    <div class="news-actual__item-img">
-	                                        <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
-	                                    </div>
+	                                    <?php if ($item['img'] || $item['img_path']): ?>
+                                            <div class="news-actual__item-img">
+                                                <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
+                                            </div>
+                                        <?php endif; ?>
 	                                    <div class="news-actual__item-info">
 	                                        <div class="news-actual__item-date">
 	                                            <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
@@ -345,10 +352,12 @@
                             	<?php if( $popular_news ): ?>
 	                            	<?php foreach( $popular_news as $index => $item ): ?>
 	                                    <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
-		                                    <div class="news-actual__item-img">
-		                                        <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
-		                                    </div>
-		                                    <div class="news-actual__item-info">
+                                            <?php if ($item['img'] || $item['img_path']): ?>
+                                                <div class="news-actual__item-img">
+                                                    <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
+                                                </div>
+                                            <?php endif; ?>
+                                            <div class="news-actual__item-info">
 		                                        <div class="news-actual__item-date">
 		                                            <?= $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
 		                                        </div>
