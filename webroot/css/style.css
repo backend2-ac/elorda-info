@@ -2276,13 +2276,16 @@ select {
   text-decoration: underline;
 }
 
-/* .inner__text blockquote {
+.inner__text blockquote {
   position: relative;
   color: #1D489C;
   font-style: italic;
-  font-size: 22px;
+  /* font-size: 22px; */
   font-weight: 500;
   margin-top: 20px;
+  border-left: 2px solid #1D489C;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
 }
 
 .inner__text blockquote::before {
@@ -2293,7 +2296,7 @@ select {
   bottom: 100%;
   left: 0;
   background: url("../img/blockquote-icon.png") center/contain no-repeat;
-} */
+}
 
 .inner__tags {
   display: flex;
