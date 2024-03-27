@@ -2283,9 +2283,9 @@ select {
   /* font-size: 22px; */
   font-weight: 500;
   margin-top: 20px;
-  border-left: 2px solid #1D489C;
+  border-left: 2px solid rgb(29 72 156);
   background: rgba(0, 0, 0, 0.3);
-  padding: 20px;
+  padding: 30px 20px;
 }
 
 .inner__text blockquote::before {
@@ -2293,8 +2293,8 @@ select {
   content: "";
   width: 13px;
   height: 8px;
-  bottom: 100%;
-  left: 0;
+  top: 15px;
+  left: 20px;
   background: url("../img/blockquote-icon.png") center/contain no-repeat;
 }
 
