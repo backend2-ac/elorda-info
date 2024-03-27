@@ -2283,8 +2283,8 @@ select {
   /* font-size: 22px; */
   font-weight: 500;
   margin-top: 20px;
-  border-left: 2px solid rgb(29 72 156);
-  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #1D489C;
+  background: rgba(29, 72, 156, 0.3);
   padding: 30px 20px;
 }
 
