@@ -2264,6 +2264,10 @@ select {
   margin-bottom: 30px;
 }
 
+.inner__text > * {
+  margin-bottom: 1rem;
+}
+
 .inner__text p {
   font-size: 22px;
 }
@@ -2282,7 +2286,6 @@ select {
   font-style: italic;
   /* font-size: 22px; */
   font-weight: 500;
-  margin-top: 20px;
   border-left: 3px solid #1D489C;
   background: rgba(29, 72, 156, 0.1);
   padding: 30px 20px;
