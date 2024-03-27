@@ -253,7 +253,8 @@ class PagesController extends AppController
                             ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
                         ],
                     ])
-                    ->orderDesc('views')
+                ->where(['locale' => $locale])
+                ->orderDesc('views')
                     ->limit(6)
                     ->offset(6)
                     ->toList();
@@ -270,7 +271,8 @@ class PagesController extends AppController
                             ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
                         ],
                     ])
-                    ->orderDesc('Articles.date')
+                ->where(['locale' => $locale])
+                ->orderDesc('Articles.date')
                     ->limit(6)
                     ->toList();
             Cache::write('last_news_' . $cur_lang, $last_news, 'long');
