@@ -134,13 +134,14 @@ class ArticlesController extends AppController{
                     return $this->redirect( $this->referer() );
                 }
             }
-
+            debug($data);
             if( !$data['date'] ){
                 $data['date'] = date('Y-m-d H:i:s');
             } else{
                 $data['date'] = date('Y-m-d H:i:s', strtotime($data['date']));
             }
-
+            debug($data);
+//            die();
             $data_tags = [];
             if( isset($data['articles_tags']) && $data['articles_tags'] ){
                 $data_tags = $data['articles_tags'];
