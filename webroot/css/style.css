@@ -2278,7 +2278,7 @@ select {
 
 .inner__text blockquote {
   position: relative;
-  color: #1D489C;
+  /* color: #1D489C; */
   font-style: italic;
   /* font-size: 22px; */
   font-weight: 500;
