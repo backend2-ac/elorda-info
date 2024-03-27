@@ -123,7 +123,7 @@ class PagesController extends AppController
                 ])
                 ->where(['locale' => $locale])
                 ->order(['date' => 'DESC'])
-                ->limit(6)
+                ->limit(3)
                 ->toList();
 
             Cache::write('main_articles_' . $cur_lang, $main_articles, 'long');
