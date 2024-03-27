@@ -4,16 +4,16 @@
             <div class="wrapper-parent">
                 <div class="wrapper">
                     <div class="wrapper-col">
-                        <section class="holiday">
-                            <div class="holiday__container">
-                                <h2 class="holiday__title">
-                                    День республики <span>25 октября</span>
-                                </h2>
-                                <div class="holiday__text">
-                                    Выходной во всех муниципальных учреждениях
-                                </div>
-                            </div>
-                        </section>
+<!--                        <section class="holiday">-->
+<!--                            <div class="holiday__container">-->
+<!--                                <h2 class="holiday__title">-->
+<!--                                    День республики <span>25 октября</span>-->
+<!--                                </h2>-->
+<!--                                <div class="holiday__text">-->
+<!--                                    Выходной во всех муниципальных учреждениях-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </section>-->
                         <?php if( $main_articles ): ?>
 	                        <section class="hero">
 	                            <div class="hero__container">
