@@ -59,15 +59,7 @@ class ArticlesController extends AppController
         $cur_date = date('Y-m-d H:i:s');
         $cur_lang = Configure::read('Config.lang');
         $locale = $cur_lang == 'kz' ? 'kk' : 'ru';
-        $conditions = [
-            'Articles.date <=' => $cur_date
-        ];
-        $conditions = [
-            'OR' => [
-                ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-            ]
-        ];
+        $conditions = [];
         $cur_cat = null;
         if($category_alias != 'latest-news'){
             $cur_cat = $this->Categories->findByAlias($category_alias)
@@ -94,6 +86,12 @@ class ArticlesController extends AppController
             'limit' => $per_page,
         ];
 
+        $conditions = [
+            'OR' => [
+                ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+            ]
+        ];
 //        $data = Cache::read($alias . '_news', 'long');
 //        if (!$data) {
         $data = $this->Articles->find('all')
@@ -163,12 +161,19 @@ class ArticlesController extends AppController
 
     public function view($article_alias){
         $cur_date = date('Y-m-d H:i:s');
+        $conditions = [
+            'OR' => [
+                ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+            ]
+        ];
         $data = $this->Articles->findByAlias($article_alias)
             ->contain([
                 'Categories',
                 'Tags',
                 'Authors'
             ])
+            ->where($conditions)
             ->first();
 
         $article_id = $data['id'];
@@ -183,7 +188,8 @@ class ArticlesController extends AppController
                     'Articles.id !=' => $article_id,
                     'Articles.category_id =' =>$data['category_id'],
                 ])
-                ->orderDesc('Articles.date')
+             ->where($conditions)
+             ->orderDesc('Articles.date')
                 ->limit(4)
                 ->toList();
 
