@@ -113,7 +113,7 @@ class ArticlesController extends AppController{
 
     public function add(){
         $model = 'Articles';
-        date_default_timezone_set('Asia/Almaty');
+        date_default_timezone_set('Asia/Atyrau');
         $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
         if( $this->request->is('post') ){
             $data = $this->request->getData();
@@ -197,7 +197,7 @@ class ArticlesController extends AppController{
     public function edit($item_id = null){
         $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
         $model = 'Articles';
-        date_default_timezone_set('Asia/Almaty');
+        date_default_timezone_set('Asia/Atyrau');
         $cur_user = $this->request->getSession()->read('Auth.User');
         if ($cur_user['role'] == 'author') {
             $is_author_article = $this->$model->find()

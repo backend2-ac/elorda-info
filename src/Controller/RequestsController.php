@@ -21,7 +21,7 @@ class RequestsController extends AppController{
 
     public function send(){
         $model = 'Requests';
-        date_default_timezone_set('Asia/Almaty');
+        date_default_timezone_set('Asia/Atyrau');
 
 //        $requests_email = $this->_getRequestEmail();
         $requests_email = 'mmanmurynov@mail.ru';

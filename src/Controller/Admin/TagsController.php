@@ -74,7 +74,7 @@ class TagsController extends AppController{
 
     public function add(){
         $model = 'Tags';
-        date_default_timezone_set('Asia/Almaty');
+        date_default_timezone_set('Asia/Atyrau');
 
 
         if( $this->request->is('post') ){
@@ -116,7 +116,7 @@ class TagsController extends AppController{
 
     public function edit($item_id = null){
         $model = 'Tags';
-        date_default_timezone_set('Asia/Almaty');
+        date_default_timezone_set('Asia/Atyrau');
 
         $data = $this->$model->get($item_id);
 

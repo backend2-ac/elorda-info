@@ -54,7 +54,7 @@ class AuthorsController extends AppController{
     public function add() {
         $authors_model = 'Authors';
         $admins_model = 'Admins';
-        date_default_timezone_set('Asia/Almaty');
+        date_default_timezone_set('Asia/Atyrau');
         $cur_date = date('Y-m-d H:i:s');
         if ($this->request->is('post')) {
             $data = $this->request->getData();
@@ -148,7 +148,7 @@ class AuthorsController extends AppController{
     public function edit($item_id = null) {
         $authors_model = 'Authors';
         $admins_model = 'Admins';
-        date_default_timezone_set('Asia/Almaty');
+        date_default_timezone_set('Asia/Atyrau');
         $cur_user = $this->request->getSession()->read('Auth.User');
         if ($cur_user['role'] == 'author' && $cur_user['author_id'] != $item_id) {
             $this->Flash->error(__('У вас нет доступа!'));

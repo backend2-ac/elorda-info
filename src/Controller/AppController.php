@@ -164,7 +164,7 @@ class AppController extends Controller
         I18n::setLocale($l);
 
         $request = $params;
-        date_default_timezone_set('Asia/Almaty');
+        date_default_timezone_set('Asia/Atyrau');
 
         $this->set( compact('admin', 'login', 'l', 'lang', 'request', 'userAuth') );
 

@@ -436,7 +436,7 @@ class ArticlesController extends AppController
                     ->where([
                         'OR' => [
                             ['publish_start_at IS NULL', 'date <' => $cur_date],
-                            ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date]
+                            ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date],
                         ]])
                     ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path'])
                     ->orderDesc('Articles.date')

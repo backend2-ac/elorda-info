@@ -377,7 +377,7 @@ class UsersController extends AppController{
 
 	public function forgetpwd($number = null){
 		$this->Authorization->skipAuthorization();
-		date_default_timezone_set('Asia/Almaty');
+		date_default_timezone_set('Asia/Atyrau');
 		$site_name = 'iaar-edu-loc';
 		$site_full_name = 'IAAR Education (loc)';
 
@@ -513,7 +513,7 @@ class UsersController extends AppController{
 
 	public function cabinet(){
 		$model = 'Users';
-		date_default_timezone_set('Asia/Almaty');
+		date_default_timezone_set('Asia/Atyrau');
 		$session = $this->request->getSession();
 		$userAuth = $session->read('UserAuth');
 
@@ -640,7 +640,7 @@ class UsersController extends AppController{
 
 	public function articleAdd(){
     	$model = 'Articles';
-    	date_default_timezone_set('Asia/Almaty');
+    	date_default_timezone_set('Asia/Atyrau');
 
     	$site_lang = Configure::read('Config.lang');
 		if( !$site_lang || $site_lang == 'ru' ){
@@ -694,7 +694,7 @@ class UsersController extends AppController{
 
     public function articleEdit($item_id = null){
     	$model = 'Articles';
-    	date_default_timezone_set('Asia/Almaty');
+    	date_default_timezone_set('Asia/Atyrau');
     	$session = $this->request->getSession();
     	$userAuth = $session->read('UserAuth');
 
@@ -789,7 +789,7 @@ class UsersController extends AppController{
 
     public function articleView($item_id = null){
     	$model = 'Articles';
-    	date_default_timezone_set('Asia/Almaty');
+    	date_default_timezone_set('Asia/Atyrau');
     	$session = $this->request->getSession();
     	$userAuth = $session->read('UserAuth');
 
@@ -830,7 +830,7 @@ class UsersController extends AppController{
     	$model = 'Articles';
     	$session = $this->request->getSession();
 		$userAuth = $session->read('UserAuth');
-		date_default_timezone_set('Asia/Almaty');
+		date_default_timezone_set('Asia/Atyrau');
 
 		$site_lang = Configure::read('Config.lang');
 		if( !$site_lang || $site_lang == 'ru' ){
@@ -909,7 +909,7 @@ class UsersController extends AppController{
     	$model = 'UsersArticles';
     	$session = $this->request->getSession();
 		$userAuth = $session->read('UserAuth');
-		date_default_timezone_set('Asia/Almaty');
+		date_default_timezone_set('Asia/Atyrau');
 
 		$site_lang = Configure::read('Config.lang');
 		if( !$site_lang || $site_lang == 'ru' ){
@@ -987,7 +987,7 @@ class UsersController extends AppController{
 
     public function usersArticleEdit($item_id = null){
     	$model = 'UsersArticles';
-    	date_default_timezone_set('Asia/Almaty');
+    	date_default_timezone_set('Asia/Atyrau');
     	$session = $this->request->getSession();
     	$userAuth = $session->read('UserAuth');
 
@@ -1062,7 +1062,7 @@ class UsersController extends AppController{
 
 	    	$session = $this->request->getSession();
 			$userAuth = $session->read('UserAuth');
-			date_default_timezone_set('Asia/Almaty');
+			date_default_timezone_set('Asia/Atyrau');
 
 			$step = $session->read('login_change_steps');
 
@@ -1281,7 +1281,7 @@ class UsersController extends AppController{
 	        	'status' => 'failed',
 	        	'status_text' => __('Ошибка')
 	        ];
-	        date_default_timezone_set('Asia/Almaty');
+	        date_default_timezone_set('Asia/Atyrau');
 
 	        if( !$userAuth ){
 	        	$result['status_text'] = __('Вы не авторизованы!');
@@ -1337,7 +1337,7 @@ class UsersController extends AppController{
 	        	'status' => 'failed',
 	        	'status_text' => __('Ошибка')
 	        ];
-	        date_default_timezone_set('Asia/Almaty');
+	        date_default_timezone_set('Asia/Atyrau');
 
 	        if( $this->request->is('post') ){
 	        	$data = $this->request->getData();

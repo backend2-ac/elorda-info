@@ -55,7 +55,7 @@ class EmployeesController extends AppController{
 
     public function add(){
         $model = 'Employees';
-        date_default_timezone_set('Asia/Almaty');
+        date_default_timezone_set('Asia/Atyrau');
 
         if(isset($_GET['lang']) && $_GET['lang'] == 'kz'){
             $this->$model->setLocale('kz');
@@ -97,7 +97,7 @@ class EmployeesController extends AppController{
 
     public function edit($item_id = null){
         $model = 'Employees';
-        date_default_timezone_set('Asia/Almaty');
+        date_default_timezone_set('Asia/Atyrau');
 
         if(isset($_GET['lang']) && $_GET['lang'] == 'kz'){
             $this->$model->setLocale('kz');
