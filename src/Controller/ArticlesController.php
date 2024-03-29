@@ -412,7 +412,7 @@ class ArticlesController extends AppController
     public function search() {
         $cur_lang = Configure::read('Config.lang');
         $locale = $cur_lang == 'kz' ? 'kk' : 'ru';
-
+        $cur_date = date('Y-m-d H:i:s');
         $cur_page = 1;
         if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
             $cur_page = $_GET['page'];
@@ -433,6 +433,11 @@ class ArticlesController extends AppController
                         'Articles.locale' => $locale,
                         'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                     ])
+                    ->where([
+                        'OR' => [
+                            ['publish_start_at IS NULL', 'date <' => $cur_date],
+                            ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date]
+                        ]])
                     ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path'])
                     ->orderDesc('Articles.date')
                     ->limit($per_page)
