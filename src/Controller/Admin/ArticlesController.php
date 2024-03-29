@@ -134,11 +134,6 @@ class ArticlesController extends AppController{
                     return $this->redirect( $this->referer() );
                 }
             }
-            if( !$data['date'] ){
-                $data['date'] = date('Y-m-d H:i:s');
-            } else{
-                $data['date'] = date('Y-m-d H:i:s', strtotime($data['date']));
-            }
 
             if ($data['publish_start_at']) {
                 $data['publish_start_at'] = date('Y-m-d H:i:s', strtotime($data['publish_start_at']));
@@ -224,14 +219,13 @@ class ArticlesController extends AppController{
         if ($this->request->is(['post', 'put'])) {
             $data1 = $this->request->getData();
             $old_data = clone $data;
-//            debug($data1['img']->getClientFilename());
-//            $data1['img']->setClientFilename('test.jpeg');
-//            debug($data1['img']);
             $articles_tags = [];
-            if( isset($data1['date']) && $data1['date'] ){
-                $data1['date'] = date('Y-m-d H:i:s', strtotime($data1['date']));
+//            if( isset($data1['date']) && $data1['date'] ){
+//                $data1['date'] = date('Y-m-d H:i:s', strtotime($data1['date']));
+//            }
+            if ($data1['publish_start_at']) {
+                $data1['publish_start_at'] = date('Y-m-d H:i:s', strtotime($data1['publish_start_at']));
             }
-
             if( !isset($data1['on_main']) || !$data1['on_main'] ){
                 $data1['on_main'] = 0;
             }

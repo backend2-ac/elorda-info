@@ -97,6 +97,7 @@ class ArticlesController extends AppController
         $data = $this->Articles->find('all')
             ->where($conditions)
             ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path', 'views'])
+            ->orderDesc('Articles.publish_start_at')
             ->order(['Articles.date' => 'DESC'])
             ->limit($per_page)->offset($offset)
             ->toList();
@@ -119,6 +120,7 @@ class ArticlesController extends AppController
             $last_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                 ->where($conditions)
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(6)
                 ->toList();
@@ -189,6 +191,7 @@ class ArticlesController extends AppController
                     'Articles.category_id =' =>$data['category_id'],
                 ])
              ->where($conditions)
+             ->orderDesc('Articles.publish_start_at')
              ->orderDesc('Articles.date')
                 ->limit(4)
                 ->toList();
@@ -214,6 +217,7 @@ class ArticlesController extends AppController
             $last_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                 ->where($conditions)
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(6)
                 ->toList();
@@ -393,6 +397,7 @@ class ArticlesController extends AppController
                         ['Articles.publish_start_at IS NULL', 'Articles.date <=' => $cur_date]
                     ]
                 ])
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit($per_page)
                 ->offset($offset)
@@ -409,6 +414,7 @@ class ArticlesController extends AppController
                         ['Articles.publish_start_at IS NULL', 'Articles.date <=' => $cur_date]
                     ]
                 ])
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit($per_page), $pag_settings));
 
@@ -445,6 +451,7 @@ class ArticlesController extends AppController
                             ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date],
                         ]])
                     ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path'])
+                    ->orderDesc('Articles.publish_start_at')
                     ->orderDesc('Articles.date')
                     ->limit($per_page)
                     ->offset($offset);

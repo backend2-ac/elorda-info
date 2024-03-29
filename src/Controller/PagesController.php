@@ -122,6 +122,7 @@ class PagesController extends AppController
                     ],
                 ])
                 ->where(['locale' => $locale, 'on_main' => 1])
+                ->orderDesc('Articles.publish_start_at')
                 ->order(['date' => 'DESC'])
                 ->limit(3)
                 ->toList();
@@ -146,6 +147,7 @@ class PagesController extends AppController
                         ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
                     ],
                 ])
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(4)
                 ->toList();
@@ -169,6 +171,7 @@ class PagesController extends AppController
                             ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
                         ],
                     ])
+                ->orderDesc('Articles.publish_start_at')
                     ->orderDesc('Articles.date')
                     ->limit(7)
                     ->toList();
@@ -191,6 +194,7 @@ class PagesController extends AppController
                         ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
                     ],
                 ])
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(3)
                 ->toList();
@@ -214,6 +218,7 @@ class PagesController extends AppController
                         ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
                     ],
                 ])
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(4)
                 ->toList();
@@ -237,6 +242,7 @@ class PagesController extends AppController
                         ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
                     ],
                 ])
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(3)
                 ->toList();
@@ -272,6 +278,7 @@ class PagesController extends AppController
                         ],
                     ])
                 ->where(['locale' => $locale])
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                     ->limit(6)
                     ->toList();
@@ -343,6 +350,7 @@ class PagesController extends AppController
                         ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
                     ],
                 ])
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(6)
                 ->toList();
@@ -416,6 +424,7 @@ class PagesController extends AppController
                         ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
                     ],
                 ])
+                ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(6)
                 ->toList();
