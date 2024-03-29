@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- <link rel="icon" href="/img/fav-icon.svg"> -->
-		<link rel="icon" href="/img/favicon.png" type="image/x-icon">
+		<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 
 		<?php if( isset($meta) && $meta['title'] ): ?>
 			<title><?= $meta['title'] ?></title>
