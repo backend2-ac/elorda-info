@@ -15,7 +15,7 @@ return [
      * Development Mode:
      * true: Errors and warnings shown.
      */
-    'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
+    'debug' => filter_var(env('DEBUG', false), FILTER_VALIDATE_BOOLEAN),
 
     /*
      * Security and encryption configuration
@@ -36,8 +36,8 @@ return [
      */
     'Datasources' => [
         'default' => [
-//            'host' => 'localhost:3306',
-        'host' => 'localhost',
+           'host' => 'localhost:3306',
+        // 'host' => 'localhost',
             /*
              * CakePHP will use the default DB port based on the driver selected
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
@@ -45,14 +45,14 @@ return [
              */
             //'port' => 'non_standard_port_number',
 
-//            'username' => 'user_elorda_db',
-//            'password' => 'evV6&23t5',
+           'username' => 'user_elorda_db',
+           'password' => 'evV6&23t5',
 
-//            'database' => 'elorda_db',
-            'username' => 'root',
-            'password' => '',
+           'database' => 'elorda_db',
+            // 'username' => 'root',
+            // 'password' => '',
 //
-            'database' => 'elorda',
+            // 'database' => 'elorda',
             /*
              * If not using the default 'public' schema with the PostgreSQL driver
              * set it here.
