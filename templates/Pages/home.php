@@ -32,12 +32,12 @@
 
 		                                                <div class="hero__swiper-title"><?= $item['title'] ?></div>
                                                         <?php if (isset($full_categories[$item['category_id']]) && isset($categories_slug_parts[$full_categories[$item['category_id']]['alias']])): ?>
-                                                            <a href="/<?= $lang ?><?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="hero__swiper-link">
+                                                            <div class="hero__swiper-link">
                                                                 <?= __('Читать далее') ?>
                                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                     <path d="M2.40002 13.2L13.2 2.40002M13.2 2.40002H2.40002M13.2 2.40002V13.2" stroke="white" stroke-width="2" stroke-linecap="round"/>
                                                                 </svg>
-                                                            </a>
+                                                            </div>
                                                         <?php endif; ?>
 		                                            </a>
 		                                        </div>
