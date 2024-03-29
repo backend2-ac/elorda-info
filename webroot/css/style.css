@@ -2291,7 +2291,7 @@ select {
   padding: 30px 20px;
 }
 
-.inner__text blockquote::before {
+/* .inner__text blockquote::before {
   position: absolute;
   content: "";
   width: 13px;
@@ -2299,7 +2299,7 @@ select {
   top: 15px;
   left: 20px;
   background: url("../img/blockquote-icon.png") center/contain no-repeat;
-}
+} */
 
 .inner__tags {
   display: flex;
