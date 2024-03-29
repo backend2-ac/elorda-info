@@ -199,11 +199,21 @@ window.onload = () => {
         speed: 100,
     });
 
-    let ytWidget = document.querySelector('.yottie-widget-inner > a');
-    if(ytWidget) {
-        setTimeout(() => {
-            ytWidget.remove();
-        }, 5000);
+    // let ytWidget = document.querySelector('.yottie-widget-inner > a');
+    // if(ytWidget) {
+    //     setTimeout(() => {
+    //         ytWidget.remove();
+    //     }, 5000);
+    // }
+    const weatherBlock = document.querySelector('.header__weather');
+    if(weatherBlock) {
+        const weatherImage = weatherBlock.querySelector('img');
+        const weatherInfo = weatherBlock.querySelector('div');
+        const weatherImageGismeteo = document.querySelector('.gsWeatherIcon img').src;
+        const weatherCityGismeteo = document.querySelector('.gsCity span').textContent;
+        const weatherTempGismeteo = document.querySelector('.gsTemp nobr').innerHTML;
+        weatherImage.src = weatherImageGismeteo;
+        weatherInfo.innerHTML = weatherCityGismeteo + weatherTempGismeteo;
     }
 };
 
