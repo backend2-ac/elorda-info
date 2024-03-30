@@ -110,13 +110,13 @@ class PagesController extends AppController
 //        $this->getArticlesFromTelegram();
 //        $cur_date = FrozenTime::now(); // Получаем текущую дату и время
 //        $main_articles = [];
-        $capital_news = [];
-        $society_news = [];
-            $politica_news = [];
-                $culture_news = [];
-                    $heroes_news = [];
-                        $popular_news = [];
-                            $last_news = [];
+//        $capital_news = [];
+//        $society_news = [];
+//        $politica_news = [];
+//        $culture_news = [];
+//        $heroes_news = [];
+//        $popular_news = [];
+//        $last_news = [];
         $main_articles = Cache::read('main_articles_' . $cur_lang, 'long');
         $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
         if (!$main_articles) {
@@ -136,161 +136,161 @@ class PagesController extends AppController
 
             Cache::write('main_articles_' . $cur_lang, $main_articles, 'long');
         }
-//
-//        $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
-//        $capital_news = Cache::read('capital_news_' . $cur_lang, 'long');
-//        if (!$capital_news) {
-//            $capital_news = $this->Articles->find('all')
-//                ->contain([
-//                    'Categories' => function (Query $q) {
-//                        return $q->enableAutoFields();
-//                    },
-//                ])
-//                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-//                ->where(['Categories.id' => $capital_news_category_id, 'Articles.category_id' => $capital_news_category_id])
-//                ->where([
-//                    'OR' => [
-//                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-//                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-//                    ],
-//                ])
-//                ->orderDesc('Articles.publish_start_at')
-//                ->orderDesc('Articles.date')
-//                ->limit(4)
-//                ->toList();
-//            Cache::write('capital_news_' . $cur_lang, $capital_news, 'long');
-//        }
-//
-//        $society_news_category_id = $cur_lang == 'kz' ? 16 : 6;
-//        $society_news = Cache::read('society_news_' . $cur_lang, 'long');
-//        if (!$society_news) {
-//            $society_news = $this->Articles->find('all')
-//                    ->contain([
-//                        'Categories' => function (Query $q) {
-//                            return $q->enableAutoFields();
-//                        },
-//                    ])
-//                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-//                    ->where(['Categories.id' => $society_news_category_id, 'Articles.category_id' => $society_news_category_id])
-//                    ->where([
-//                        'OR' => [
-//                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-//                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-//                        ],
-//                    ])
-//                ->orderDesc('Articles.publish_start_at')
-//                    ->orderDesc('Articles.date')
-//                    ->limit(7)
-//                    ->toList();
-//            Cache::write('society_news_' . $cur_lang, $society_news, 'long');
-//        }
-//        $politica_news_category_id = $cur_lang == 'kz' ? 17 : 12;
-//        $politica_news = Cache::read('politica_news_' . $cur_lang, 'long');
-//        if (!$politica_news) {
-//            $politica_news = $this->Articles->find('all')
-//                ->contain([
-//                    'Categories' => function (Query $q) {
-//                        return $q->enableAutoFields();
-//                    },
-//                ])
-//                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'body', 'publish_start_at'])
-//                ->where(['Categories.id' => $politica_news_category_id, 'Articles.category_id' => $politica_news_category_id])
-//                ->where([
-//                    'OR' => [
-//                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-//                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-//                    ],
-//                ])
-//                ->orderDesc('Articles.publish_start_at')
-//                ->orderDesc('Articles.date')
-//                ->limit(3)
-//                ->toList();
-//            Cache::write('politica_news_' . $cur_lang, $politica_news, 'long');
-//        }
-//
-//        $culture_news_category_id = $cur_lang == 'kz' ? 20 : 9;
-//        $culture_news = Cache::read('culture_news_' . $cur_lang, 'long');
-//        if (!$culture_news) {
-//            $culture_news = $this->Articles->find('all')
-//                ->contain([
-//                    'Categories' => function (Query $q) {
-//                        return $q->enableAutoFields();
-//                    },
-//                ])
-//                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-//                ->where(['Categories.id' => $culture_news_category_id, 'Articles.category_id' => $culture_news_category_id])
-//                ->where([
-//                    'OR' => [
-//                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-//                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-//                    ],
-//                ])
-//                ->orderDesc('Articles.publish_start_at')
-//                ->orderDesc('Articles.date')
-//                ->limit(4)
-//                ->toList();
-//            Cache::write('culture_news_' . $cur_lang, $culture_news, 'long');
-//        }
-//
-//        $heroes_news_category_id = $cur_lang == 'kz' ? 4 : 3;
-//        $heroes_news = Cache::read('heroes_news_' . $cur_lang, 'long');
-//        if (!$heroes_news) {
-//            $heroes_news = $this->Articles->find('all')
-//                ->contain([
-//                    'Categories' => function (Query $q) {
-//                        return $q->enableAutoFields();
-//                    },
-//                ])
-//                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-//                ->where(['Categories.id' => $heroes_news_category_id, 'Articles.category_id' => $heroes_news_category_id])
-//                ->where([
-//                    'OR' => [
-//                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-//                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-//                    ],
-//                ])
-//                ->orderDesc('Articles.publish_start_at')
-//                ->orderDesc('Articles.date')
-//                ->limit(3)
-//                ->toList();
-//            Cache::write('heroes_news_' . $cur_lang, $heroes_news, 'long');
-//        }
-//
-//        $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
-//        if (!$popular_news) {
-//            $popular_news = $this->Articles->find('all')
-//                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-//                    ->where([
-//                        'OR' => [
-//                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-//                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-//                        ],
-//                    ])
-//                ->where(['locale' => $locale])
-//                ->orderDesc('views')
-//                    ->limit(6)
-//                    ->offset(6)
-//                    ->toList();
-//            Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
-//        }
-//
-//        $last_news = Cache::read('last_news_' . $cur_lang, 'long');
-//        if (!$last_news) {
-//            $last_news = $this->Articles->find('all')
-//                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-//                    ->where([
-//                        'OR' => [
-//                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-//                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-//                        ],
-//                    ])
-//                ->where(['locale' => $locale])
-//                ->orderDesc('Articles.publish_start_at')
-//                ->orderDesc('Articles.date')
-//                    ->limit(6)
-//                    ->toList();
-//            Cache::write('last_news_' . $cur_lang, $last_news, 'long');
-//        }
+
+        $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
+        $capital_news = Cache::read('capital_news_' . $cur_lang, 'long');
+        if (!$capital_news) {
+            $capital_news = $this->Articles->find('all')
+                ->contain([
+                    'Categories' => function (Query $q) {
+                        return $q->enableAutoFields();
+                    },
+                ])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->where(['Categories.id' => $capital_news_category_id, 'Articles.category_id' => $capital_news_category_id])
+                ->where([
+                    'OR' => [
+                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                    ],
+                ])
+                ->orderDesc('Articles.publish_start_at')
+                ->orderDesc('Articles.date')
+                ->limit(4)
+                ->toList();
+            Cache::write('capital_news_' . $cur_lang, $capital_news, 'long');
+        }
+
+        $society_news_category_id = $cur_lang == 'kz' ? 16 : 6;
+        $society_news = Cache::read('society_news_' . $cur_lang, 'long');
+        if (!$society_news) {
+            $society_news = $this->Articles->find('all')
+                    ->contain([
+                        'Categories' => function (Query $q) {
+                            return $q->enableAutoFields();
+                        },
+                    ])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->where(['Categories.id' => $society_news_category_id, 'Articles.category_id' => $society_news_category_id])
+                    ->where([
+                        'OR' => [
+                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                        ],
+                    ])
+                ->orderDesc('Articles.publish_start_at')
+                    ->orderDesc('Articles.date')
+                    ->limit(7)
+                    ->toList();
+            Cache::write('society_news_' . $cur_lang, $society_news, 'long');
+        }
+        $politica_news_category_id = $cur_lang == 'kz' ? 17 : 12;
+        $politica_news = Cache::read('politica_news_' . $cur_lang, 'long');
+        if (!$politica_news) {
+            $politica_news = $this->Articles->find('all')
+                ->contain([
+                    'Categories' => function (Query $q) {
+                        return $q->enableAutoFields();
+                    },
+                ])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'body', 'publish_start_at'])
+                ->where(['Categories.id' => $politica_news_category_id, 'Articles.category_id' => $politica_news_category_id])
+                ->where([
+                    'OR' => [
+                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                    ],
+                ])
+                ->orderDesc('Articles.publish_start_at')
+                ->orderDesc('Articles.date')
+                ->limit(3)
+                ->toList();
+            Cache::write('politica_news_' . $cur_lang, $politica_news, 'long');
+        }
+
+        $culture_news_category_id = $cur_lang == 'kz' ? 20 : 9;
+        $culture_news = Cache::read('culture_news_' . $cur_lang, 'long');
+        if (!$culture_news) {
+            $culture_news = $this->Articles->find('all')
+                ->contain([
+                    'Categories' => function (Query $q) {
+                        return $q->enableAutoFields();
+                    },
+                ])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->where(['Categories.id' => $culture_news_category_id, 'Articles.category_id' => $culture_news_category_id])
+                ->where([
+                    'OR' => [
+                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                    ],
+                ])
+                ->orderDesc('Articles.publish_start_at')
+                ->orderDesc('Articles.date')
+                ->limit(4)
+                ->toList();
+            Cache::write('culture_news_' . $cur_lang, $culture_news, 'long');
+        }
+
+        $heroes_news_category_id = $cur_lang == 'kz' ? 4 : 3;
+        $heroes_news = Cache::read('heroes_news_' . $cur_lang, 'long');
+        if (!$heroes_news) {
+            $heroes_news = $this->Articles->find('all')
+                ->contain([
+                    'Categories' => function (Query $q) {
+                        return $q->enableAutoFields();
+                    },
+                ])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->where(['Categories.id' => $heroes_news_category_id, 'Articles.category_id' => $heroes_news_category_id])
+                ->where([
+                    'OR' => [
+                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                    ],
+                ])
+                ->orderDesc('Articles.publish_start_at')
+                ->orderDesc('Articles.date')
+                ->limit(3)
+                ->toList();
+            Cache::write('heroes_news_' . $cur_lang, $heroes_news, 'long');
+        }
+
+        $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
+        if (!$popular_news) {
+            $popular_news = $this->Articles->find('all')
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->where([
+                        'OR' => [
+                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                        ],
+                    ])
+                ->where(['locale' => $locale])
+                ->orderDesc('views')
+                    ->limit(6)
+                    ->offset(6)
+                    ->toList();
+            Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
+        }
+
+        $last_news = Cache::read('last_news_' . $cur_lang, 'long');
+        if (!$last_news) {
+            $last_news = $this->Articles->find('all')
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->where([
+                        'OR' => [
+                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                        ],
+                    ])
+                ->where(['locale' => $locale])
+                ->orderDesc('Articles.publish_start_at')
+                ->orderDesc('Articles.date')
+                    ->limit(6)
+                    ->toList();
+            Cache::write('last_news_' . $cur_lang, $last_news, 'long');
+        }
 
         $page = $this->Pages->get(1);
         if ($page) {

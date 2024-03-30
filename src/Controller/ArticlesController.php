@@ -99,10 +99,24 @@ class ArticlesController extends AppController
             ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path', 'views'])
             ->orderDesc('Articles.publish_start_at')
             ->order(['Articles.date' => 'DESC'])
-            ->limit($per_page)->offset($offset)
-            ->toList();
+            ->limit($per_page)->offset($offset);
+//            ->toList();
 //            Cache::write($alias . '_news', $data, 'long');
 //        }
+        $count_dategory_data = Cache::read('count_' . $category_alias, 'long');
+        debug($count_dategory_data);
+        die();
+        if (!$count_dategory_data) {
+            $count_dategory_data = $this->Articles->find()
+                ->where(['Articles.category_id' => $cat_id])
+                ->count();
+//                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'date', 'alias', 'body', 'views', 'publish_start_at'])
+//                ->order(['Articles.date' => 'DESC'])
+//                ->limit($per_page);
+            Cache::write('count_' . $category_alias, $count_dategory_data, 'long');
+        }
+
+        $this->set('pagination', $this->paginate($data, ['total' => $count_dategory_data]));
 
         $popular_news = Cache::read($category_alias . '_popular_news', 'long');
         if (!$popular_news) {
@@ -127,14 +141,11 @@ class ArticlesController extends AppController
             Cache::write($category_alias . '_last_news', $last_news, 'long');
         }
 
-        $this->set('pagination', $this->paginate(
-            $this->Articles->find('all')
-                ->where($conditions)
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'date', 'alias', 'body', 'views', 'publish_start_at'])
-                ->order(['Articles.date' => 'DESC'])
-                ->limit($per_page),
-            $pag_settings
-        ));
+
+//        $this->set('pagination', $this->paginate(
+//            $count_dategory_data,
+//            $pag_settings
+//        ));
 
 //        debug($cur_cat);
 //        die();
