@@ -67,12 +67,12 @@ class ArticlesController extends AppController
 
             if( $cur_cat ){
                 $cat_id = $cur_cat['id'];
-                $conditions = ['AND' => ['Articles.category_id' => $cat_id]];
+                $conditions[] = ['AND' => ['Articles.category_id' => $cat_id]];
             } else {
                 throw new NotFoundException(__('Запись не найдена'));
             }
         } else {
-            $conditions = ['AND' => ['Articles.locale' => $locale]];
+            $conditions[] = ['AND' => ['Articles.locale' => $locale]];
         }
 
 
@@ -86,7 +86,7 @@ class ArticlesController extends AppController
             'limit' => $per_page,
         ];
 
-        $conditions = [
+        $conditions[] = [
             'OR' => [
                 ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
                 ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
