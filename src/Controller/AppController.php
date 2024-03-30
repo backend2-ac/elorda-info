@@ -294,34 +294,32 @@ class AppController extends Controller
             $full_categories = $this->_getFullCategories();
 
             /*------ cache cleaning ------*/
-            $interval_minute = 10;
-            $check_start_date = Cache::read('check_start_date', 'eternal');
-//            $current_date = date('Y-m-d H:i:s');
-            $current_date = FrozenTime::now();
-            if (!$check_start_date) {
-                Cache::write('check_start_date', $current_date, 'eternal');
-            } else {
-//                $new_start_date = date('Y-m-d H:i:s', strtotime($check_start_date . ' + ' . $interval_minute . ' minutes'));
-                $new_start_date = $check_start_date->addMinutes($interval_minute);
-
-                if ($current_date >= $new_start_date) {
-                    $new_articles = $this->Articles->find()
-                        ->select(['Articles.title', 'Articles.alias', 'Categories.alias'])
-                        ->contain(['Categories'])
-                        ->where([
-                            'Articles.publish_start_at >=' => $check_start_date,
-                            'Articles.publish_start_at <=' => $new_start_date
-                        ])
-                        ->toList();
-                    if ($new_articles) {
-//                        $fb_data = $this->prepareDataForSendingToFacebook($new_articles);
-//                        $this->sendPostsToFacebook($fb_data);
-                        Cache::clear();
-                    }
-                    Cache::write('check_start_date', $new_start_date, 'eternal');
-                }
+//            $interval_minute = 10;
+//            $check_start_date = Cache::read('check_start_date', 'eternal');
+//            $current_date = FrozenTime::now();
+//            if (!$check_start_date) {
+//                Cache::write('check_start_date', $current_date, 'eternal');
+//            } else {
+//                $new_start_date = $check_start_date->addMinutes($interval_minute);
+//
+//                if ($current_date >= $new_start_date) {
+//                    $new_articles = $this->Articles->find()
+//                        ->select(['Articles.title', 'Articles.alias', 'Categories.alias'])
+//                        ->contain(['Categories'])
+//                        ->where([
+//                            'Articles.publish_start_at >=' => $check_start_date,
+//                            'Articles.publish_start_at <=' => $new_start_date
+//                        ])
+//                        ->toList();
+//                    if ($new_articles) {
+////                        $fb_data = $this->prepareDataForSendingToFacebook($new_articles);
+////                        $this->sendPostsToFacebook($fb_data);
+//                        Cache::clear();
+//                    }
+//                    Cache::write('check_start_date', $new_start_date, 'eternal');
+//                }
 //                $this->sendPostsToFacebook();
-            }
+//            }
             /*------ Cache cleaning END ------*/
 
             $this->set( compact(  'categories_slug_parts', 'full_categories') );
