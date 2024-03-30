@@ -104,8 +104,7 @@ class ArticlesController extends AppController
 //            Cache::write($alias . '_news', $data, 'long');
 //        }
         $count_dategory_data = Cache::read('count_' . $category_alias, 'long');
-        debug($count_dategory_data);
-        die();
+
         if (!$count_dategory_data) {
             $count_dategory_data = $this->Articles->find()
                 ->where(['Articles.category_id' => $cat_id])
