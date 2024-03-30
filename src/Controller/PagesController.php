@@ -109,7 +109,7 @@ class PagesController extends AppController
         $cur_date = date('Y-m-d H:i:s');
 //        $this->getArticlesFromTelegram();
 //        $cur_date = FrozenTime::now(); // Получаем текущую дату и время
-        $main_articles = [];
+//        $main_articles = [];
         $capital_news = [];
         $society_news = [];
             $politica_news = [];
@@ -117,25 +117,25 @@ class PagesController extends AppController
                     $heroes_news = [];
                         $popular_news = [];
                             $last_news = [];
-//        $main_articles = Cache::read('main_articles_' . $cur_lang, 'long');
-//        $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
-//        if (!$main_articles) {
-//            $main_articles = $this->Articles->find('all')
-//                ->select(['id', 'title', 'alias', 'category_id', 'img', 'img_path', 'date', 'publish_start_at', 'views'])
-//                ->where([
-//                    'OR' => [
-//                        ['publish_start_at IS NULL', 'date <' => $cur_date],
-//                        ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date],
-//                    ],
-//                ])
-//                ->where(['locale' => $locale, 'on_main' => 1])
-//                ->orderDesc('Articles.publish_start_at')
-//                ->order(['date' => 'DESC'])
-//                ->limit(3)
-//                ->toList();
-//
-//            Cache::write('main_articles_' . $cur_lang, $main_articles, 'long');
-//        }
+        $main_articles = Cache::read('main_articles_' . $cur_lang, 'long');
+        $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
+        if (!$main_articles) {
+            $main_articles = $this->Articles->find('all')
+                ->select(['id', 'title', 'alias', 'category_id', 'img', 'img_path', 'date', 'publish_start_at', 'views'])
+                ->where([
+                    'OR' => [
+                        ['publish_start_at IS NULL', 'date <' => $cur_date],
+                        ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date],
+                    ],
+                ])
+                ->where(['locale' => $locale, 'on_main' => 1])
+                ->orderDesc('Articles.publish_start_at')
+                ->order(['date' => 'DESC'])
+                ->limit(3)
+                ->toList();
+
+            Cache::write('main_articles_' . $cur_lang, $main_articles, 'long');
+        }
 //
 //        $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
 //        $capital_news = Cache::read('capital_news_' . $cur_lang, 'long');

@@ -11,33 +11,33 @@
                             <li class="header__nav-item">
                                 <a href="/<?= $lang ?>" class="header__nav-link <?= ($request['action'] == 'home') ? 'active' : '' ?>"><?= __('Главная') ?></a>
                             </li>
-<!--                            --><?php //if ($l == 'kz'): ?>
-<!--                                <li class="header__nav-item">-->
-<!--                                    <a href="/--><?php //= $lang ?><!--elorda-janalyktary" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'elorda-janalyktary') ? 'active' : '' ?><!--">--><?php //= $full_categories[1]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                  <a href="/--><?php //= $lang ?><!--sayasat" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'sayasat') ? 'active' : '' ?><!--">--><?php //= $full_categories[17]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                    <a href="/--><?php //= $lang ?><!--aleumet" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'aleumet') ? 'active' : '' ?><!--">--><?php //= $full_categories[16]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                     <a href="/--><?php //= $lang ?><!--madeniet" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'madeniet') ? 'active' : '' ?><!--">--><?php //= $full_categories[20]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                            --><?php //else: ?>
-<!--                                <li class="header__nav-item">-->
-<!--                                     <a href="/--><?php //= $lang ?><!--novosti-stolicy-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'novosti-stolicy-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[2]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                    <a href="/--><?php //= $lang ?><!--politika-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'politika-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[12]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                    <a href="/--><?php //= $lang ?><!--sotsium-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'sotsium-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[6]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                    <a href="/--><?php //= $lang ?><!--kultura-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'kultura-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[9]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                            --><?php //endif; ?>
+                            <?php if ($l == 'kz'): ?>
+                                <li class="header__nav-item">
+                                    <a href="/<?= $lang ?>elorda-janalyktary" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'elorda-janalyktary') ? 'active' : '' ?>"><?= $full_categories[1]['title'] ?></a>
+                                </li>
+                                <li class="header__nav-item">
+                                  <a href="/<?= $lang ?>sayasat" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'sayasat') ? 'active' : '' ?>"><?= $full_categories[17]['title'] ?></a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="/<?= $lang ?>aleumet" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'aleumet') ? 'active' : '' ?>"><?= $full_categories[16]['title'] ?></a>
+                                </li>
+                                <li class="header__nav-item">
+                                     <a href="/<?= $lang ?>madeniet" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'madeniet') ? 'active' : '' ?>"><?= $full_categories[20]['title'] ?></a>
+                                </li>
+                            <?php else: ?>
+                                <li class="header__nav-item">
+                                     <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'novosti-stolicy-ru') ? 'active' : '' ?>"><?= $full_categories[2]['title'] ?></a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="/<?= $lang ?>politika-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'politika-ru') ? 'active' : '' ?>"><?= $full_categories[12]['title'] ?></a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="/<?= $lang ?>sotsium-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'sotsium-ru') ? 'active' : '' ?>"><?= $full_categories[6]['title'] ?></a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="/<?= $lang ?>kultura-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'kultura-ru') ? 'active' : '' ?>"><?= $full_categories[9]['title'] ?></a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </nav>
                     <a href="javascript:;" class="header__burger">
@@ -153,37 +153,37 @@
                 <div class="header__menu-text">Меню</div>
                 <div class="header__menu-scroll">
                     <div class="header__menu-links">
-<!--                        --><?php //if ($l == 'kz'): ?>
-<!--                            <a href="/--><?php //= $lang ?><!--elorda-janalyktary" class="header__menu-link">Елорда жаңалықтары</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--sayasat" class="header__menu-link">Саясат</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--aleumet" class="header__menu-link">Әлеумет</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--ekonomika" class="header__menu-link">Экономика</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--sport" class="header__menu-link">Спорт</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--madeniet" class="header__menu-link">Мәдениет</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--ar-turli" class="header__menu-link">Әртүрлі</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--kozkaras" class="header__menu-link">Көзқарас</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--video" class="header__menu-link">Видео</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--alem" class="header__menu-link">Әлем</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--joldau" class="header__menu-link">Жолдау</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--sluzhba-komplaens-kz" class="header__menu-link">Комплаенс қызметі</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--adep-kodeksi" class="header__menu-link">Әдеп кодексі</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--elge-kyzmet" class="header__menu-link">Елге қызмет</a>-->
-<!--                        --><?php //else: ?>
-<!--                            <a href="/--><?php //= $lang ?><!--novosti-stolicy-ru" class="header__menu-link">Новости столицы</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--politika-ru" class="header__menu-link">Политика</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--sotsium-ru" class="header__menu-link">Социум</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--ekonomika-ru" class="header__menu-link">Экономика</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--sport-ru" class="header__menu-link">Спорт</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--kultura-ru" class="header__menu-link">Культура</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--raznoe-ru" class="header__menu-link">Разное</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--mnenie-ru" class="header__menu-link">Мнение</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--video-ru" class="header__menu-link">Видео</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--mir" class="header__menu-link">Мир</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--poslanie-ru" class="header__menu-link">Послание</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--sluzhba-komplaens-ru" class="header__menu-link">Служба Комплаенс</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--kodeks-etiki" class="header__menu-link">Этический кодекс</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--sluzhu-strane" class="header__menu-link">Служу стране</a>-->
-<!--                        --><?php //endif; ?>
+                        <?php if ($l == 'kz'): ?>
+                            <a href="/<?= $lang ?>elorda-janalyktary" class="header__menu-link">Елорда жаңалықтары</a>
+                            <a href="/<?= $lang ?>sayasat" class="header__menu-link">Саясат</a>
+                            <a href="/<?= $lang ?>aleumet" class="header__menu-link">Әлеумет</a>
+                            <a href="/<?= $lang ?>ekonomika" class="header__menu-link">Экономика</a>
+                            <a href="/<?= $lang ?>sport" class="header__menu-link">Спорт</a>
+                            <a href="/<?= $lang ?>madeniet" class="header__menu-link">Мәдениет</a>
+                            <a href="/<?= $lang ?>ar-turli" class="header__menu-link">Әртүрлі</a>
+                            <a href="/<?= $lang ?>kozkaras" class="header__menu-link">Көзқарас</a>
+                            <a href="/<?= $lang ?>video" class="header__menu-link">Видео</a>
+                            <a href="/<?= $lang ?>alem" class="header__menu-link">Әлем</a>
+                            <a href="/<?= $lang ?>joldau" class="header__menu-link">Жолдау</a>
+                            <a href="/<?= $lang ?>sluzhba-komplaens-kz" class="header__menu-link">Комплаенс қызметі</a>
+                            <a href="/<?= $lang ?>adep-kodeksi" class="header__menu-link">Әдеп кодексі</a>
+                            <a href="/<?= $lang ?>elge-kyzmet" class="header__menu-link">Елге қызмет</a>
+                        <?php else: ?>
+                            <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__menu-link">Новости столицы</a>
+                            <a href="/<?= $lang ?>politika-ru" class="header__menu-link">Политика</a>
+                            <a href="/<?= $lang ?>sotsium-ru" class="header__menu-link">Социум</a>
+                            <a href="/<?= $lang ?>ekonomika-ru" class="header__menu-link">Экономика</a>
+                            <a href="/<?= $lang ?>sport-ru" class="header__menu-link">Спорт</a>
+                            <a href="/<?= $lang ?>kultura-ru" class="header__menu-link">Культура</a>
+                            <a href="/<?= $lang ?>raznoe-ru" class="header__menu-link">Разное</a>
+                            <a href="/<?= $lang ?>mnenie-ru" class="header__menu-link">Мнение</a>
+                            <a href="/<?= $lang ?>video-ru" class="header__menu-link">Видео</a>
+                            <a href="/<?= $lang ?>mir" class="header__menu-link">Мир</a>
+                            <a href="/<?= $lang ?>poslanie-ru" class="header__menu-link">Послание</a>
+                            <a href="/<?= $lang ?>sluzhba-komplaens-ru" class="header__menu-link">Служба Комплаенс</a>
+                            <a href="/<?= $lang ?>kodeks-etiki" class="header__menu-link">Этический кодекс</a>
+                            <a href="/<?= $lang ?>sluzhu-strane" class="header__menu-link">Служу стране</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
