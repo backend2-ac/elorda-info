@@ -1261,7 +1261,7 @@ select {
   /* height: 710px; */
   border-radius: 8px;
   overflow: hidden;
-  padding-top: 80px;
+  /* padding-top: 80px; */
 }
 
 .widget__youtube iframe {
@@ -4156,7 +4156,7 @@ select {
   }
 
   .widget__youtube {
-    padding-top: 120px;
+    /* padding-top: 120px; */
   }
 }
 
@@ -4281,7 +4281,7 @@ select {
     height: 100px;
   }
   .widget__youtube {
-    padding-top: 100px;
+    /* padding-top: 100px; */
   }
   .widget__tg {
     height: 320px;
@@ -4460,7 +4460,7 @@ select {
     height: 80px;
   }
   .widget__youtube {
-    padding-top: 80px;
+    /* padding-top: 80px; */
   }
   .holiday__container {
     padding: 15px;
@@ -4735,7 +4735,7 @@ select {
     height: 60px;
   }
   .widget__youtube {
-    padding-top: 60px;
+    /* padding-top: 60px; */
   }
   .socium__childs {
     -ms-grid-columns: 1fr;
