@@ -175,34 +175,42 @@ class AppController extends Controller
             $langs_ids = [4, 9, 10, 11,19];
             $spec_ids = [2, 3,4];
 
-            $comps_lang = Cache::read('comps_lang_'.$l, 'long');
-            if( !$comps_lang ) {
+            $comps_lang = Cache::read('comps_lang_'. $l, 'long');
+            if(!$comps_lang) {
                 $this->Comps->setLocale($l);
-                $all_comps_lang = $this->Comps->find('all')
-                    ->where([
-                        'Comps.id IN' => $langs_ids,
-                        'Comps.id NOT IN' => $spec_ids,
-                        'Comps.page_id' => 0,
-                    ])
-                    ->toList();
+                $all_comps_lang = Cache::read('all_comps_lang_' . $l, 'eternal');
+                if (!$all_comps_lang) {
+                    $all_comps_lang = $this->Comps->find('all')
+                        ->where([
+                            'Comps.id IN' => $langs_ids,
+                            'Comps.id NOT IN' => $spec_ids,
+                            'Comps.page_id' => 0,
+                        ])
+                        ->toList();
+                    Cache::write('all_comps_lang_' . $l, $all_comps_lang, 'eternal');
+                }
                 $comps_lang = [];
                 foreach( $all_comps_lang as $comp_item ){
                     $comps_lang[$comp_item['id']] = $comp_item;
                 }
-                Cache::write('comps_lang'.$l, $comps_lang, 'long');
+                Cache::write('comps_lang_' . $l, $comps_lang, 'long');
             }
 
             $total_ids = array_merge($langs_ids, $spec_ids);
 
             $comps = Cache::read('comps_' . $l, 'long');
-            if( !$comps ){
+            if(!$comps){
                 $this->Comps->setLocale($l);
-                $all_comps = $this->Comps->find('all')
-                    ->where([
-                        'Comps.id NOT IN' => $total_ids,
-                        'Comps.page_id' => 0,
-                    ])
-                    ->toList();
+                $all_comps = Cache::read('all_comps_' . $l, 'eternal');
+                if (!$all_comps) {
+                    $all_comps = $this->Comps->find('all')
+                        ->where([
+                            'Comps.id NOT IN' => $total_ids,
+                            'Comps.page_id' => 0,
+                        ])
+                        ->toList();
+                    Cache::write('all_comps_' . $l, $all_comps, 'eternal');
+                }
 
                 $comps = [];
                 foreach( $all_comps as $comp_item ){

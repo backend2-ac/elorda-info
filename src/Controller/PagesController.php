@@ -117,17 +117,16 @@ class PagesController extends AppController
 //        $heroes_news = [];
 //        $popular_news = [];
 //        $last_news = [];
+        $conditions = [
+            'Articles.publish_start_at <' => $cur_date,
+            'Articles.date <' => $cur_date,
+        ];
         $main_articles = Cache::read('main_articles_' . $cur_lang, 'long');
         $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
         if (!$main_articles) {
             $main_articles = $this->Articles->find('all')
                 ->select(['id', 'title', 'alias', 'category_id', 'img', 'img_path', 'date', 'publish_start_at', 'views'])
-                ->where([
-                    'OR' => [
-                        ['publish_start_at IS NULL', 'date <' => $cur_date],
-                        ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date],
-                    ],
-                ])
+                ->where($conditions)
                 ->where(['locale' => $locale, 'on_main' => 1])
                 ->orderDesc('Articles.publish_start_at')
                 ->order(['date' => 'DESC'])
@@ -148,12 +147,7 @@ class PagesController extends AppController
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                 ->where(['Categories.id' => $capital_news_category_id, 'Articles.category_id' => $capital_news_category_id])
-                ->where([
-                    'OR' => [
-                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ],
-                ])
+                ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(4)
@@ -172,12 +166,7 @@ class PagesController extends AppController
                     ])
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                     ->where(['Categories.id' => $society_news_category_id, 'Articles.category_id' => $society_news_category_id])
-                    ->where([
-                        'OR' => [
-                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                        ],
-                    ])
+                    ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
                     ->orderDesc('Articles.date')
                     ->limit(7)
@@ -195,12 +184,7 @@ class PagesController extends AppController
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'body', 'publish_start_at'])
                 ->where(['Categories.id' => $politica_news_category_id, 'Articles.category_id' => $politica_news_category_id])
-                ->where([
-                    'OR' => [
-                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ],
-                ])
+                ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(3)
@@ -219,12 +203,7 @@ class PagesController extends AppController
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                 ->where(['Categories.id' => $culture_news_category_id, 'Articles.category_id' => $culture_news_category_id])
-                ->where([
-                    'OR' => [
-                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ],
-                ])
+                ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(4)
@@ -243,12 +222,7 @@ class PagesController extends AppController
                 ])
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                 ->where(['Categories.id' => $heroes_news_category_id, 'Articles.category_id' => $heroes_news_category_id])
-                ->where([
-                    'OR' => [
-                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ],
-                ])
+                ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(3)
@@ -260,12 +234,7 @@ class PagesController extends AppController
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-                    ->where([
-                        'OR' => [
-                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                        ],
-                    ])
+                    ->where($conditions)
                 ->where(['locale' => $locale])
                 ->orderDesc('views')
                     ->limit(6)
@@ -278,12 +247,7 @@ class PagesController extends AppController
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-                    ->where([
-                        'OR' => [
-                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                        ],
-                    ])
+                    ->where($conditions)
                 ->where(['locale' => $locale])
                 ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
@@ -310,7 +274,10 @@ class PagesController extends AppController
         $cur_lang = Configure::read('Config.lang');
         $cur_date = date('Y-m-d H:i:s');
         $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
-
+        $conditions = [
+            'Articles.publish_start_at <' => $cur_date,
+            'Articles.date <' => $cur_date,
+        ];
         $branches = Cache::read('branches_' . $cur_lang, 'long');
         if (!$branches) {
             $branches = $this->Branches->find('all')
@@ -333,12 +300,7 @@ class PagesController extends AppController
             $popular_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
-                ->where([
-                    'OR' => [
-                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ],
-                ])
+                ->where($conditions)
                 ->orderDesc('views')
                 ->limit(6)
                 ->offset(6)
@@ -351,12 +313,7 @@ class PagesController extends AppController
             $last_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
-                ->where([
-                    'OR' => [
-                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ],
-                ])
+                ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(6)
@@ -382,6 +339,10 @@ class PagesController extends AppController
     {
         $cur_lang = Configure::read('Config.lang');
         $cur_date = date('Y-m-d H:i:s');
+        $conditions = [
+            'Articles.publish_start_at <' => $cur_date,
+            'Articles.date <' => $cur_date,
+        ];
 
         $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
 
@@ -407,15 +368,9 @@ class PagesController extends AppController
             $popular_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
-                ->where([
-                    'OR' => [
-                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ],
-                ])
+                ->where($conditions)
                 ->orderDesc('views')
                 ->limit(6)
-                ->offset(6)
                 ->toList();
             Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
         }
@@ -425,12 +380,7 @@ class PagesController extends AppController
             $last_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
-                ->where([
-                    'OR' => [
-                        ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                        ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                    ],
-                ])
+                ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit(6)
@@ -513,9 +463,13 @@ class PagesController extends AppController
             if (isset($all_page_comps[$page_id]) && $all_page_comps[$page_id]) {
                 $page_comps = $all_page_comps[$page_id];
             } else {
-                $all_comps = $this->Comps->find('all')
-                    ->where(['Comps.page_id' => $page_id])
-                    ->toList();
+                $all_comps = Cache::read('all_comps_page_id_' . $page_id, 'eternal');
+                if (!$all_comps) {
+                    $all_comps = $this->Comps->find('all')
+                        ->where(['Comps.page_id' => $page_id])
+                        ->toList();
+                    Cache::write('all_comps_page_id_' . $page_id, $all_comps, 'eternal');
+                }
 
                 foreach ($all_comps as $item) {
                     $page_comps[$item['id']] = $item;
