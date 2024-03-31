@@ -502,7 +502,7 @@
                                     <?=$comps[18]['body']?>
                                 </div>
                             <?php endif; ?> -->
-                            <a href="#" target="_blank" class="widget__youtube-header">]
+                            <a href="#" target="_blank" class="widget__youtube-header">
                                 <img src="../img/el-h.png" alt="">
                             </a>
                             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Sn_8FJkgANI?si=0_41jzCRuncKqOWL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
