@@ -157,7 +157,6 @@ class ArticlesController extends AppController
                     ->toList();
                 Cache::write($category_alias . '_last_news', $last_news, 'long');
             }
-            $this->set(compact('category_alias'));
         }
 
         $this->set('pagination', $this->paginate($data, ['total' => $count_category_data]));
@@ -182,7 +181,7 @@ class ArticlesController extends AppController
             }
         }
 
-        $this->set( compact('data','meta', 'cur_cat',  'last_news', 'popular_news') );
+        $this->set( compact('data','meta', 'category_alias', 'cur_cat',  'last_news', 'popular_news') );
     }
 
     public function view($article_alias){
