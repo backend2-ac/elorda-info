@@ -482,6 +482,19 @@ class AppController extends Controller
             return $full_categories;
         }
 
+        protected function _getCategoryAlias($category_id) {
+            $category_alias = Cache::read('category_' . $category_id, 'eternal');
+            if (!$category_alias) {
+                $category_alias = $this->Categories->find()
+                    ->select(['alias'])
+                    ->where(['id' => $category_id])
+                    ->first()
+                    ->get('alias');
+                Cache::write('category_' . $category_id, $category_alias, 'eternal');
+            }
+            return $category_alias;
+        }
+
     /*---------- Other Funcs END --------*/
 
 }
