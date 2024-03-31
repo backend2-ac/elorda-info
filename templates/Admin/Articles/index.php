@@ -100,7 +100,7 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
                     <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/thumbs/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="" width="150">
                 </td>
               <td>
-        				<?= $this->Time->format($item['date'], 'dd.MM.yyyy HH:mm') ?>
+        				<?= $this->Time->format($item['created_at'], 'dd.MM.yyyy HH:mm') ?>
         			</td>
                     <td>
                         <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy HH:mm') : '' ?>

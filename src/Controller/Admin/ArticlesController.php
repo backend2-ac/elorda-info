@@ -97,8 +97,9 @@ class ArticlesController extends AppController{
         ];
 
         $data = $this->$model->find('all')
-            ->select(['id', 'title', 'views', 'author_id', 'category_id', 'locale', 'publish_start_at', 'img', 'img_path'])
+            ->select(['id', 'title', 'views', 'author_id', 'category_id', 'locale', 'created_at', 'publish_start_at', 'img', 'img_path'])
             ->where($conditions)
+            ->order([$model.'.publish_start_at' => 'DESC'])
             ->order([$model.'.date' => 'DESC'])
             ->limit($per_page)
             ->offset($offset);
