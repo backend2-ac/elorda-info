@@ -4034,6 +4034,10 @@ select {
     margin-left: 0;
   }
 
+  .header__weather div > span {
+    margin-left: 0;
+  }
+
   .header__socials {
     justify-content: center;
     background: #1D489C;
