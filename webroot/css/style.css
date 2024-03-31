@@ -4023,6 +4023,11 @@ select {
     align-items: center; 
     gap: 10px;
   }
+  
+  .header__weather span {
+    display: block;
+    margin-left: 5px;
+  }
 
   .header__socials {
     justify-content: center;
