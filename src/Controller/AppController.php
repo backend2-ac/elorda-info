@@ -514,6 +514,18 @@ class AppController extends Controller
             return $count_all_articles;
         }
 
+    protected function _getCountLatestNews($conditions, $locale) {
+        $count_all_articles = Cache::read('count_latest_news_' . $locale, 'eternal');
+        if (!$count_all_articles) {
+            $count_all_articles = $this->Articles->find()
+                ->where($conditions)
+                ->where(['Articles.locale' => $locale])
+                ->count();
+            Cache::write('count_latest_news_' . $locale, $count_all_articles, 'eternal');
+        }
+        return $count_all_articles;
+    }
+
     /*---------- Other Funcs END --------*/
 
 }
