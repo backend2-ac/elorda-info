@@ -120,7 +120,7 @@
             </div>
             <div class="footer__bot">
                 <span>© 2009 — <?= date('Y') ?>. <?= __('Все права защищены') ?></span>
-                <a href="https://astanacreative.kz" target="_blank"><?= __('Дизайн и разработка') ?></a>
+                <!-- <a href="https://astanacreative.kz" target="_blank"><?= __('Дизайн и разработка') ?></a> -->
             </div>
         </div>
     </div>
