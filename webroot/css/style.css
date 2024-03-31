@@ -4026,8 +4026,12 @@ select {
   }
   
   .header__weather span {
-    display: block;
-    margin-left: 5px;
+    /* display: block; */
+    /* margin-left: 5px; */
+  }
+
+  .header__weather span {
+    margin-left: 0;
   }
 
   .header__socials {
