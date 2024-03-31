@@ -3996,9 +3996,11 @@ select {
     font-size: 16px;
   }
 
-  .header__weather svg {
+  .header__weather img {
     width: 25px;
     height: 25px;
+    object-fit: contain;
+    flex-shrink: 0;
   }
 
   .header__weather {
@@ -4006,6 +4008,12 @@ select {
     margin-right: 20px;
     font-size: 12px;
     gap: 5px;
+  }
+
+  .header__weather div {
+    display: flex;
+    align-items: center; 
+    gap: 10px;
   }
 
   .header__socials {
