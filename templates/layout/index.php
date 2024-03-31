@@ -145,7 +145,7 @@
 
 		<!-- Gismeteo informer START -->
 		<link rel="stylesheet" type="text/css" href="https://ost1.gismeteo.kz/assets/flat-ui/legacy/css/informer.min.css">
-		<div id="gsInformerID-7QW23P16cv3h7k" class="gsInformer" style="width:240px;height:70px">
+		<div id="gsInformerID-7QW23P16cv3h7k" class="gsInformer" style="width:240px;height:70px; display: none;">
 			<div class="gsIContent">
 				<div id="cityLink">
 					<a href="https://www.gismeteo.kz/weather-astana-5164/" target="_blank" title="Погода в Астане">
