@@ -103,17 +103,20 @@ class ArticlesController extends AppController
 //            ->toList();
 //            Cache::write($alias . '_news', $data, 'long');
 //        }
-        $count_dategory_data = Cache::read('count_' . $category_alias, 'long');
+        if ($category_alias == 'latest-news') {
+            $count_category_data = $this->_getCountAllArticles($locale);
+        } else {
+            $count_category_data = Cache::read('count_' . $category_alias, 'long');
+            if (!$count_category_data) {
+                $count_category_data = $this->Articles->find()
+                    ->where(['Articles.category_id' => $cat_id])
+                    ->count();
 
-        if (!$count_dategory_data) {
-            $count_dategory_data = $this->Articles->find()
-                ->where(['Articles.category_id' => $cat_id])
-                ->count();
-
-            Cache::write('count_' . $category_alias, $count_dategory_data, 'long');
+                Cache::write('count_' . $category_alias, $count_category_data, 'long');
+            }
         }
 
-        $this->set('pagination', $this->paginate($data, ['total' => $count_dategory_data]));
+        $this->set('pagination', $this->paginate($data, ['total' => $count_category_data]));
 
         $popular_news = Cache::read($category_alias . '_popular_news', 'long');
         if (!$popular_news) {

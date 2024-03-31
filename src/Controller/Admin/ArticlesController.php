@@ -108,7 +108,7 @@ class ArticlesController extends AppController{
                 ->where($conditions)
                 ->count();
         } else {
-            $article_count = $this->_getArticleCount($locale);
+            $article_count = $this->_getCountAllArticles($locale);
         }
 
         $this->set('pagination', $this->paginate($data, ['total' => $article_count]));
@@ -118,25 +118,14 @@ class ArticlesController extends AppController{
         $this->set( compact('data', 'categories',  'authors') );
     }
 
-    private function _getArticleCount($locale) {
-        $article_count = Cache::read('admin_artilces_count_' . $locale, 'long');
-        if (!$article_count) {
-            $article_count = $this->Articles->find()
-                ->where(['Articles.locale' => $locale])
-                ->count();
-            Cache::write('admin_articles_count_' . $locale, $article_count, 'long');
-        }
-        return $article_count;
-    }
-
     private function _updateCacheArticleCount($is_add_or_delete, $locale) {
-        $article_count = $this->_getArticleCount($locale);
+        $article_count = $this->_getCountAllArticles($locale);
         if ($is_add_or_delete) {
             $article_count++;
         } else {
             $article_count--;
         }
-        Cache::write('admin_articles_count_' . $locale, $article_count, 'long');
+        Cache::write('count_all_articles_' . $locale, $article_count, 'long');
     }
 
     public function add() {
@@ -369,7 +358,9 @@ class ArticlesController extends AppController{
             }
         }
     }
+    protected function _updateCountAllArticlesCache() {
 
+    }
     protected function _clearCategoryCache($category_id, $locale) {
         $locale = $locale == 'kk' ? 'kz' : 'ru';
         $category_alias = $this->_getCategoryAlias($category_id);
