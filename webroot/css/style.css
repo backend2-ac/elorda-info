@@ -535,7 +535,7 @@ select {
   height: 39px;
 }
 
-.header__weather span {
+.header__weather > span {
   font-weight: 600;
   margin-left: 10px;
 }
