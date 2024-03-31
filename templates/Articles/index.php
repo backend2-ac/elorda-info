@@ -21,6 +21,7 @@
                             	<div class="swiper-wrapper">
                             		<?php if( $data ): ?>
 										<?php foreach( $data as $index => $item ): ?>
+                                            <?php $category_alias = isset($category_alias) ? $category_alias : $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>
 											<?php if($index < 2 ): ?>
 											 <div class="swiper-slide">
 	                                            <a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="hero__swiper-slide">
@@ -57,6 +58,7 @@
                         <div class="news-actual__items active" data-id="1">
                         	<?php if( $data ): ?>
                             <?php foreach( $last_news as $index => $item ): ?>
+                                    <?php $category_alias = isset($category_alias) ? $category_alias : $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>
 
                                 <a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news-actual__item">
                                     <div class="news-actual__item-img">
@@ -75,7 +77,8 @@
                         <div class="news-actual__items" data-id="2">
                         	<?php if( $popular_news ): ?>
                             <?php foreach( $popular_news as $index => $item ): ?>
-                                <a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news-actual__item">
+                                    <?php $category_alias = isset($category_alias) ? $category_alias : $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>
+                                    <a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news-actual__item">
                                     <div class="news-actual__item-img">
                                         <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
                                     </div>
@@ -112,7 +115,9 @@
                     <div class="news__items">
                     	<?php if( $data ): ?>
 	                    	<?php foreach( $data as $index => $item ): ?>
-								<?php if($index >= 2 ): ?>
+                                <?php $category_alias = isset($category_alias) ? $category_alias : $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>
+
+                                <?php if($index >= 2 ): ?>
 								 <div class="news__item">
 		                            <a href="<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news__item-img">
 		                                <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" />
