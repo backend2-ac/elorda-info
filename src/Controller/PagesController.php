@@ -109,7 +109,14 @@ class PagesController extends AppController
         $cur_date = date('Y-m-d H:i:s');
 //        $this->getArticlesFromTelegram();
 //        $cur_date = FrozenTime::now(); // Получаем текущую дату и время
-
+//        $main_articles = [];
+//        $capital_news = [];
+//        $society_news = [];
+//        $politica_news = [];
+//        $culture_news = [];
+//        $heroes_news = [];
+//        $popular_news = [];
+//        $last_news = [];
         $main_articles = Cache::read('main_articles_' . $cur_lang, 'long');
         $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
         if (!$main_articles) {

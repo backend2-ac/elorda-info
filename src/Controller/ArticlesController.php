@@ -67,12 +67,12 @@ class ArticlesController extends AppController
 
             if( $cur_cat ){
                 $cat_id = $cur_cat['id'];
-                $conditions = ['AND' => ['Articles.category_id' => $cat_id]];
+                $conditions[] = ['AND' => ['Articles.category_id' => $cat_id]];
             } else {
                 throw new NotFoundException(__('Запись не найдена'));
             }
         } else {
-            $conditions = ['AND' => ['Articles.locale' => $locale]];
+            $conditions[] = ['AND' => ['Articles.locale' => $locale]];
         }
 
 
@@ -86,7 +86,7 @@ class ArticlesController extends AppController
             'limit' => $per_page,
         ];
 
-        $conditions = [
+        $conditions[] = [
             'OR' => [
                 ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
                 ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
@@ -99,45 +99,83 @@ class ArticlesController extends AppController
             ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path', 'views'])
             ->orderDesc('Articles.publish_start_at')
             ->order(['Articles.date' => 'DESC'])
-            ->limit($per_page)->offset($offset)
-            ->toList();
+            ->limit($per_page)->offset($offset);
+//            ->toList();
 //            Cache::write($alias . '_news', $data, 'long');
 //        }
+        if ($category_alias == 'latest-news') {
+            $count_category_data = $this->_getCountAllArticles($locale);
+            $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
+            if (!$popular_news) {
+                $popular_news = $this->Articles->find('all')
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->where([
+                        'OR' => [
+                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                        ],
+                    ])
+                    ->where(['locale' => $locale])
+                    ->orderDesc('views')
+                    ->limit(6)
+                    ->offset(6)
+                    ->toList();
+                Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
+            }
 
-        $popular_news = Cache::read($category_alias . '_popular_news', 'long');
-        if (!$popular_news) {
-            $popular_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-                ->where($conditions)
-                ->orderDesc('views')
-                ->limit(6)
-                ->toList();
-            Cache::write($category_alias . '_popular_news', $popular_news, 'long');
+            $last_news = Cache::read('last_news_' . $cur_lang, 'long');
+            if (!$last_news) {
+                $last_news = $this->Articles->find('all')
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->where([
+                        'OR' => [
+                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
+                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
+                        ],
+                    ])
+                    ->where(['locale' => $locale])
+                    ->orderDesc('Articles.publish_start_at')
+                    ->orderDesc('Articles.date')
+                    ->limit(6)
+                    ->toList();
+                Cache::write('last_news_' . $cur_lang, $last_news, 'long');
+            }
+        } else {
+            $count_category_data = Cache::read('count_' . $category_alias, 'long');
+            if (!$count_category_data) {
+                $count_category_data = $this->Articles->find()
+                    ->where(['Articles.category_id' => $cat_id])
+                    ->count();
+
+                Cache::write('count_' . $category_alias, $count_category_data, 'long');
+            }
+            $popular_news = Cache::read($category_alias . '_popular_news', 'long');
+            if (!$popular_news) {
+                $popular_news = $this->Articles->find('all')
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->where($conditions)
+                    ->orderDesc('views')
+                    ->limit(6)
+                    ->toList();
+                Cache::write($category_alias . '_popular_news', $popular_news, 'long');
+            }
+
+            $last_news = Cache::read($category_alias . '_last_news', 'long');
+            if (!$last_news) {
+                $last_news = $this->Articles->find('all')
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->where($conditions)
+                    ->orderDesc('Articles.publish_start_at')
+                    ->orderDesc('Articles.date')
+                    ->limit(6)
+                    ->toList();
+                Cache::write($category_alias . '_last_news', $last_news, 'long');
+            }
+            $this->set(compact('category_alias'));
         }
 
-        $last_news = Cache::read($category_alias . '_last_news', 'long');
-        if (!$last_news) {
-            $last_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-                ->where($conditions)
-                ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
-                ->limit(6)
-                ->toList();
-            Cache::write($category_alias . '_last_news', $last_news, 'long');
-        }
+        $this->set('pagination', $this->paginate($data, ['total' => $count_category_data]));
 
-        $this->set('pagination', $this->paginate(
-            $this->Articles->find('all')
-                ->where($conditions)
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'date', 'alias', 'body', 'views', 'publish_start_at'])
-                ->order(['Articles.date' => 'DESC'])
-                ->limit($per_page),
-            $pag_settings
-        ));
-
-//        debug($cur_cat);
-//        die();
         $meta = [];
         if( $cur_cat ){
             $meta['title'] = $cur_cat['meta_title'];
@@ -158,7 +196,7 @@ class ArticlesController extends AppController
             }
         }
 
-        $this->set( compact('data','meta', 'cur_cat', 'category_alias',  'last_news', 'popular_news') );
+        $this->set( compact('data','meta', 'cur_cat',  'last_news', 'popular_news') );
     }
 
     public function view($article_alias){
@@ -169,38 +207,47 @@ class ArticlesController extends AppController
                 ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
             ]
         ];
-        $data = $this->Articles->findByAlias($article_alias)
-            ->contain([
-                'Categories',
-                'Tags',
-                'Authors'
-            ])
-            ->where($conditions)
-            ->first();
-
+        $data = Cache::read($article_alias, 'long');
+        if (!$data) {
+            $data = $this->Articles->findByAlias($article_alias)
+                ->select(['id', 'category_id', 'author_id',  'title', 'body', 'meta_title', 'meta_description', 'meta_keywords', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->contain([
+                    'Categories',
+                    'Tags',
+                    'Authors'
+                ])
+                ->where($conditions)
+                ->first();
+            if ($data) {
+                Cache::write($article_alias, $data, 'long');
+            }
+        }
         $article_id = $data['id'];
         if (empty($data) || empty($data['id']) || !$this->Articles->exists(['id' => $data['id']])) {
             throw new NotFoundException(__('Запись не найдена'));
         }
-
+        $category_id = $data->category_id;
         $this->Articles->query()->update()->set(['views' => ($data['views'] + 1)])->where(['id' => $article_id])->execute();
 
-         $other_news = $this->Articles->find()
+        $other_news = Cache::read('other_news_' . $article_id, 'long');
+        if (!$other_news) {
+            $other_news = $this->Articles->find()
+                ->select(['id', 'category_id', 'author_id',  'title', 'body', 'meta_title', 'meta_description', 'meta_keywords', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                 ->where([
                     'Articles.id !=' => $article_id,
-                    'Articles.category_id =' =>$data['category_id'],
+                    'Articles.category_id =' => $category_id,
                 ])
-             ->where($conditions)
-             ->orderDesc('Articles.publish_start_at')
-             ->orderDesc('Articles.date')
+                ->where($conditions)
+                ->orderDesc('Articles.publish_start_at')
+                ->orderDesc('Articles.date')
                 ->limit(4)
                 ->toList();
+            Cache::write('other_news_' . $article_id, $other_news, 'long');
+        }
 
-        $conditions = [
-            'Articles.date <=' => $cur_date,
-            'Articles.category_id' => $data['category_id']
-        ];
-        $category_alias = $data['category']['alias'];
+        $conditions['AND'][] = ['Articles.category_id' => $category_id];
+
+        $category_alias = $this->_getCategoryAlias($category_id);
         $popular_news = Cache::read($category_alias . '_popular_news', 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
@@ -365,14 +412,21 @@ class ArticlesController extends AppController
                 ->orderDesc('Articles.date')
                 ->limit($per_page), $pag_settings));
 
-           $this->set(compact('author_artilces','author'));
+        $this->set(compact('author_artilces','author'));
     }
 
     public function tag($tag_alias) {
         $cur_date = date('Y-m-d H:i:s');
         $this->loadModel('ArticlesTags');
-        $tag  = $this->Tags->findByAlias($tag_alias)
-            ->first();
+        $tag = Cache::read('tag_' . $tag_alias, 'long');
+        if (!$tag) {
+            $tag  = $this->Tags->findByAlias($tag_alias)
+                ->select(['id',  'title', 'alias', 'locale'])
+                ->first();
+            if ($tag) {
+                Cache::write('tag_' . $tag_alias, $tag, 'long');
+            }
+        }
         if (!$tag) {
             throw new NotFoundException(__('Запись не найдена'));
         }
@@ -392,31 +446,27 @@ class ArticlesController extends AppController
                 ->where([
                     'ArticlesTags.tag_id' => $tag->id,
                     'Articles.locale' => $tag->locale,
-                    'OR' => [
-                        ['Articles.publish_start_at <=' => $cur_date],
-                        ['Articles.publish_start_at IS NULL', 'Articles.date <=' => $cur_date]
-                    ]
+                    'Articles.publish_start_at <=' => $cur_date
                 ])
                 ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                 ->limit($per_page)
-                ->offset($offset)
-                ->toArray();
+                ->offset($offset);
 
-        $this->set('pagination', $this->paginate(
-            $this->Articles->find()
+        $count_tag_articles = Cache::read('count_tag_articles_' . $tag_alias, 'long');
+        if (!$count_tag_articles) {
+            $count_tag_articles = $this->Articles->find()
                 ->innerJoinWith('ArticlesTags')
                 ->where([
                     'ArticlesTags.tag_id' => $tag->id,
                     'Articles.locale' => $tag->locale,
-                    'OR' => [
-                        ['Articles.publish_start_at <=' => $cur_date],
-                        ['Articles.publish_start_at IS NULL', 'Articles.date <=' => $cur_date]
-                    ]
+                    'Articles.publish_start_at <=' => $cur_date
                 ])
-                ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
-                ->limit($per_page), $pag_settings));
+                ->count();
+            Cache::write('count_tag_articles_' . $tag_alias, $count_tag_articles, 'long');
+        }
+
+        $this->set('pagination', $this->paginate($tag_articles, ['total' => $count_tag_articles]));
 
         $this->set(compact('tag_articles','tag'));
     }

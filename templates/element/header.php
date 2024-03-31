@@ -21,24 +21,9 @@
                                 <li class="header__nav-item">
                                     <a href="/<?= $lang ?>aleumet" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'aleumet') ? 'active' : '' ?>"><?= $full_categories[16]['title'] ?></a>
                                 </li>
-<!--                                <li class="header__nav-item">-->
-<!--                                     <a href="/--><?php //= $lang ?><!--ekonomika" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'ekonomika') ? 'active' : '' ?><!--">--><?php //= $full_categories[15]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                     <a href="/--><?php //= $lang ?><!--sport" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'sport') ? 'active' : '' ?><!--">--><?php //= $full_categories[19]['title'] ?><!--</a>-->
-<!--                                </li>-->
                                 <li class="header__nav-item">
                                      <a href="/<?= $lang ?>madeniet" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'madeniet') ? 'active' : '' ?>"><?= $full_categories[20]['title'] ?></a>
                                 </li>
-<!--                                <li class="header__nav-item">-->
-<!--                                      <a href="/--><?php //= $lang ?><!--ar-turli" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'ar-turli') ? 'active' : '' ?><!--">--><?php //= $full_categories[18]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                      <a href="/--><?php //= $lang ?><!--kozkaras" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'kozkaras') ? 'active' : '' ?><!--">--><?php //= $full_categories[30]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                     <a href="/--><?php //= $lang ?><!--tagaiyndau" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'tagaiyndau') ? 'active' : '' ?><!--">--><?php //= $full_categories[21]['title'] ?><!--</a>-->
-<!--                                </li>-->
                             <?php else: ?>
                                 <li class="header__nav-item">
                                      <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'novosti-stolicy-ru') ? 'active' : '' ?>"><?= $full_categories[2]['title'] ?></a>
@@ -49,24 +34,9 @@
                                 <li class="header__nav-item">
                                     <a href="/<?= $lang ?>sotsium-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'sotsium-ru') ? 'active' : '' ?>"><?= $full_categories[6]['title'] ?></a>
                                 </li>
-<!--                                <li class="header__nav-item">-->
-<!--                                    <a href="/--><?php //= $lang ?><!--ekonomika-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'ekonomika-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[11]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                    <a href="/--><?php //= $lang ?><!--sport-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'sport-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[8]['title'] ?><!--</a>-->
-<!--                                </li>-->
                                 <li class="header__nav-item">
                                     <a href="/<?= $lang ?>kultura-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'kultura-ru') ? 'active' : '' ?>"><?= $full_categories[9]['title'] ?></a>
                                 </li>
-<!--                                <li class="header__nav-item">-->
-<!--                                    <a href="/--><?php //= $lang ?><!--raznoe-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'raznoe-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[10]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                    <a href="/--><?php //= $lang ?><!--mnenie-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'mnenie-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[36]['title'] ?><!--</a>-->
-<!--                                </li>-->
-<!--                                <li class="header__nav-item">-->
-<!--                                    <a href="/--><?php //= $lang ?><!--naznacheniya-ru" class="header__nav-link --><?php //= ($request['pass'] && $request['pass'][0] == 'naznacheniya-ru') ? 'active' : '' ?><!--">--><?php //= $full_categories[34]['title'] ?><!--</a>-->
-<!--                                </li>-->
                             <?php endif; ?>
                         </ul>
                     </nav>
@@ -192,26 +162,11 @@
                             <a href="/<?= $lang ?>madeniet" class="header__menu-link">Мәдениет</a>
                             <a href="/<?= $lang ?>ar-turli" class="header__menu-link">Әртүрлі</a>
                             <a href="/<?= $lang ?>kozkaras" class="header__menu-link">Көзқарас</a>
-<!--                            <a href="/--><?php //= $lang ?><!--tagaiyndau" class="header__menu-link">Тағайындау</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--elorda-yzdikteri" class="header__menu-link">Елорда үздіктері</a>-->
                             <a href="/<?= $lang ?>video" class="header__menu-link">Видео</a>
-<!--                            <a href="/--><?php //= $lang ?><!--densaulyk" class="header__menu-link">Денсаулық</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--showbiz" class="header__menu-link">Шоу-бизнес</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--okiga" class="header__menu-link">Оқиға</a>-->
                             <a href="/<?= $lang ?>alem" class="header__menu-link">Әлем</a>
                             <a href="/<?= $lang ?>joldau" class="header__menu-link">Жолдау</a>
                             <a href="/<?= $lang ?>sluzhba-komplaens-kz" class="header__menu-link">Комплаенс қызметі</a>
                             <a href="/<?= $lang ?>adep-kodeksi" class="header__menu-link">Әдеп кодексі</a>
-<!--                            <a href="/--><?php //= $lang ?><!--bilim" class="header__menu-link">Білім</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--tulga" class="header__menu-link">Тұлға</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--sukhbat" class="header__menu-link">Сұхбат</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--kogam" class="header__menu-link">Қоғам</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--ukimet" class="header__menu-link">Үкімет</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--prezident" class="header__menu-link">Президент</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--akorda" class="header__menu-link">Ақорда</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--mazhilis" class="header__menu-link">Мәжіліс</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--senat" class="header__menu-link">Сенат</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--parlament" class="header__menu-link">Парламент</a>-->
                             <a href="/<?= $lang ?>elge-kyzmet" class="header__menu-link">Елге қызмет</a>
                         <?php else: ?>
                             <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__menu-link">Новости столицы</a>
@@ -222,28 +177,12 @@
                             <a href="/<?= $lang ?>kultura-ru" class="header__menu-link">Культура</a>
                             <a href="/<?= $lang ?>raznoe-ru" class="header__menu-link">Разное</a>
                             <a href="/<?= $lang ?>mnenie-ru" class="header__menu-link">Мнение</a>
-<!--                            <a href="/--><?php //= $lang ?><!--naznacheniya-ru" class="header__menu-link">Назначение</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--geroi-stolicy-ru" class="header__menu-link">Герои столицы</a>-->
                             <a href="/<?= $lang ?>video-ru" class="header__menu-link">Видео</a>
-<!--                            <a href="/--><?php //= $lang ?><!--zdoroviye" class="header__menu-link">Здоровье</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--show-biznes-ru" class="header__menu-link">Шоу-бизнес</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--sobytiye" class="header__menu-link">Событие</a>-->
                             <a href="/<?= $lang ?>mir" class="header__menu-link">Мир</a>
                             <a href="/<?= $lang ?>poslanie-ru" class="header__menu-link">Послание</a>
                             <a href="/<?= $lang ?>sluzhba-komplaens-ru" class="header__menu-link">Служба Комплаенс</a>
                             <a href="/<?= $lang ?>kodeks-etiki" class="header__menu-link">Этический кодекс</a>
                             <a href="/<?= $lang ?>sluzhu-strane" class="header__menu-link">Служу стране</a>
-
-                            <!--                            <a href="/--><?php //= $lang ?><!--obrazovaniye" class="header__menu-link">Образование</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--lichnost" class="header__menu-link">Личность</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--interview-ru" class="header__menu-link">Интервью</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--obchestvo" class="header__menu-link">Общество</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--pravitelstvo" class="header__menu-link">Правительство</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--prezident-ru" class="header__menu-link">Президент</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--akorda-ru" class="header__menu-link">Акорда</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--zasedaniye" class="header__menu-link">Заседание</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--senat-ru" class="header__menu-link">Сенат</a>-->
-<!--                            <a href="/--><?php //= $lang ?><!--parlament-ru" class="header__menu-link">Парламент</a>-->
                         <?php endif; ?>
                     </div>
                 </div>
@@ -261,87 +200,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <div class="search__form-tags">
-                            <label for="h-search-1" class="search__form-tag">
-                                <input type="checkbox" id="h-search-1">
-                                <div>Все</div>
-                            </label>
-                            <label for="h-search-2" class="search__form-tag">
-                                <input type="checkbox" id="h-search-2">
-                                <div>Спорт</div>
-                            </label>
-                            <label for="h-search-3" class="search__form-tag">
-                                <input type="checkbox" id="h-search-3">
-                                <div>Культура</div>
-                            </label>
-                            <label for="h-search-4" class="search__form-tag">
-                                <input type="checkbox" id="h-search-4">
-                                <div>Политика</div>
-                            </label>
-                            <label for="h-search-5" class="search__form-tag">
-                                <input type="checkbox" id="h-search-5">
-                                <div>Экономика</div>
-                            </label>
-                            <label for="h-search-6" class="search__form-tag">
-                                <input type="checkbox" id="h-search-6">
-                                <div>Социум</div>
-                            </label>
-                        </div>
                     </form>
-                    <div class="header__form-items">
-                        <a href="#" class="news-actual__item">
-                            <div class="news-actual__item-img">
-                                <img src="/img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
-                            </div>
-                            <div class="news-actual__item-info">
-                                <div class="news-actual__item-date">
-                                    11.10.23 | 17:42
-                                </div>
-                                <div class="news-actual__item-title">Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель</div>
-                            </div>
-                        </a>
-                        <a href="#" class="news-actual__item">
-                            <div class="news-actual__item-img">
-                                <img src="/img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
-                            </div>
-                            <div class="news-actual__item-info">
-                                <div class="news-actual__item-date">
-                                    11.10.23 | 17:42
-                                </div>
-                                <div class="news-actual__item-title">Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель</div>
-                            </div>
-                        </a>
-                        <a href="#" class="news-actual__item">
-                            <div class="news-actual__item-img">
-                                <img src="/img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
-                            </div>
-                            <div class="news-actual__item-info">
-                                <div class="news-actual__item-date">
-                                    11.10.23 | 17:42
-                                </div>
-                                <div class="news-actual__item-title">Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель</div>
-                            </div>
-                        </a>
-                        <a href="#" class="news-actual__item">
-                            <div class="news-actual__item-img">
-                                <img src="/img/news-actual.jpg" alt="Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель">
-                            </div>
-                            <div class="news-actual__item-info">
-                                <div class="news-actual__item-date">
-                                    11.10.23 | 17:42
-                                </div>
-                                <div class="news-actual__item-title">Сотрудников акимата Тараза осудили за незаконное изъятие сельхозземель</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="header__form-link">
-                        <a href="#" class="">
-                            Показать ещё<span>238</span>результатов
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.69995 14.85L14.85 2.70001M14.85 2.70001H2.69995M14.85 2.70001V14.85" stroke="#1D489C" stroke-width="2.5" stroke-linecap="round"/>
-                            </svg>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
