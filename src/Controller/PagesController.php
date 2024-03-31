@@ -117,6 +117,7 @@ class PagesController extends AppController
 //        $heroes_news = [];
 //        $popular_news = [];
 //        $last_news = [];
+        
         $conditions = [
             'Articles.publish_start_at <' => $cur_date,
             'Articles.date <' => $cur_date,
@@ -129,7 +130,7 @@ class PagesController extends AppController
                 ->where($conditions)
                 ->where(['locale' => $locale, 'on_main' => 1])
                 ->orderDesc('Articles.publish_start_at')
-                ->order(['date' => 'DESC'])
+                ->order(['Articles.date' => 'DESC'])
                 ->limit(3)
                 ->toList();
 
@@ -248,7 +249,7 @@ class PagesController extends AppController
             $last_news = $this->Articles->find('all')
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
                     ->where($conditions)
-                ->where(['locale' => $locale])
+                ->where(['Articles.locale' => $locale])
                 ->orderDesc('Articles.publish_start_at')
                 ->orderDesc('Articles.date')
                     ->limit(6)
