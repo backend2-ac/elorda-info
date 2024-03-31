@@ -383,7 +383,7 @@ class ArticlesController extends AppController
         $tag = Cache::read('tag_' . $tag_alias, 'long');
         if (!$tag) {
             $tag  = $this->Tags->findByAlias($tag_alias)
-                ->select(['id, title, alias, locale'])
+                ->select(['id',  'title', 'alias', 'locale'])
                 ->first();
             if ($tag) {
                 Cache::write('tag_' . $tag_alias, $tag, 'long');
@@ -422,9 +422,7 @@ class ArticlesController extends AppController
                 ->where([
                     'ArticlesTags.tag_id' => $tag->id,
                     'Articles.locale' => $tag->locale,
-                    'OR' => [
-                        ['Articles.publish_start_at <=' => $cur_date],
-                    ]
+                    'Articles.publish_start_at <=' => $cur_date
                 ])
                 ->count();
             Cache::write('count_tag_articles_' . $tag_alias, $count_tag_articles, 'long');
