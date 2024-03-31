@@ -1263,6 +1263,10 @@ select {
   overflow: hidden;
   padding-top: 80px;
 }
+
+.widget__youtube iframe {
+  height: 400px;
+}
 /* 
 .widget__youtube::before {
   position: absolute;
