@@ -135,7 +135,14 @@ class CategoriesController extends AppController{
 
         $this->request->allowMethod(['post', 'delete']);
         $data = $this->$model->get($item_id);
-
+        $has_articles = $this->Articles->find()
+            ->select('id')
+            ->where(['Articles.category_id' => $item_id])
+        ->first();
+        if ($has_articles) {
+            $this->Flash->error(__('Ошибка! Нельзя удалить категорию, к которой принадлежит новость!'));
+            return $this->redirect($this->referer());
+        }
         if ($this->$model->delete($data)) {
             $this->Flash->success(__('Элемент успешно удален'));
             $this->_cacheDelete();
@@ -150,9 +157,8 @@ class CategoriesController extends AppController{
         Cache::delete('admin_categories_kk', 'eternal');
         Cache::delete('admin_categories_ru', 'eternal');
 
-        Cache::delete('full_categories_ru', 'eternal');
-        Cache::delete('full_categories_kz', 'eternal');
-        Cache::delete('full_categories_en', 'eternal');
+        Cache::delete('full_categories', 'eternal');
+
     }
 
     protected function _slug_render($slug){

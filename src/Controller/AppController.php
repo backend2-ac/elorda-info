@@ -471,12 +471,10 @@ class AppController extends Controller
     /*---------- Other Funcs --------*/
 
         protected function _getFullCategories(){
-            $cur_lang = Configure::read('Config.lang');
-            $locale = $cur_lang == 'kz' ? 'kk' : 'ru';
-            $full_categories = Cache::read('full_categories_'.$cur_lang, 'eternal');
+            $full_categories = Cache::read('full_categories', 'eternal');
             if( !$full_categories ){
                 $categories = $this->Categories->find('all')
-                    ->where(['locale' => $locale, 'title IS NOT NULL'])
+                    ->where(['title IS NOT NULL'])
                     ->orderDesc('item_order')
                     ->toList();
 
@@ -484,7 +482,7 @@ class AppController extends Controller
                     foreach( $categories as $item ){
                         $full_categories[$item['id']] = $item;
                     }
-                    Cache::write('full_categories_'.$cur_lang, $full_categories, 'eternal');
+                    Cache::write('full_categories', $full_categories, 'eternal');
                 }
             }
             return $full_categories;
