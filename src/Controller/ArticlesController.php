@@ -191,7 +191,7 @@ class ArticlesController extends AppController
         $data = Cache::read($article_alias, 'long');
         if (!$data) {
             $data = $this->Articles->findByAlias($article_alias)
-                ->select(['id', 'category_id', 'author_id',  'title', 'body', 'meta_title', 'meta_description', 'meta_keywords', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'author_id',  'title', 'body', 'meta_title', 'meta_description', 'meta_keywords', 'img', 'img_path', 'img_text', 'alias', 'views', 'date', 'publish_start_at', 'cover_photo_source'])
                 ->contain([
                     'Categories',
                     'Tags',
