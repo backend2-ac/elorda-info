@@ -184,6 +184,7 @@ class ArticlesController extends AppController
 
     public function view($article_alias){
         $cur_date = date('Y-m-d H:i:s');
+
         $conditions = [
             'Articles.publish_start_at <' => $cur_date,
         ];
@@ -202,6 +203,7 @@ class ArticlesController extends AppController
                 Cache::write($article_alias, $data, 'long');
             }
         }
+        debug($data);
         $article_id = $data['id'];
         if (empty($data) || empty($data['id']) || !$this->Articles->exists(['id' => $data['id']])) {
             throw new NotFoundException(__('Запись не найдена'));

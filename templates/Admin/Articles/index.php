@@ -144,10 +144,12 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 
     $this->Paginator->options([
         'url' => [
-            'lang' => $l,
+            'lang' => 'ru',
             '?' => $paginator_query,
         ]
     ]);
+//    debug($this->Paginator);
+//    die();
     echo $this->Paginator->numbers([
       'first' => 1, 'last' => 1, 'modulus' => 2,
     ]);

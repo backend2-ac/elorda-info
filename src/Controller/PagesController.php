@@ -244,6 +244,7 @@ class PagesController extends AppController
         }
 
         $last_news = Cache::read('last_news_' . $cur_lang, 'long');
+
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
