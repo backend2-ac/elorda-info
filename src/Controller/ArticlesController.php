@@ -203,9 +203,8 @@ class ArticlesController extends AppController
                 Cache::write($article_alias, $data, 'long');
             }
         }
-        debug($data);
-        die();
-        $article_id = $data['id'];
+
+        $article_id = $data->id;
         if (empty($data) || empty($data['id']) || !$this->Articles->exists(['id' => $data['id']])) {
             throw new NotFoundException(__('Запись не найдена'));
         }
