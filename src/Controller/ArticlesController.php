@@ -186,7 +186,6 @@ class ArticlesController extends AppController
         $cur_date = date('Y-m-d H:i:s');
         $conditions = [
             'Articles.publish_start_at <' => $cur_date,
-            'Articles.date <' => $cur_date
         ];
         $data = Cache::read($article_alias, 'long');
         if (!$data) {
