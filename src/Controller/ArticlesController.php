@@ -88,19 +88,26 @@ class ArticlesController extends AppController
 
         $conditions[] = [
             'Articles.publish_start_at <' => $cur_date,
-            'Articles.date <' => $cur_date
         ];
-//        $data = Cache::read($alias . '_news', 'long');
-//        if (!$data) {
-        $data = $this->Articles->find('all')
-            ->where($conditions)
-            ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path', 'views'])
-            ->orderDesc('Articles.publish_start_at')
-            ->order(['Articles.date' => 'DESC'])
-            ->limit($per_page)->offset($offset);
-//            ->toList();
-//            Cache::write($alias . '_news', $data, 'long');
-//        }
+        if ($cur_page == 1) {
+            $data = Cache::read($category_alias . '_news_page_1', 'long');
+            if (!$data) {
+                $data = $this->Articles->find('all')
+                    ->where($conditions)
+                    ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path', 'views'])
+                    ->orderDesc('Articles.publish_start_at')
+                    ->order(['Articles.date' => 'DESC'])
+                    ->limit($per_page)->offset($offset);
+                Cache::write($category_alias . '_news', $data, 'long');
+            }
+        } else {
+                $data = $this->Articles->find('all')
+                    ->where($conditions)
+                    ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path', 'views'])
+                    ->orderDesc('Articles.publish_start_at')
+                    ->order(['Articles.date' => 'DESC'])
+                    ->limit($per_page)->offset($offset);
+        }
         if ($category_alias == 'latest-news') {
             $count_category_data = $this->_getCountLatestNews($conditions, $locale);
             $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');

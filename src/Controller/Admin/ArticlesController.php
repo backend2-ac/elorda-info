@@ -371,7 +371,7 @@ class ArticlesController extends AppController{
         Cache::delete( 'main_articles_' . $locale, 'long');
         Cache::delete('last_news_' . $locale, 'long');
         Cache::delete('popular_news_' . $locale, 'long');
-
+        Cache::delete($category_alias . '_news_page_1', 'long');
     }
 
     protected function _slug_render($slug){
