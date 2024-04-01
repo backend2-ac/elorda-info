@@ -151,22 +151,22 @@
                             </div>
                         </div>
                     </section>
-                    <section class="brand">
-                        <div class="brand__container">
-                            <h2 class="brand__title title"><?= __('С кем мы сотрудничаем') ?></h2>
-                            <div class="brand__items marquee" data-duplicated="true">
-                                <div class="brand__item"><img src="/img/mar1.png" alt=""></div>
-                                <div class="brand__item"><img src="/img/mar2.png" alt=""></div>
-                                <div class="brand__item"><img src="/img/mar3.png" alt=""></div>
-                                <div class="brand__item"><img src="/img/mar1.png" alt=""></div>
-                                <div class="brand__item"><img src="/img/mar2.png" alt=""></div>
-                                <div class="brand__item"><img src="/img/mar3.png" alt=""></div>
-                                <div class="brand__item"><img src="/img/mar1.png" alt=""></div>
-                                <div class="brand__item"><img src="/img/mar2.png" alt=""></div>
-                                <div class="brand__item"><img src="/img/mar3.png" alt=""></div>
-                            </div>
-                        </div>
-                    </section>
+<!--                    <section class="brand">-->
+<!--                        <div class="brand__container">-->
+<!--                            <h2 class="brand__title title">--><?php //= __('С кем мы сотрудничаем') ?><!--</h2>-->
+<!--                            <div class="brand__items marquee" data-duplicated="true">-->
+<!--                                <div class="brand__item"><img src="/img/mar1.png" alt=""></div>-->
+<!--                                <div class="brand__item"><img src="/img/mar2.png" alt=""></div>-->
+<!--                                <div class="brand__item"><img src="/img/mar3.png" alt=""></div>-->
+<!--                                <div class="brand__item"><img src="/img/mar1.png" alt=""></div>-->
+<!--                                <div class="brand__item"><img src="/img/mar2.png" alt=""></div>-->
+<!--                                <div class="brand__item"><img src="/img/mar3.png" alt=""></div>-->
+<!--                                <div class="brand__item"><img src="/img/mar1.png" alt=""></div>-->
+<!--                                <div class="brand__item"><img src="/img/mar2.png" alt=""></div>-->
+<!--                                <div class="brand__item"><img src="/img/mar3.png" alt=""></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </section>-->
                     <section class="feedback">
                         <div class="feedback__container">
                             <?= $this->Form->create(null, [
