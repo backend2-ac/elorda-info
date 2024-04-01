@@ -195,7 +195,6 @@ class ArticlesController extends AppController
                 ->contain([
                     'Categories',
                     'Tags',
-                    'Authors'
                 ])
                 ->where($conditions)
                 ->first();
@@ -210,6 +209,12 @@ class ArticlesController extends AppController
         }
         $category_id = $data->category_id;
         $this->Articles->query()->update()->set(['views' => ($data['views'] + 1)])->where(['id' => $article_id])->execute();
+        $author_id = $data->author_id;
+        $author = Cache::read('author_' . $author_id, 'eternal');
+        if (!$author) {
+            $author = $this->Authors->findById($author_id)->select(['id', 'name', 'alias'])->first();
+            Cache::write('author_' . $author_id, $author, 'eternal');
+        }
 
         $other_news = Cache::read('other_news_' . $article_id, 'long');
         if (!$other_news) {
@@ -260,7 +265,7 @@ class ArticlesController extends AppController
         $meta['desc'] = strip_tags($data['meta_description']);
         $meta['keys'] = $data['meta_keywords'];
 
-        $this->set( compact('data', 'meta', 'other_news', 'category_alias', 'article_alias', 'popular_news','last_news') );
+        $this->set( compact('data', 'author','meta', 'other_news', 'category_alias', 'article_alias', 'popular_news','last_news') );
     }
 
     public function loadingview($article_id){
