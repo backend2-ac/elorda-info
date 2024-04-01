@@ -79,7 +79,7 @@ class AuthorsController extends AppController{
 
             // Проверка, существует ли уже email в Admins
             $createdEmailAdmins = $this->$admins_model->find()
-                ->where(['email' => $data['email']])
+                ->where(['username' => $data['email']])
                 ->first();
             if ($createdEmailAdmins) {
                 $this->Flash->error(__('Запись с таким email уже существует в Admins'));
@@ -90,7 +90,7 @@ class AuthorsController extends AppController{
                 $this->Flash->error(__('Пароль не должен быть короче 6 символов'));
                 return $this->redirect( $this->referer() );
             }
-            if( mb_strlen($data['password'])){
+            if( mb_strlen($data['password']) > 16){
                 $this->Flash->error(__('Пароль не должен быть длиннее 16 символов'));
                 return $this->redirect( $this->referer() );
             }
@@ -115,10 +115,14 @@ class AuthorsController extends AppController{
                 $this->Flash->error(__('Ошибка сохранения данных в Authors'));
                 return $this->redirect($this->referer());
             }
-
+            $author_id = $this->$authors_model->find()
+                ->select(['id'])
+                ->where([$authors_model . '.alias' => $data['alias']])
+                ->first()
+                ->get('id');
             // Сохранение данных в Admins (только email и password)
             $data_admins = [
-                'author_id' => $data['id'],
+                'author_id' => $author_id,
                 'username' => $data['email'],
                 'password' => $data['password'],
                 'role' => 'author',
@@ -283,7 +287,6 @@ class AuthorsController extends AppController{
         }
         $this->request->allowMethod(['post', 'delete']);
         $data = $this->$authors_model->get($item_id);
-
         // Проверка наличия связанных данных в Articles
         $has_article = $this->Articles->find()
             ->where(['Articles.author_id' => $item_id])

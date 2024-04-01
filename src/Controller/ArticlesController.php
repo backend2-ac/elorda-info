@@ -67,12 +67,12 @@ class ArticlesController extends AppController
 
             if( $cur_cat ){
                 $cat_id = $cur_cat['id'];
-                $conditions[] = ['AND' => ['Articles.category_id' => $cat_id]];
+                $conditions[] = ['Articles.category_id' => $cat_id];
             } else {
                 throw new NotFoundException(__('Запись не найдена'));
             }
         } else {
-            $conditions[] = ['AND' => ['Articles.locale' => $locale]];
+            $conditions[] = ['Articles.locale' => $locale];
         }
 
 
@@ -87,10 +87,7 @@ class ArticlesController extends AppController
         ];
 
         $conditions[] = [
-            'OR' => [
-                ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-            ]
+            'Articles.publish_start_at <' => $cur_date,
         ];
 //        $data = Cache::read($alias . '_news', 'long');
 //        if (!$data) {
@@ -104,21 +101,14 @@ class ArticlesController extends AppController
 //            Cache::write($alias . '_news', $data, 'long');
 //        }
         if ($category_alias == 'latest-news') {
-            $count_category_data = $this->_getCountAllArticles($locale);
+            $count_category_data = $this->_getCountLatestNews($conditions, $locale);
             $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
             if (!$popular_news) {
                 $popular_news = $this->Articles->find('all')
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-                    ->where([
-                        'OR' => [
-                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                        ],
-                    ])
-                    ->where(['locale' => $locale])
+                    ->where($conditions)
                     ->orderDesc('views')
                     ->limit(6)
-                    ->offset(6)
                     ->toList();
                 Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
             }
@@ -127,13 +117,7 @@ class ArticlesController extends AppController
             if (!$last_news) {
                 $last_news = $this->Articles->find('all')
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
-                    ->where([
-                        'OR' => [
-                            ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                            ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-                        ],
-                    ])
-                    ->where(['locale' => $locale])
+                    ->where($conditions)
                     ->orderDesc('Articles.publish_start_at')
                     ->orderDesc('Articles.date')
                     ->limit(6)
@@ -171,7 +155,6 @@ class ArticlesController extends AppController
                     ->toList();
                 Cache::write($category_alias . '_last_news', $last_news, 'long');
             }
-            $this->set(compact('category_alias'));
         }
 
         $this->set('pagination', $this->paginate($data, ['total' => $count_category_data]));
@@ -196,16 +179,14 @@ class ArticlesController extends AppController
             }
         }
 
-        $this->set( compact('data','meta', 'cur_cat',  'last_news', 'popular_news') );
+        $this->set( compact('data','meta', 'category_alias', 'cur_cat',  'last_news', 'popular_news') );
     }
 
     public function view($article_alias){
         $cur_date = date('Y-m-d H:i:s');
         $conditions = [
-            'OR' => [
-                ['Articles.publish_start_at IS NULL', 'Articles.date <' => $cur_date],
-                ['Articles.publish_start_at IS NOT NULL', 'Articles.publish_start_at <' => $cur_date],
-            ]
+            'Articles.publish_start_at <' => $cur_date,
+            'Articles.date <' => $cur_date
         ];
         $data = Cache::read($article_alias, 'long');
         if (!$data) {
@@ -245,7 +226,7 @@ class ArticlesController extends AppController
             Cache::write('other_news_' . $article_id, $other_news, 'long');
         }
 
-        $conditions['AND'][] = ['Articles.category_id' => $category_id];
+        $conditions[] = ['Articles.category_id' => $category_id];
 
         $category_alias = $this->_getCategoryAlias($category_id);
         $popular_news = Cache::read($category_alias . '_popular_news', 'long');
@@ -486,6 +467,10 @@ class ArticlesController extends AppController
         ];
         $data = [];
         $search_text = '';
+        $conditions = [
+            'Articles.publish_start_at <' => $cur_date,
+            'Articles.date <' => $cur_date
+        ];
         if (isset($_GET['q']) && $_GET['q']) {
             $search_text = htmlentities($_GET['q']);
             if ($search_text) {
@@ -495,11 +480,7 @@ class ArticlesController extends AppController
                         'Articles.locale' => $locale,
                         'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                     ])
-                    ->where([
-                        'OR' => [
-                            ['publish_start_at IS NULL', 'date <' => $cur_date],
-                            ['publish_start_at IS NOT NULL', 'publish_start_at <' => $cur_date],
-                        ]])
+                    ->where($conditions)
                     ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path'])
                     ->orderDesc('Articles.publish_start_at')
                     ->orderDesc('Articles.date')

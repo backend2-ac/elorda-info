@@ -175,34 +175,42 @@ class AppController extends Controller
             $langs_ids = [4, 9, 10, 11,19];
             $spec_ids = [2, 3,4];
 
-            $comps_lang = Cache::read('comps_lang_'.$l, 'long');
-            if( !$comps_lang ) {
+            $comps_lang = Cache::read('comps_lang_'. $l, 'long');
+            if(!$comps_lang) {
                 $this->Comps->setLocale($l);
-                $all_comps_lang = $this->Comps->find('all')
-                    ->where([
-                        'Comps.id IN' => $langs_ids,
-                        'Comps.id NOT IN' => $spec_ids,
-                        'Comps.page_id' => 0,
-                    ])
-                    ->toList();
+                $all_comps_lang = Cache::read('all_comps_lang_' . $l, 'eternal');
+                if (!$all_comps_lang) {
+                    $all_comps_lang = $this->Comps->find('all')
+                        ->where([
+                            'Comps.id IN' => $langs_ids,
+                            'Comps.id NOT IN' => $spec_ids,
+                            'Comps.page_id' => 0,
+                        ])
+                        ->toList();
+                    Cache::write('all_comps_lang_' . $l, $all_comps_lang, 'eternal');
+                }
                 $comps_lang = [];
                 foreach( $all_comps_lang as $comp_item ){
                     $comps_lang[$comp_item['id']] = $comp_item;
                 }
-                Cache::write('comps_lang'.$l, $comps_lang, 'long');
+                Cache::write('comps_lang_' . $l, $comps_lang, 'long');
             }
 
             $total_ids = array_merge($langs_ids, $spec_ids);
 
             $comps = Cache::read('comps_' . $l, 'long');
-            if( !$comps ){
+            if(!$comps){
                 $this->Comps->setLocale($l);
-                $all_comps = $this->Comps->find('all')
-                    ->where([
-                        'Comps.id NOT IN' => $total_ids,
-                        'Comps.page_id' => 0,
-                    ])
-                    ->toList();
+                $all_comps = Cache::read('all_comps_' . $l, 'eternal');
+                if (!$all_comps) {
+                    $all_comps = $this->Comps->find('all')
+                        ->where([
+                            'Comps.id NOT IN' => $total_ids,
+                            'Comps.page_id' => 0,
+                        ])
+                        ->toList();
+                    Cache::write('all_comps_' . $l, $all_comps, 'eternal');
+                }
 
                 $comps = [];
                 foreach( $all_comps as $comp_item ){
@@ -463,12 +471,10 @@ class AppController extends Controller
     /*---------- Other Funcs --------*/
 
         protected function _getFullCategories(){
-            $cur_lang = Configure::read('Config.lang');
-            $locale = $cur_lang == 'kz' ? 'kk' : 'ru';
-            $full_categories = Cache::read('full_categories_'.$cur_lang, 'eternal');
+            $full_categories = Cache::read('full_categories', 'eternal');
             if( !$full_categories ){
                 $categories = $this->Categories->find('all')
-                    ->where(['locale' => $locale, 'title IS NOT NULL'])
+                    ->where(['title IS NOT NULL'])
                     ->orderDesc('item_order')
                     ->toList();
 
@@ -476,7 +482,7 @@ class AppController extends Controller
                     foreach( $categories as $item ){
                         $full_categories[$item['id']] = $item;
                     }
-                    Cache::write('full_categories_'.$cur_lang, $full_categories, 'eternal');
+                    Cache::write('full_categories', $full_categories, 'eternal');
                 }
             }
             return $full_categories;
@@ -499,12 +505,26 @@ class AppController extends Controller
             $count_all_articles = Cache::read('count_all_articles_' . $locale, 'eternal');
             if (!$count_all_articles) {
                 $count_all_articles = $this->Articles->find()
+                    ->select(['id'])
                     ->where(['Articles.locale' => $locale])
                     ->count();
                 Cache::write('count_all_articles_' . $locale, $count_all_articles, 'eternal');
             }
             return $count_all_articles;
         }
+
+    protected function _getCountLatestNews($conditions, $locale) {
+        $count_all_articles = Cache::read('count_latest_news_' . $locale, 'eternal');
+        if (!$count_all_articles) {
+            $count_all_articles = $this->Articles->find()
+                ->select(['id'])
+                ->where($conditions)
+                ->where(['Articles.locale' => $locale])
+                ->count();
+            Cache::write('count_latest_news_' . $locale, $count_all_articles, 'eternal');
+        }
+        return $count_all_articles;
+    }
 
     /*---------- Other Funcs END --------*/
 
