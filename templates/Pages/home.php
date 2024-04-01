@@ -305,7 +305,6 @@
                                 </div>
                                 <div class="heroes__items">
                                 	<?php foreach( $heroes_news as $index => $item ): ?>
-                                    <?php debug($full_categories); debug($item['category_id']); die(); ?>
 		                                <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="heroes__child article__item">
 	                                        <div class="article__item-img">
 	                                            <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
