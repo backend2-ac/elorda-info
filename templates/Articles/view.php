@@ -23,7 +23,7 @@
                                     <div class="inner__date">
                                          <?= $data['publish_start_at'] ? $this->Time->format($data['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($data['date'], 'dd.MM.yyyy | HH:mm') ?>
                                     </div>
-                                    <?php if( $author ): ?>
+                                    <?php if(isset($author) && $author): ?>
 										<a href="/<?= $lang ?>writer/<?= $author['alias'] ?>" class="inner__author">
 	                                        <img src="/img/profile-icon.png" alt="">
 	                                        <?= $author['name'] ?>
