@@ -57,10 +57,10 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 					</div>
 
                     <?php
-                    $img_path = '/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/thumbs/';
+                    $img_path = '/img/articles/thumbs/';
                     $img_name = $data['img'];
                     if (file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles' . $data['img_path'])) {
-                        $img_path = '/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles';
+                        $img_path = '/img/articles';
                         $img_name = $data['img_path'];
                     }
                     ?>
