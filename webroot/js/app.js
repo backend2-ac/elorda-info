@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateHeaderTime() {
         headerTime.innerHTML = new Date().toLocaleTimeString('en-US', { 
             hour12: false, 
-            hour: "numeric", 
-            minute: "numeric"
+            hour: "2-digit", 
+            minute: "2-digit"
         });
     }
 
