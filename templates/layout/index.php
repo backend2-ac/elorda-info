@@ -181,7 +181,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js?_v=20231128123125" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js?_v=20231128123125"></script>
 		<script src="/js/jquery-marquee.js?_v=20231128123125" type="text/javascript"></script>
-		<script src="/js/app.js?_v=2.12"></script>
+		<script src="/js/app.js?_v=2.13"></script>
 
 	</body>
 </html>

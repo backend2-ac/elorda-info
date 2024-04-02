@@ -34,11 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Функция для обновления времени
     function updateHeaderTime() {
-        headerTime.innerHTML = new Date().toLocaleTimeString('en-US', { 
-            hour12: false, 
-            hour: "2-digit", 
-            minute: "2-digit"
-        });
+        let currentTime = new Date();
+        let hours = currentTime.getHours();
+        let minutes = currentTime.getMinutes();
+
+        // Добавляем ведущий ноль для минут, если минуты меньше 10
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        // Проверяем, если часы равны 0, то меняем их на 00
+        hours = hours === 0 ? '00' : hours;
+
+        headerTime.innerHTML = hours + ':' + minutes;
     }
 
     // Вызываем функцию сразу после установки интервала
