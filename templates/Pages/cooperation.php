@@ -20,106 +20,106 @@
                             <div class="preview__date"><?= date('Y') ?></div>
                         </div>
                     </section>
-                    <section class="stats">
-                        <div class="stats__container">
-                            <h2 class="stats__title title"><?= __('Статистика на сайте <span>в месяц</span>') ?></h2>
-                            <div class="stats__items">
-                                <div class="stats__item">
-                                    <div class="stats__item-header"><?= __('На сайте каждый месяц') ?></div>
-                                    <div class="stats__item-counter">52%</div>
-                                    <div class="stats__item-text"><?= __('новых посетителей') ?></div>
-                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>
-                                </div>
-                                <div class="stats__item blue">
-                                    <div class="stats__item-header"><?= __('На сайте каждый месяц') ?></div>
-                                    <div class="stats__item-counter">52%</div>
-                                    <div class="stats__item-text"><?= __('новых посетителей') ?></div>
-                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>
-                                </div>
-                                <div class="stats__item">
-                                    <div class="stats__item-header"><?= __('На сайте каждый месяц') ?></div>
-                                    <div class="stats__item-counter">52%</div>
-                                    <div class="stats__item-text"><?= __('новых посетителей') ?></div>
-                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>
-                                </div>
-                                <div class="stats__item">
-                                    <div class="stats__item-header"><?= __('На сайте каждый месяц') ?></div>
-                                    <div class="stats__item-counter">52%</div>
-                                    <div class="stats__item-text"><?= __('новых посетителей') ?></div>
-                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>
-                                </div>
-                                <div class="stats__item blue">
-                                    <div class="stats__item-header"><?= __('На сайте каждый месяц') ?></div>
-                                    <div class="stats__item-counter">52%</div>
-                                    <div class="stats__item-text"><?= __('новых посетителей') ?></div>
-                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>
-                                </div>
-                                <div class="stats__item">
-                                    <div class="stats__item-header"><?= __('На сайте каждый месяц') ?></div>
-                                    <div class="stats__item-counter">52%</div>
-                                    <div class="stats__item-text"><?= __('новых посетителей') ?></div>
-                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>
-                                </div>
-                                <?= $this->Form->create(null, [
-                                    'url' => '/'.$lang.'requests/send',
-                                    'accept-charset' => 'utf-8',
-                                    'onsubmit' => 'submitForm()'
-                                ]) ?>
-                                    <div class="stats__form">
-                                        <div class="stats__form-title"><?= __('Оставьте заявку на сотрудничество') ?></div>
-                                        <div class="stats__form-text"><?= __('Разместите рекламу на нашем сайте, чтобы гарантировать себе просмотры и постоянных читателей. Оставьте свои контактные данные и мы с вами свяжемся для обсуждения деталей') ?></div>
-                                        <div class="stats__form-elems">
-                                            <input type="text" name="email" placeholder="zarina.zarina@mail.ru" required="required">
-                                            <button type="submit"><?= __('Оставить заявку') ?></button>
-                                        </div>
-                                    </div>
-                                <?= $this->Form->end(); ?>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="follower">
-                        <div class="follower__container">
-                            <h2 class="follower__title title"><?= __('Подписчики в социальных сетях') ?></h2>
-                            <div class="follower__items">
-                                <div class="follower__item">
-                                    <div class="follower__item-img">
-                                        <img src="/img/f-1.png" alt="">
-                                    </div>
-                                    <div class="follower__item-title"><?= __('Страница') ?></div>
-                                    <a href="#" target="_blank" class="follower__item-link">facebook.com/aikyn.kz</a>
-                                    <div class="follower__item-count">10088</div>
-                                </div>
-                                <div class="follower__item">
-                                    <div class="follower__item-img">
-                                        <img src="/img/f-2.png" alt="">
-                                    </div>
-                                    <div class="follower__item-title"><?= __('Аккаунт') ?></div>
-                                    <a href="#" target="_blank" class="follower__item-link">facebook.com/aikyn.kz</a>
-                                    <div class="follower__item-count">10088</div>
-                                </div>
-                                <div class="follower__item">
-                                    <div class="follower__item-img">
-                                        <img src="/img/f-3.png" alt="">
-                                    </div>
-                                    <div class="follower__item-title"><?= __('Страница') ?></div>
-                                    <a href="#" target="_blank" class="follower__item-link">facebook.com/aikyn.kz</a>
-                                    <div class="follower__item-count">10088</div>
-                                </div>
-                                <div class="follower__item">
-                                    <div class="follower__item-img">
-                                        <img src="/img/f-4.png" alt="">
-                                    </div>
-                                    <div class="follower__item-title">Аккаунт</div>
-                                    <a href="#" target="_blank" class="follower__item-link">facebook.com/aikyn.kz</a>
-                                    <div class="follower__item-count">10088</div>
-                                </div>
-                            </div>
-                            <div class="follower__total">
-                                <div class="follower__total-text"><?= __('Всего подписчиков:') ?></div>
-                                <div class="follower__total-title">37994</div>
-                            </div>
-                        </div>
-                    </section>
+<!--                    <section class="stats">-->
+<!--                        <div class="stats__container">-->
+<!--                            <h2 class="stats__title title">--><?php //= __('Статистика на сайте <span>в месяц</span>') ?><!--</h2>-->
+<!--                            <div class="stats__items">-->
+<!--                                <div class="stats__item">-->
+<!--                                    <div class="stats__item-header">--><?php //= __('На сайте каждый месяц') ?><!--</div>-->
+<!--                                    <div class="stats__item-counter">52%</div>-->
+<!--                                    <div class="stats__item-text">--><?php //= __('новых посетителей') ?><!--</div>-->
+<!--                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>-->
+<!--                                </div>-->
+<!--                                <div class="stats__item blue">-->
+<!--                                    <div class="stats__item-header">--><?php //= __('На сайте каждый месяц') ?><!--</div>-->
+<!--                                    <div class="stats__item-counter">52%</div>-->
+<!--                                    <div class="stats__item-text">--><?php //= __('новых посетителей') ?><!--</div>-->
+<!--                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>-->
+<!--                                </div>-->
+<!--                                <div class="stats__item">-->
+<!--                                    <div class="stats__item-header">--><?php //= __('На сайте каждый месяц') ?><!--</div>-->
+<!--                                    <div class="stats__item-counter">52%</div>-->
+<!--                                    <div class="stats__item-text">--><?php //= __('новых посетителей') ?><!--</div>-->
+<!--                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>-->
+<!--                                </div>-->
+<!--                                <div class="stats__item">-->
+<!--                                    <div class="stats__item-header">--><?php //= __('На сайте каждый месяц') ?><!--</div>-->
+<!--                                    <div class="stats__item-counter">52%</div>-->
+<!--                                    <div class="stats__item-text">--><?php //= __('новых посетителей') ?><!--</div>-->
+<!--                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>-->
+<!--                                </div>-->
+<!--                                <div class="stats__item blue">-->
+<!--                                    <div class="stats__item-header">--><?php //= __('На сайте каждый месяц') ?><!--</div>-->
+<!--                                    <div class="stats__item-counter">52%</div>-->
+<!--                                    <div class="stats__item-text">--><?php //= __('новых посетителей') ?><!--</div>-->
+<!--                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>-->
+<!--                                </div>-->
+<!--                                <div class="stats__item">-->
+<!--                                    <div class="stats__item-header">--><?php //= __('На сайте каждый месяц') ?><!--</div>-->
+<!--                                    <div class="stats__item-counter">52%</div>-->
+<!--                                    <div class="stats__item-text">--><?php //= __('новых посетителей') ?><!--</div>-->
+<!--                                    <a href="#" target="_blank" class="stats__item-link">Яндекс.Метрика</a>-->
+<!--                                </div>-->
+<!--                                --><?php //= $this->Form->create(null, [
+//                                    'url' => '/'.$lang.'requests/send',
+//                                    'accept-charset' => 'utf-8',
+//                                    'onsubmit' => 'submitForm()'
+//                                ]) ?>
+<!--                                    <div class="stats__form">-->
+<!--                                        <div class="stats__form-title">--><?php //= __('Оставьте заявку на сотрудничество') ?><!--</div>-->
+<!--                                        <div class="stats__form-text">--><?php //= __('Разместите рекламу на нашем сайте, чтобы гарантировать себе просмотры и постоянных читателей. Оставьте свои контактные данные и мы с вами свяжемся для обсуждения деталей') ?><!--</div>-->
+<!--                                        <div class="stats__form-elems">-->
+<!--                                            <input type="text" name="email" placeholder="zarina.zarina@mail.ru" required="required">-->
+<!--                                            <button type="submit">--><?php //= __('Оставить заявку') ?><!--</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                --><?php //= $this->Form->end(); ?>
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </section>-->
+<!--                    <section class="follower">-->
+<!--                        <div class="follower__container">-->
+<!--                            <h2 class="follower__title title">--><?php //= __('Подписчики в социальных сетях') ?><!--</h2>-->
+<!--                            <div class="follower__items">-->
+<!--                                <div class="follower__item">-->
+<!--                                    <div class="follower__item-img">-->
+<!--                                        <img src="/img/f-1.png" alt="">-->
+<!--                                    </div>-->
+<!--                                    <div class="follower__item-title">--><?php //= __('Страница') ?><!--</div>-->
+<!--                                    <a href="#" target="_blank" class="follower__item-link">facebook.com/aikyn.kz</a>-->
+<!--                                    <div class="follower__item-count">10088</div>-->
+<!--                                </div>-->
+<!--                                <div class="follower__item">-->
+<!--                                    <div class="follower__item-img">-->
+<!--                                        <img src="/img/f-2.png" alt="">-->
+<!--                                    </div>-->
+<!--                                    <div class="follower__item-title">--><?php //= __('Аккаунт') ?><!--</div>-->
+<!--                                    <a href="#" target="_blank" class="follower__item-link">facebook.com/aikyn.kz</a>-->
+<!--                                    <div class="follower__item-count">10088</div>-->
+<!--                                </div>-->
+<!--                                <div class="follower__item">-->
+<!--                                    <div class="follower__item-img">-->
+<!--                                        <img src="/img/f-3.png" alt="">-->
+<!--                                    </div>-->
+<!--                                    <div class="follower__item-title">--><?php //= __('Страница') ?><!--</div>-->
+<!--                                    <a href="#" target="_blank" class="follower__item-link">facebook.com/aikyn.kz</a>-->
+<!--                                    <div class="follower__item-count">10088</div>-->
+<!--                                </div>-->
+<!--                                <div class="follower__item">-->
+<!--                                    <div class="follower__item-img">-->
+<!--                                        <img src="/img/f-4.png" alt="">-->
+<!--                                    </div>-->
+<!--                                    <div class="follower__item-title">Аккаунт</div>-->
+<!--                                    <a href="#" target="_blank" class="follower__item-link">facebook.com/aikyn.kz</a>-->
+<!--                                    <div class="follower__item-count">10088</div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="follower__total">-->
+<!--                                <div class="follower__total-text">--><?php //= __('Всего подписчиков:') ?><!--</div>-->
+<!--                                <div class="follower__total-title">37994</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </section>-->
                     <section class="place">
                         <div class="place__container">
                             <h2 class="place__title title"><?= __('Места на сайте') ?></h2>

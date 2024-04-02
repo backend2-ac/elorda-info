@@ -20,12 +20,14 @@
                             </div>
                             <?php foreach( $branches as $index => $branche ): ?>
                                 <div class="media__table">
-	                                <div class="media__table-header"><?= $branche['title'] ?></div>
+<!--	                                <div class="media__table-header">--><?php //= $branche['title'] ?><!--</div>-->
 	                                <table>
 	                                    <thead>
 	                                        <tr>
-	                                            <th><?= __('ФИО сотрудника') ?></th>
-	                                            <th><?= __('Должность') ?></th>
+                                                <th></th>
+                                                <th></th>
+<!--	                                            <th>--><?php //= __('ФИО сотрудника') ?><!--</th>-->
+<!--	                                            <th>--><?php //= __('Должность') ?><!--</th>-->
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>

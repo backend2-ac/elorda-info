@@ -358,6 +358,7 @@ class PagesController extends AppController
         if (!$employees) {
             $employees = $this->Employees->find('all')
                 ->where([$this->Employees->translationField('name') . ' is not' => null])
+                ->order(['item_order' => 'ASC'])
                 ->toList();
             Cache::write('employees_' . $cur_lang, $employees, 'long');
         }

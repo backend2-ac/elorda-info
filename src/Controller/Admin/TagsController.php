@@ -187,7 +187,10 @@ class TagsController extends AppController{
     }
 
     protected function _cacheDelete(){
-        Cache::delete('admin_tags', 'eternal');
+        Cache::delete('admin_tags_kk', 'eternal');
+        Cache::delete('admin_tags_kz', 'eternal');
+        Cache::delete('admin_tags_ru', 'eternal');
+
     }
 }
 

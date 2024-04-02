@@ -288,7 +288,7 @@ class ArticlesController extends AppController{
                 $this->Flash->success(__('Изменения сохранены'));
                 $this->_imgDelete($old_data, $entity_res['img_del']);
 //                $this->_updateArticleCache($data);
-                $this->_clearCategoryCache($data->category_id, $locale);
+                $this->_clearCategoryCache($data->category_id, $locale, $data->alias);
 
                 if( $articles_tags ){
                     $entities = $this->ArticlesTags->newEntities($articles_tags);
@@ -331,7 +331,7 @@ class ArticlesController extends AppController{
         if ($this->$model->delete($data)) {
             $this->Flash->success(__('Элемент успешно удален'));
             $this->_imgDelete($data, $this->img_fields);
-            $this->_clearCategoryCache($data->category_id, $locale);
+            $this->_clearCategoryCache($data->category_id, $locale, $data->alias);
             $this->_updateCacheArticleCount($is_add_or_delete, $locale);
 //            $this->_deleteArticleCache($data);
             return $this->redirect( $this->referer() );
@@ -362,7 +362,7 @@ class ArticlesController extends AppController{
     protected function _updateCountAllArticlesCache() {
 
     }
-    protected function _clearCategoryCache($category_id, $locale) {
+    protected function _clearCategoryCache($category_id, $locale, $article_alias = null) {
         $locale = $locale == 'kk' ? 'kz' : 'ru';
         $category_alias = $this->_getCategoryAlias($category_id);
         Cache::delete($category_alias . '_' . $locale, 'long');
@@ -377,6 +377,9 @@ class ArticlesController extends AppController{
         Cache::delete('politica_news_' . $locale, 'long');
         Cache::delete('culture_news_' . $locale, 'long');
         Cache::delete('heroes_news_' . $locale, 'long');
+        if ($article_alias) {
+            Cache::delete($article_alias, 'long');
+        }
     }
 
     protected function _slug_render($slug){
