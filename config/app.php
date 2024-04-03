@@ -388,7 +388,7 @@ return [
             'file' => 'debug',
             'url' => env('LOG_DEBUG_URL', null),
             'scopes' => false,
-            'levels' => ['notice', 'info', 'debug'],
+            'levels' => ['notice', 'debug'],
         ],
         'error' => [
             'className' => FileLog::class,
@@ -397,6 +397,14 @@ return [
             'url' => env('LOG_ERROR_URL', null),
             'scopes' => false,
             'levels' => ['warning', 'error', 'critical', 'alert', 'emergency'],
+        ],
+        'info' => [
+            'className' => FileLog::class,
+            'path' => LOGS,
+            'file' => 'info',
+            'scopes' => false,
+            'levels' => ['info'],
+            'dateFormat' => 'Y-m-d H:i:s', // Добавьте формат даты и времени
         ],
         // To enable this dedicated query log, you need set your datasource's log flag to true
         'queries' => [

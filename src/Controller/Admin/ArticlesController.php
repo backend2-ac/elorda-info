@@ -8,9 +8,13 @@ use Cake\I18n\I18n;
 
 use Cake\Cache\Cache;
 use Cake\Utility\Text;
+use Cake\Log\Log;
 
 class ArticlesController extends AppController{
 
+    /**
+     * @var \Cake\Datasource\RepositoryInterface|null
+     */
     public function initialize(): void{
         parent::initialize();
         $this->loadModel('Articles');
@@ -150,6 +154,7 @@ class ArticlesController extends AppController{
 
                 if( $created ){
                     $this->Flash->error( __('Запись с таким названием уже существует') );
+                    Log::write('info', 'Запись с таким названием уже существует ' . ' Data: ' . json_encode($data));
                     return $this->redirect( $this->referer() );
                 }
             }
@@ -168,12 +173,13 @@ class ArticlesController extends AppController{
             if( $entity_res['entity']->getErrors() ){
                 $errors = $entity_res['entity']->getErrors();
                 foreach( $errors as $index => $err ){
+                    Log::write('info', 'Entity error: ' . $err[array_key_first($err)] . ' Data: ' . json_encode($data));
                     $this->Flash->error( $err[array_key_first($err)] );
                 }
                 return $this->redirect( $this->referer() );
             }
 
-            if( $this->$model->save($entity_res['entity']) ){
+            if( !$this->$model->save($entity_res['entity']) ){
                 $this->Flash->success(__('Данные успешно сохранены'));
 //                $this->_updateArticleCache($entity_res['entity']);
                 $this->_updateCacheArticleCount($is_add_or_delete, $locale);
@@ -192,6 +198,7 @@ class ArticlesController extends AppController{
                         if( $this->ArticlesTags->saveMany($entities) ){
                             $this->Flash->success(__('Теги прикреплены'));
                         } else{
+                            Log::write('info', 'Ошибка  прикрепления тегов Data: ' . json_encode($data) . ' \r\n Article_tags: ' . json_encode($articles_tags));
                             $this->Flash->error(__('Ошибка прикрепления тегов'));
                         }
                     }
@@ -199,6 +206,7 @@ class ArticlesController extends AppController{
 
                 return $this->redirect( $this->referer() );
             } else{
+                Log::write('info', 'Ошибка сохранения данных! Data: ' . json_encode($data));
                 $this->Flash->error(__('Ошибка сохранения данных'));
             }
         }
@@ -277,6 +285,7 @@ class ArticlesController extends AppController{
             if( $entity_res['entity']->getErrors() ){
                 $errors = $entity_res['entity']->getErrors();
                 foreach( $errors as $index => $err ){
+                    Log::write('info', 'Edit Entity error: ' . $err[array_key_first($err)] . ' Data: ' . json_encode($data));
                     $this->Flash->error( $err[array_key_first($err)] );
                 }
                 return $this->redirect( $this->referer() );
@@ -310,6 +319,7 @@ class ArticlesController extends AppController{
 
                 return $this->redirect( $this->referer() );
             }
+            Log::write('info', 'Edit Ошибка сохранения данных! Data: ' . json_encode($data));
             $this->Flash->error(__('Ошибка сохранения'));
         }
 
