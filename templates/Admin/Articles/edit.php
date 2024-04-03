@@ -4,6 +4,14 @@ $cur_user_id = $cur_user['id'];
 $author_id = $cur_user['author_id'];
 $cur_user_role = $cur_user['role'];
 $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
+
+$img_path = '/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/thumbs/';
+$img_name = $data['img'];
+if (file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles' . $data['img_path'])) {
+    $img_path = '/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles';
+    $img_name = $data['img_path'];
+}
+
 ?>
 <section class="content-header">
 	<div class="container-fluid">
@@ -55,20 +63,6 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 						<label for="inputBody">Описание</label>
 						<?= $this->Form->textarea('body', array('id' => 'inputBody', 'class' => 'form-control')); ?>
 					</div>
-
-                    <?php
-                    $img_path = '/img/articles/thumbs/';
-                    $img_name = $data['img'];
-                    if (file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles' . $data['img_path'])) {
-                        $img_path = '/img/articles';
-                        $img_name = $data['img_path'];
-                    }
-                    ?>
-<!--                    --><?php //= $this->element('admin/img_input', [
-//                        'custom_input_params' => ['title' => 'Картинка', 'field' => 'img', 'path' => $img_path, 'file_name' => $img_name],
-//                        ]);
-//                    ?>
-
                     <?= $this->element('admin/img_input', [
                         'custom_input_params' => [
                             'title' => 'Картинка',
@@ -78,8 +72,6 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
                             'accept' => '.jpg,.jpeg,.png,.gif,.webp' // Добавляем поддержку формата WebP
                         ]
                     ]); ?>
-
-
 
                     <div class="form-group">
                         <label for="inputImgText">Текст картинки (alt)</label>
