@@ -31,14 +31,14 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 				</div>
 				<div class="card-body form_cols">
 
-                    <?php if ($cur_user_role == 'admin'): ?>
+<!--                    --><?php //if ($cur_user_role == 'admin'): ?>
                         <div class="form-group col_2">
                             <label for="inputAuthorId">Автор</label>
                             <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'empty' => 'Нет')); ?>
                         </div>
-                    <?php else: ?>
-                        <?= $this->Form->hidden('author_id', array('value' => $author_id)) ?>
-                    <?php endif; ?>
+<!--                    --><?php //else: ?>
+<!--                        --><?php //= $this->Form->hidden('author_id', array('value' => $author_id)) ?>
+<!--                    --><?php //endif; ?>
                     <?= $this->Form->hidden('updated_by_id', array('value' => $cur_user_id)) ?>
 
 						<div class="form-group col_2">
