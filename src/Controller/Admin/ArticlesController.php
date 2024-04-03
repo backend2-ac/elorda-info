@@ -179,7 +179,7 @@ class ArticlesController extends AppController{
                 return $this->redirect( $this->referer() );
             }
 
-            if( !$this->$model->save($entity_res['entity']) ){
+            if( $this->$model->save($entity_res['entity']) ){
                 $this->Flash->success(__('Данные успешно сохранены'));
 //                $this->_updateArticleCache($entity_res['entity']);
                 $this->_updateCacheArticleCount($is_add_or_delete, $locale);
