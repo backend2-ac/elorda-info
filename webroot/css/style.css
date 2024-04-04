@@ -3625,6 +3625,16 @@ select {
     font-size: 22px;
     max-width: 310px;
   }
+  .hero__swiper-title {
+    margin-bottom: 30px;
+    font-size: 32px;
+  }
+  .hero__swiper-slide {
+    padding-bottom: 30px;
+  }
+  .hero__swiper .swiper-pagination {
+    bottom: 30px;
+  }
 }
 
 @media (max-width: 1650px) {
