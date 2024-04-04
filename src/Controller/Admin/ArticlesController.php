@@ -8,9 +8,13 @@ use Cake\I18n\I18n;
 
 use Cake\Cache\Cache;
 use Cake\Utility\Text;
+use Cake\Log\Log;
 
 class ArticlesController extends AppController{
 
+    /**
+     * @var \Cake\Datasource\RepositoryInterface|null
+     */
     public function initialize(): void{
         parent::initialize();
         $this->loadModel('Articles');
@@ -37,12 +41,12 @@ class ArticlesController extends AppController{
         $has_get_param = false;
         $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
         $conditions[] = [$model.'.locale' => $locale];
-        $cur_user = $this->request->getSession()->read('Auth.User');
-
-        if ($cur_user['role'] == 'author') {
-            $author_id = $cur_user['author_id'];
-            $conditions[] = [$model.'.author_id' => $author_id];
-        }
+//        $cur_user = $this->request->getSession()->read('Auth.User');
+//
+//        if ($cur_user['role'] == 'author') {
+//            $author_id = $cur_user['author_id'];
+//            $conditions[] = [$model.'.author_id' => $author_id];
+//        }
         if( isset($_GET['title']) && $_GET['title'] ){
             $has_get_param = true;
             $title = trim($_GET['title']);
@@ -150,6 +154,7 @@ class ArticlesController extends AppController{
 
                 if( $created ){
                     $this->Flash->error( __('Запись с таким названием уже существует') );
+                    Log::write('info', 'Запись с таким названием уже существует ' . ' Data: ' . json_encode($data));
                     return $this->redirect( $this->referer() );
                 }
             }
@@ -168,6 +173,7 @@ class ArticlesController extends AppController{
             if( $entity_res['entity']->getErrors() ){
                 $errors = $entity_res['entity']->getErrors();
                 foreach( $errors as $index => $err ){
+                    Log::write('info', 'Entity error: ' . $err[array_key_first($err)] . ' Data: ' . json_encode($data));
                     $this->Flash->error( $err[array_key_first($err)] );
                 }
                 return $this->redirect( $this->referer() );
@@ -192,6 +198,7 @@ class ArticlesController extends AppController{
                         if( $this->ArticlesTags->saveMany($entities) ){
                             $this->Flash->success(__('Теги прикреплены'));
                         } else{
+                            Log::write('info', 'Ошибка  прикрепления тегов Data: ' . json_encode($data) . ' \r\n Article_tags: ' . json_encode($articles_tags));
                             $this->Flash->error(__('Ошибка прикрепления тегов'));
                         }
                     }
@@ -199,6 +206,7 @@ class ArticlesController extends AppController{
 
                 return $this->redirect( $this->referer() );
             } else{
+                Log::write('info', 'Ошибка сохранения данных! Data: ' . json_encode($data));
                 $this->Flash->error(__('Ошибка сохранения данных'));
             }
         }
@@ -223,16 +231,16 @@ class ArticlesController extends AppController{
         $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
         $model = 'Articles';
         date_default_timezone_set('Asia/Atyrau');
-        $cur_user = $this->request->getSession()->read('Auth.User');
-        if ($cur_user['role'] == 'author') {
-            $is_author_article = $this->$model->find()
-                ->where(['Articles.author_id' => $cur_user['author_id'], 'Articles.id' => $item_id])
-                ->toArray();
-            if (!$is_author_article) {
-                $this->Flash->error(__('У вас нет доступа!'));
-                $this->redirect(['controller' => 'Admin', 'action' => 'index']);
-            }
-        }
+//        $cur_user = $this->request->getSession()->read('Auth.User');
+//        if ($cur_user['role'] == 'author') {
+//            $is_author_article = $this->$model->find()
+//                ->where(['Articles.author_id' => $cur_user['author_id'], 'Articles.id' => $item_id])
+//                ->toArray();
+//            if (!$is_author_article) {
+//                $this->Flash->error(__('У вас нет доступа!'));
+//                $this->redirect(['controller' => 'Admin', 'action' => 'index']);
+//            }
+//        }
         $data = $this->$model->get($item_id, [
             'contain' => ['Tags']
         ]);
@@ -277,6 +285,7 @@ class ArticlesController extends AppController{
             if( $entity_res['entity']->getErrors() ){
                 $errors = $entity_res['entity']->getErrors();
                 foreach( $errors as $index => $err ){
+                    Log::write('info', 'Edit Entity error: ' . $err[array_key_first($err)] . ' Data: ' . json_encode($data));
                     $this->Flash->error( $err[array_key_first($err)] );
                 }
                 return $this->redirect( $this->referer() );
@@ -310,6 +319,7 @@ class ArticlesController extends AppController{
 
                 return $this->redirect( $this->referer() );
             }
+            Log::write('info', 'Edit Ошибка сохранения данных! Data: ' . json_encode($data));
             $this->Flash->error(__('Ошибка сохранения'));
         }
 
