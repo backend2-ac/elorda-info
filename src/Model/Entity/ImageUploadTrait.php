@@ -62,7 +62,8 @@ trait ImageUploadTrait{
                     }
                 }
 
-                $ext = strtolower(preg_replace("#.+\.([a-z]+)$#", "$1", $fileName));
+//                $ext = strtolower(preg_replace("#.+\.([a-z]+)$#", "$1", $fileName));
+                $ext = pathinfo($fileName, 4);
                 $fileName = $this->_genNameFile($ext, $folder);
 
                 $path = WWW_ROOT . 'img'.DS.$folder .DS. $fileName;
@@ -114,6 +115,7 @@ trait ImageUploadTrait{
             case("gif"):
                 $img = imagecreatefromgif($target);
                 break;
+            case("PNG"):
             case("png"):
                 $img = imagecreatefrompng($target);
                 break;
