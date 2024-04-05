@@ -116,8 +116,9 @@ class ArticlesController extends AppController{
             $article_count = $this->_getCountAllArticles($locale);
         }
 
-        $this->set('pagination', $this->paginate($data, ['total' => $article_count]));
-
+        $this->set('pagination', $this->paginate($data, [
+            'total' => $article_count,
+        ]));
         $categories = $this->_getAdminCategoriesWithLocale($locale);
         $authors = $this->_getAdminAuthors();
         $this->set( compact('data', 'categories',  'authors') );
@@ -290,7 +291,6 @@ class ArticlesController extends AppController{
                 }
                 return $this->redirect( $this->referer() );
             }
-
             $new_data = $entity_res['entity']->toArray();
             $this->$model->patchEntity($data, $new_data);
             if ($this->$model->save($data)) {
@@ -298,7 +298,9 @@ class ArticlesController extends AppController{
                 $this->_imgDelete($old_data, $entity_res['img_del']);
 //                $this->_updateArticleCache($data);
                 $this->_clearCategoryCache($data->category_id, $locale, $data->alias);
-
+                if ($old_data->category_id != $data->category_id) {
+                    $this->_clearCategoryCache($old_data->category_id, $locale);
+                }
                 if( $articles_tags ){
                     $entities = $this->ArticlesTags->newEntities($articles_tags);
                     if( $this->ArticlesTags->saveMany($entities) ){
