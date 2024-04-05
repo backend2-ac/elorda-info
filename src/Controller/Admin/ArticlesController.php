@@ -291,7 +291,6 @@ class ArticlesController extends AppController{
                 }
                 return $this->redirect( $this->referer() );
             }
-            debug($old_data);
             $new_data = $entity_res['entity']->toArray();
             $this->$model->patchEntity($data, $new_data);
             if ($this->$model->save($data)) {
