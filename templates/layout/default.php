@@ -264,7 +264,8 @@
             </div>
         </div>
         <!-- Include jQuery -->
-        <?= $this->Html->script('https://code.jquery.com/jquery-3.6.0.min.js') ?>
+        <!-- <?= $this->Html->script('https://code.jquery.com/jquery-3.6.0.min.js') ?> -->
+        <script src="/js/admin/jquery/jquery.min.js"></script>
 
         <!-- Bootstrap 4 -->
         <script src="/js/admin/bootstrap/js/bootstrap.bundle.min.js"></script>
