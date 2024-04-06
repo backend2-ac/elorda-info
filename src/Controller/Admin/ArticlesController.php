@@ -182,9 +182,9 @@ class ArticlesController extends AppController{
 
             if( $this->$model->save($entity_res['entity']) ){
                 $this->Flash->success(__('Данные успешно сохранены'));
-//                $this->_updateArticleCache($entity_res['entity']);
-                $this->_updateCacheArticleCount($is_add_or_delete, $locale);
-                $this->_clearCategoryCache($entity_res['entity']->category_id, $locale);
+                $this->_cacheDelete();
+//                $this->_updateCacheArticleCount($is_add_or_delete, $locale);
+//                $this->_clearCategoryCache($entity_res['entity']->category_id, $locale);
                 if( $data_tags ){
                     $articles_tags = [];
                     foreach( $data_tags as $tag_id ){
@@ -296,11 +296,11 @@ class ArticlesController extends AppController{
             if ($this->$model->save($data)) {
                 $this->Flash->success(__('Изменения сохранены'));
                 $this->_imgDelete($old_data, $entity_res['img_del']);
-//                $this->_updateArticleCache($data);
-                $this->_clearCategoryCache($data->category_id, $locale, $data->alias);
-                if ($old_data->category_id != $data->category_id) {
-                    $this->_clearCategoryCache($old_data->category_id, $locale);
-                }
+                $this->_cacheDelete();
+//                $this->_clearCategoryCache($data->category_id, $locale, $data->alias);
+//                if ($old_data->category_id != $data->category_id) {
+//                    $this->_clearCategoryCache($old_data->category_id, $locale);
+//                }
                 if( $articles_tags ){
                     $entities = $this->ArticlesTags->newEntities($articles_tags);
                     if( $this->ArticlesTags->saveMany($entities) ){
@@ -343,9 +343,9 @@ class ArticlesController extends AppController{
         if ($this->$model->delete($data)) {
             $this->Flash->success(__('Элемент успешно удален'));
             $this->_imgDelete($data, $this->img_fields);
-            $this->_clearCategoryCache($data->category_id, $locale, $data->alias);
-            $this->_updateCacheArticleCount($is_add_or_delete, $locale);
-//            $this->_deleteArticleCache($data);
+//            $this->_clearCategoryCache($data->category_id, $locale, $data->alias);
+//            $this->_updateCacheArticleCount($is_add_or_delete, $locale);
+            $this->_cacheDelete();
             return $this->redirect( $this->referer() );
         } else{
             $this->Flash->error(__('Ошибка удаления'));
@@ -393,7 +393,9 @@ class ArticlesController extends AppController{
             Cache::delete($article_alias, 'long');
         }
     }
-
+    protected function _cacheDelete(){
+        Cache::clearGroup('long');
+    }
     protected function _slug_render($slug){
         $slug_date = date('YmdHis');
         $slug = $slug . '_' . $slug_date;
