@@ -5,7 +5,9 @@ use Cake\I18n\FrozenTime;
 $cur_user_role = $this->request->getSession()->read('Auth.User.role');
 
 $is_kz_articles = true;
-if (isset($_GET['lang']) && $_GET['lang'] == 'ru') {
+$locale = 'kk';
+if (isset($_GET['lang']) && $_GET['lang'] == 'ru'){
+    $locale = 'ru';
     $is_kz_articles = false;
 }
 ?>
@@ -23,7 +25,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'ru') {
 
 <section class="content">
 
-    <form class="form_cols" action="/admin/articles?lang=<?= $is_kz_articles ? 'kk' : 'ru' ?>?test=test" method="GET" onsubmit="submitForm();">
+    <form class="form_cols" action="/admin/articles?lang=<?= $is_kz_articles ? 'kk' : 'ru' ?>&test=test" method="GET" onsubmit="submitForm();">
+        <?= $this->Form->hidden('lang', array('value' => $locale)) ?>
 
       <div class="form-group col_2">
         <label for="inputTitle">Название</label>
@@ -54,7 +57,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'ru') {
 
       <div class="submit_row form-group">
         <?php echo $this->Form->button('Поиск', array('class' => 'btn btn-success')); ?>
-        <a href="/admin/articles?lang=<?= $is_kz_articles ? 'kk' : 'ru' ?>?test=test" class="btn btn-danger">Сбросить</a>
+        <a href="/admin/articles?lang=<?= $is_kz_articles ? 'kk' : 'ru' ?>&test=test" class="btn btn-danger">Сбросить</a>
       </div>
 
     </form>
