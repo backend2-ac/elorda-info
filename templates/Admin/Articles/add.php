@@ -3,8 +3,10 @@ $cur_user = $this->request->getSession()->read('Auth.User');
 $cur_user_id = $cur_user['id'];
 $author_id = $cur_user['author_id'];
 $cur_user_role = $cur_user['role'];
-$is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
-?>
+$is_kz_articles = true;
+if (isset($_GET['lang']) && $_GET['lang'] == 'ru') {
+    $is_kz_articles = false;
+}?>
 <section class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-2">
@@ -24,7 +26,7 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 				<div class="card-header">
 					<h3 class="card-title">Данные</h3>
 					<div class="card-tools">
-						<a href="/admin/articles-<?= $is_kz_articles ? 'kz' : 'ru' ?>" type="button" class="btn btn-tool">
+						<a href="/admin/articles?lang=<?= $is_kz_articles ? 'kk' : 'ru' ?>" type="button" class="btn btn-tool">
 							<i class="fas fa-arrow-left"></i>
 						</a>
 					</div>

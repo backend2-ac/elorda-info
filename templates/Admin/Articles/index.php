@@ -113,12 +113,12 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'ru') {
                     </td>
         			<td class="project-actions text-right">
                     <?php if ($is_kz_articles): ?>
-                        <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>">
+                        <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>?lang=kk">
                           <i class="fas fa-pencil-alt"></i> Редактировать
                         </a>
                         <?php echo $this->Form->postLink('Удалить', "/admin/articles/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
         			<?php else: ?>
-                        <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>">
+                        <a class="btn btn-info btn-sm" href="/admin/articles/edit/<?=$item['id']?>?lang=ru">
                             <i class="fas fa-pencil-alt"></i> Редактировать
                         </a>
                         <?php echo $this->Form->postLink('Удалить', "/admin/articles/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
