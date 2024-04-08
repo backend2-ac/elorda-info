@@ -39,8 +39,10 @@ class ArticlesController extends AppController{
         $author_id = '';
         $views_sort = '';
         $has_get_param = false;
-        $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
-        $conditions[] = [$model.'.locale' => $locale];
+        if (isset($_GET['lang']) && $_GET['lang']) {
+            $locale = $_GET['lang'];
+            $conditions[] = [$model.'.locale' => $locale];
+        }
 //        $cur_user = $this->request->getSession()->read('Auth.User');
 //
 //        if ($cur_user['role'] == 'author') {

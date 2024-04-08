@@ -96,7 +96,7 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
                 <?= $categories[$item['category_id']] ?>
               </td>
                 <td>
-
+<!--                    --><?php //= Cake\Log\Log::write('img', 'article_id: ' . $item['id'] . ' img: ' . $item['img'] . ' file_exists: ' . file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? ' True' : ' False'); ?>
                     <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/thumbs/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="" width="150">
                 </td>
               <td>
@@ -141,15 +141,12 @@ $is_kz_articles = strpos($_SERVER['REQUEST_URI'], 'kz');
 
     $paginator_query = $this->request->getQuery();
     unset($paginator_query['page']);
-
     $this->Paginator->options([
         'url' => [
             'lang' => 'ru',
             '?' => $paginator_query,
         ]
     ]);
-//    debug($this->Paginator);
-//    die();
     echo $this->Paginator->numbers([
       'first' => 1, 'last' => 1, 'modulus' => 2,
     ]);

@@ -71,11 +71,8 @@ Router::prefix('Admin', function(RouteBuilder $builder){
     $builder->connect('/categories', ['controller' => 'Categories', 'action' => 'index']);
     $builder->connect('/categories/:action/*', ['controller' => 'Categories']);
 
-    $builder->connect('/articles-kz', ['controller' => 'Articles', 'action' => 'index']);
-    $builder->connect('/articles-kz/:action/*', ['controller' => 'Articles']);
-
-    $builder->connect('/articles-ru', ['controller' => 'Articles', 'action' => 'index']);
-    $builder->connect('/articles-ru/:action/*', ['controller' => 'Articles']);
+    $builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index']);
+    $builder->connect('/articles/:action/*', ['controller' => 'Articles']);
 
     $builder->connect('/tags', ['controller' => 'Tags', 'action' => 'index']);
     $builder->connect('/tags/:action/*', ['controller' => 'Tags']);
