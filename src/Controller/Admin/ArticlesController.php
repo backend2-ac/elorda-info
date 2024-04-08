@@ -139,7 +139,9 @@ class ArticlesController extends AppController{
     public function add() {
         $model = 'Articles';
         date_default_timezone_set('Asia/Atyrau');
-        $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
+        if (isset($_GET['lang']) && $_GET['lang']) {
+            $locale = $_GET['lang'];
+        }
         $is_add_or_delete = true;
         if( $this->request->is('post') ){
             $data = $this->request->getData();
