@@ -425,7 +425,7 @@ class AppController extends Controller
                 'valueField' => 'title',
             ])
                 ->where(['Categories.locale' => $locale])
-                ->order(['locale', 'title'])
+                ->order(['title'])
                 ->toArray();
             Cache::write('admin_categories_' . $locale, $categories, 'eternal');
         }

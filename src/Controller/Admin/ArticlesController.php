@@ -232,9 +232,10 @@ class ArticlesController extends AppController{
         Cache::delete($cache_key, 'long');
     }
 
-    public function edit($item_id = null){
-        $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
-        $model = 'Articles';
+    public function edit($item_id = null) {
+        if (isset($_GET['lang']) && $_GET['lang']) {
+            $locale = $_GET['lang'];
+        }        $model = 'Articles';
         date_default_timezone_set('Asia/Atyrau');
 //        $cur_user = $this->request->getSession()->read('Auth.User');
 //        if ($cur_user['role'] == 'author') {
