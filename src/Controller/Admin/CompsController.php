@@ -197,8 +197,10 @@ class CompsController extends AppController{
 		Cache::delete('page_comps_ru', 'long');
 		Cache::delete('page_comps_kz', 'long');
 		Cache::delete('all_comps_page_id_4', 'eternal');
+        Cache::delete('all_comps_page_id_5', 'eternal');
 
-	}
+
+    }
 }
 
  ?>
