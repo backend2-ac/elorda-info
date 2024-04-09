@@ -181,7 +181,7 @@
 				</div>
 			</div>
 		</div>
-		<script async src="https://www.gismeteo.kz/api/informer/getinformer/?hash=7QW23P16cv3h7k" onload="initializeWeather()"></script>
+		<script async src="https://www.gismeteo.kz/api/informer/getinformer/?hash=7QW23P16cv3h7k" onload="initialWeather()"></script>
 		<!-- Gismeteo informer END -->
 	</body>
 </html>
