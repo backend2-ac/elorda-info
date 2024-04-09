@@ -512,6 +512,11 @@ select {
   padding-right: 27px;
   border-right: 1.5px solid rgba(255, 255, 255, 0.4);
   margin-right: 23px;
+  display: none;
+}
+
+.header__time.acitve {
+  display: flex;
 }
 
 .header__time img {
