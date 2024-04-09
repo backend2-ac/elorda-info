@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if(headerTime) {
-        headerTime.classList.add('active');
+        document.querySelector('.header__time').classList.add('active');
         // Вызываем функцию сразу после установки интервала
         updateHeaderTime();
     }

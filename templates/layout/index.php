@@ -150,7 +150,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js?_v=20231128123125" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js?_v=20231128123125"></script>
 		<script src="/js/jquery-marquee.js?_v=20231128123125" type="text/javascript"></script>
-		<script src="/js/app.js?_v=2.16"></script>
+		<script src="/js/app.js?_v=2.17"></script>
 		<!-- Gismeteo informer START -->
 		<link rel="stylesheet" type="text/css" href="https://ost1.gismeteo.kz/assets/flat-ui/legacy/css/informer.min.css">
 		<div id="gsInformerID-7QW23P16cv3h7k" class="gsInformer" style="width:240px;height:70px; display: none;">
