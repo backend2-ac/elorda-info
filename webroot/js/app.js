@@ -211,16 +211,7 @@ window.onload = () => {
     //         ytWidget.remove();
     //     }, 5000);
     // }
-    const weatherBlock = document.querySelector('.header__weather');
-    if(weatherBlock) {
-        const weatherImage = weatherBlock.querySelector('img');
-        const weatherInfo = weatherBlock.querySelector('div');
-        const weatherImageGismeteo = document.querySelector('.gsWeatherIcon img').src;
-        const weatherCityGismeteo = document.querySelector('.gsCity span').textContent;
-        const weatherTempGismeteo = document.querySelector('.gsTemp nobr').innerHTML;
-        weatherImage.src = weatherImageGismeteo;
-        weatherInfo.innerHTML = weatherCityGismeteo + weatherTempGismeteo;
-    }
+
 };
 
 // loader func
@@ -236,4 +227,18 @@ for (let item of alertClose) {
         alertt.classList.remove("alert--warning")
         alertt.classList.remove("alert--error")
     })
+}
+
+function initialWeather(){
+    const weatherBlock = document.querySelector('.header__weather');
+    if(weatherBlock) {
+        const weatherImage = weatherBlock.querySelector('img');
+        const weatherInfo = weatherBlock.querySelector('div');
+        const weatherImageGismeteo = document.querySelector('.gsWeatherIcon img').src;
+        const weatherCityGismeteo = document.querySelector('.gsCity span').textContent;
+        const weatherTempGismeteo = document.querySelector('.gsTemp nobr').innerHTML;
+        weatherImage.src = weatherImageGismeteo;
+        weatherInfo.innerHTML = weatherCityGismeteo + weatherTempGismeteo;
+        weatherBlock.classList.add('active');
+    }
 }

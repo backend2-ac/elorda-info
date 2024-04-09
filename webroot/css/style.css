@@ -524,10 +524,14 @@ select {
 }
 
 .header__weather {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 12px;
   margin-right: 60px;
+}
+
+.header__weather.active {
+  display: flex;
 }
 
 .header__weather svg {
