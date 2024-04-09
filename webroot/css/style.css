@@ -515,7 +515,7 @@ select {
   display: none;
 }
 
-.header__time.acitve {
+.header__time.active {
   display: flex;
 }
 
