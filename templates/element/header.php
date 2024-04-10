@@ -1,18 +1,17 @@
 <?php
-$url = "http://www.nationalbank.kz/rss/rates_all.xml";
-$rates_data = simplexml_load_file($url);
-if ($rates_data) {
-    foreach ($rates_data->channel->item as $item) {
-        if ($item->title == 'USD') {
-            $dollar = $item->description;
-        } elseif ($item->title == 'EUR') {
-            $eur = $item->description;
-        } elseif ($item->title == 'RUB') {
-            $rub = $item->description;
-        }
-    }
-}
-
+//$url = "http://www.nationalbank.kz/rss/rates_all.xml";
+//$rates_data = simplexml_load_file($url);
+//if ($rates_data) {
+//    foreach ($rates_data->channel->item as $item) {
+//        if ($item->title == 'USD') {
+//            $dollar = $item->description;
+//        } elseif ($item->title == 'EUR') {
+//            $eur = $item->description;
+//        } elseif ($item->title == 'RUB') {
+//            $rub = $item->description;
+//        }
+//    }
+//}
 ?>
 <header class="header way way-header">
         <div class="header__container">
@@ -106,33 +105,56 @@ if ($rates_data) {
                             <img src="/img/TG-icon.svg" class="icon-svg" alt="">
                         </a>
                     </div>
+<!--                    <div class="header__currency">-->
+<!--                        <div class="header__currency-item">-->
+<!--                            --><?php //if (isset($dollar) && $dollar): ?>
+<!--                                <div class="header__currency-icon">-->
+<!--                                    <img src="/img/dollar-icon.png" alt="" class="icon-svg">-->
+<!--                                </div>-->
+<!--                                <div class="header__currency-name">USD:</div>-->
+<!--                                <div class="header__currency-value">--><?php //= $dollar ?><!--</div>-->
+<!--                            --><?php //endif; ?>
+<!--                        </div>-->
+<!--                        <div class="header__currency-item">-->
+<!--                            --><?php //if (isset($eur) && $eur): ?>
+<!--                                <div class="header__currency-icon">-->
+<!--                                    <img src="/img/euro-icon.png" alt="" class="icon-svg">-->
+<!--                                </div>-->
+<!--                                <div class="header__currency-name">EUR:</div>-->
+<!--                                <div class="header__currency-value">--><?php //= $eur ?><!--</div>-->
+<!--                            --><?php //endif; ?>
+<!--                        </div>-->
+<!--                        <div class="header__currency-item">-->
+<!--                            --><?php //if (isset($rub) && $rub): ?>
+<!--                                <div class="header__currency-icon">-->
+<!--                                    <img src="/img/rub-icon.png" alt="" class="icon-svg">-->
+<!--                                </div>-->
+<!--                                <div class="header__currency-name">RUB:</div>-->
+<!--                                <div class="header__currency-value">--><?php //= $rub ?><!--</div>-->
+<!--                            --><?php //endif; ?>
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="header__currency">
                         <div class="header__currency-item">
-                            <?php if (isset($dollar) && $dollar): ?>
                             <div class="header__currency-icon">
                                 <img src="/img/dollar-icon.png" alt="" class="icon-svg">
                             </div>
                             <div class="header__currency-name">USD:</div>
-                            <div class="header__currency-value"><?= $dollar ?></div>
-                            <?php endif; ?>
+                            <div class="header__currency-value">478.1</div>
                         </div>
                         <div class="header__currency-item">
-                            <?php if (isset($eur) && $eur): ?>
                             <div class="header__currency-icon">
                                 <img src="/img/euro-icon.png" alt="" class="icon-svg">
                             </div>
                             <div class="header__currency-name">EUR:</div>
-                            <div class="header__currency-value"><?= $eur ?></div>
-                            <?php endif; ?>
+                            <div class="header__currency-value">502.1</div>
                         </div>
                         <div class="header__currency-item">
-                            <?php if (isset($rub) && $rub): ?>
                             <div class="header__currency-icon">
                                 <img src="/img/rub-icon.png" alt="" class="icon-svg">
                             </div>
                             <div class="header__currency-name">RUB:</div>
-                            <div class="header__currency-value"><?= $rub ?></div>
-                            <?php endif; ?>
+                            <div class="header__currency-value">4.75</div>
                         </div>
                     </div>
                     <a href="/<?= $lang ?>search" class="header__search">
