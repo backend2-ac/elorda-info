@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+require __DIR__ . '/../../vendor/autoload.php';
 
 use Cake\Cache\Cache;
 use Cake\I18n\FrozenTime;
