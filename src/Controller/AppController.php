@@ -312,21 +312,18 @@ class AppController extends Controller
 //
 //                if ($current_date >= $new_start_date) {
 //                    $new_articles = $this->Articles->find()
-//                        ->select(['Articles.title', 'Articles.alias', 'Categories.alias'])
-//                        ->contain(['Categories'])
+//                        ->select(['Articles.title', 'Articles.alias', 'Articles.category_id'])
 //                        ->where([
 //                            'Articles.publish_start_at >=' => $check_start_date,
 //                            'Articles.publish_start_at <=' => $new_start_date
 //                        ])
 //                        ->toList();
 //                    if ($new_articles) {
-////                        $fb_data = $this->prepareDataForSendingToFacebook($new_articles);
-////                        $this->sendPostsToFacebook($fb_data);
-//                        Cache::clear();
+//                        Cache::clearGroup('long');
 //                    }
 //                    Cache::write('check_start_date', $new_start_date, 'eternal');
 //                }
-//                $this->sendPostsToFacebook();
+////                $this->sendPostsToFacebook();
 //            }
             /*------ Cache cleaning END ------*/
 
@@ -336,6 +333,25 @@ class AppController extends Controller
 
     }
 
+    protected function _clearArticlesCache($category_id, $locale, $article_alias = null) {
+        $locale = $locale == 'kk' ? 'kz' : 'ru';
+        $category_alias = $this->_getCategoryAlias($category_id);
+        Cache::delete($category_alias . '_' . $locale, 'long');
+        Cache::delete($category_alias . '_popular_news', 'long');
+        Cache::delete($category_alias . '_last_news', 'long');
+        Cache::delete( 'main_articles_' . $locale, 'long');
+        Cache::delete('last_news_' . $locale, 'long');
+        Cache::delete('popular_news_' . $locale, 'long');
+        Cache::delete($category_alias . '_news_page_1', 'long');
+        Cache::delete('capital_news_' . $locale, 'long');
+        Cache::delete('society_news_' . $locale, 'long');
+        Cache::delete('politica_news_' . $locale, 'long');
+        Cache::delete('culture_news_' . $locale, 'long');
+        Cache::delete('heroes_news_' . $locale, 'long');
+        if ($article_alias) {
+            Cache::delete($article_alias, 'long');
+        }
+    }
     protected function prepareDataForSendingToFacebook($new_articles) {
         $fb_data = [];
         foreach ($new_articles as $new_article) {
