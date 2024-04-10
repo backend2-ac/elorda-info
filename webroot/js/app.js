@@ -47,8 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
         headerTime.innerHTML = hours + ':' + minutes;
     }
 
-    // Вызываем функцию сразу после установки интервала
-    updateHeaderTime();
+    if(headerTime) {
+        document.querySelector('.header__time').classList.add('active');
+        // Вызываем функцию сразу после установки интервала
+        updateHeaderTime();
+    }
 
     // Устанавливаем интервал на повторение каждую минуту
     setInterval(updateHeaderTime, 60000);
