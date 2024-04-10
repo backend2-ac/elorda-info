@@ -35,8 +35,7 @@ class CacheUpdatesController extends AppController {
                 Cache::write('check_start_date', $current_date, 'eternal');
             }
         }
-
+        Cache::clearGroup('eternal');
     }
 }
-
 ?>
