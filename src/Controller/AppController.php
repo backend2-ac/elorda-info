@@ -473,6 +473,7 @@ class AppController extends Controller
                         'keyField' => 'id',
                         'valueField' => 'name',
                     ])
+                    ->where(['anonymous' => 0])
                     ->orderDesc('item_order')
                     ->toArray();
 

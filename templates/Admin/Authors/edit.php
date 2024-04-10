@@ -50,6 +50,12 @@
                                     <label for="inputBiography">Биография</label>
                                     <?= $this->Form->textarea('biography', array('id' => 'inputBiography', 'class' => 'form-control')); ?>
                                 </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-switch">
+                                        <?= $this->Form->input('anonymous', array('class' => 'custom-control-input', 'id' => 'anonymous', 'type' => 'checkbox'));  ?>
+                                        <label class="custom-control-label" for="anonymous">Скрыть</label>
+                                    </div>
+                                </div>
                                 <?= $this->element('admin/img_input', [
                                     'custom_input_params' => ['title' => 'Картинка', 'field' => 'img', 'path' => '/img/authors/thumbs/', 'file_name' => $data['img']],
                                 ]);

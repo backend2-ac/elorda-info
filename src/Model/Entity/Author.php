@@ -18,8 +18,9 @@ class Author extends Entity{
         'img' => true,
         'published_at' => true,
         'created_by_id' => true,
-        'Updated_by_id' => true,
+        'updated_by_id' => true,
 		'item_order' => true,
+        'anonymous' => true,
 
 		'created_at' => true,
 		'updated_at' => true,
