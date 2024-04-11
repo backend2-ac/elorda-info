@@ -56,27 +56,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Устанавливаем интервал на повторение каждую минуту
     setInterval(updateHeaderTime, 60000);
 
-    var moneyjs = document.createElement('script');
-    moneyjs.src = 'https://openexchangerates.github.io/money.js/money.min.js';
-    document.body.appendChild(moneyjs);
-    moneyjs.addEventListener('load', function() {
-        fetch('https://www.cbr-xml-daily.ru/latest.js')
-        .then(response => response.json())
-        .then(function(data) {
-            fx.rates = data.rates;
-            fx.base = data.base;
-            console.log(fx(100).from("RUB").to("KZT"));
-            currentCurrencyValue.forEach((item, i) => {
-                console.log(currencyArray[i]);
-                item.innerHTML = convertCurrency(currencyArray[i]);
-            });
-        });
-    });
-    let currentCurrencyValue = document.querySelectorAll('.header__currency-value');
-    let currencyArray = ["USD", "EUR", "RUB"];
-    const convertCurrency = (item) => {
-        return (fx(1).from(item).to("KZT")).toFixed(2);
-    };
+    // var moneyjs = document.createElement('script');
+    // moneyjs.src = 'https://openexchangerates.github.io/money.js/money.min.js';
+    // document.body.appendChild(moneyjs);
+    // moneyjs.addEventListener('load', function() {
+    //     fetch('https://www.cbr-xml-daily.ru/latest.js')
+    //     .then(response => response.json())
+    //     .then(function(data) {
+    //         fx.rates = data.rates;
+    //         fx.base = data.base;
+    //         console.log(fx(100).from("RUB").to("KZT"));
+    //         currentCurrencyValue.forEach((item, i) => {
+    //             console.log(currencyArray[i]);
+    //             item.innerHTML = convertCurrency(currencyArray[i]);
+    //         });
+    //     });
+    // });
+    // let currentCurrencyValue = document.querySelectorAll('.header__currency-value');
+    // let currencyArray = ["USD", "EUR", "RUB"];
+    // const convertCurrency = (item) => {
+    //     return (fx(1).from(item).to("KZT")).toFixed(2);
+    // };
 
     // set header items
     let headerNav = document.querySelector('.header__nav');
