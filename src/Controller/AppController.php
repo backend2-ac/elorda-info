@@ -301,6 +301,31 @@ class AppController extends Controller
 
             $full_categories = $this->_getFullCategories();
 
+            $url = "http://www.nationalbank.kz/rss/rates_all.xml";
+            $rates_data = [];
+            $start_date_getting_rates = Cache::read('start_date_getting_rates', 'eternal');
+            $current_date = FrozenTime::now();
+            if (!$start_date_getting_rates) {
+                Cache::write('start_date_getting_rates', $current_date, 'eternal');
+            } else {
+                $date_for_check = $start_date_getting_rates->addMinutes(240);
+
+                if ($current_date > $date_for_check) {
+                    $rates_data = simplexml_load_file($url);
+                    $rates_data = json_decode(json_encode($rates_data, 1));
+                    Cache::write('currency_rates', $rates_data, 'eternal');
+                    Cache::write('start_date_getting_rates', $current_date, 'eternal');
+                } else {
+                    $rates_data = Cache::read('currency_rates', 'eternal');
+                    if (!$rates_data) {
+                        $rates_data = simplexml_load_file($url);
+                        $rates_data = json_decode(json_encode($rates_data, 1));
+                        Cache::write('currency_rates', $rates_data, 'eternal');
+                    }
+                }
+            }
+            $this->set(compact('rates_data'));
+
             /*------ cache cleaning ------*/
 //            $interval_minute = 10;
 //            $check_start_date = Cache::read('check_start_date', 'eternal');
