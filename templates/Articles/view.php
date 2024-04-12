@@ -21,7 +21,7 @@
                                 <h1 class="inner__title title"><?=$data['title'];?></h1>
                                 <div class="inner__header">
                                     <div class="inner__date">
-                                         <?= $data['publish_start_at'] ? $this->Time->format($data['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($data['date'], 'dd.MM.yyyy | HH:mm') ?>
+                                         <?= $this->Time->format($data['publish_start_at'], 'dd.MM.yyyy | HH:mm') ?>
                                     </div>
                                     <?php if(isset($author) && $author): ?>
 										<a href="/<?= $lang ?>writer/<?= $author['alias'] ?>" class="inner__author">
@@ -159,7 +159,7 @@
 												<a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="inner__item article__item">
 		                                            <div class="article__item-img">
 		                                                <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
-		                                                <div class="article__item-date"> <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?></div>
+		                                                <div class="article__item-date"> <?= $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') ?></div>
 		                                            </div>
 		                                            <div class="article__item-title"><?= $item['title'] ?></div>
 <!--		                                            <div class="article__item-watch">-->
@@ -216,7 +216,7 @@
 	                                    </div>
 	                                    <div class="news-actual__item-info">
 	                                        <div class="news-actual__item-date">
-	                                            <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
+	                                            <?= $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') ?>
 	                                        </div>
 	                                        <div class="news-actual__item-title"><?= $item['title'] ?></div>
 	                                    </div>
@@ -233,7 +233,7 @@
 	                                    </div>
 	                                    <div class="news-actual__item-info">
 	                                        <div class="news-actual__item-date">
-                                                <?= $item['publish_start_at'] ? $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') : $this->Time->format($item['date'], 'dd.MM.yyyy | HH:mm') ?>
+                                                <?= $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') ?>
 	                                        </div>
 	                                        <div class="news-actual__item-title"><?= $item['title'] ?></div>
 	                                    </div>

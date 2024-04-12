@@ -93,9 +93,8 @@ class ArticlesController extends AppController
 //        if (!$data) {
         $data = $this->Articles->find('all')
             ->where($conditions)
-            ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path', 'views'])
+            ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
             ->orderDesc('Articles.publish_start_at')
-            ->order(['Articles.date' => 'DESC'])
             ->limit($per_page)->offset($offset);
 //            ->toList();
 //            Cache::write($alias . '_news', $data, 'long');
@@ -105,7 +104,7 @@ class ArticlesController extends AppController
             $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
             if (!$popular_news) {
                 $popular_news = $this->Articles->find('all')
-                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
                     ->where($conditions)
                     ->orderDesc('views')
                     ->limit(6)
@@ -116,10 +115,9 @@ class ArticlesController extends AppController
             $last_news = Cache::read('last_news_' . $cur_lang, 'long');
             if (!$last_news) {
                 $last_news = $this->Articles->find('all')
-                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                     ->where($conditions)
                     ->orderDesc('Articles.publish_start_at')
-                    ->orderDesc('Articles.date')
                     ->limit(6)
                     ->toList();
                 Cache::write('last_news_' . $cur_lang, $last_news, 'long');
@@ -136,7 +134,7 @@ class ArticlesController extends AppController
             $popular_news = Cache::read($category_alias . '_popular_news', 'long');
             if (!$popular_news) {
                 $popular_news = $this->Articles->find('all')
-                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
                     ->where($conditions)
                     ->orderDesc('views')
                     ->limit(6)
@@ -147,10 +145,9 @@ class ArticlesController extends AppController
             $last_news = Cache::read($category_alias . '_last_news', 'long');
             if (!$last_news) {
                 $last_news = $this->Articles->find('all')
-                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                     ->where($conditions)
                     ->orderDesc('Articles.publish_start_at')
-                    ->orderDesc('Articles.date')
                     ->limit(6)
                     ->toList();
                 Cache::write($category_alias . '_last_news', $last_news, 'long');
@@ -191,7 +188,7 @@ class ArticlesController extends AppController
         $data = Cache::read($article_alias, 'long');
         if (!$data) {
             $data = $this->Articles->findByAlias($article_alias)
-                ->select(['id', 'category_id', 'author_id',  'title', 'body', 'meta_title', 'meta_description', 'meta_keywords', 'img', 'img_path', 'img_text', 'alias', 'views', 'date', 'publish_start_at', 'cover_photo_source'])
+                ->select(['id', 'category_id', 'author_id',  'title', 'body', 'meta_title', 'meta_description', 'meta_keywords', 'img', 'img_path', 'img_text', 'alias', 'views', 'publish_start_at', 'cover_photo_source'])
                 ->contain([
                     'Categories',
                     'Tags',
@@ -222,14 +219,13 @@ class ArticlesController extends AppController
         $other_news = Cache::read('other_news_' . $article_id, 'long');
         if (!$other_news) {
             $other_news = $this->Articles->find()
-                ->select(['id', 'category_id', 'author_id',  'title', 'body', 'meta_title', 'meta_description', 'meta_keywords', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'author_id',  'title', 'body', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where([
                     'Articles.id !=' => $article_id,
                     'Articles.category_id =' => $category_id,
                 ])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
                 ->limit(4)
                 ->toList();
             Cache::write('other_news_' . $article_id, $other_news, 'long');
@@ -241,7 +237,7 @@ class ArticlesController extends AppController
         $popular_news = Cache::read($category_alias . '_popular_news', 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
                 ->where($conditions)
                 ->orderDesc('views')
                 ->limit(6)
@@ -252,10 +248,9 @@ class ArticlesController extends AppController
         $last_news = Cache::read($category_alias . '_last_news', 'long');
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
                 ->limit(6)
                 ->toList();
             Cache::write($category_alias . '_last_news', $last_news, 'long');
@@ -384,11 +379,12 @@ class ArticlesController extends AppController
             'limit' => $per_page,
         ];
         $author_artilces = $this->Articles->find('all')
+            ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
             ->where([ 'Articles.author_id' => $author_id])
             ->contain([
                 'Tags',
             ])
-            ->orderDesc('Articles.date')
+            ->orderDesc('Articles.publish_start_at')
             ->limit($per_page)
             ->offset($offset)
             ->toList();
@@ -399,7 +395,7 @@ class ArticlesController extends AppController
                 ->contain([
                     'Tags',
                 ])
-                ->orderDesc('Articles.date')
+                ->orderDesc('Articles.publish_start_at')
                 ->limit($per_page), $pag_settings));
 
         $this->set(compact('author_artilces','author'));
@@ -432,6 +428,7 @@ class ArticlesController extends AppController
         ];
 
             $tag_articles = $this->Articles->find()
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->innerJoinWith('ArticlesTags')
                 ->where([
                     'ArticlesTags.tag_id' => $tag->id,
@@ -439,7 +436,6 @@ class ArticlesController extends AppController
                     'Articles.publish_start_at <=' => $cur_date
                 ])
                 ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
                 ->limit($per_page)
                 ->offset($offset);
 
@@ -478,7 +474,6 @@ class ArticlesController extends AppController
         $search_text = '';
         $conditions = [
             'Articles.publish_start_at <' => $cur_date,
-            'Articles.date <' => $cur_date
         ];
         if (isset($_GET['q']) && $_GET['q']) {
             $search_text = htmlentities($_GET['q']);
@@ -490,9 +485,8 @@ class ArticlesController extends AppController
                         'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                     ])
                     ->where($conditions)
-                    ->select(['id', 'category_id', 'title', 'alias', 'body', 'date', 'publish_start_at', 'img', 'img_path'])
+                    ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
                     ->orderDesc('Articles.publish_start_at')
-                    ->orderDesc('Articles.date')
                     ->limit($per_page)
                     ->offset($offset);
                 $count_query = $this->Articles->find()

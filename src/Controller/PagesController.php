@@ -125,11 +125,10 @@ class PagesController extends AppController
         $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
         if (!$main_articles) {
             $main_articles = $this->Articles->find('all')
-                ->select(['id', 'title', 'alias', 'category_id', 'img', 'img_path', 'date', 'publish_start_at', 'views'])
+                ->select(['id', 'title', 'alias', 'category_id', 'img', 'img_path', 'publish_start_at'])
                 ->where($conditions)
                 ->where(['locale' => $locale, 'on_main' => 1])
                 ->orderDesc('Articles.publish_start_at')
-                ->order(['Articles.date' => 'DESC'])
                 ->limit(3)
                 ->toList();
 
@@ -145,11 +144,10 @@ class PagesController extends AppController
 //                        return $q->enableAutoFields();
 //                    },
 //                ])
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
                 ->limit(4)
                 ->toList();
             Cache::write('capital_news_' . $cur_lang, $capital_news, 'long');
@@ -164,11 +162,10 @@ class PagesController extends AppController
 //                            return $q->enableAutoFields();
 //                        },
 //                    ])
-                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                     ->where(['Articles.category_id' => $society_news_category_id])
                     ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                    ->orderDesc('Articles.date')
                     ->limit(7)
                     ->toList();
             Cache::write('society_news_' . $cur_lang, $society_news, 'long');
@@ -182,11 +179,10 @@ class PagesController extends AppController
 //                        return $q->enableAutoFields();
 //                    },
 //                ])
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'body', 'publish_start_at'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'body', 'publish_start_at'])
                 ->where(['Articles.category_id' => $politica_news_category_id])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
                 ->limit(3)
                 ->toList();
             Cache::write('politica_news_' . $cur_lang, $politica_news, 'long');
@@ -201,11 +197,10 @@ class PagesController extends AppController
 //                        return $q->enableAutoFields();
 //                    },
 //                ])
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where(['Articles.category_id' => $culture_news_category_id])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
                 ->limit(4)
                 ->toList();
             Cache::write('culture_news_' . $cur_lang, $culture_news, 'long');
@@ -220,11 +215,10 @@ class PagesController extends AppController
 //                        return $q->enableAutoFields();
 //                    },
 //                ])
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where(['Articles.category_id' => $heroes_news_category_id])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
                 ->limit(3)
                 ->toList();
             Cache::write('heroes_news_' . $cur_lang, $heroes_news, 'long');
@@ -233,7 +227,7 @@ class PagesController extends AppController
         $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
-                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
                     ->where($conditions)
                 ->where(['locale' => $locale])
                 ->orderDesc('views')
@@ -247,11 +241,10 @@ class PagesController extends AppController
 
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
-                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                    ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                     ->where($conditions)
                 ->where(['Articles.locale' => $locale])
                 ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
                     ->limit(6)
                     ->toList();
             Cache::write('last_news_' . $cur_lang, $last_news, 'long');
@@ -298,7 +291,7 @@ class PagesController extends AppController
         $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where($conditions)
                 ->orderDesc('views')
@@ -311,11 +304,10 @@ class PagesController extends AppController
         $last_news = Cache::read('last_news_' . $cur_lang, 'long');
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
                 ->limit(6)
                 ->toList();
             Cache::write('last_news_' . $cur_lang, $last_news, 'long');
@@ -366,7 +358,7 @@ class PagesController extends AppController
         $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
         if (!$popular_news) {
             $popular_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where($conditions)
                 ->orderDesc('views')
@@ -378,11 +370,10 @@ class PagesController extends AppController
         $last_news = Cache::read('last_news_' . $cur_lang, 'long');
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
-                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'date', 'publish_start_at'])
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->orderDesc('Articles.date')
                 ->limit(6)
                 ->toList();
             Cache::write('last_news_' . $cur_lang, $last_news, 'long');
