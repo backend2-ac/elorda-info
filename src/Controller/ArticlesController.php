@@ -100,7 +100,7 @@ class ArticlesController extends AppController
 //            Cache::write($alias . '_news', $data, 'long');
 //        }
         if ($category_alias == 'latest-news') {
-            $count_category_data = $this->_getCountLatestNews($conditions, $locale);
+            $count_category_data = $this->_getCountLatestNews($locale);
             $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
             if (!$popular_news) {
                 $popular_news = $this->Articles->find('all')

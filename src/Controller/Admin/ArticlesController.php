@@ -127,13 +127,18 @@ class ArticlesController extends AppController{
     }
 
     private function _updateCacheArticleCount($is_add_or_delete, $locale) {
+        $cur_date = date('Y-m-d H:i:s');
         $article_count = $this->_getCountAllArticles($locale);
+        $latest_articles_count = $this->_getCountLatestNews($locale);
         if ($is_add_or_delete) {
             $article_count++;
+            $latest_articles_count++;
         } else {
             $article_count--;
+            $latest_articles_count--;
         }
-        Cache::write('count_all_articles_' . $locale, $article_count, 'long');
+        Cache::write('count_all_articles_' . $locale, $article_count, 'eternal');
+        Cache::write('count_latest_news_' . $locale, $latest_articles_count, 'eternal');
     }
 
     public function add() {
