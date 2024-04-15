@@ -174,7 +174,7 @@ if ($rates_data) {
                         </a>
                         <div class="header__lang-other">
                             <?php if ($request['controller'] == 'Articles'): ?>
-                                <a href="/ru">рус</a>
+                                <a href="/ru/">рус</a>
                                 <a href="/">қаз</a>
                             <?php else: ?>
                                 <a href="/ru<?= str_replace(['/ru/', '/en/'], '/', $_SERVER['REQUEST_URI']) ?>">рус</a>
