@@ -242,9 +242,9 @@
                                     </a>
                                 </div>
                                 <div class="culture__wrapper">
-                                	<a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__main">
 	                                	<?php foreach( $culture_news as $index => $item ): ?>
-	                                		<?php if($index === 0): ?>
+	                                		<?php if($index == 0): ?>
+                                                <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__main">
                                                 <?php if ($item['img'] || $item['img_path']): ?>
                                                     <div class="culture__main-img">
 			                                            <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
@@ -258,13 +258,13 @@
 			                                                <path d="M2.09998 11.55L11.55 2.09998M11.55 2.09998H2.09998M11.55 2.09998V11.55" stroke="white" stroke-width="2" stroke-linecap="round"/>
 			                                            </svg>
 			                                        </div>
+                                                </a>
 			                                <?php endif ?>
 										<?php endforeach; ?>
-                                    </a>
 
                                     <div class="culture__items">
                                     	<?php foreach( $culture_news as $index => $item ): ?>
-	                                		<?php if($index != 0): ?>
+	                                		<?php if($index > 0): ?>
 			                                    <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="culture__item">
                                                     <?php if ($item['img'] || $item['img_path']): ?>
                                                         <div class="culture__item-img">
