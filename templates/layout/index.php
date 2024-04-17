@@ -13,7 +13,7 @@
 			<meta name="description" content="<?= $meta['desc'] ?>"/>
 			<meta name="keywords" content="<?= $meta['keys'] ?>"/>
 		<?php else: ?>
-			<title>Elorda.com</title>
+			<title>elorda.info</title>
 			<meta name="description" content=""/>
 			<meta name="keywords" content=""/>
 		<?php endif; ?>
