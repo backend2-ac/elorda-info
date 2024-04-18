@@ -196,18 +196,18 @@ if ($rates_data) {
                     <div class="header__menu-links">
                         <?php if ($l == 'kz'): ?>
                             <a href="/<?= $lang ?>elorda-janalyktary" class="header__menu-link">Елорда жаңалықтары</a>
-                            <a href="/<?= $lang ?>sayasat" class="header__menu-link">Саясат</a>
-                            <a href="/<?= $lang ?>aleumet" class="header__menu-link">Әлеумет</a>
-                            <a href="/<?= $lang ?>ekonomika" class="header__menu-link">Экономика</a>
-                            <a href="/<?= $lang ?>sport" class="header__menu-link">Спорт</a>
-                            <a href="/<?= $lang ?>madeniet" class="header__menu-link">Мәдениет</a>
-                            <a href="/<?= $lang ?>ar-turli" class="header__menu-link">Әртүрлі</a>
                             <a href="/<?= $lang ?>kozkaras" class="header__menu-link">Көзқарас</a>
+                            <a href="/<?= $lang ?>sayasat" class="header__menu-link">Саясат</a>
                             <a href="/<?= $lang ?>video" class="header__menu-link">Видео</a>
+                            <a href="/<?= $lang ?>aleumet" class="header__menu-link">Әлеумет</a>
                             <a href="/<?= $lang ?>alem" class="header__menu-link">Әлем</a>
+                            <a href="/<?= $lang ?>ekonomika" class="header__menu-link">Экономика</a>
                             <a href="/<?= $lang ?>joldau" class="header__menu-link">Жолдау</a>
+                            <a href="/<?= $lang ?>sport" class="header__menu-link">Спорт</a>
                             <a href="/<?= $lang ?>sluzhba-komplaens-kz" class="header__menu-link">Комплаенс қызметі</a>
+                            <a href="/<?= $lang ?>madeniet" class="header__menu-link">Мәдениет</a>
                             <a href="/<?= $lang ?>adep-kodeksi" class="header__menu-link">Әдеп кодексі</a>
+                            <a href="/<?= $lang ?>ar-turli" class="header__menu-link">Әртүрлі</a>                            
                             <a href="/<?= $lang ?>elge-kyzmet" class="header__menu-link">Елге қызмет</a>
                         <?php else: ?>
                             <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__menu-link">Новости столицы</a>
