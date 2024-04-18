@@ -51,6 +51,9 @@ if ($rates_data) {
                                     <a href="/<?= $lang ?>kultura-ru" class="header__nav-link <?= ($request['pass'] && $request['pass'][0] == 'kultura-ru') ? 'active' : '' ?>"><?= $full_categories[9]['title'] ?></a>
                                 </li>
                             <?php endif; ?>
+                            <li class="header__nav-item">
+                                <a href="/<?= $lang ?>anticor" class="header__nav-link <?= ($request['action'] && $request['action'] == 'anticor') ? 'active' : '' ?>">Антикор</a>
+                            </li>
                         </ul>
                     </nav>
                     <a href="javascript:;" class="header__burger">
