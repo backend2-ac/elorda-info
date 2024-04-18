@@ -115,6 +115,8 @@ class AdminController extends AppController{
 
     public function clearAllCache() {
         Cache::clearGroup('long');
+        Cache::clearGroup('models');
+        Cache::clearGroup('persistent');
     }
 }
 

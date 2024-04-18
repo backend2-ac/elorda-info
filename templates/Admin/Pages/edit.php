@@ -4,8 +4,16 @@
 		$kz = true;
 	}
 
-	$langs = ['ru', 'kz', 'en'];
+	$langs = ['ru', 'kz'];
 	$langs_ids = [4, 9, 10, 19];
+    $docs_ids = [6];
+$accept_files_types = '
+	application/msword,
+	application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+	application/pdf,
+	application/vnd.ms-excel,
+	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+	';
 ?>
 
 <section class="content-header">
@@ -37,6 +45,11 @@
 									<a class="nav-link" id="custom-tabs-one-comps-tab" data-toggle="pill" href="#custom-tabs-one-comps" role="tab" aria-controls="custom-tabs-one-comps" aria-selected="true">Элементы</a>
 								</li>
 							<?php endif; ?>
+                            <?php if( in_array($data['id'], $docs_ids) ): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-one-docs-tab" data-toggle="pill" href="#custom-tabs-one-docs" role="tab" aria-controls="custom-tabs-one-docs" aria-selected="true">Документы</a>
+                                </li>
+                            <?php endif; ?>
 						<?php endif; ?>
 					</ul>
 				</div>
@@ -95,76 +108,84 @@
 							<?php echo $this->Form->end(); ?>
 						</div>
 
-						<div class="tab-pane fade show" id="custom-tabs-one-docs" role="tabpanel" aria-labelledby="custom-tabs-docs-tab">
-							<?php echo $this->Form->create(null, [
-									'url' => '/admin/documents/add',
-									'type' => 'file',
-									'onsubmit' => 'submitForm()'
-								]); ?>
-								<div class="card-body">
-									<div class="form-group">
-										<label for="inputOrder">Приоритет</label>
-										<?= $this->Form->number('item_order', array('id' => 'inputOrder', 'class' => 'form-control', 'value' => 0, 'required')); ?>
-									</div>
+                        <?php if( in_array($data['id'], $docs_ids) ): ?>
+                            <div class="tab-pane fade show" id="custom-tabs-one-docs" role="tabpanel" aria-labelledby="custom-tabs-docs-tab">
+                                <div class="card-body">
+                                    <?php echo $this->Form->create(null, [
+                                        'url' => ['controller' => 'Documents', 'action' => 'add?lang=kz'],
+                                        'type' => 'file', 'onsubmit' => 'submitForm()',
+                                        'class' => 'form_cols'
+                                    ]); ?>
 
-									<div class="form-group">
-										<label for="inputTitle">Название файла</label>
-										<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control')); ?>
-									</div>
+                                    <div class="form-group">
+                                        <label for="inputItemOrder">Приоритет</label>
+                                        <?= $this->Form->number('item_order', array('id' => 'inputItemOrder', 'class' => 'form-control', 'required', 'value' => 0)); ?>
+                                    </div>
 
-									<?= $this->element('admin/img_input', [
-										'custom_input_params' => ['title' => 'Файл', 'field' => 'doc', 'model' => 'Documents', 'required' => 'required'],
-										]);
-									?>
+                                    <div class="form-group">
+                                        <label for="inputTitle">Название</label>
+                                        <?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control')); ?>
+                                    </div>
 
-									<?= $this->Form->hidden('lang', array('value' => $cur_locale)) ?>
+                                    <?= $this->element('admin/file_input', [
+                                        'custom_input_params' => ['title' => 'Файл', 'field' => 'doc', 'model' => 'Documents', 'accept' => $accept_files_types, 'required' => 'required'],
+                                    ]);
+                                    ?>
 
-									<div class="submit_row">
-										<?php echo $this->Form->button('Сохранить', array('class' => 'btn btn-success')); ?>
-								    </div>
-								</div>
-							<?php echo $this->Form->end(); ?>
+                                    <?= $this->Form->hidden('page_id', array('value' => $data['id'])) ?>
 
-							<div class="card-body p-0">
-								<?php if(!empty($documents)): ?>
-									<table class="table table-striped projects">
-										<thead>
-											<tr>
-												<th style="width: 1%">ID</th>
-												<th style="width: 8%">Файл</th>
-												<th style="width: 8%">Приоритет</th>
-												<th style="width: 8%; text-align: right;">Редактирование</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php foreach($documents as $item): ?>
-												<tr>
-													<td>
-														<?=$item['id']?>
-													</td>
-													<td>
-														<img src="/files/docs/<?= $item['doc'] ?>" alt="">
-													</td>
-													<td>
-														<?= $item['item_order'] ?>
-													</td>
-													<td class="project-actions text-right">
-														<a class="btn btn-info btn-sm" href="/admin/documents/edit/<?=$item['id']?>">
-															<i class="fas fa-pencil-alt"></i> Редактировать
-														</a>
-														<?php  echo $this->Form->postLink('Удалить', "/admin/documents/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
-													</td>
-												</tr>
-											<?php endforeach; ?>
-										</tbody>
-									</table>
-								<?php else: ?>
-									<div class="emty_data">
-										К сожалению в данном разделе еще не добавлена информация...
-									</div>
-								<?php endif ?>
-							</div>
-						</div>
+                                    <div class="form-group submit_row">
+                                        <?php echo $this->Form->button('Добавить', array('class' => 'btn btn-success')); ?>
+                                    </div>
+                                    <?php echo $this->Form->end(); ?>
+                                </div>
+                                <?php if( $docs ): ?>
+                                    <hr>
+                                    <div class="card-body p-0">
+                                        <table class="table table-striped projects">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 1%">ID</th>
+                                                <th style="width: 8%">Название</th>
+                                                <th style="width: 5%">Приоритет</th>
+                                                <th style="width: 5%; text-align: right;">Редактирование</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php foreach($docs as $item): ?>
+                                                <tr>
+                                                    <td>
+                                                        <?=$item['id']?>
+                                                    </td>
+                                                    <td>
+                                                        <?php foreach( $langs as $index => $key ): ?>
+                                                            <?php if( isset($item['_translations'][$key]) && $item['_translations'][$key]['title'] ): ?>
+                                                                <p> <b><?=$key?>:</b> <?= $item['_translations'][$key]['title'] ?></p>
+                                                            <?php else: ?>
+<!--                                                                --><?php //= $item['title'] ?>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $item['item_order'] ?>
+                                                    </td>
+                                                    <td class="project-actions text-right">
+                                                        <a class="btn btn-info btn-sm" href="/admin/documents/edit/<?=$item['id']?>?lang=ru">
+                                                            <i class="fas fa-pencil-alt"></i> рус
+                                                        </a>
+                                                        <a class="btn btn-info btn-sm" href="/admin/documents/edit/<?=$item['id']?>?lang=kz">
+                                                            <i class="fas fa-pencil-alt"></i> қаз
+                                                        </a>
+                                                        <?php echo $this->Form->postLink('Удалить', "/admin/documents/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
 
 						<?php if( $kz ): ?>
 							<?php if( $page_comps ): ?>

@@ -25,6 +25,9 @@
                             <li>
                                 <a href="/<?= $lang ?>rules">Сайт ережесі</a>
                             </li>
+                            <li>
+                                <a href="/<?= $lang ?>anticor">Антикор</a>
+                            </li>
                         </ul>
                     </div>
                 <?php else: ?>
@@ -42,6 +45,9 @@
                             </li>
                             <li>
                                 <a href="/<?= $lang ?>rules">Правила сайта</a>
+                            </li>
+                            <li>
+                                <a href="/<?= $lang ?>anticor">Антикор</a>
                             </li>
                         </ul>
                     </div>

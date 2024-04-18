@@ -150,11 +150,13 @@ class PagesController extends AppController{
             $this->set( compact('page_comps') );
 
 
-                $documents = $this->Documents->find('all')
-                    ->where(['Documents.lang' => $cur_locale])
+                $docs = $this->Documents->find('translations')
+                    ->where([
+                        'Documents.page_id' => $item_id,
+                    ])
                     ->orderDesc('item_order')
                     ->toList();
-                $this->set( compact('documents') );
+                $this->set( compact('docs') );
         }
 
 

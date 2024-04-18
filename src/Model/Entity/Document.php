@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Model\Entity;
 
@@ -12,8 +12,10 @@ class Document extends Entity{
 	use DocumentUploadTrait;
 
 	protected $_accessible = [
+        'page_id' => true,
 		'lang' => true,
 		'doc' => true,
+        'title' => true,
 		'item_order' => true,
 		'created_at' => true,
 		'updated_at' => true,

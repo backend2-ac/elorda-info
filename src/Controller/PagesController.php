@@ -18,6 +18,7 @@ namespace App\Controller;
 
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
+use Cake\I18n\FrozenTime;
 use Cake\ORM\Query;
 
 /**
@@ -62,61 +63,87 @@ class PagesController extends AppController
      * @throws InvalidArgumentException
      * @throws \Exception
      */
-    public function getArticlesFromTelegram()
+    public function getPostsFromTelegram()
     {
 //        $botToken = '6507471270:AAEyN3F9y73mhbInFxSU_LSkKCVKf98qHLI';
 //        $chat_id = '@elorda_aqparat';
 
         $botToken = '6869063207:AAGcKUDRLq7cFDcR9iOIpOogIg2BOefkQU0';
         $chat_id = '@my_books_list_for';
-        $bot = new \TelegramBot\Api\BotApi($botToken);
-//        $botan = new \TelegramBot\Api\Botan($botToken);
-        $updates = $bot->getUpdates();
-        $channelInfo = $bot->getChat($chat_id);
-        foreach ($updates as $update) {
-            $channelPost = $update->getChannelPost();
+        $bot_username = 'elorda_info_bot';
+        $elorda_bot = 'Elordainfo_bot';
+        $channel_url = 'https://t.me/my_books_list_for/';
 
-            // Получение текста сообщения
-            $title = $channelPost->getText();
-//            $botan_data = $botan->track($channelPost);
-//            debug($botan_data);
+        $telegram = new \Longman\TelegramBot\Telegram($botToken, $bot_username);
+
+        // Получаем последние 5 сообщений из канала
+        $params = [
+            'offset' => null,
+            'limit' => 5,
+            'timeout' => 0,
+            'allow_updates' => null,
+        ];
+        $updates = $telegram->handleGetUpdates($params);
+        $results = $updates->getResult();
+        $post_data = [];
+        if ($results) {
+            foreach ($results as $result) {
+                $post = $result->channel_post;
+                if (isset($post['text']) && $post['text']) {
+                    $post_title = $post['text'];
+                    $post_title = mb_strstr($post_title, "\n", true);
+                }
+
+                if (isset($post['caption']) && $post['caption']) {
+                    $post_message = $post['caption'];
+                    $title_length = $post['caption_entities'][0]['length'];
+                    $post_title = mb_substr($post_message, 0, $title_length);
+                }
+                $post_date = date('d.m.Y', $post['date']);
+                $post_id = $post['message_id'];
+                $post_link = $channel_url . $post_id;
+                $post_data[] = [
+                    'id' => $post_id,
+                    'link' => $post_link,
+                    'title' => $post_title,
+                    'date' => $post_date,
+                ];
+            }
         }
-        debug($updates);
-        debug($channelInfo);
-        die();
-//        $bot = new \TelegramBot\Api\Client($botToken);
-//        $params = [
-//            'chat_id' => '1177565106',
-//            'text' => 'You are hacked!',
-//            'parse_mode' => 'html'
-//        ];
+        return $post_data;
 //        $api_url = "https://api.telegram.org/bot6869063207:AAGcKUDRLq7cFDcR9iOIpOogIg2BOefkQU0/getUpdates";
-//        $ch =curl_init();
-//        curl_setopt($ch, CURLOPT_URL, $api_url);
-//        curl_setopt($ch, CURLOPT_POST, count($params));
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//        $res = curl_exec($ch);
-//        curl_close($ch);
-//        debug($res);
-//        die();
-//        return $latestMessages;
+    }
+
+    private function updateTelegramPosts($new_posts) {
+
     }
 
     public function home(): void
     {
         $cur_lang = Configure::read('Config.lang');
         $cur_date = date('Y-m-d H:i:s');
-//        $this->getArticlesFromTelegram();
-//        $cur_date = FrozenTime::now(); // Получаем текущую дату и время
-//        $main_articles = [];
-//        $capital_news = [];
-//        $society_news = [];
-//        $politica_news = [];
-//        $culture_news = [];
-//        $heroes_news = [];
-//        $popular_news = [];
-//        $last_news = [];
+
+        // start get telegram posts in 4 hours
+//        $start_date_getting_posts = Cache::read('start_date_getting_posts', 'eternal');
+//        $current_date = FrozenTime::now();
+//        if (!$start_date_getting_posts) {
+//            Cache::write('start_date_getting_posts', $current_date, 'eternal');
+//        } else {
+//            $tg_date_for_check = $start_date_getting_posts->addMinutes(240);
+//
+//            if ($current_date > $tg_date_for_check) {
+//                $tg_posts = $this->getPostsFromTelegram();
+//                Cache::write('tg_posts', $tg_posts, 'eternal');
+//                Cache::write('start_date_getting_posts', $current_date, 'eternal');
+//            } else {
+//                $tg_posts = Cache::read('tg_posts', 'eternal');
+//                if (!$tg_posts) {
+//                    $tg_posts = $this->getPostsFromTelegram();
+//                    Cache::write('tg_posts', $tg_posts, 'eternal');
+//                }
+//            }
+//        }
+        // end get telegram posts
 
         $conditions = [
             'Articles.publish_start_at <' => $cur_date,
@@ -443,6 +470,30 @@ class PagesController extends AppController
         $this->set(compact('meta', 'page_comps', 'page', 'docs'));
     }
 
+    public function anticor()
+    {
+
+        $cur_lang = Configure::read('Config.lang');
+
+        $docs = $this->Documents->find('translations')
+            ->where(['Documents.page_id' => 6])
+            ->order(['item_order' => 'ASC'])
+            ->toList();
+
+        $page_comps = $this->_getPagesComps(6);
+
+        $page = $this->Pages->get(6);
+        if ($page) {
+            $meta['title'] = $page['meta_title'];
+            if (!$meta['title']) {
+                $meta['title'] = $page['title'];
+            }
+            $meta['desc'] = $page['meta_description'];
+            $meta['keys'] = $page['meta_keywords'];
+        }
+
+        $this->set(compact('meta', 'page_comps', 'page', 'docs'));
+    }
     protected function _getPagesComps($page_id)
     {
         $cur_lang = Configure::read('Config.lang');
