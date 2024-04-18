@@ -211,19 +211,33 @@ if ($rates_data) {
                             <a href="/<?= $lang ?>elge-kyzmet" class="header__menu-link">Елге қызмет</a>
                         <?php else: ?>
                             <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__menu-link">Новости столицы</a>
-                            <a href="/<?= $lang ?>politika-ru" class="header__menu-link">Политика</a>
-                            <a href="/<?= $lang ?>sotsium-ru" class="header__menu-link">Социум</a>
-                            <a href="/<?= $lang ?>ekonomika-ru" class="header__menu-link">Экономика</a>
-                            <a href="/<?= $lang ?>sport-ru" class="header__menu-link">Спорт</a>
-                            <a href="/<?= $lang ?>kultura-ru" class="header__menu-link">Культура</a>
-                            <a href="/<?= $lang ?>raznoe-ru" class="header__menu-link">Разное</a>
                             <a href="/<?= $lang ?>mnenie-ru" class="header__menu-link">Мнение</a>
+                            <a href="/<?= $lang ?>politika-ru" class="header__menu-link">Политика</a>
                             <a href="/<?= $lang ?>video-ru" class="header__menu-link">Видео</a>
+                            <a href="/<?= $lang ?>sotsium-ru" class="header__menu-link">Социум</a>
                             <a href="/<?= $lang ?>mir" class="header__menu-link">Мир</a>
+                            <a href="/<?= $lang ?>ekonomika-ru" class="header__menu-link">Экономика</a>
                             <a href="/<?= $lang ?>poslanie-ru" class="header__menu-link">Послание</a>
+                            <a href="/<?= $lang ?>sport-ru" class="header__menu-link">Спорт</a>
                             <a href="/<?= $lang ?>sluzhba-komplaens-ru" class="header__menu-link">Служба Комплаенс</a>
+                            <a href="/<?= $lang ?>kultura-ru" class="header__menu-link">Культура</a>
                             <a href="/<?= $lang ?>kodeks-etiki" class="header__menu-link">Этический кодекс</a>
+                            <a href="/<?= $lang ?>raznoe-ru" class="header__menu-link">Разное</a>
                             <a href="/<?= $lang ?>sluzhu-strane" class="header__menu-link">Служу стране</a>
+                            Новости столицы
+                            Политика
+                            Социум
+                            Экономика
+                            Спорт
+                            Культура
+                            Разное
+                            Мнение
+                            Видео
+                            Мир
+                            Послание
+                            Служба Комплаенс
+                            Этический кодекс
+                            Служу стране
                         <?php endif; ?>
                     </div>
                 </div>
