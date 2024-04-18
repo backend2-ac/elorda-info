@@ -187,9 +187,8 @@ class DocumentsController extends AppController{
     }
 
     protected function _cacheDelete(){
-        // Cache::delete('operators_docs_ru', 'eternal');
-        // Cache::delete('operators_docs_kz', 'eternal');
-        // Cache::delete('operators_docs_en', 'eternal');
+         Cache::delete('anticor_docs_kz', 'eternal');
+         Cache::delete('anticor_docs_ru', 'eternal');
     }
 }
 

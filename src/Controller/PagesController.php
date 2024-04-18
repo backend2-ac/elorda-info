@@ -450,11 +450,6 @@ class PagesController extends AppController
 
         $cur_lang = Configure::read('Config.lang');
 
-        $docs = $this->Documents->find('all')
-           ->where(['Documents.lang' => $cur_lang])
-           ->orderDesc('item_order')
-           ->toList();
-
         $page_comps = $this->_getPagesComps(5);
 
         $page = $this->Pages->get(5);
@@ -467,18 +462,22 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set(compact('meta', 'page_comps', 'page', 'docs'));
+        $this->set(compact('meta', 'page_comps', 'page'));
     }
 
     public function anticor()
     {
 
         $cur_lang = Configure::read('Config.lang');
-
-        $docs = $this->Documents->find('translations')
-            ->where(['Documents.page_id' => 6])
-            ->order(['item_order' => 'ASC'])
-            ->toList();
+//        $this->Documents->setLocale($cur_lang);
+        $docs = Cache::read('anticor_docs_' . $cur_lang, 'eternal');
+        if (!$docs) {
+            $docs = $this->Documents->find('translations')
+                ->where(['Documents.page_id' => 6])
+                ->order(['item_order' => 'ASC'])
+                ->toList();
+            Cache::write('anticor_docs_' . $cur_lang, $docs, 'eternal');
+        }
 
         $page_comps = $this->_getPagesComps(6);
 
