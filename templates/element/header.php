@@ -224,20 +224,6 @@ if ($rates_data) {
                             <a href="/<?= $lang ?>kodeks-etiki" class="header__menu-link">Этический кодекс</a>
                             <a href="/<?= $lang ?>raznoe-ru" class="header__menu-link">Разное</a>
                             <a href="/<?= $lang ?>sluzhu-strane" class="header__menu-link">Служу стране</a>
-                            Новости столицы
-                            Политика
-                            Социум
-                            Экономика
-                            Спорт
-                            Культура
-                            Разное
-                            Мнение
-                            Видео
-                            Мир
-                            Послание
-                            Служба Комплаенс
-                            Этический кодекс
-                            Служу стране
                         <?php endif; ?>
                     </div>
                 </div>
