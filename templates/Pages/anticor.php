@@ -14,6 +14,7 @@
                                     <a href="#"><?= $page['title'] ?></a>
                                 </li>
                             </ul>
+                            <h1 class="media__title title">Антикор</h1>
                             <div class="media__text">
                                 <?php if ($docs): ?>
                                     <div class="inner__text">
