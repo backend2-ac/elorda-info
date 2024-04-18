@@ -4020,6 +4020,7 @@ select {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 8px 40px;
     width: max-content;
+    display: none;
   }
 
   .header__menu-text {
