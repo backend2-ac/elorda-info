@@ -72,7 +72,7 @@ class PagesController extends AppController
         $chat_id = '@my_books_list_for';
         $bot_username = 'elorda_info_bot';
         $elorda_bot = 'Elordainfo_bot';
-        $channel_url = 'https://t.me/my_books_list_for/';
+        $channel_url = 'https://t.me/elorda_aqparat/';
 
         $telegram = new \Longman\TelegramBot\Telegram($botToken, $bot_username);
 
@@ -96,26 +96,20 @@ class PagesController extends AppController
 
                 if (isset($post['caption']) && $post['caption']) {
                     $post_message = $post['caption'];
-                    $title_length = $post['caption_entities'][0]['length'];
-                    $post_title = mb_substr($post_message, 0, $title_length);
+                    $post_title = mb_strstr($post_message,  "\n", true);
                 }
-                $post_date = date('d.m.Y', $post['date']);
                 $post_id = $post['message_id'];
                 $post_link = $channel_url . $post_id;
                 $post_data[] = [
                     'id' => $post_id,
                     'link' => $post_link,
                     'title' => $post_title,
-                    'date' => $post_date,
+                    'date' => $post['date'],
                 ];
             }
         }
         return $post_data;
 //        $api_url = "https://api.telegram.org/bot6869063207:AAGcKUDRLq7cFDcR9iOIpOogIg2BOefkQU0/getUpdates";
-    }
-
-    private function updateTelegramPosts($new_posts) {
-
     }
 
     public function home(): void
@@ -124,25 +118,49 @@ class PagesController extends AppController
         $cur_date = date('Y-m-d H:i:s');
 
         // start get telegram posts in 4 hours
-//        $start_date_getting_posts = Cache::read('start_date_getting_posts', 'eternal');
-//        $current_date = FrozenTime::now();
-//        if (!$start_date_getting_posts) {
-//            Cache::write('start_date_getting_posts', $current_date, 'eternal');
-//        } else {
-//            $tg_date_for_check = $start_date_getting_posts->addMinutes(240);
-//
-//            if ($current_date > $tg_date_for_check) {
-//                $tg_posts = $this->getPostsFromTelegram();
-//                Cache::write('tg_posts', $tg_posts, 'eternal');
-//                Cache::write('start_date_getting_posts', $current_date, 'eternal');
-//            } else {
-//                $tg_posts = Cache::read('tg_posts', 'eternal');
-//                if (!$tg_posts) {
-//                    $tg_posts = $this->getPostsFromTelegram();
-//                    Cache::write('tg_posts', $tg_posts, 'eternal');
-//                }
-//            }
-//        }
+        $tg_posts = [];
+        $start_date_getting_posts = Cache::read('start_date_getting_posts', 'eternal');
+        $current_date = FrozenTime::now();
+        if (!$start_date_getting_posts) {
+            Cache::write('start_date_getting_posts', $current_date, 'eternal');
+        } else {
+            $tg_date_for_check = $start_date_getting_posts->addMinutes(60);
+
+            if ($current_date > $tg_date_for_check) {
+                $cached_posts = Cache::read('tg_posts', 'eternal');
+                if (!$cached_posts) {
+                    $tg_posts = $this->getPostsFromTelegram();
+                    usort($tg_posts, function($a, $b) {
+                        return $b['date'] - $a['date'];
+                    });
+
+                    $tg_posts = array_slice($tg_posts, 0, 5);
+                    Cache::write('tg_posts', $tg_posts, 'eternal');
+                    Cache::write('start_date_getting_posts', $current_date, 'eternal');
+                } else {
+                    $tg_posts = $this->getPostsFromTelegram();
+                    $tg_posts = array_merge($tg_posts, $cached_posts);
+                    usort($tg_posts, function($a, $b) {
+                        return $b['date'] - $a['date'];
+                    });
+
+                    $tg_posts = array_slice($tg_posts, 0, 5);
+                    Cache::write('tg_posts', $tg_posts, 'eternal');
+                    Cache::write('start_date_getting_posts', $current_date, 'eternal');
+                }
+            } else {
+                $tg_posts = Cache::read('tg_posts', 'eternal');
+                if (!$tg_posts) {
+                    $tg_posts = $this->getPostsFromTelegram();
+                    usort($tg_posts, function($a, $b) {
+                        return $b['date'] - $a['date'];
+                    });
+
+                    $tg_posts = array_slice($tg_posts, 0, 5);
+                    Cache::write('tg_posts', $tg_posts, 'eternal');
+                }
+            }
+        }
         // end get telegram posts
 
         $conditions = [
@@ -287,7 +305,7 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set(compact('meta', 'main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news'));
+        $this->set(compact('meta', 'tg_posts','main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news'));
     }
 
     public function rules(): void
