@@ -91,6 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let headerMenuRef = document.querySelector('.header__menu-scroll');
     let headerCurrencyRef = document.querySelector('.header__currency');
 
+    let newsActualBlock = document.querySelector('.news-actual__block');
+    let sectionActualBlock = document.querySelector('.hero');
+    let widgetYt = document.querySelector('.widget__youtube')
+
     let flagItem = true;
     function setItem() {
         if(window.innerWidth < 1241 && flagItem) {
@@ -98,18 +102,24 @@ document.addEventListener('DOMContentLoaded', () => {
             headerMenuMobile.insertBefore(headerNav, headerMenuRef);
             headerMenuDesktop.insertBefore(headerWeather, headerBurgerRef);
             headerMenuMobile.appendChild(headerSocials);
+            if(newsActualBlock && sectionActualBlock) {
+                sectionActualBlock.after(newsActualBlock);
+            }
         } else if(window.innerWidth > 1240 && !flagItem) {
             flagItem = true;
             headerMenuDesktop.insertBefore(headerNav, headerBurgerRef);
             headerMenuBot.insertBefore(headerWeather, headerCurrencyRef);
             headerMenuBot.insertBefore(headerSocials, headerCurrencyRef);
+            if(newsActualBlock && sectionActualBlock) {
+                widgetYt.before(newsActualBlock);
+            }
         }
     }
     setItem();
     window.addEventListener('resize', setItem);
 
     // tabs sidebar
-    let newsActualBlock = document.querySelector('.news-actual__block');
+    
     if(newsActualBlock) {
         newsActualBlock.addEventListener('click', ({target}) => {
             if(target.classList.contains('news-actual__header-tab')) {
