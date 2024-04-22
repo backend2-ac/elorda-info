@@ -102,13 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
             headerMenuMobile.insertBefore(headerNav, headerMenuRef);
             headerMenuDesktop.insertBefore(headerWeather, headerBurgerRef);
             headerMenuMobile.appendChild(headerSocials);
-            sectionActualBlock.after(newsActualBlock);
+            if(newsActualBlock && sectionActualBlock) {
+                sectionActualBlock.after(newsActualBlock);
+            }
         } else if(window.innerWidth > 1240 && !flagItem) {
             flagItem = true;
             headerMenuDesktop.insertBefore(headerNav, headerBurgerRef);
             headerMenuBot.insertBefore(headerWeather, headerCurrencyRef);
             headerMenuBot.insertBefore(headerSocials, headerCurrencyRef);
-            widgetYt.before(newsActualBlock);
+            if(newsActualBlock && sectionActualBlock) {
+                widgetYt.before(newsActualBlock);
+            }
         }
     }
     setItem();
