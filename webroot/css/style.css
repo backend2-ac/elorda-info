@@ -3282,6 +3282,10 @@ select {
   text-decoration: underline;
 }
 
+.news-actual__block.mobile {
+  display: none;
+}
+
 @media (max-width: 1800px) {
   .container {
     max-width: 1420px;
@@ -4203,6 +4207,12 @@ select {
 
   .widget__youtube {
     /* padding-top: 120px; */
+  }
+  .news-actual__block.desktop {
+    display: none;
+  }
+  .news-actual__block.mobile {
+    display: block;
   }
 }
 
