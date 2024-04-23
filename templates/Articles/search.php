@@ -83,6 +83,7 @@
 	                                </div>
 	                            </div>
 							<?php endforeach; ?>
+                            <?php if (isset($pagiantion)): ?>
 						</div>
 							<ul class="rubric__pagination pagination">
 								<?php
@@ -123,7 +124,7 @@
 								?>
 							</ul>
 						</div>
-
+                        <?php endif; ?>
 						<?php else: ?>
 							<p><?= __('К сожалению по вашему запросу ничего не найдено') ?> ...</p>
 						<?php endif; ?>
