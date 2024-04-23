@@ -22,6 +22,8 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\Http\Cookie\Cookie;
+use Cake\Http\Cookie\CookieCollection;
 
 use Cake\Cache\Cache;
 
@@ -205,7 +207,25 @@ class ArticlesController extends AppController
             throw new NotFoundException(__('Запись не найдена'));
         }
         $category_id = $data->category_id;
-        $this->Articles->query()->update()->set(['views' => ($data['views'] + 1)])->where(['id' => $article_id])->execute();
+        // счетчик просмотра
+        if (!isset($_COOKIE['visited_article_' . $article_id])) {
+            $this->Articles->getConnection()->transactional(function () use ($data, $article_alias) {
+                $data->views++;
+                $this->Articles->save($data);
+
+                Cache::write($article_alias, $data, 'long');
+            });
+            setcookie(
+                'visited_article_' . $article_id,
+                    '1',
+                time() + (84600 * 30),
+                '/',
+                'elorda.info',
+                true,
+                true
+                );
+        }
+
         $author_id = $data->author_id;
         if ($author_id) {
             $author = Cache::read('author_' . $author_id, 'eternal');
@@ -363,6 +383,7 @@ class ArticlesController extends AppController
 
     public function writer($author_alias) {
          $author_artilces = [];
+        $cur_date = date('Y-m-d H:i:s');
          $author  = $this->Authors->findByAlias($author_alias)
             ->first();
         if (!$author) {
@@ -380,7 +401,9 @@ class ArticlesController extends AppController
         ];
         $author_artilces = $this->Articles->find('all')
             ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
-            ->where([ 'Articles.author_id' => $author_id])
+            ->where([ 'Articles.author_id' => $author_id,
+                'Articles.publish_start_at <' => $cur_date
+                ])
             ->contain([
                 'Tags',
             ])
@@ -391,7 +414,9 @@ class ArticlesController extends AppController
 
         $this->set('pagination', $this->paginate(
             $this->Articles->find()
-                ->where([ 'Articles.author_id' => $author_id])
+                ->where([ 'Articles.author_id' => $author_id,
+                'Articles.publish_start_at <' => $cur_date,
+                ])
                 ->contain([
                     'Tags',
                 ])
@@ -479,24 +504,39 @@ class ArticlesController extends AppController
             $search_text = htmlentities($_GET['q']);
             if ($search_text) {
 
-                $data = $this->Articles->find()
-                    ->where([
-                        'Articles.locale' => $locale,
-                        'MATCH(Articles.title) AGAINST("' . $search_text . '")'
-                    ])
-                    ->where($conditions)
-                    ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
-                    ->orderDesc('Articles.publish_start_at')
-                    ->limit($per_page)
-                    ->offset($offset);
-                $count_query = $this->Articles->find()
-                    ->where([
-                        'Articles.locale' => $locale,
-                        'MATCH(Articles.title) AGAINST("' . $search_text . '")'
-                    ])
-                    ->count();
+//                $data = $this->Articles->find()
+//                    ->where([
+//                        'Articles.locale' => $locale,
+//                        'Articles.title' => $search_text,
+//                    ])
+//                    ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
+//                    ->toArray();
+//                if (!$data) {
+                    $data = $this->Articles->find()
+                        ->where([
+                            'Articles.locale' => $locale,
+                            'OR' => [
+                                'Articles.title' => $search_text,
+                                'MATCH(Articles.title) AGAINST("' . $search_text . '")'
+                            ]
+                        ])
+                        ->where($conditions)
+                        ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
+                        ->orderDesc('Articles.publish_start_at')
+                        ->limit($per_page)
+                        ->offset($offset);
+                    $count_query = $this->Articles->find()
+                        ->where([
+                            'Articles.locale' => $locale,
+                            'OR' => [
+                                'Articles.title' => $search_text,
+                                'MATCH(Articles.title) AGAINST("' . $search_text . '")'
+                            ]
+                        ])
+                        ->count();
 
-                $this->set('pagination', $this->paginate($data, ['total' => $count_query]));
+                    $this->set('pagination', $this->paginate($data, ['total' => $count_query]));
+//                }
             }
         }
         $this->set( compact('data', 'search_text') );
