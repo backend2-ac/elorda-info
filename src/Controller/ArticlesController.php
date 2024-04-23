@@ -218,7 +218,7 @@ class ArticlesController extends AppController
             setcookie(
                 'visited_article_' . $article_id,
                     '1',
-                time() + (84600 * 30),
+                time() + (86400),
                 '/',
                 'elorda.info',
                 true,
