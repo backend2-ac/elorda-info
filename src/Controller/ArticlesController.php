@@ -208,23 +208,23 @@ class ArticlesController extends AppController
         }
         $category_id = $data->category_id;
         // счетчик просмотра
-        if (!isset($_COOKIE['visited_article_' . $article_id])) {
+//        if (!isset($_COOKIE['visited_article_' . $article_id])) {
             $this->Articles->getConnection()->transactional(function () use ($data, $article_alias) {
                 $data->views++;
                 $this->Articles->save($data);
 
                 Cache::write($article_alias, $data, 'long');
             });
-            setcookie(
-                'visited_article_' . $article_id,
-                    '1',
-                time() + (86400),
-                '/',
-                'elorda.info',
-                true,
-                true
-                );
-        }
+//            setcookie(
+//                'visited_article_' . $article_id,
+//                    '1',
+//                time() + (86400),
+//                '/',
+//                'elorda.info',
+//                true,
+//                true
+//                );
+//        }
 
         $author_id = $data->author_id;
         if ($author_id) {
