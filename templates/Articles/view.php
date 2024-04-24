@@ -263,7 +263,7 @@
         </div>
     </main>
     <script src="/js/jquery-3.6.0.min.js"></script>
-    <script>
+    <!-- <script>
         var block_show = false;
         function scrollMore(){
             console.log('asdas')
@@ -330,4 +330,4 @@
         $(document).ready(function(){
             scrollMore();
         });
-    </script>
+    </script> -->
