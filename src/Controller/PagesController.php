@@ -185,11 +185,6 @@ class PagesController extends AppController
         $capital_news = Cache::read('capital_news_' . $cur_lang, 'long');
         if (!$capital_news) {
             $capital_news = $this->Articles->find('all')
-//                ->contain([
-//                    'Categories' => function (Query $q) {
-//                        return $q->enableAutoFields();
-//                    },
-//                ])
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where($conditions)
@@ -203,11 +198,6 @@ class PagesController extends AppController
         $society_news = Cache::read('society_news_' . $cur_lang, 'long');
         if (!$society_news) {
             $society_news = $this->Articles->find('all')
-//                    ->contain([
-//                        'Categories' => function (Query $q) {
-//                            return $q->enableAutoFields();
-//                        },
-//                    ])
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                     ->where(['Articles.category_id' => $society_news_category_id])
                     ->where($conditions)
@@ -220,11 +210,6 @@ class PagesController extends AppController
         $politica_news = Cache::read('politica_news_' . $cur_lang, 'long');
         if (!$politica_news) {
             $politica_news = $this->Articles->find('all')
-//                ->contain([
-//                    'Categories' => function (Query $q) {
-//                        return $q->enableAutoFields();
-//                    },
-//                ])
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'body', 'publish_start_at'])
                 ->where(['Articles.category_id' => $politica_news_category_id])
                 ->where($conditions)
@@ -238,11 +223,6 @@ class PagesController extends AppController
         $culture_news = Cache::read('culture_news_' . $cur_lang, 'long');
         if (!$culture_news) {
             $culture_news = $this->Articles->find('all')
-//                ->contain([
-//                    'Categories' => function (Query $q) {
-//                        return $q->enableAutoFields();
-//                    },
-//                ])
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where(['Articles.category_id' => $culture_news_category_id])
                 ->where($conditions)
@@ -256,11 +236,6 @@ class PagesController extends AppController
         $heroes_news = Cache::read('heroes_news_' . $cur_lang, 'long');
         if (!$heroes_news) {
             $heroes_news = $this->Articles->find('all')
-//                ->contain([
-//                    'Categories' => function (Query $q) {
-//                        return $q->enableAutoFields();
-//                    },
-//                ])
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where(['Articles.category_id' => $heroes_news_category_id])
                 ->where($conditions)
@@ -277,7 +252,7 @@ class PagesController extends AppController
                     ->where($conditions)
                 ->where(['locale' => $locale])
                 ->orderDesc('views')
-                    ->limit(6)
+                    ->limit(10)
                     ->toList();
             Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
         }
@@ -290,7 +265,7 @@ class PagesController extends AppController
                     ->where($conditions)
                 ->where(['Articles.locale' => $locale])
                 ->orderDesc('Articles.publish_start_at')
-                    ->limit(6)
+                    ->limit(10)
                     ->toList();
             Cache::write('last_news_' . $cur_lang, $last_news, 'long');
         }
@@ -341,7 +316,7 @@ class PagesController extends AppController
                 ->where($conditions)
                 ->where(['locale' => $locale])
                 ->orderDesc('views')
-                ->limit(6)
+                ->limit(10)
                 ->toList();
             Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
         }
@@ -353,7 +328,7 @@ class PagesController extends AppController
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->limit(6)
+                ->limit(10)
                 ->toList();
             Cache::write('last_news_' . $cur_lang, $last_news, 'long');
         }
@@ -408,7 +383,7 @@ class PagesController extends AppController
                 ->where($conditions)
                 ->where(['locale' => $locale])
                 ->orderDesc('views')
-                ->limit(6)
+                ->limit(10)
                 ->toList();
             Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
         }
@@ -420,7 +395,7 @@ class PagesController extends AppController
                 ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->limit(6)
+                ->limit(10)
                 ->toList();
             Cache::write('last_news_' . $cur_lang, $last_news, 'long');
         }

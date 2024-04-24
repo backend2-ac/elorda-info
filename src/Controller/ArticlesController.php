@@ -139,7 +139,7 @@ class ArticlesController extends AppController
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
                     ->where($conditions)
                     ->orderDesc('views')
-                    ->limit(6)
+                    ->limit(10)
                     ->toList();
                 Cache::write($category_alias . '_popular_news', $popular_news, 'long');
             }
@@ -150,7 +150,7 @@ class ArticlesController extends AppController
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                     ->where($conditions)
                     ->orderDesc('Articles.publish_start_at')
-                    ->limit(6)
+                    ->limit(10)
                     ->toList();
                 Cache::write($category_alias . '_last_news', $last_news, 'long');
             }
@@ -260,7 +260,7 @@ class ArticlesController extends AppController
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
                 ->where($conditions)
                 ->orderDesc('views')
-                ->limit(6)
+                ->limit(10)
                 ->toList();
             Cache::write($category_alias . '_popular_news', $popular_news, 'long');
         }
@@ -271,7 +271,7 @@ class ArticlesController extends AppController
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
                 ->where($conditions)
                 ->orderDesc('Articles.publish_start_at')
-                ->limit(6)
+                ->limit(10)
                 ->toList();
             Cache::write($category_alias . '_last_news', $last_news, 'long');
         }
