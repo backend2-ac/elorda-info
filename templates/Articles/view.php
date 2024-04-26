@@ -24,7 +24,7 @@
                                          <?= $this->Time->format($data['publish_start_at'], 'dd.MM.yyyy | HH:mm') ?>
                                     </div>
                                     <?php if(isset($author) && $author): ?>
-										<a href="/<?= $lang ?>writer/<?= $author['alias'] ?>" class="inner__author">
+										<a href="/writer/<?= $author['alias'] ?>" class="inner__author">
 	                                        <img src="/img/profile-icon.png" alt="">
 	                                        <?= $author['name'] ?>
 	                                    </a>
