@@ -32,13 +32,16 @@ class ComposerStaticInita4473b809d5abe08a4281a4945442c10
         '751a5a3f463e4be759be31748b61737c' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/parse_cookie_header.legacy.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'c720f792236cd163ece8049879166850' => __DIR__ . '/..' . '/cakephp/cakephp/src/Core/functions.php',
         'ede59e3a405fb689cd1cebb7bb1db3fb' => __DIR__ . '/..' . '/cakephp/cakephp/src/Collection/functions.php',
         '90236b492da7ca2983a2ad6e33e4152e' => __DIR__ . '/..' . '/cakephp/cakephp/src/I18n/functions.php',
         '2cb76c05856dfb60ada40ef54138d49a' => __DIR__ . '/..' . '/cakephp/cakephp/src/Routing/functions.php',
         'b1fc73705e1bec51cd2b20a32cf1c60a' => __DIR__ . '/..' . '/cakephp/cakephp/src/Utility/bootstrap.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'c65d09b6820da036953a371c8c73a9b1' => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook/polyfills.php',
@@ -104,6 +107,7 @@ class ComposerStaticInita4473b809d5abe08a4281a4945442c10
         ),
         'L' => 
         array (
+            'Longman\\TelegramBot\\' => 20,
             'League\\Container\\' => 17,
             'Laminas\\ZendFrameworkBridge\\' => 28,
             'Laminas\\HttpHandlerRunner\\' => 26,
@@ -113,6 +117,12 @@ class ComposerStaticInita4473b809d5abe08a4281a4945442c10
         array (
             'JsonSchema\\' => 11,
             'Jasny\\Twig\\' => 11,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
         ),
         'F' => 
         array (
@@ -298,6 +308,10 @@ class ComposerStaticInita4473b809d5abe08a4281a4945442c10
         array (
             0 => __DIR__ . '/..' . '/m1/env/src',
         ),
+        'Longman\\TelegramBot\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/longman/telegram-bot/src',
+        ),
         'League\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/container/src',
@@ -321,6 +335,18 @@ class ComposerStaticInita4473b809d5abe08a4281a4945442c10
         'Jasny\\Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/jasny/twig-extensions/src',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'Facebook\\' => 
         array (
