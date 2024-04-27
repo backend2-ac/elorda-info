@@ -20,7 +20,7 @@ use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\I18n\FrozenTime;
 use Cake\ORM\Query;
-
+use Longman\TelegramBot\Telegram;
 /**
  * Static content controller
  *
@@ -74,8 +74,9 @@ class PagesController extends AppController
         $elorda_bot = 'Elordainfo_bot';
         $channel_url = 'https://t.me/elorda_aqparat/';
 
-        $telegram = new \Longman\TelegramBot\Telegram($botToken, $bot_username);
-
+        $telegram = new Telegram($botToken, $bot_username);
+        debug(123);
+        die();
         // Получаем последние 5 сообщений из канала
         $params = [
             'offset' => null,
