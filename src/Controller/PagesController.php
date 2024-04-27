@@ -443,7 +443,9 @@ class PagesController extends AppController
     {
 
         $cur_lang = Configure::read('Config.lang');
-
+        $tg = $this->getPostsFromTelegram();
+        debug($tg);
+        die();
         $page_comps = $this->_getPagesComps(5);
 
         $page = $this->Pages->get(5);
