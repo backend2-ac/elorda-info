@@ -124,7 +124,7 @@ class PagesController extends AppController
         if (!$start_date_getting_posts) {
             Cache::write('start_date_getting_posts', $current_date, 'eternal');
         } else {
-            $tg_date_for_check = $start_date_getting_posts->addMinutes(60);
+            $tg_date_for_check = $start_date_getting_posts->addMinutes(10);
 
             if ($current_date > $tg_date_for_check) {
                 $cached_posts = Cache::read('tg_posts', 'eternal');
