@@ -22,9 +22,9 @@
                             <li>
                                 <a href="/<?= $lang ?>cooperation">Жарнама үшін</a>
                             </li>
-                            <li>
-                                <a href="/<?= $lang ?>rules">Сайт ережесі</a>
-                            </li>
+<!--                            <li>-->
+<!--                                <a href="/--><?php //= $lang ?><!--rules">Сайт ережесі</a>-->
+<!--                            </li>-->
                             <li>
                                 <a href="/<?= $lang ?>anticor">Антикор</a>
                             </li>
@@ -43,9 +43,9 @@
                             <li>
                                 <a href="/<?= $lang ?>cooperation">Для рекламы</a>
                             </li>
-                            <li>
-                                <a href="/<?= $lang ?>rules">Правила сайта</a>
-                            </li>
+<!--                            <li>-->
+<!--                                <a href="/--><?php //= $lang ?><!--rules">Правила сайта</a>-->
+<!--                            </li>-->
                             <li>
                                 <a href="/<?= $lang ?>anticor">Антикор</a>
                             </li>
