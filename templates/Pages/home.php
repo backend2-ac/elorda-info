@@ -423,7 +423,7 @@
                             <img src="/img/ban-1.jpg" alt="">
                         </a>
                         <a href="http://astana-akshamy.kz/" target="_blank" class="ban ban-2">
-                            <img src="/img/ban-2.jpg" alt="">
+                            <img src="/img/ban-2.JPG" alt="">
                         </a>
                     </div>
                 </div>
