@@ -279,7 +279,7 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
 
-        $this->set(compact('meta', 'main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news'));
+        $this->set(compact('meta', 'tg_posts','main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news'));
     }
 
     public function rules(): void
