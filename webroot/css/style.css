@@ -3282,6 +3282,27 @@ select {
   text-decoration: underline;
 }
 
+.ban {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.ban::before {
+  display: block;
+  content: '';
+  padding-top: 100%;
+}
+
+.ban img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 @media (max-width: 1800px) {
   .container {
     max-width: 1420px;
