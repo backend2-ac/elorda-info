@@ -29,7 +29,7 @@
                                         <?php if( $item['tags'] ): ?>
                                             <div class="news__item-tags">
                                             <?php foreach( $item['tags'] as  $tag ): ?>
-                                                <a href="/tag/<?= $tag['alias'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
+                                                <a href="/<?= $lang ?>tag/<?= $tag['alias'] ?>" class="news__item-tag">#<?= $tag['title'] ?></a>
                                             <?php endforeach; ?>
                                             </div>
 
