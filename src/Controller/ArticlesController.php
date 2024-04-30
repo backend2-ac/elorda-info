@@ -30,7 +30,7 @@ use Cake\Cache\Cache;
 use Cake\ORM\Query;
 
 use Cake\I18n\FrozenTime;
-
+use Elastic\Elasticsearch\ClientBuilder;
 
 
 /**
@@ -383,6 +383,8 @@ class ArticlesController extends AppController
 
     public function writer($author_alias) {
          $author_artilces = [];
+        $cur_lang = Configure::read('Config.lang');
+        $locale = $cur_lang == 'kz' ? 'kk' : 'ru';
         $cur_date = date('Y-m-d H:i:s');
          $author  = $this->Authors->findByAlias($author_alias)
             ->first();
@@ -400,9 +402,10 @@ class ArticlesController extends AppController
             'limit' => $per_page,
         ];
         $author_artilces = $this->Articles->find('all')
-            ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
+            ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'locale', 'publish_start_at'])
             ->where([ 'Articles.author_id' => $author_id,
-                'Articles.publish_start_at <' => $cur_date
+                'Articles.publish_start_at <' => $cur_date,
+                'Articles.locale' => $locale,
                 ])
             ->contain([
                 'Tags',
@@ -415,7 +418,8 @@ class ArticlesController extends AppController
         $this->set('pagination', $this->paginate(
             $this->Articles->find()
                 ->where([ 'Articles.author_id' => $author_id,
-                'Articles.publish_start_at <' => $cur_date,
+                    'Articles.publish_start_at <' => $cur_date,
+                    'Articles.locale' => $locale,
                 ])
                 ->contain([
                     'Tags',
@@ -515,10 +519,7 @@ class ArticlesController extends AppController
                     $data = $this->Articles->find()
                         ->where([
                             'Articles.locale' => $locale,
-                            'OR' => [
-                                'Articles.title' => $search_text,
-                                'MATCH(Articles.title) AGAINST("' . $search_text . '")'
-                            ]
+                            'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                         ])
                         ->where($conditions)
                         ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
@@ -528,11 +529,9 @@ class ArticlesController extends AppController
                     $count_query = $this->Articles->find()
                         ->where([
                             'Articles.locale' => $locale,
-                            'OR' => [
-                                'Articles.title' => $search_text,
-                                'MATCH(Articles.title) AGAINST("' . $search_text . '")'
-                            ]
+                            'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                         ])
+                        ->where($conditions)
                         ->count();
 
                     $this->set('pagination', $this->paginate($data, ['total' => $count_query]));

@@ -21,7 +21,7 @@
                             <?php foreach( $tag_articles as $item ): ?>
                                 <div class="news__item">
                                     <?php if (isset($full_categories[$item['category_id']])): ?>
-                                        <a href="/<?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-img">
+                                        <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-img">
                                             <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="">
                                             <div class="news__item-date"><?= $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') ?></div>
                                         </a>
@@ -35,7 +35,7 @@
 
                                             <?php endif; ?>
 
-                                            <a href="/<?= $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-title"><?= $item['title'] ?></a>
+                                            <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news__item-title"><?= $item['title'] ?></a>
                                             <?php
                                             $body_text = strip_tags($item['body']);
                                             $short_desc = mb_substr($body_text, 0, 260);
