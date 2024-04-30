@@ -420,10 +420,10 @@
                             <!--  -->
                         </div>
                         <a href="http://vechastana.kz/" target="_blank" class="ban ban-1">
-                            <img src="/img/ban-1.jpg" alt="">
+                            <img src="/img/ban-4.jpg" alt="">
                         </a>
                         <a href="http://astana-akshamy.kz/" target="_blank" class="ban ban-2">
-                            <img src="/img/ban-2.JPG" alt="">
+                            <img src="/img/ban-3.JPG" alt="">
                         </a>
                     </div>
                 </div>
