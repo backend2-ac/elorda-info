@@ -419,6 +419,12 @@
                             <!-- <div class="elfsight-app-c146067f-4880-4b8e-be10-919895c2a90f" data-elfsight-app-lazy></div> -->
                             <!--  -->
                         </div>
+                        <a href="http://vechastana.kz/" target="_blank" class="ban ban-1">
+                            <img src="/img/ban-4.JPG" alt="">
+                        </a>
+                        <a href="http://astana-akshamy.kz/" target="_blank" class="ban ban-2">
+                            <img src="/img/ban-3.JPG" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
