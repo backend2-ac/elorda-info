@@ -393,7 +393,7 @@
                                                 <div class="widget__tg-title"><?= $tg_post['title'] ?></div>
                                                 <div class="widget__tg-elems">
                                                     <div class="widget__tg-elem">
-<!--                                                        --><?php //= date('d.m.Y | H:m', $tg_post['date']) ?>
+                                                        <?= date('d.m.Y | H:m', $tg_post['date']) ?>
                                                     </div>
                                                 </div>
                                             </a>
