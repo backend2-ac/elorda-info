@@ -389,16 +389,16 @@
                                     </a>
                                     <div class="widget__tg-items">
                                         <?php foreach ($tg_posts as $tg_post): ?>
-                                            <a href="<?= $tg_post['link'] ?>" target="_blank" class="widget__tg-item">
-                                                <?php if ($tg_post['title']): ?>
-                                                    <div class="widget__tg-title"><?= $tg_post['title'] ?></div>
-                                                <?php endif; ?>
-                                                <div class="widget__tg-elems">
-                                                    <div class="widget__tg-elem">
-<!--                                                        --><?php //= date('d.m.Y | H:m', $tg_post['date']) ?>
+                                            <?php if ($tg_post['title']): ?>
+                                                <a href="<?= $tg_post['link'] ?>" target="_blank" class="widget__tg-item">
+                                                        <div class="widget__tg-title"><?= $tg_post['title'] ?></div>
+                                                    <div class="widget__tg-elems">
+                                                        <div class="widget__tg-elem">
+    <!--                                                        --><?php //= date('d.m.Y | H:m', $tg_post['date']) ?>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </a>
+                                                </a>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
