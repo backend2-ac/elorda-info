@@ -84,11 +84,8 @@ class PagesController extends AppController
         ];
         $telegram->useGetUpdatesWithoutDatabase();
         $updates = $telegram->handleGetUpdates($params);
-        $updates_json = json_encode($updates);
-        $this->_setTelegramLogMsg($updates_json);
         $results = $updates->getResult();
         $post_data = [];
-
         if ($results) {
             foreach ($results as $result) {
                 $post = $result->channel_post;
@@ -101,29 +98,19 @@ class PagesController extends AppController
                     $post_message = $post['caption'];
                     $post_title = mb_strstr($post_message,  "\n", true);
                 }
-                $post_date = date('d.m.Y', $post['date']);
+
                 $post_id = $post['message_id'];
                 $post_link = $channel_url . $post_id;
                 $post_data[] = [
                     'id' => $post_id,
                     'link' => $post_link,
                     'title' => $post_title,
-                    'date' => $post_date,
+                    'date' => $post['date'],
                 ];
             }
         }
         return $post_data;
 //        $api_url = "https://api.telegram.org/bot6869063207:AAGcKUDRLq7cFDcR9iOIpOogIg2BOefkQU0/getUpdates";
-    }
-
-    protected function _setTelegramLogMsg($msg){
-        date_default_timezone_set('Asia/Atyrau');
-        $cur_date = date('m-Y');
-        $cur_time = date('H:i:s');
-        $debug_file = WWW_ROOT .'tg_logs'. DS. $cur_date.'-logs.txt';
-
-        $log_msg = date('d-m-Y') . ' ' . $cur_time . ' - ' . $msg . "\n";
-        file_put_contents($debug_file, $log_msg, FILE_APPEND | LOCK_EX);
     }
 
     public function home(): void
