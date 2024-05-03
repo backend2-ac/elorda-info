@@ -281,6 +281,12 @@ class ArticlesController extends AppController
             $meta['title'] = $data['title'];
         }
         $meta['desc'] = strip_tags($data['meta_description']);
+        if (!$meta['desc']) {
+            $body_text = strip_tags($data['body']);
+            $short_desc = mb_substr($body_text, 0, 150);
+            $short_desc = substr($short_desc, 0, strrpos($short_desc, ' '));
+            $meta['desc'] = $short_desc;
+        }
         $meta['keys'] = $data['meta_keywords'];
 
         $this->set( compact('data', 'meta', 'other_news', 'category_alias', 'article_alias', 'popular_news','last_news') );
