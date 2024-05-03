@@ -457,7 +457,7 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
-        'timeout' => 86400, // 240 min = 4 hours, 0 = eternal
-        'cookie_lifetime' => 86400,
+        'timeout' => 480, // 240 min = 4 hours, 0 = eternal
+        'cookie_lifetime' => 480,
     ],
 ];
