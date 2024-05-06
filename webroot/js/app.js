@@ -133,6 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+let headerCurrency = document.querySelector('.header__currency');
+
 window.onload = () => {
     // $.fn.setCursorPosition = function(pos) {
     //     if ($(this).get(0).setSelectionRange) {
@@ -174,6 +176,7 @@ window.onload = () => {
             }
         ]
     });
+    headerCurrency.style.display = 'flex';
 
     let heroSwiper = new Swiper('.hero__swiper', {
         slidePerView: 'auto',
