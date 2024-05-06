@@ -158,7 +158,7 @@ window.onload = () => {
     //     },
     //     offset: '88%'
     // });
-
+    $('.header__currency').show();
     $('.header__currency').slick({
         slidesToShow: 3,
         variableWidth: true,
@@ -176,7 +176,6 @@ window.onload = () => {
             }
         ]
     });
-    headerCurrency.style.display = 'flex';
 
     let heroSwiper = new Swiper('.hero__swiper', {
         slidePerView: 'auto',
