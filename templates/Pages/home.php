@@ -4,16 +4,20 @@
             <div class="wrapper-parent">
                 <div class="wrapper">
                     <div class="wrapper-col">
-<!--                        <section class="holiday">-->
-<!--                            <div class="holiday__container">-->
-<!--                                <h2 class="holiday__title">-->
-<!--                                    День республики <span>25 октября</span>-->
-<!--                                </h2>-->
-<!--                                <div class="holiday__text">-->
-<!--                                    Выходной во всех муниципальных учреждениях-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </section>-->
+                        <?php if (isset($comps[34]['body']) && $comps[34]['body']): ?>
+                            <section class="holiday">
+                                <div class="holiday__container">
+                                    <h2 class="holiday__title">
+                                        <?= $comps[34]['body'] ?>
+                                    </h2>
+                                    <?php if ($comps[35]['body']): ?>
+                                        <div class="holiday__text">
+                                            <?= $comps[35]['body'] ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </section>
+                        <?php endif; ?>
                         <?php if( $main_articles ): ?>
 	                        <section class="hero">
 	                            <div class="hero__container">
