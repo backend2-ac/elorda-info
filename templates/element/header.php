@@ -54,6 +54,11 @@ if ($rates_data) {
                             <li class="header__nav-item">
                                 <a href="/<?= $lang ?>anticor" class="header__nav-link <?= ($request['action'] && $request['action'] == 'anticor') ? 'active' : '' ?>">Антикор</a>
                             </li>
+                            <?php if ($userAuth): ?>
+                                <li class="header__nav-item">
+                                    <a href="/admin" class="header__nav-link">Админ</a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </nav>
                     <a href="javascript:;" class="header__burger">
@@ -207,7 +212,7 @@ if ($rates_data) {
                             <a href="/<?= $lang ?>sluzhba-komplaens-kz" class="header__menu-link">Комплаенс қызметі</a>
                             <a href="/<?= $lang ?>madeniet" class="header__menu-link">Мәдениет</a>
                             <a href="/<?= $lang ?>adep-kodeksi" class="header__menu-link">Әдеп кодексі</a>
-                            <a href="/<?= $lang ?>ar-turli" class="header__menu-link">Әртүрлі</a>                            
+                            <a href="/<?= $lang ?>ar-turli" class="header__menu-link">Әртүрлі</a>
                             <a href="/<?= $lang ?>elge-kyzmet" class="header__menu-link">Елге қызмет</a>
                         <?php else: ?>
                             <a href="/<?= $lang ?>novosti-stolicy-ru" class="header__menu-link">Новости столицы</a>

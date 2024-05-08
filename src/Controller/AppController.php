@@ -126,7 +126,7 @@ class AppController extends Controller
         $userName = $session->read('Auth.User.username');
         $login = !empty($userName);
 
-        $userAuth = $session->read('UserAuth');
+        $userAuth = $session->read('Auth.User');
 
         $user_role = $session->read('Auth.User.role');
         $has_access_controllers = ['Articles', 'Tags', 'Authors', 'Admin'];
@@ -218,7 +218,6 @@ class AppController extends Controller
                         'Comps.page_id' => 0,
                     ])
                     ->toList();
-
                 $comps = [];
                 foreach( $all_comps as $comp_item ){
                     $comps[$comp_item['id']] = $comp_item;
