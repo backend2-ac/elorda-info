@@ -212,16 +212,12 @@ class AppController extends Controller
             $comps = Cache::read('comps_' . $l, 'long');
             if(!$comps){
                 $this->Comps->setLocale($l);
-                $all_comps = Cache::read('all_comps_' . $l, 'eternal');
-                if (!$all_comps) {
-                    $all_comps = $this->Comps->find('all')
-                        ->where([
-                            'Comps.id NOT IN' => $total_ids,
-                            'Comps.page_id' => 0,
-                        ])
-                        ->toList();
-                    Cache::write('all_comps_' . $l, $all_comps, 'eternal');
-                }
+                $all_comps = $this->Comps->find('all')
+                    ->where([
+                        'Comps.id NOT IN' => $total_ids,
+                        'Comps.page_id' => 0,
+                    ])
+                    ->toList();
 
                 $comps = [];
                 foreach( $all_comps as $comp_item ){
