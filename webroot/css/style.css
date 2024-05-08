@@ -567,7 +567,7 @@ select {
 }
 
 .header__currency {
-  display: flex;
+  display: none;
   align-items: center;
   margin-right: 90px;
   gap: 30px;

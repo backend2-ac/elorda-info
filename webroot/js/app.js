@@ -133,6 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+let headerCurrency = document.querySelector('.header__currency');
+
 window.onload = () => {
     // $.fn.setCursorPosition = function(pos) {
     //     if ($(this).get(0).setSelectionRange) {
@@ -156,7 +158,7 @@ window.onload = () => {
     //     },
     //     offset: '88%'
     // });
-
+    $('.header__currency').show();
     $('.header__currency').slick({
         slidesToShow: 3,
         variableWidth: true,
