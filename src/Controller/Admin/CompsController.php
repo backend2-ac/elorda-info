@@ -188,16 +188,17 @@ class CompsController extends AppController{
 	}
 
 	protected function _cacheDelete(){
-		Cache::delete('comps', 'long');
         Cache::delete('comps_ru', 'long');
 		Cache::delete('comps_kz', 'long');
 		Cache::delete('comps_lang_kz', 'long');
         Cache::delete('comps_lang_ru', 'long');
-
 		Cache::delete('page_comps_ru', 'long');
 		Cache::delete('page_comps_kz', 'long');
+
+        Cache::delete('all_comps_page_id_3', 'eternal');
 		Cache::delete('all_comps_page_id_4', 'eternal');
         Cache::delete('all_comps_page_id_5', 'eternal');
+        Cache::delete('all_comps_page_id_6', 'eternal');
         cache::delete('all_coms_kz', 'eternal');
         cache::delete('all_coms_ru', 'eternal');
         cache::delete('all_comps_lang_kz', 'eternal');
