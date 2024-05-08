@@ -113,10 +113,21 @@ class AppController extends Controller
         }
 
         $session = $this->request->getSession();
+        $user_session = $session->read('Auth.User');
+        if ($admin && isset($_COOKIE['remember_me']) && $_COOKIE['remember_me']) {
+            $user_id = $_COOKIE['remember_me'];
+            if (!$user_session) {
+                $user = $this->Admins->findById($user_id)->select(['id', 'author_id', 'username', 'role', 'created', 'modified'])->first();
+                if ($user) {
+                    $session->write('Auth.User', $user);
+                }
+            }
+        }
         $userName = $session->read('Auth.User.username');
         $login = !empty($userName);
 
         $userAuth = $session->read('UserAuth');
+
         $user_role = $session->read('Auth.User.role');
         $has_access_controllers = ['Articles', 'Tags', 'Authors', 'Admin'];
         $has_access_action = 'edit';

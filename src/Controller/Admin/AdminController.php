@@ -19,21 +19,12 @@ class AdminController extends AppController{
 	public function index(){
 
 
-//		 $session = $this->request->getSession();
+		 $session = $this->request->getSession();
 //		 $userName = $session->read('Auth.User.username');
-
-		// debug($session);
+//        debug($session);
+//        debug($session->read('Auth'));
 		// debug($userName);
 		// debug(!empty($userName));
-//        setcookie(
-//            'user_'. $userName,
-//            md5($userName),
-//            time() + (86400),
-//            '/',
-//            'elorda',
-//            true,
-//            true
-//        );
 	}
 
 	public function login(){
@@ -42,12 +33,12 @@ class AdminController extends AppController{
 			if( $userData ){
                 $this->Auth->setUser($userData);
                 setcookie(
-                'user_'. $userData['username'],
-                    md5($userData['username']),
+                'remember_me',
+                    $userData['id'],
                 time() + (86400),
                 '/',
                 'elorda.info',
-                true,
+                false,
                 false
                 );
 				return $this->redirect($this->Auth->redirectUrl());
@@ -59,16 +50,16 @@ class AdminController extends AppController{
 
 	public function logout(){
         $session = $this->request->getSession();
-        $userName = $session->read('Auth.User.username');
         setcookie(
-            'user_'. $userName,
+            'remember_me',
             '',
             time() - (3600),
             '/',
             'elorda.info',
-            true,
+            false,
             false
         );
+        $session->delete('Auth.User');
 		return $this->redirect($this->Auth->logout());
 	}
 
