@@ -83,7 +83,7 @@ class AppController extends Controller
         $this->loadModel('Categories');
         $this->loadModel('Tags');
         $this->loadModel('Authors');
-
+        $this->loadModel('Admins');
         $this->loadModel('Pages');
         $this->loadModel('Comps');
 
