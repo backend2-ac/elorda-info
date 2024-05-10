@@ -100,6 +100,8 @@ class AppController extends Controller
     public function beforeFilter(\Cake\Event\EventInterface $event){
         parent::beforeFilter($event);
         $params = $this->request->getAttribute('params');
+        debug($params);
+        die();
         $admin = (isset($params['prefix']) && $params['prefix'] == 'Admin') ? 'admin/' : false;
 
         if( isset($params['controller']) && $params['controller'] == 'User' ){
@@ -170,8 +172,8 @@ class AppController extends Controller
         }
 
         $l = Configure::read('Config.lang');
-        $lang = ( isset($params['lang']) && $params['lang'] ) ? $params['lang'] . '/' : '';
-
+//        $lang = ( isset($params['lang']) && $params['lang'] ) ? $params['lang'] . '/' : '';
+        $lang = $l == 'kz' ? '' : 'ru/';
         I18n::setLocale($l);
 
         $request = $params;
