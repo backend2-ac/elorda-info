@@ -279,8 +279,10 @@ class PagesController extends AppController
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang;
 
-        $this->set(compact('meta', 'tg_posts','main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news'));
+        $this->set(compact('meta', 'canonical','tg_posts','main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news'));
     }
 
     public function rules(): void
@@ -343,8 +345,9 @@ class PagesController extends AppController
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
-
-        $this->set(compact('meta', 'page_comps', 'page', 'popular_news', 'last_news', 'branches', 'employees'));
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang . 'rules';
+        $this->set(compact('meta', 'canonical','page_comps', 'page', 'popular_news', 'last_news', 'branches', 'employees'));
     }
 
     public function about()
@@ -410,8 +413,9 @@ class PagesController extends AppController
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
-
-        $this->set(compact('meta', 'page_comps', 'page', 'popular_news', 'last_news', 'branches', 'employees'));
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang . 'about';
+        $this->set(compact('meta', 'canonical','page_comps', 'page', 'popular_news', 'last_news', 'branches', 'employees'));
     }
 
     public function cooperation()
@@ -435,8 +439,9 @@ class PagesController extends AppController
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
-
-        $this->set(compact('meta', 'contact_comps','page_comps', 'page', 'docs'));
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang . 'cooperation';
+        $this->set(compact('meta', 'canonical', 'contact_comps','page_comps', 'page', 'docs'));
     }
 
     public function contact()
@@ -454,8 +459,9 @@ class PagesController extends AppController
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
-
-        $this->set(compact('meta', 'page_comps', 'page'));
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang . 'contact';
+        $this->set(compact('meta', 'canonical','page_comps', 'page'));
     }
 
     public function anticor()
@@ -483,8 +489,9 @@ class PagesController extends AppController
             $meta['desc'] = $page['meta_description'];
             $meta['keys'] = $page['meta_keywords'];
         }
-
-        $this->set(compact('meta', 'page_comps', 'page', 'docs'));
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang . 'anticor';
+        $this->set(compact('meta', 'canonical', 'page_comps', 'page', 'docs'));
     }
     protected function _getPagesComps($page_id)
     {

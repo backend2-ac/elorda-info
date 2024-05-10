@@ -177,13 +177,14 @@ class ArticlesController extends AppController
 
             }
         }
-
-        $this->set( compact('data','meta', 'category_alias', 'cur_cat',  'last_news', 'popular_news') );
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang . $category_alias;
+        $this->set( compact('data', 'canonical','meta', 'category_alias', 'cur_cat',  'last_news', 'popular_news') );
     }
 
     public function view($article_alias){
         $cur_date = date('Y-m-d H:i:s');
-
+        $cur_lang = Configure::read('Config.lang');
         $conditions = [
             'Articles.publish_start_at <' => $cur_date,
         ];
@@ -288,8 +289,9 @@ class ArticlesController extends AppController
             $meta['desc'] = $short_desc;
         }
         $meta['keys'] = $data['meta_keywords'];
-
-        $this->set( compact('data', 'meta', 'other_news', 'category_alias', 'article_alias', 'popular_news','last_news') );
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang . $category_alias . '/' . $data['alias'];
+        $this->set( compact('data', 'canonical', 'meta', 'other_news', 'category_alias', 'article_alias', 'popular_news','last_news') );
     }
 
     public function loadingview($article_id){
@@ -432,12 +434,14 @@ class ArticlesController extends AppController
                 ])
                 ->orderDesc('Articles.publish_start_at')
                 ->limit($per_page), $pag_settings));
-
-        $this->set(compact('author_artilces','author'));
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang . $author_alias;
+        $this->set(compact('author_artilces', 'canonical','author'));
     }
 
     public function tag($tag_alias) {
         $cur_date = date('Y-m-d H:i:s');
+        $cur_lang = Configure::read('Config.lang');
         $this->loadModel('ArticlesTags');
         $tag = Cache::read('tag_' . $tag_alias, 'long');
         if (!$tag) {
@@ -488,8 +492,9 @@ class ArticlesController extends AppController
         }
 
         $this->set('pagination', $this->paginate($tag_articles, ['total' => $count_tag_articles]));
-
-        $this->set(compact('tag_articles','tag'));
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang . $tag_alias;
+        $this->set(compact('tag_articles', 'canonical', 'tag'));
     }
 
     public function search() {
@@ -544,7 +549,9 @@ class ArticlesController extends AppController
 //                }
             }
         }
-        $this->set( compact('data', 'search_text') );
+        $lang = $cur_lang == 'kz' ? '' : 'ru/';
+        $canonical = 'https://elorda.info/' . $lang . 'search';
+        $this->set( compact('data', 'canonical', 'search_text') );
     }
 
     public function updateCache() {
