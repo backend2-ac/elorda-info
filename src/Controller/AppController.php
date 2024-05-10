@@ -25,7 +25,7 @@ use Cake\Cache\Cache;
 use Cake\ORM\Query;
 
 use Facebook\Facebook;
-
+use Longman\TelegramBot\Telegram;
 
 /**
  * Application Controller
@@ -332,6 +332,53 @@ class AppController extends Controller
             }
             $this->set(compact('rates_data'));
 
+            // start get telegram posts in 4 hours
+            $tg_posts = [];
+            $start_date_getting_posts = Cache::read('start_date_getting_posts', 'eternal');
+            $current_date = FrozenTime::now();
+            if (!$start_date_getting_posts) {
+                Cache::write('start_date_getting_posts', $current_date, 'eternal');
+            } else {
+                $tg_date_for_check = $start_date_getting_posts->addMinutes(20);
+
+                if ($current_date > $tg_date_for_check) {
+                    $cached_posts = Cache::read('tg_posts', 'eternal');
+                    if (!$cached_posts) {
+                        $tg_posts = $this->getPostsFromTelegram();
+                        usort($tg_posts, function($a, $b) {
+                            return $b['date'] - $a['date'];
+                        });
+
+                        $tg_posts = array_slice($tg_posts, 0, 5);
+                        Cache::write('tg_posts', $tg_posts, 'eternal');
+                        Cache::write('start_date_getting_posts', $current_date, 'eternal');
+                    } else {
+                        $tg_posts = $this->getPostsFromTelegram();
+                        $tg_posts = array_merge($tg_posts, $cached_posts);
+                        usort($tg_posts, function($a, $b) {
+                            return $b['date'] - $a['date'];
+                        });
+
+                        $tg_posts = array_slice($tg_posts, 0, 5);
+                        Cache::write('tg_posts', $tg_posts, 'eternal');
+                        Cache::write('start_date_getting_posts', $current_date, 'eternal');
+                    }
+                } else {
+                    $tg_posts = Cache::read('tg_posts', 'eternal');
+                    if (!$tg_posts) {
+                        $tg_posts = $this->getPostsFromTelegram();
+                        usort($tg_posts, function($a, $b) {
+                            return $b['date'] - $a['date'];
+                        });
+
+                        $tg_posts = array_slice($tg_posts, 0, 5);
+                        Cache::write('tg_posts', $tg_posts, 'eternal');
+                    }
+                }
+            }
+            $this->set(compact('tg_posts'));
+            // end get telegram posts
+
             /*------ cache cleaning ------*/
 //            $interval_minute = 10;
 //            $check_start_date = Cache::read('check_start_date', 'eternal');
@@ -364,6 +411,55 @@ class AppController extends Controller
 
     }
 
+    protected function getPostsFromTelegram()
+    {
+//        $botToken = '6507471270:AAEyN3F9y73mhbInFxSU_LSkKCVKf98qHLI';
+//        $chat_id = '@elorda_aqparat';
+
+        $botToken = '6869063207:AAGcKUDRLq7cFDcR9iOIpOogIg2BOefkQU0';
+        $chat_id = '@my_books_list_for';
+        $bot_username = 'elorda_info_bot';
+        $elorda_bot = 'Elordainfo_bot';
+        $channel_url = 'https://t.me/elorda_aqparat/';
+
+        $telegram = new Telegram($botToken, $bot_username);
+        // Получаем последние 5 сообщений из канала
+        $params = [
+            'offset' => null,
+            'limit' => 5,
+            'timeout' => 0,
+            'allow_updates' => null,
+        ];
+        $telegram->useGetUpdatesWithoutDatabase();
+        $updates = $telegram->handleGetUpdates($params);
+        $results = $updates->getResult();
+        $post_data = [];
+        if ($results) {
+            foreach ($results as $result) {
+                $post = $result->channel_post;
+                if (isset($post['text']) && $post['text']) {
+                    $post_title = $post['text'];
+                    $post_title = mb_strstr($post_title, "\n", true);
+                }
+
+                if (isset($post['caption']) && $post['caption']) {
+                    $post_message = $post['caption'];
+                    $post_title = mb_strstr($post_message,  "\n", true);
+                }
+
+                $post_id = $post['message_id'];
+                $post_link = $channel_url . $post_id;
+                $post_data[] = [
+                    'id' => $post_id,
+                    'link' => $post_link,
+                    'title' => $post_title,
+                    'date' => $post['date'],
+                ];
+            }
+        }
+        return $post_data;
+//        $api_url = "https://api.telegram.org/bot6869063207:AAGcKUDRLq7cFDcR9iOIpOogIg2BOefkQU0/getUpdates";
+    }
     protected function _clearArticlesCache($category_id, $locale, $article_alias = null) {
         $locale = $locale == 'kk' ? 'kz' : 'ru';
         $category_alias = $this->_getCategoryAlias($category_id);

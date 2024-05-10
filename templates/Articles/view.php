@@ -257,6 +257,8 @@
                                 </a>
                             <?php endif; ?>
                         </div>
+                        <?= $this->element('telegram') ?>
+                        <?= $this->element('youtube') ?>
                     </div>
                 </div>
             </div>

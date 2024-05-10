@@ -384,47 +384,8 @@
                                 </a>
                             <?php endif; ?>
                         </div>
-                        <?php if(isset($tg_posts) && $tg_posts): ?>
-                            <div class="widget__tg">
-                                <div class="widget__tg-block">
-                                    <a href="<?= $comps[8]['body'] ?>" target="_blank" class="widget__tg-header">
-                                        <?= __('Последние в нашем Telegram-канале') ?>
-                                        <img src="/img/tg-widget-icon.png" alt="">
-                                    </a>
-                                    <div class="widget__tg-items">
-                                        <?php foreach ($tg_posts as $tg_post): ?>
-                                            <?php if ($tg_post['title']): ?>
-                                                <a href="<?= $tg_post['link'] ?>" target="_blank" class="widget__tg-item">
-                                                        <div class="widget__tg-title"><?= $tg_post['title'] ?></div>
-                                                    <div class="widget__tg-elems">
-                                                        <div class="widget__tg-elem">
-                                                            <?= date('d.m.Y | H:m', $tg_post['date']) ?>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-                        <div class="widget__youtube">
-                            <!-- <div class="widget__youtube-header">
-                                <img src="/img/comps/<?=$comps[17]['img']?>" alt="">
-                            </div>
-                            <?php if (isset($comps[18]['body'])): ?>
-                                <div class="widget__youtubte-frame">
-                                    <?=$comps[18]['body']?>
-                                </div>
-                            <?php endif; ?> -->
-                            <a href="https://www.youtube.com/@elordaaqparat2341" target="_blank" class="widget__youtube-header">
-                                <img src="../img/el-h-2.jpg" alt="">
-                            </a>
-                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Sn_8FJkgANI?si=0_41jzCRuncKqOWL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            <!-- <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script> -->
-                            <!-- <div class="elfsight-app-c146067f-4880-4b8e-be10-919895c2a90f" data-elfsight-app-lazy></div> -->
-                            <!--  -->
-                        </div>
+                        <?= $this->element('telegram') ?>
+                        <?= $this->element('youtube') ?>
                         <a href="http://astana-akshamy.kz/" target="_blank" class="ban ban-2">
                             <img src="/img/ban-3.JPG" alt="">
                         </a>
