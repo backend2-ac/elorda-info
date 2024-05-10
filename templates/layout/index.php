@@ -17,7 +17,8 @@
 			<meta name="description" content=""/>
 			<meta name="keywords" content=""/>
 		<?php endif; ?>
-
+        <meta name="yandex-verification" content="969963e49664da07" />
+        <meta name="google-site-verification" content="UgeQyn3MPphuuIeNXK_pPuO_h1x-kv3icG0TufgKRT0" />
 		<?php if( $request['controller'] == 'Articles' && $request['action'] == 'view' ): ?>
 			<?php if( isset($data) && $data ): ?>
 				<meta property="og:url" content="https://<?= $_SERVER['HTTP_HOST'] ?><?= $_SERVER['REQUEST_URI'] ?>">
@@ -35,10 +36,28 @@
 	    <?= $this->Html->meta('csrfToken', $this->request->getAttribute('csrfToken')); ?>
 
 	    <?= (isset($comps[1]['body'])) ? $comps[1]['body'] : '' ?>
-
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-M964JQBS');</script>
+        <!-- End Google Tag Manager -->
 	</head>
-	<body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-14414JMZLQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-14414JMZLQ');
+    </script>
+	<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M964JQBS"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 		<!-- front 1 -->
 
 		<?php
