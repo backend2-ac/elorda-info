@@ -153,6 +153,7 @@ class ArticlesController extends AppController{
             $data['alias'] = Text::slug($data['title']);
             $data['alias'] = mb_strtolower($data['alias']);
             $data['locale'] = $locale;
+            $data['title'] = trim($data['title']);
             $created = $this->$model->find()
                 ->where(['alias' => $data['alias']])->first();
 
@@ -272,6 +273,7 @@ class ArticlesController extends AppController{
             if ($data1['publish_start_at']) {
                 $data1['publish_start_at'] = date('Y-m-d H:i:s', strtotime($data1['publish_start_at']));
             }
+            $data1['title'] = trim($data1['title']);
             if( !isset($data1['on_main']) || !$data1['on_main'] ){
                 $data1['on_main'] = 0;
             }
