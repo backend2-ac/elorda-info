@@ -514,39 +514,38 @@ class ArticlesController extends AppController
         $search_text = '';
         $conditions = [
             'Articles.publish_start_at <' => $cur_date,
+            'Articles.locale' => $locale,
         ];
         if (isset($_GET['q']) && $_GET['q']) {
             $search_text = htmlentities($_GET['q']);
             if ($search_text) {
 
-//                $data = $this->Articles->find()
-//                    ->where([
-//                        'Articles.locale' => $locale,
-//                        'Articles.title' => $search_text,
-//                    ])
-//                    ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
-//                    ->toArray();
-//                if (!$data) {
+                $data = $this->Articles->find()
+                    ->where($conditions)
+                    ->where([
+                        'Articles.title' => $search_text,
+                    ])
+                    ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
+                    ->toArray();
+                if (!$data) {
                     $data = $this->Articles->find()
+                        ->where($conditions)
                         ->where([
-                            'Articles.locale' => $locale,
                             'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                         ])
-                        ->where($conditions)
                         ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
                         ->orderDesc('Articles.publish_start_at')
                         ->limit($per_page)
                         ->offset($offset);
                     $count_query = $this->Articles->find()
+                        ->where($conditions)
                         ->where([
-                            'Articles.locale' => $locale,
                             'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                         ])
-                        ->where($conditions)
                         ->count();
 
                     $this->set('pagination', $this->paginate($data, ['total' => $count_query]));
-//                }
+                }
             }
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
