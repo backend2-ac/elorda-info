@@ -501,15 +501,19 @@ class ArticlesController extends AppController
         $cur_lang = Configure::read('Config.lang');
         $locale = $cur_lang == 'kz' ? 'kk' : 'ru';
         $cur_date = date('Y-m-d H:i:s');
-        $cur_page = 1;
-        if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
-            $cur_page = $_GET['page'];
-        }
-        $per_page = 10; // 9
-        $offset = ($cur_page * $per_page) - $per_page;
-        $pag_settings = [
-            'limit' => $per_page,
+//        $cur_page = 1;
+//        if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
+//            $cur_page = $_GET['page'];
+//        }
+//        $per_page = 10; // 9
+//        $offset = ($cur_page * $per_page) - $per_page;
+//        $pag_settings = [
+//            'limit' => $per_page,
+//        ];
+        $this->paginate = [
+            'limit' => 10,
         ];
+
         $data = [];
         $search_text = '';
         $conditions = [
@@ -519,7 +523,7 @@ class ArticlesController extends AppController
         if (isset($_GET['q']) && $_GET['q']) {
             $search_text = htmlentities($_GET['q']);
             if ($search_text) {
-
+                // cначала поиск для точного сопоставление
                 $data = $this->Articles->find()
                     ->where($conditions)
                     ->where([
@@ -527,24 +531,32 @@ class ArticlesController extends AppController
                     ])
                     ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
                     ->toArray();
-                if (!$data) {
-                    $data = $this->Articles->find()
+
+                if (!$data) { // если точного сопоставлене не найдена, то полнотоекстовый поиск
+//                    $data = $this->Articles->find()
+//                        ->where($conditions)
+//                        ->where([
+//                            'MATCH(Articles.title) AGAINST("' . $search_text . '")'
+//                        ])
+//                        ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
+//                        ->orderDesc('Articles.publish_start_at')
+//                        ->limit($per_page)
+//                        ->offset($offset);
+                    $query = $this->Articles->find()
                         ->where($conditions)
                         ->where([
                             'MATCH(Articles.title) AGAINST("' . $search_text . '")'
                         ])
                         ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
-                        ->orderDesc('Articles.publish_start_at')
-                        ->limit($per_page)
-                        ->offset($offset);
-                    $count_query = $this->Articles->find()
-                        ->where($conditions)
-                        ->where([
-                            'MATCH(Articles.title) AGAINST("' . $search_text . '")'
-                        ])
-                        ->count();
-
-                    $this->set('pagination', $this->paginate($data, ['total' => $count_query]));
+                        ->orderDesc('Articles.publish_start_at');
+//                    $count_query = $this->Articles->find()
+//                        ->where($conditions)
+//                        ->where([
+//                            'MATCH(Articles.title) AGAINST("' . $search_text . '")'
+//                        ])
+//                        ->count();
+                    $data = $this->paginate($query);
+//                    $this->set('pagination', $this->paginate($data, ['total' => $count_query]));
                 }
             }
         }
