@@ -33,12 +33,11 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'ru'){
         <?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'value' => $title)); ?>
       </div>
 
-        <?php if ($cur_user_role == 'admin'): ?>
-          <div class="form-group col_2">
-            <label for="inputAuthorId">Автор</label>
-            <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'value' => $author_id, 'empty' => 'Все')); ?>
-          </div>
-        <?php endif; ?>
+
+      <div class="form-group col_2">
+        <label for="inputAuthorId">Автор</label>
+        <?= $this->Form->select('author_id', $authors, array('id' => 'inputAuthorId', 'class' => 'form-control', 'value' => $author_id, 'empty' => 'Все')); ?>
+      </div>
         <div class="form-group col_2">
             <label for="inputCategoryId">Категория</label>
             <?= $this->Form->select('category_id', $categories, array('id' => 'inputCategoryId', 'class' => 'form-control', 'empty' => 'Выбрать')); ?>
