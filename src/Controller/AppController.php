@@ -673,6 +673,16 @@ class AppController extends Controller
         return $count_all_articles;
     }
 
+    public function _setLogMsg($msg, $postfix) {
+        date_default_timezone_set('Asia/Atyrau');
+        $cur_date = date('m-Y');
+        $cur_time = date('H:i:s');
+        $postfix = '_'.$postfix.'_';
+        $debug_file = WWW_ROOT .'test_logs'. DS. $cur_date. $postfix.'logs.txt';
+
+        $log_msg = date('d-m-Y') . ' ' . $cur_time . ' - ' . $msg . "\n";
+        file_put_contents($debug_file, $log_msg, FILE_APPEND | LOCK_EX);
+    }
     /*---------- Other Funcs END --------*/
 
 }

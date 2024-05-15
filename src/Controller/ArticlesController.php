@@ -182,7 +182,10 @@ class ArticlesController extends AppController
         $this->set( compact('data', 'canonical','meta', 'category_alias', 'cur_cat',  'last_news', 'popular_news') );
     }
 
-    public function view($article_alias){
+    public function view($article_alias) {
+        if (!$article_alias) {
+            $this->_setLogMsg($article_alias, 'articles');
+        }
         $cur_date = date('Y-m-d H:i:s');
         $cur_lang = Configure::read('Config.lang');
         $conditions = [
