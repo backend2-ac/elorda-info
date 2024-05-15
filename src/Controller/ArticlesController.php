@@ -208,26 +208,21 @@ class ArticlesController extends AppController
 
         if (empty($data) || empty($data['id']) || !$this->Articles->exists(['id' => $data['id']])) {
             if ($cur_lang == 'ru') {
-                $alternative_alias = $article_alias . '-ru';
-                $data = Cache::read($alternative_alias, 'long');
+                $article_alias = $article_alias . '-ru';
+                $data = Cache::read($article_alias, 'long');
                 if (!$data) {
-                    $data = $this->Articles->findByAlias($alternative_alias)
-                        ->select(['id'])
+                    $data = $this->Articles->findByAlias($article_alias)
+                        ->select(['id', 'category_id', 'author_id',  'title', 'body', 'meta_title', 'meta_description', 'meta_keywords', 'img', 'img_path', 'img_text', 'alias', 'views', 'publish_start_at', 'cover_photo_source'])
                         ->where($conditions)
                         ->first();
                     if ($data) {
-                        Cache::write($alternative_alias, $data, 'long');
+                        Cache::write($article_alias, $data, 'long');
                     }
-                }
-                if ($article_alias == '26793-1674204566') {
-                    $this->_setLogMsg($article_alias, 'articles');
-                    $this->_setLogMsg('data: '. json_encode($data), 'articles');
-                    $this->_setLogMsg('data_id = '. $data->id, 'articles');
                 }
 
                 if ($data && $data->id) {
                     $category_alias = $this->_getCategoryAlias($data->category_id);
-                    return $this->redirect('/ru/' . $category_alias . '/' . $alternative_alias);
+                    return $this->redirect('/ru/' . $category_alias . '/' . $article_alias);
                 } else {
                     throw new NotFoundException(__('Запись не найдена'));
                 }
