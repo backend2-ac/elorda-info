@@ -203,29 +203,40 @@ class ArticlesController extends AppController
             }
         }
 
-        $article_id = $data->id;
         if (empty($data) || empty($data['id']) || !$this->Articles->exists(['id' => $data['id']])) {
-            throw new NotFoundException(__('Запись не найдена'));
+            if ($cur_lang == 'ru') {
+                $alternative_alias = $article_alias . '-ru';
+                $data = Cache::read($alternative_alias, 'long');
+                if (!$data) {
+                    $data = $this->Articles->findByAlias($alternative_alias)
+                        ->select(['id'])
+                        ->where($conditions)
+                        ->first();
+                    if ($data) {
+                        Cache::write($alternative_alias, $data, 'long');
+                    }
+                }
+
+                if ($data && $data->id) {
+                    $category_alias = $this->_getCategoryAlias($data->category_id);
+                    return $this->redirect('/ru/' . $category_alias . '/' . $alternative_alias);
+                } else {
+                    throw new NotFoundException(__('Запись не найдена'));
+                }
+            } else {
+                throw new NotFoundException(__('Запись не найдена'));
+            }
+
         }
+        $article_id = $data->id;
         $category_id = $data->category_id;
         // счетчик просмотра
-//        if (!isset($_COOKIE['visited_article_' . $article_id])) {
-            $this->Articles->getConnection()->transactional(function () use ($data, $article_alias) {
-                $data->views++;
-                $this->Articles->save($data);
+        $this->Articles->getConnection()->transactional(function () use ($data, $article_alias) {
+            $data->views++;
+            $this->Articles->save($data);
 
-                Cache::write($article_alias, $data, 'long');
-            });
-//            setcookie(
-//                'visited_article_' . $article_id,
-//                    '1',
-//                time() + (86400),
-//                '/',
-//                'elorda.info',
-//                true,
-//                true
-//                );
-//        }
+            Cache::write($article_alias, $data, 'long');
+        });
 
         $author_id = $data->author_id;
         if ($author_id) {

@@ -313,37 +313,10 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
     $builder->connect('/sluzhu-strane/*', ['controller' => 'Articles', 'action' => 'view'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
-
-
-    $builder->connect('/news', ['controller' => 'Articles', 'action' => 'index', 'news'])
+    $builder->connect('/{category}/{slug}', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPass(['slug'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
-    $builder->connect('/news/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-
-    $builder->connect('/reviews', ['controller' => 'Articles', 'action' => 'index', 'reviews'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-    $builder->connect('/review/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-
-    $builder->connect('/opinions', ['controller' => 'Articles', 'action' => 'index', 'opinions'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-    $builder->connect('/opinion/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-
-
-    $builder->connect('/feedbacks', ['controller' => 'Articles', 'action' => 'index', 'feedbacks'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-    $builder->connect('/feedback/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-
 
     $builder->connect('/requests/:action', ['controller' => 'Requests'])
         ->setPatterns(['lang' => 'ru|kz|en'])
