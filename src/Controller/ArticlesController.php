@@ -186,6 +186,7 @@ class ArticlesController extends AppController
         if (!$article_alias) {
             $this->_setLogMsg($article_alias, 'articles');
         }
+        $this->_setLogMsg($article_alias, 'articles');
         $cur_date = date('Y-m-d H:i:s');
         $cur_lang = Configure::read('Config.lang');
         $conditions = [
