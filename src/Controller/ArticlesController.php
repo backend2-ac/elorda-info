@@ -186,7 +186,6 @@ class ArticlesController extends AppController
         if (!$article_alias) {
             $this->_setLogMsg($article_alias, 'articles');
         }
-        $this->_setLogMsg($article_alias, 'articles');
         $cur_date = date('Y-m-d H:i:s');
         $cur_lang = Configure::read('Config.lang');
         $conditions = [
@@ -209,6 +208,7 @@ class ArticlesController extends AppController
 
         if (empty($data) || empty($data['id']) || !$this->Articles->exists(['id' => $data['id']])) {
             if ($cur_lang == 'ru') {
+                $this->_setLogMsg($article_alias, 'articles');
                 $alternative_alias = $article_alias . '-ru';
                 $data = Cache::read($alternative_alias, 'long');
                 if (!$data) {
@@ -222,7 +222,9 @@ class ArticlesController extends AppController
                 }
 
                 if ($data && $data->id) {
+                    $this->_setLogMsg('data_id = '. $data->id, 'articles');
                     $category_alias = $this->_getCategoryAlias($data->category_id);
+                    $this->_setLogMsg('category: ' . $category_alias, 'articles');
                     return $this->redirect('/ru/' . $category_alias . '/' . $alternative_alias);
                 } else {
                     throw new NotFoundException(__('Запись не найдена'));
