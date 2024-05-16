@@ -1,9 +1,3 @@
-# Uncomment the following to prevent the httpoxy vulnerability
-# See: https://httpoxy.org/
-#<IfModule mod_headers.c>
-#    RequestHeader unset Proxy
-#</IfModule>
-
 <IfModule mod_rewrite.c>
     RewriteEngine on
 
@@ -12,6 +6,9 @@
 
     # Redirect all requests matching /{lang}/{category}/ to /{lang}/{category}
     RewriteRule ^([a-z]{2})/([^/]+)/$ /$1/$2 [R=301,L]
+
+    # Redirect all requests matching /{category}/ to /{category}
+    RewriteRule ^([^/]+)/$ /$1 [R=301,L]
 
     # Redirect root URL to webroot
     RewriteRule ^$ webroot/ [L]
