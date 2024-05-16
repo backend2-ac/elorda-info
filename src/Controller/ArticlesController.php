@@ -222,7 +222,7 @@ class ArticlesController extends AppController
 
                 if ($data && $data->id) {
                     $category_alias = $this->_getCategoryAlias($data->category_id);
-                    return $this->redirect('/ru/' . $category_alias . '/' . $article_alias);
+                    return $this->redirect('/ru/' . $category_alias . '/' . $article_alias, 301);
                 } else {
                     throw new NotFoundException(__('Запись не найдена'));
                 }
