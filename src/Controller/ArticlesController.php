@@ -449,7 +449,7 @@ class ArticlesController extends AppController
                 ->orderDesc('Articles.publish_start_at')
                 ->limit($per_page), $pag_settings));
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . $author_alias;
+        $canonical = 'https://elorda.info/' . $lang . 'writer/' . $author_alias;
         $this->set(compact('author_artilces', 'canonical','author'));
     }
 
@@ -507,7 +507,7 @@ class ArticlesController extends AppController
 
         $this->set('pagination', $this->paginate($tag_articles, ['total' => $count_tag_articles]));
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . $tag_alias;
+        $canonical = 'https://elorda.info/' . $lang . 'tag/' . $tag_alias;
         $this->set(compact('tag_articles', 'canonical', 'tag'));
     }
 
