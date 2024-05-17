@@ -306,7 +306,7 @@ class ArticlesController extends AppController
         $meta['keys'] = $data['meta_keywords'];
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
         $canonical = 'https://elorda.info/' . $lang . $category_alias . '/' . $data['alias'];
-        $short_desc = Text::truncate($data['body'], 157, [
+        $short_desc = Text::truncate(strip_tags($data['body']), 157, [
             'ellipsis' => '...',
             'exact' => false
         ]);
