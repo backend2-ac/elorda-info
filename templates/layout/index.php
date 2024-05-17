@@ -34,14 +34,12 @@
                     {
                         "@context": "http://schema.org",
                         "@type": "NewsArticle",
-                        "headline": "<?= str_replace('"', '&quot;', $data['title']) ?>",
-                        "url": "https://<?= $_SERVER['HTTP_HOST'] ?><?= $_SERVER['REQUEST_URI'] ?>",
-                        "datePublished": "<?= $data['publish_start_at'] ?>",
-
-
-                        "image":"https://<?= $_SERVER['HTTP_HOST'] ?>/img/articles/<?= $data['img']?>",
-                        "description": "<?= h(str_replace('"', '&quot;', $short_desc)) ?>"
-                    }
+                        "headline": "<?= htmlspecialchars($data['title'], ENT_QUOTES, 'UTF-8') ?>",
+    "url": "https://<?= htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8') ?><?= htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') ?>",
+    "datePublished": "<?= htmlspecialchars($data['publish_start_at'], ENT_QUOTES, 'UTF-8') ?>",
+    "image": "https://<?= htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8') ?>/img/articles/<?= htmlspecialchars($data['img'], ENT_QUOTES, 'UTF-8') ?>",
+    "description": "<?= htmlspecialchars($short_desc, ENT_QUOTES, 'UTF-8') ?>"
+}
                 </script>
             <?php endif; ?>
 		<?php endif; ?>
