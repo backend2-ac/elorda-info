@@ -19,32 +19,33 @@
 		<?php endif; ?>
         <meta name="yandex-verification" content="969963e49664da07" />
         <meta name="google-site-verification" content="UgeQyn3MPphuuIeNXK_pPuO_h1x-kv3icG0TufgKRT0" />
-		<?php if( $request['controller'] == 'Articles' && $request['action'] == 'view' ): ?>
-			<?php if( isset($data) && $data ): ?>
+        <?php if ($request['controller'] == 'Articles' && $request['action'] == 'view'): ?>
+            <?php if (isset($data) && $data): ?>
                 <meta property="og:site_name" content="elorda.info">
                 <meta property="og:locale" content="<?= $l == 'kz' ? 'kk_KZ' : 'ru_RU' ?>">
                 <meta property="og:type" content="article"/>
-				<meta property="og:url" content="https://<?= $_SERVER['HTTP_HOST'] ?><?= $_SERVER['REQUEST_URI'] ?>">
-				<meta property="og:title" content="<?= str_replace('"', '&quot;', $data['title']) ?>">
-				<?php if (isset($short_desc) && $short_desc): ?>
-                    <meta property="og:description" content="<?= h(str_replace('"', '&quot;', $short_desc)) ?>">
-				<?php endif; ?>
-                <meta property="og:image" content="https://<?= $_SERVER['HTTP_HOST'] ?>/img/articles/<?= $data['img']?>">
+                <meta property="og:url" content="https://<?= htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8') ?><?= htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') ?>">
+                <meta property="og:title" content="<?= htmlspecialchars($data['title'], ENT_QUOTES, 'UTF-8') ?>">
+            <?php if (isset($short_desc) && $short_desc): ?>
+            <meta property="og:description" content="<?= htmlspecialchars($short_desc, ENT_QUOTES, 'UTF-8') ?>">
+            <?php endif; ?>
+                <meta property="og:image" content="https://<?= htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8') ?>/img/articles/<?= htmlspecialchars($data['img'], ENT_QUOTES, 'UTF-8') ?>">
                 <script type="application/ld+json">
                     {
                         "@context": "http://schema.org",
                         "@type": "NewsArticle",
                         "headline": "<?= htmlspecialchars($data['title'], ENT_QUOTES, 'UTF-8') ?>",
-    "url": "https://<?= htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8') ?><?= htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') ?>",
-    "datePublished": "<?= htmlspecialchars($data['publish_start_at'], ENT_QUOTES, 'UTF-8') ?>",
-    "image": "https://<?= htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8') ?>/img/articles/<?= htmlspecialchars($data['img'], ENT_QUOTES, 'UTF-8') ?>",
-    "description": "<?= htmlspecialchars($short_desc, ENT_QUOTES, 'UTF-8') ?>"
-}
+            "url": "https://<?= htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8') ?><?= htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') ?>",
+            "datePublished": "<?= htmlspecialchars($data['publish_start_at'], ENT_QUOTES, 'UTF-8') ?>",
+            "image": "https://<?= htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8') ?>/img/articles/<?= htmlspecialchars($data['img'], ENT_QUOTES, 'UTF-8') ?>",
+            "description": "<?= htmlspecialchars($short_desc, ENT_QUOTES, 'UTF-8') ?>"
+        }
                 </script>
             <?php endif; ?>
-		<?php endif; ?>
+        <?php endif; ?>
 
-	    <!-- <link rel="stylesheet" href="/css/fancybox.css"> -->
+
+        <!-- <link rel="stylesheet" href="/css/fancybox.css"> -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?_v=20231128123125">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.css?_v=20231128123125">
 	    <link rel="stylesheet" href="/css/style.css?_v=3.37">
