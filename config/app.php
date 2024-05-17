@@ -376,6 +376,12 @@ return [
             'log' => false,
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
         ],
+//        'elasticsearch' => [
+//            'className' => 'Elasticsearch\Datasource\Connection',
+//            'driver' => 'Elasticsearch/Elasticsearch',
+//            'host' => 'localhost', // Elasticsearch host
+//            'port' => 9200, // Elasticsearch port
+//        ],
     ],
 
     /*
