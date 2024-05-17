@@ -21,10 +21,13 @@
         <meta name="google-site-verification" content="UgeQyn3MPphuuIeNXK_pPuO_h1x-kv3icG0TufgKRT0" />
 		<?php if( $request['controller'] == 'Articles' && $request['action'] == 'view' ): ?>
 			<?php if( isset($data) && $data ): ?>
+                <meta property="og:type" content="article"/>
 				<meta property="og:url" content="https://<?= $_SERVER['HTTP_HOST'] ?><?= $_SERVER['REQUEST_URI'] ?>">
 				<meta property="og:title" content="<?= str_replace('"', '&quot;', $data['title']) ?>">
-				<meta property="og:description" content="<?= str_replace('"', '&quot;', $data['sub_title']) ?>">
-				<meta property="og:image" content="https://<?= $_SERVER['HTTP_HOST'] ?>/img/articles/<?= $data['img']?>">
+				<?php if (isset($short_desc) && $short_desc): ?>
+                    <meta property="og:description" content="<?= str_replace('"', '&quot;', $short_desc) ?>">
+				<?php endif; ?>
+                <meta property="og:image" content="https://<?= $_SERVER['HTTP_HOST'] ?>/img/articles/<?= $data['img']?>">
 			<?php endif; ?>
 		<?php endif; ?>
 

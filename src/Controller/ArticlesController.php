@@ -21,6 +21,7 @@ use Cake\Datasource\Paginator;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
+use Cake\Utility\Text;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Http\Cookie\Cookie;
 use Cake\Http\Cookie\CookieCollection;
@@ -305,7 +306,11 @@ class ArticlesController extends AppController
         $meta['keys'] = $data['meta_keywords'];
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
         $canonical = 'https://elorda.info/' . $lang . $category_alias . '/' . $data['alias'];
-        $this->set( compact('data', 'canonical', 'meta', 'other_news', 'category_alias', 'article_alias', 'popular_news','last_news') );
+        $short_desc = Text::truncate($data['body'], 157, [
+            'ellipsis' => '...',
+            'exact' => false
+        ]);
+        $this->set( compact('data', 'short_desc', 'canonical', 'meta', 'other_news', 'category_alias', 'article_alias', 'popular_news','last_news') );
     }
 
     public function loadingview($article_id){
