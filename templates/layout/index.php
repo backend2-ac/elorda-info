@@ -30,7 +30,20 @@
                     <meta property="og:description" content="<?= h(str_replace('"', '&quot;', $short_desc)) ?>">
 				<?php endif; ?>
                 <meta property="og:image" content="https://<?= $_SERVER['HTTP_HOST'] ?>/img/articles/<?= $data['img']?>">
-			<?php endif; ?>
+                <script type="application/ld+json">
+                    {
+                        "@context": "http://schema.org",
+                        "@type": "NewsArticle",
+                        "headline": "<?= str_replace('"', '&quot;', $data['title']) ?>",
+                        "url": "https://<?= $_SERVER['HTTP_HOST'] ?><?= $_SERVER['REQUEST_URI'] ?>",
+                        "datePublished": "<?= $data['publish_start_at'] ?>",
+
+
+                        "image":"https://<?= $_SERVER['HTTP_HOST'] ?>/img/articles/<?= $data['img']?>",
+                        "description": "<?= h(str_replace('"', '&quot;', $short_desc)) ?>"
+                    }
+                </script>
+            <?php endif; ?>
 		<?php endif; ?>
 
 	    <!-- <link rel="stylesheet" href="/css/fancybox.css"> -->
