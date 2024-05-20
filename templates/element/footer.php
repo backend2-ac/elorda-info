@@ -7,7 +7,11 @@
                     <a href="/<?= $lang ?>" class="footer__logo">
                         <img src="/img/f-logo.png" alt="">
                     </a>
-                    <div class="footer__street"><?= $comps[33]['body'] ?></div>
+                    <div class="footer__street">
+                        <span><?= $comps[33]['body'] ?></span>
+                        <a href="tel:+7 705 532 22 84">+7 705 532 22 84</a>
+                        <a href="mailto:Elorda.info2023@gmail.com">Elorda.info2023@gmail.com</a>
+                    </div>
                 </div>
                 <?php if ($l == 'kz'): ?>
                     <div class="footer__list">
