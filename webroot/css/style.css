@@ -3705,10 +3705,6 @@ select {
     max-width: 1240px;
   }
 
-  .footer__street {
-    align-items: center;
-  }
-
   .title {
     font-size: 28px;
   }
@@ -4026,6 +4022,10 @@ select {
 @media (max-width: 1240px) {
   .container {
     max-width: 992px;
+  }
+
+  .footer__street {
+    align-items: center;
   }
 
   .content {
