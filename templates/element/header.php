@@ -184,6 +184,9 @@ if ($rates_data) {
                             <?php if ($request['controller'] == 'Articles'): ?>
                                 <a href="/ru/">рус</a>
                                 <a href="/">қаз</a>
+                            <?php elseif($request['controller'] == 'Pages' && $request['action'] == 'home'): ?>
+                                <a href="/ru/">рус</a>
+                                <a href="/">қаз</a>
                             <?php else: ?>
                                 <a href="/ru<?= str_replace(['/ru/', '/en/'], '/', $_SERVER['REQUEST_URI']) ?>">рус</a>
                                 <a href="<?= str_replace(['/ru/', '/en/'], '/', $_SERVER['REQUEST_URI']) ?>">қаз</a>
