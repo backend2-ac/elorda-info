@@ -896,7 +896,8 @@ select {
 
 .footer__text {
   /* padding-bottom: 75px; */
-  max-width: 200px;
+  max-width: 400px;
+  margin-top: 30px;
 }
 
 .footer__col {
@@ -4028,6 +4029,10 @@ select {
 @media (max-width: 1240px) {
   .container {
     max-width: 992px;
+  }
+
+  .footer__text {
+    max-width: unset;
   }
 
   .footer__street {
