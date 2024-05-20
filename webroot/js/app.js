@@ -247,6 +247,7 @@ for (let item of alertClose) {
 function initialWeather(){
     const weatherBlock = document.querySelector('.header__weather');
     if(weatherBlock) {
+        return false;
         const weatherImage = weatherBlock.querySelector('img');
         const weatherInfo = weatherBlock.querySelector('div');
         const weatherImageGismeteo = document.querySelector('.gsWeatherIcon img').src;
