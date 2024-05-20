@@ -890,12 +890,13 @@ select {
   display: flex;
   justify-content: space-between;
   padding-top: 90px;
-  /* padding-bottom: 75px; */
-  padding-bottom: 30px;
+  padding-bottom: 75px;
+  /* padding-bottom: 30px; */
 }
 
 .footer__text {
-  padding-bottom: 75px;
+  /* padding-bottom: 75px; */
+  max-width: 200px;
 }
 
 .footer__col {
