@@ -17,7 +17,8 @@
 			<meta name="description" content=""/>
 			<meta name="keywords" content=""/>
 		<?php endif; ?>
-        <meta name="yandex-verification" content="969963e49664da07" />
+<!--        <meta name="yandex-verification" content="969963e49664da07" />-->
+        <meta name="yandex-verification" content="7dbe47a5e5238323" />
         <meta name="google-site-verification" content="UgeQyn3MPphuuIeNXK_pPuO_h1x-kv3icG0TufgKRT0" />
         <?php if ($request['controller'] == 'Articles' && $request['action'] == 'view'): ?>
             <?php if (isset($data) && $data): ?>
