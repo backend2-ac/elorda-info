@@ -97,8 +97,8 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
         // Перенаправление с elordatest.kz на elorda.info
-        if ($this->request->getHost() === 'elordatest.kz') {
-            $newUrl = 'http://elorda.info' . $this->request->getRequestTarget();
+        if ($_SERVER['HTTP_HOST'] === 'elordatest.kz') {
+            $newUrl = 'https://elorda.info' . $this->request->getRequestTarget();
             throw new RedirectException($newUrl, 301);
         }
     }
