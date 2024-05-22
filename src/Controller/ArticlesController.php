@@ -179,7 +179,7 @@ class ArticlesController extends AppController
             }
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . $category_alias;
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . $category_alias;
         $this->set( compact('data', 'canonical','meta', 'category_alias', 'cur_cat',  'last_news', 'popular_news') );
     }
 
@@ -305,7 +305,7 @@ class ArticlesController extends AppController
         }
         $meta['keys'] = $data['meta_keywords'];
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . $category_alias . '/' . $data['alias'];
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . $category_alias . '/' . $data['alias'];
         $short_desc = Text::truncate(strip_tags($data['body']), 157, [
             'ellipsis' => '...',
             'exact' => false
@@ -454,7 +454,7 @@ class ArticlesController extends AppController
                 ->orderDesc('Articles.publish_start_at')
                 ->limit($per_page), $pag_settings));
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . 'writer/' . $author_alias;
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . 'writer/' . $author_alias;
         $this->set(compact('author_artilces', 'canonical','author'));
     }
 
@@ -512,7 +512,7 @@ class ArticlesController extends AppController
 
         $this->set('pagination', $this->paginate($tag_articles, ['total' => $count_tag_articles]));
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . 'tag/' . $tag_alias;
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . 'tag/' . $tag_alias;
         $this->set(compact('tag_articles', 'canonical', 'tag'));
     }
 
@@ -580,7 +580,7 @@ class ArticlesController extends AppController
             }
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . 'search';
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . 'search';
         $this->set( compact('data', 'canonical', 'search_text') );
     }
 

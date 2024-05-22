@@ -185,7 +185,7 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang;
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang;
 
         $this->set(compact('meta', 'canonical', 'main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news'));
     }
@@ -251,7 +251,7 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . 'rules';
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . 'rules';
         $this->set(compact('meta', 'canonical','page_comps', 'page', 'popular_news', 'last_news', 'branches', 'employees'));
     }
 
@@ -319,7 +319,7 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . 'about';
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . 'about';
         $this->set(compact('meta', 'canonical','page_comps', 'page', 'popular_news', 'last_news', 'branches', 'employees'));
     }
 
@@ -345,7 +345,7 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . 'cooperation';
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . 'cooperation';
         $this->set(compact('meta', 'canonical', 'contact_comps','page_comps', 'page', 'docs'));
     }
 
@@ -365,7 +365,7 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . 'contact';
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . 'contact';
         $this->set(compact('meta', 'canonical','page_comps', 'page'));
     }
 
@@ -395,7 +395,7 @@ class PagesController extends AppController
             $meta['keys'] = $page['meta_keywords'];
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
-        $canonical = 'https://elorda.info/' . $lang . 'anticor';
+        $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . 'anticor';
         $this->set(compact('meta', 'canonical', 'page_comps', 'page', 'docs'));
     }
     protected function _getPagesComps($page_id)

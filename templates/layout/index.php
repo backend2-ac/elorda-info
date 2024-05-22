@@ -22,7 +22,7 @@
         <meta name="google-site-verification" content="UgeQyn3MPphuuIeNXK_pPuO_h1x-kv3icG0TufgKRT0" />
         <?php if ($request['controller'] == 'Articles' && $request['action'] == 'view'): ?>
             <?php if (isset($data) && $data): ?>
-                <meta property="og:site_name" content="elorda.info">
+                <meta property="og:site_name" content="<?= $_SERVER['HTTP_HOST'] ?>">
                 <meta property="og:locale" content="<?= $l == 'kz' ? 'kk_KZ' : 'ru_RU' ?>">
                 <meta property="og:type" content="article"/>
                 <meta property="og:url" content="https://<?= htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8') ?><?= htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') ?>">
@@ -53,7 +53,7 @@
         <?php if (isset($canonical) && $canonical): ?>
             <link rel="canonical" href="<?= $canonical ?>">
         <?php else: ?>
-            <link rel="canonical" href="https://elorda.info/">
+            <link rel="canonical" href="https://<?= $_SERVER['HTTP_HOST'] ?>">
         <?php endif; ?>
 	    <?= $this->Html->meta('csrfToken', $this->request->getAttribute('csrfToken')); ?>
 
