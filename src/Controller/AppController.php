@@ -18,6 +18,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 
+use Cake\Http\Exception\RedirectException;
 use Cake\I18n\FrozenTime;
 use Cake\I18n\I18n;
 
@@ -95,6 +96,11 @@ class AppController extends Controller
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+        // Перенаправление с elordatest.kz на elorda.info
+        if ($this->request->getHost() === 'elordatest.kz') {
+            $newUrl = 'http://elorda.info' . $this->request->getRequestTarget();
+            throw new RedirectException($newUrl, 301);
+        }
     }
 
     public function beforeFilter(\Cake\Event\EventInterface $event){
