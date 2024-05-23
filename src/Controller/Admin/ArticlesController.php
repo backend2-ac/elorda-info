@@ -30,7 +30,8 @@ class ArticlesController extends AppController{
     public $img_folder = 'articles';
     public $img_fields = ['img'];
 
-    public function index(){
+    public function index()
+    {
         $model = 'Articles';
 
         $conditions = [];
@@ -41,89 +42,64 @@ class ArticlesController extends AppController{
         $has_get_param = false;
         if (isset($_GET['lang']) && $_GET['lang']) {
             $locale = $_GET['lang'];
-            $conditions[] = [$model.'.locale' => $locale];
+            $conditions[$model.'.locale'] = $locale;
         }
-//        $cur_user = $this->request->getSession()->read('Auth.User');
-//
-//        if ($cur_user['role'] == 'author') {
-//            $author_id = $cur_user['author_id'];
-//            $conditions[] = [$model.'.author_id' => $author_id];
-//        }
-        if( isset($_GET['title']) && $_GET['title'] ){
+
+        if (isset($_GET['title']) && $_GET['title']) {
             $has_get_param = true;
             $title = trim($_GET['title']);
             $conditions[] = ['MATCH(Articles.title) AGAINST("' . $title . '")'];
         }
-        if( isset($_GET['author_id']) && $_GET['author_id'] ){
+
+        if (isset($_GET['author_id']) && $_GET['author_id']) {
             $author_id = $_GET['author_id'];
-            $conditions[] = [$model.'.author_id' => $author_id];
+            $conditions[$model.'.author_id'] = $author_id;
             $has_get_param = true;
         }
-        if (isset($_GET['category_id']) && $_GET['category_id']) {;
+
+        if (isset($_GET['category_id']) && $_GET['category_id']) {
             $category_id = $_GET['category_id'];
-            $conditions[] = [$model.'.category_id' => $category_id];
+            $conditions[$model.'.category_id'] = $category_id;
             $has_get_param = true;
         }
-        if( isset($_GET['views_sort']) && $_GET['views_sort'] ){
+
+        if (isset($_GET['views_sort']) && $_GET['views_sort']) {
             $has_get_param = true;
-            if( $_GET['views_sort'] == 100 ){
-                $views_sort = 100;
-                $conditions[] = [
-                    $model.'.views >=' => 0,
-                    $model.'.views <=' => 100
-                ];
-            } elseif( $_GET['views_sort'] == 500 ){
-                $views_sort = 500;
-                $conditions[] = [
-                    $model.'.views >=' => 100,
-                    $model.'.views <=' => 500
-                ];
-            } elseif( $_GET['views_sort'] == 1000 ){
-                $views_sort = 1000;
-                $conditions[] = [
-                    $model.'.views >=' => 500,
-                    $model.'.views <=' => 1000
-                ];
-            } elseif( $_GET['views_sort'] == 1001 ){
-                $views_sort = 1001;
-                $conditions[] = [$model.'.views >=' => 1001];
+            $views_sort = $_GET['views_sort'];
+            switch ($views_sort) {
+                case 100:
+                    $conditions[] = [$model.'.views >=' => 0, $model.'.views <=' => 100];
+                    break;
+                case 500:
+                    $conditions[] = [$model.'.views >=' => 100, $model.'.views <=' => 500];
+                    break;
+                case 1000:
+                    $conditions[] = [$model.'.views >=' => 500, $model.'.views <=' => 1000];
+                    break;
+                case 1001:
+                    $conditions[] = [$model.'.views >=' => 1001];
+                    break;
             }
         }
 
-        $this->set( compact('title', 'author_id', 'views_sort') );
+        $this->set(compact('title', 'author_id', 'views_sort'));
 
-        $cur_page = 1;
-        if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){
-            $cur_page = $_GET['page'];
-        }
-        $per_page = 20;
-        $offset = ($cur_page * $per_page) - $per_page;
-        $pag_settings = [
-            'limit' => $per_page,
+        $this->paginate = [
+            'limit' => 20,
+            'order' => [
+                $model.'.publish_start_at' => 'DESC',
+                $model.'.date' => 'DESC'
+            ],
+            'conditions' => $conditions
         ];
 
-        $data = $this->$model->find('all')
-            ->select(['id', 'title', 'views', 'author_id', 'category_id', 'locale', 'created_at', 'publish_start_at', 'img', 'img_path'])
-            ->where($conditions)
-            ->order([$model.'.publish_start_at' => 'DESC'])
-            ->order([$model.'.date' => 'DESC'])
-            ->limit($per_page)
-            ->offset($offset);
-
-        if ($has_get_param) {
-            $article_count = $this->Articles->find()
-                ->where($conditions)
-                ->count();
-        } else {
-            $article_count = $this->_getCountAllArticles($locale);
-        }
-
-        $this->set('pagination', $this->paginate($data, [
-            'total' => $article_count,
+        $data = $this->paginate($this->Articles->find('all')->select([
+            'id', 'title', 'views', 'author_id', 'category_id', 'locale', 'created_at', 'publish_start_at', 'img', 'img_path'
         ]));
+
         $categories = $this->_getAdminCategoriesWithLocale($locale);
         $authors = $this->_getAdminAuthors();
-        $this->set( compact('data', 'categories',  'authors') );
+        $this->set(compact('data', 'categories', 'authors'));
     }
 
     private function _updateCacheArticleCount($is_add_or_delete, $locale) {

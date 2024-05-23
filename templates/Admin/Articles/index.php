@@ -98,7 +98,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'ru'){
                 <p><b>Просмотров:</b> <?= number_format($item['views'], 0, '', ' ') ?></p>
               </td>
               <td>
-                <?= $categories[$item['category_id']] ?>
+                <?= isset($categories[$item['category_id']]) ? $categories[$item['category_id']] : '' ?>
               </td>
                 <td>
 <!--                    --><?php //= Cake\Log\Log::write('img', 'article_id: ' . $item['id'] . ' img: ' . $item['img'] . ' file_exists: ' . file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? ' True' : ' False'); ?>
