@@ -88,7 +88,6 @@ class ArticlesController extends AppController{
             'limit' => 20,
             'order' => [
                 $model.'.publish_start_at' => 'DESC',
-                $model.'.date' => 'DESC'
             ],
             'conditions' => $conditions
         ];
