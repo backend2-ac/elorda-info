@@ -41,7 +41,7 @@ use Authorization\AuthorizationServiceInterface;
 use Authorization\AuthorizationServiceProviderInterface;
 use Authorization\Middleware\AuthorizationMiddleware;
 use Authorization\Policy\OrmResolver;
-
+use App\Middleware\LanguageRedirectMiddleware;
 /**
  * Application setup class.
  *
@@ -108,6 +108,7 @@ implements AuthenticationServiceProviderInterface,
         $middlewareQueue
             // Catch any exceptions in the lower layers,
             // and make an error page/response
+            ->add(LanguageRedirectMiddleware::class)
             ->add(new ErrorHandlerMiddleware(Configure::read('Error')))
 
             // Handle plugin/theme assets like CakePHP normally does.
