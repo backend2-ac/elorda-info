@@ -57,7 +57,7 @@ class LanguageRedirectMiddleware
                 $newPath = '/ru' . $path;
                 return $response
                     ->withHeader('Location', $newPath)
-                    ->withStatus(302);
+                    ->withStatus(301);
             }
             break;
         }

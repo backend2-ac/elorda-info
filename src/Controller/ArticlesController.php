@@ -473,6 +473,15 @@ class ArticlesController extends AppController
         }
         if (!$tag) {
             throw new NotFoundException(__('Запись не найдена'));
+        } else {
+            $url = $_SERVER['REQUEST_URI'];
+            if (strpos($url, '/tag/') === false) {
+                if ($cur_lang == 'kz') {
+                    return $this->redirect('/tag/' . $tag_alias, 301);
+                } else {
+                    return $this->redirect('/ru/tag/' . $tag_alias, 301);
+                }
+            }
         }
         $cur_page = 1;
         if( isset($_GET['page']) && is_int(intval($_GET['page'])) ){

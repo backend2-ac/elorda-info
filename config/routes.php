@@ -318,6 +318,10 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
+    $builder->connect('/*', ['controller' => 'Articles', 'action' => 'tag'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+
     $builder->connect('/requests/:action', ['controller' => 'Requests'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
@@ -440,6 +444,8 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
     $builder->connect('/elge-kyzmet', ['controller' => 'Articles', 'action' => 'index', 'elge-kyzmet']);
     $builder->connect('/elge-kyzmet/*', ['controller' => 'Articles', 'action' => 'view']);
+    $builder->connect('/*', ['controller' => 'Articles', 'action' => 'tag']);
+
 //    $builder->connect('/:slug', ['controller' => 'Articles', 'action' => 'index'])
 //        ->setPass(['slug']);
 //
