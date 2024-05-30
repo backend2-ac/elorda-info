@@ -82,7 +82,7 @@ class ArticlesController extends AppController{
             }
         }
         $timezone = date_default_timezone_get();
-        $this->_setLogMsg('TimeZone: ' . $timezone, 'time');
+        $this->_setLogMsg('Admin TimeZone: ' . $timezone, 'time');
         $this->set(compact('title', 'author_id', 'views_sort'));
 
         $this->paginate = [
