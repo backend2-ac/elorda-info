@@ -186,8 +186,8 @@ class PagesController extends AppController
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
         $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang;
-        $timezone = date_default_timezone_get();
-        $this->_setLogMsg('Pages TimeZone: ' . $timezone, 'time');
+//        $timezone = date_default_timezone_get();
+//        $this->_setLogMsg('Pages TimeZone: ' . $timezone, 'time');
         $this->set(compact('meta', 'canonical', 'main_articles', 'capital_news', 'politica_news', 'society_news', 'culture_news', 'heroes_news', 'last_news', 'popular_news'));
     }
 
