@@ -45,12 +45,6 @@ class ArticlesController extends AppController{
             $conditions[$model.'.locale'] = $locale;
         }
 
-        if (isset($_GET['title']) && $_GET['title']) {
-            $has_get_param = true;
-            $title = trim($_GET['title']);
-            $conditions[] = ['MATCH(Articles.title) AGAINST("' . $title . '")'];
-        }
-
         if (isset($_GET['author_id']) && $_GET['author_id']) {
             $author_id = $_GET['author_id'];
             $conditions[$model.'.author_id'] = $author_id;
@@ -85,17 +79,43 @@ class ArticlesController extends AppController{
 //        $this->_setLogMsg('Admin TimeZone: ' . $timezone, 'time');
         $this->set(compact('title', 'author_id', 'views_sort'));
 
-        $this->paginate = [
-            'limit' => 20,
-            'order' => [
-                $model.'.publish_start_at' => 'DESC',
-            ],
-            'conditions' => $conditions
-        ];
+        if (isset($_GET['title']) && $_GET['title']) {
+            $has_get_param = true;
+            $title = trim($_GET['title']);
 
-        $data = $this->paginate($this->Articles->find('all')->select([
-            'id', 'title', 'views', 'author_id', 'category_id', 'locale', 'created_at', 'publish_start_at', 'img', 'img_path'
-        ]));
+            $data = $this->Articles->find('all')->select([
+                'id', 'title', 'views', 'author_id', 'category_id', 'locale', 'created_at', 'publish_start_at', 'img', 'img_path'
+            ])
+                ->where($conditions)
+                ->where(['Articles.title' => $title])
+                ->toArray();
+            if (!$data) {
+                $conditions[] = ['MATCH(Articles.title) AGAINST("' . $title . '")'];
+                $this->paginate = [
+                    'limit' => 20,
+                    'order' => [
+                        $model.'.publish_start_at' => 'DESC',
+                    ],
+                    'conditions' => $conditions
+                ];
+
+                $data = $this->paginate($this->Articles->find('all')->select([
+                    'id', 'title', 'views', 'author_id', 'category_id', 'locale', 'created_at', 'publish_start_at', 'img', 'img_path'
+                ]));
+            }
+        } else {
+            $this->paginate = [
+                'limit' => 20,
+                'order' => [
+                    $model.'.publish_start_at' => 'DESC',
+                ],
+                'conditions' => $conditions
+            ];
+
+            $data = $this->paginate($this->Articles->find('all')->select([
+                'id', 'title', 'views', 'author_id', 'category_id', 'locale', 'created_at', 'publish_start_at', 'img', 'img_path'
+            ]));
+        }
 
         $categories = $this->_getAdminCategoriesWithLocale($locale);
         $authors = $this->_getAdminAuthors();
