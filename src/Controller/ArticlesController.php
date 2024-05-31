@@ -573,7 +573,7 @@ class ArticlesController extends AppController
                     $query = $this->Articles->find()
                         ->where($conditions)
                         ->where([
-                            'MATCH(Articles.title) AGAINST("' . $search_text . '")'
+                            'MATCH(Articles.title, Articles.body) AGAINST("' . $search_text . '")'
                         ])
                         ->select(['id', 'category_id', 'title', 'alias', 'body', 'publish_start_at', 'img', 'img_path'])
                         ->orderDesc('Articles.publish_start_at');
