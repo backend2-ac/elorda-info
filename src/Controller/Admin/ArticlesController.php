@@ -40,6 +40,7 @@ class ArticlesController extends AppController{
         $author_id = '';
         $views_sort = '';
         $has_get_param = false;
+        $has_paginator = 1;
         if (isset($_GET['lang']) && $_GET['lang']) {
             $locale = $_GET['lang'];
             $conditions[$model.'.locale'] = $locale;
@@ -89,6 +90,7 @@ class ArticlesController extends AppController{
                 ->where($conditions)
                 ->where(['Articles.title' => $title])
                 ->toArray();
+            $has_paginator = 0;
             if (!$data) {
                 $conditions[] = ['MATCH(Articles.title) AGAINST("' . $title . '")'];
                 $this->paginate = [
@@ -119,7 +121,7 @@ class ArticlesController extends AppController{
 
         $categories = $this->_getAdminCategoriesWithLocale($locale);
         $authors = $this->_getAdminAuthors();
-        $this->set(compact('data', 'categories', 'authors'));
+        $this->set(compact('data', 'has_paginator', 'categories', 'authors'));
     }
 
     private function _updateCacheArticleCount($is_add_or_delete, $locale) {

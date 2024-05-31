@@ -140,7 +140,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'ru'){
   </div>
 
 </section>
-
+<?php if ($has_paginator): ?>
 <ul class="pagination">
   <?php
 
@@ -157,3 +157,4 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'ru'){
     ]);
   ?>
 </ul>
+<?php endif; ?>
