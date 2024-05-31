@@ -56,7 +56,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'ru'){
 
       <div class="submit_row form-group">
         <?php echo $this->Form->button('Поиск', array('class' => 'btn btn-success')); ?>
-        <a href="/admin/articles?lang=<?= $is_kz_articles ? 'kk' : 'ru' ?>&test=test" class="btn btn-danger">Сбросить</a>
+        <a href="/admin/articles?lang=<?= $is_kz_articles ? 'kk' : 'ru' ?>" class="btn btn-danger">Сбросить</a>
       </div>
 
     </form>
