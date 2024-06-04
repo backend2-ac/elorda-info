@@ -33,12 +33,12 @@
 					<?php if( $ru ): ?>
 						<div class="form-group">
 							<label for="inputItemOrder">Приоритет</label>
-							<?= $this->Form->text('item_order', array('id' => 'inputItemOrder', 'class' => 'form-control')); ?>
+							<?= $this->Form->text('item_order', array('id' => 'inputItemOrder', 'class' => 'form-control', 'required')); ?>
 						</div>
 					<?php endif; ?>
 					<div class="form-group">
 						<label for="inputName">ФИО</label>
-						<?= $this->Form->text('name', array('id' => 'inputName', 'class' => 'form-control', 'required')); ?>
+						<?= $this->Form->text('name', array('id' => 'inputName', 'class' => 'form-control')); ?>
 					</div>
 					<div class="form-group col_2">
 						<label for="inputPosition">Должность</label>
