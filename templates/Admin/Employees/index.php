@@ -1,5 +1,5 @@
-<?php 
-  $langs = ['ru', 'kz', 'en']; 
+<?php
+  $langs = ['ru', 'kz', 'en'];
 ?>
 
 <section class="content-header">
@@ -39,12 +39,20 @@
         			<td>
         				<?=$item['id']?>
         			</td>
-              <td>
-                <?= $item['name'] ?>
-              </td>
-              <td>
-                 <?= $item['position'] ?>
-              </td>
+                    <td>
+                        <?php foreach( $langs as $index => $key ): ?>
+                            <?php if( isset($item['_translations'][$key]) && $item['_translations'][$key]['name'] ): ?>
+                                <p> <b><?=$key?>:</b> <?= $item['_translations'][$key]['name'] ?></p>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </td>
+                    <td>
+                        <?php foreach( $langs as $index => $key ): ?>
+                            <?php if( isset($item['_translations'][$key]) && $item['_translations'][$key]['position'] ): ?>
+                                <p> <b><?=$key?>:</b> <?= $item['_translations'][$key]['position'] ?></p>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </td>
               <td>
         				<?= $item['item_order'] ?>
         			</td>
@@ -65,7 +73,7 @@
     <?php else: ?>
       <div class="emty_data">
         К сожалению в данном разделе еще не добавлена информация...
-      </div> 
+      </div>
     <?php endif ?>
     </div>
   </div>
@@ -73,14 +81,14 @@
 </section>
 
 <ul class="pagination">
-  <?php 
+  <?php
     $this->Paginator->options([
         'url' => [
             'lang' => $l,
         ]
     ]);
     echo $this->Paginator->numbers([
-      'first' => 1, 'last' => 1, 'modulus' => 2, 
-    ]); 
+      'first' => 1, 'last' => 1, 'modulus' => 2,
+    ]);
   ?>
 </ul>

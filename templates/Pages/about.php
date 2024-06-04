@@ -34,16 +34,20 @@
 	                                    	<?php foreach( $employees as $index => $employee ): ?>
 	                                    		<?php if($employee['branche_id'] ===$branche['id'] ): ?>
 			                                        <tr>
-			                                            <td>
+			                                            <?php if ($employee['name']): ?>
+                                                        <td>
 			                                                <div class="media__table-title"><?= $employee['name'] ?></div>
 			                                                <a href="mailto:" class="media__table-mail">
 			                                                    <img src="/img/mail-icon.png" alt="">
 			                                                    <?= $employee['mail'] ?>
 			                                                </a>
 			                                            </td>
-			                                            <td>
-			                                                <div class="media__table-title"><?= $employee['position'] ?></div>
-			                                            </td>
+                                                        <?php endif; ?>
+                                                        <?php if ($employee['position']): ?>
+                                                            <td>
+                                                                <div class="media__table-title"><?= $employee['position'] ?></div>
+                                                            </td>
+                                                        <?php endif; ?>
 			                                        </tr>
 			                                    <?php endif ?>
 	                                        <?php endforeach; ?>

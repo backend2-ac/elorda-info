@@ -17,7 +17,7 @@
 				<div class="card-header">
 					<h3 class="card-title">Данные</h3>
 					<div class="card-tools">
-						<a href="/admin/authors" type="button" class="btn btn-tool">
+						<a href="/admin/employees" type="button" class="btn btn-tool">
 							<i class="fas fa-arrow-left"></i>
 						</a>
 					</div>
@@ -44,7 +44,7 @@
 						<label for="inputCategoryId">Филилал</label>
 						<?= $this->Form->select('branche_id', $branches, array('id' => 'inputCategoryId', 'class' => 'form-control', 'required', 'empty' => 'Выбрать')); ?>
 					</div>
-				
+
 
 					<div class="submit_row form-group">
 						<?php echo $this->Form->button('Добавить', array('class' => 'btn btn-success')); ?>

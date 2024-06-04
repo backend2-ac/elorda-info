@@ -38,7 +38,7 @@ class EmployeesController extends AppController{
             'limit' => $per_page,
         ];
 
-        $data = $this->$model->find('all')
+        $data = $this->$model->find('translations')
             ->orderDesc('item_order')
             ->limit($per_page)->offset($offset)
             ->toList();
