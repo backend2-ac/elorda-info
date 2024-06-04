@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$ru = false;
 	if( isset($_GET['lang']) && $_GET['lang'] == 'ru' ){
 		$ru = true;
@@ -33,7 +33,7 @@
 					<?php if( $ru ): ?>
 						<div class="form-group">
 							<label for="inputItemOrder">Приоритет</label>
-							<?= $this->Form->text('item_order', array('id' => 'inputItemOrder', 'class' => 'form-control', 'required')); ?>
+							<?= $this->Form->text('item_order', array('id' => 'inputItemOrder', 'class' => 'form-control')); ?>
 						</div>
 					<?php endif; ?>
 					<div class="form-group">
@@ -48,7 +48,7 @@
 						<label for="inputMail">Почта</label>
 						<?= $this->Form->text('mail', array('id' => 'inputMail', 'class' => 'form-control')); ?>
 					</div>
-					
+
 
 					<?php if( $ru ): ?>
 						<div class="form-group col_2">
