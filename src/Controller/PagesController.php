@@ -163,7 +163,6 @@ class PagesController extends AppController
         }
 
         $last_news = Cache::read('last_news_' . $cur_lang, 'long');
-
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
                     ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
@@ -196,7 +195,6 @@ class PagesController extends AppController
         $cur_lang = Configure::read('Config.lang');
         $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
         $cur_date = date('Y-m-d H:i:s');
-        $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
         $conditions = [
             'Articles.publish_start_at <' => $cur_date,
         ];
@@ -233,8 +231,8 @@ class PagesController extends AppController
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
-                ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where($conditions)
+                ->where(['Articles.locale' => $locale])
                 ->orderDesc('Articles.publish_start_at')
                 ->limit(10)
                 ->toList();
@@ -264,8 +262,6 @@ class PagesController extends AppController
         $conditions = [
             'Articles.publish_start_at <' => $cur_date
         ];
-
-        $capital_news_category_id = $cur_lang == 'kz' ? 1 : 2;
 
         $branches = Cache::read('branches_' . $cur_lang, 'long');
         if (!$branches) {
@@ -301,8 +297,8 @@ class PagesController extends AppController
         if (!$last_news) {
             $last_news = $this->Articles->find('all')
                 ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
-                ->where(['Articles.category_id' => $capital_news_category_id])
                 ->where($conditions)
+                ->where(['Articles.locale' => $locale])
                 ->orderDesc('Articles.publish_start_at')
                 ->limit(10)
                 ->toList();
