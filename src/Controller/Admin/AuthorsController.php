@@ -200,7 +200,7 @@ class AuthorsController extends AppController{
 
                     if ($this->$admins_model->updateAll($data_admins, $conditions)) {
                         $this->Flash->success(__('Данные успешно обновлены в Admins'));
-                        $this->_cacheDelete();
+                        $this->_cacheDelete($item_id);
                     } else {
                         $this->Flash->error(__('Ошибка обновления данных в Admins'));
                         return $this->redirect($this->referer());
@@ -221,7 +221,7 @@ class AuthorsController extends AppController{
 
                     if ($this->$admins_model->save($admin_entity)) {
                         $this->Flash->success(__('Новая запись успешно добавлена в Admins'));
-                        $this->_cacheDelete();
+                        $this->_cacheDelete($item_id);
                     } else {
                         $this->Flash->error(__('Ошибка добавления новой записи в Admins'));
                         return $this->redirect($this->referer());
@@ -234,7 +234,7 @@ class AuthorsController extends AppController{
                 if ($this->$authors_model->save($existing_entity)) {
                     $this->Flash->success(__('Данные успешно обновлены в Authors'));
                     $this->request->getSession()->write('Auth.User.username', $data1['email']);
-                    $this->_cacheDelete();
+                    $this->_cacheDelete($item_id);
                 } else {
                     $this->Flash->error(__('Ошибка обновления данных в Authors'));
                 }
@@ -265,7 +265,7 @@ class AuthorsController extends AppController{
 
                 if ($this->$authors_model->save($data)) {
                     $this->Flash->success(__('Изменения сохранены'));
-                    $this->_cacheDelete();
+                    $this->_cacheDelete($item_id);
                     return $this->redirect($this->referer());
                 }
 
@@ -306,7 +306,7 @@ class AuthorsController extends AppController{
             // Если запись существует, удаляем ее
             if ($this->$admins_model->delete($admin_record)) {
                 $this->Flash->success(__('Запись в Admins успешно удалена'));
-                $this->_cacheDelete();
+                $this->_cacheDelete($item_id);
             } else {
                 $this->Flash->error(__('Ошибка удаления записи в Admins'));
                 return $this->redirect($this->referer());
@@ -317,7 +317,7 @@ class AuthorsController extends AppController{
         if ($this->$authors_model->delete($data)) {
             $this->Flash->success(__('Элемент успешно удален'));
             $this->_imgDelete($data, $this->img_fields);
-            $this->_cacheDelete();
+            $this->_cacheDelete($item_id);
         } else {
             $this->Flash->error(__('Ошибка удаления'));
         }
@@ -345,9 +345,11 @@ class AuthorsController extends AppController{
         }
     }
 
-    protected function _cacheDelete(){
+    protected function _cacheDelete($item_id = null){
         Cache::delete('admin_authors', 'eternal');
-
+        if ($item_id) {
+            Cache::delete('author_' . $item_id, 'eternal');
+        }
     }
 }
 
