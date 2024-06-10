@@ -10,6 +10,9 @@
     # Redirect all requests matching /{category}/ to /{category}
     RewriteRule ^([^/]+)/$ /$1 [R=301,L]
 
+    # Prevent endless loops by ignoring requests already in /webroot/
+    RewriteCond %{REQUEST_URI} !^/webroot/
+
     # Redirect root URL to webroot
     RewriteRule ^$ webroot/ [L]
 
