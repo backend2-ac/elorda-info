@@ -28,6 +28,9 @@
                                     </div>
                                 <?php endif; ?>
                             </div>
+                            <div class="inner__text">
+                                <?= isset($page_comps[36]['body']) ? $page_comps[36]['body'] : '' ?>
+                            </div>
                         </div>
                     </section>
                 </div>
