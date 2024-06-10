@@ -19,16 +19,4 @@
 
     # Перенаправление всех остальных запросов на /webroot/
     RewriteRule (.*) webroot/$1 [L]
-
-    # Обработка ЧПУ запросов, перенаправление на index.php
-    <IfModule mod_rewrite.c>
-        RewriteEngine On
-
-        # Исключаем существующие файлы и директории из переписывания
-        RewriteCond %{REQUEST_FILENAME} !-f
-        RewriteCond %{REQUEST_FILENAME} !-d
-
-        # Перенаправляем все запросы на index.php
-        RewriteRule ^ index.php [QSA,L]
-    </IfModule>
 </IfModule>

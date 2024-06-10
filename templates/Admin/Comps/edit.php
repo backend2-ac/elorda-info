@@ -1,6 +1,6 @@
 
 <?php
-	$editor_id = [9, 10,19];
+	$editor_id = [6];
 	$docs_ids = [2, 3];
 	$embed_id = 1;
 ?>
