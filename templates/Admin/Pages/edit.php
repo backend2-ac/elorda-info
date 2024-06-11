@@ -215,7 +215,7 @@ $accept_files_types = '
 															<?php else: ?>
 																<?php foreach( $langs as $index => $key ): ?>
 																	<?php if( isset($item['_translations'][$key]) && $item['_translations'][$key]['body'] ): ?>
-																		<p> <b><?=$key?>:</b> <?= (mb_strlen($item['_translations'][$key]['body']) > 150) ? mb_substr($item['_translations'][$key]['body'], 0, 150) . '...' : $item['_translations'][$key]['body'] ?></p>
+																		<p> <b><?=$key?>:</b> <?= (mb_strlen(strip_tags($item['_translations'][$key]['body'])) > 150) ? mb_substr(strip_tags($item['_translations'][$key]['body']), 0, 150) . '...' : strip_tags($item['_translations'][$key]['body']) ?></p>
 																	<?php endif; ?>
 																<?php endforeach; ?>
 															<?php endif; ?>
