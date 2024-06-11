@@ -370,7 +370,35 @@ class PagesController extends AppController
     {
 
         $cur_lang = Configure::read('Config.lang');
-//        $this->Documents->setLocale($cur_lang);
+        $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
+        $cur_date = date('Y-m-d H:i:s');
+        $conditions = [
+            'Articles.publish_start_at <' => $cur_date,
+        ];
+        $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
+        if (!$popular_news) {
+            $popular_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
+                ->where($conditions)
+                ->where(['locale' => $locale])
+                ->orderDesc('views')
+                ->limit(10)
+                ->toList();
+            Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
+        }
+
+        $last_news = Cache::read('last_news_' . $cur_lang, 'long');
+        if (!$last_news) {
+            $last_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
+                ->where($conditions)
+                ->where(['Articles.locale' => $locale])
+                ->orderDesc('Articles.publish_start_at')
+                ->limit(10)
+                ->toList();
+            Cache::write('last_news_' . $cur_lang, $last_news, 'long');
+        }
+
         $docs = Cache::read('anticor_docs_' . $cur_lang, 'eternal');
         if (!$docs) {
             $docs = $this->Documents->find('translations')
@@ -393,13 +421,43 @@ class PagesController extends AppController
         }
         $lang = $cur_lang == 'kz' ? '' : 'ru/';
         $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . 'anticor';
-        $this->set(compact('meta', 'canonical', 'page_comps', 'page', 'docs'));
+        $this->set(compact('meta', 'canonical', 'page_comps', 'page', 'docs', 'popular_news', 'last_news'));
     }
 
     public function docContent()
     {
+        $cur_lang = Configure::read('Config.lang');
+        $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
+        $cur_date = date('Y-m-d H:i:s');
+        $conditions = [
+            'Articles.publish_start_at <' => $cur_date,
+        ];
+        $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
+        if (!$popular_news) {
+            $popular_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
+                ->where($conditions)
+                ->where(['locale' => $locale])
+                ->orderDesc('views')
+                ->limit(10)
+                ->toList();
+            Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
+        }
+
+        $last_news = Cache::read('last_news_' . $cur_lang, 'long');
+        if (!$last_news) {
+            $last_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
+                ->where($conditions)
+                ->where(['Articles.locale' => $locale])
+                ->orderDesc('Articles.publish_start_at')
+                ->limit(10)
+                ->toList();
+            Cache::write('last_news_' . $cur_lang, $last_news, 'long');
+        }
+
         $page_comps = $this->_getPagesComps(6);
-        $this->set(compact('page_comps'));
+        $this->set(compact('page_comps', 'popular_news', 'last_news'));
     }
     protected function _getPagesComps($page_id)
     {
