@@ -395,6 +395,12 @@ class PagesController extends AppController
         $canonical = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $lang . 'anticor';
         $this->set(compact('meta', 'canonical', 'page_comps', 'page', 'docs'));
     }
+
+    public function docContent()
+    {
+        $page_comps = $this->_getPagesComps(6);
+        $this->set(compact('page_comps'));
+    }
     protected function _getPagesComps($page_id)
     {
         $cur_lang = Configure::read('Config.lang');

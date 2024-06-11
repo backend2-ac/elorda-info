@@ -131,6 +131,9 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
+    $builder->connect('/doc-content', ['controller' => 'Pages', 'action' => 'docContent'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
 
     $builder->connect('/cooperation', ['controller' => 'Pages', 'action' => 'cooperation'])
         ->setPatterns(['lang' => 'ru|kz|en'])
@@ -339,6 +342,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
     $builder->connect('/contact', ['controller' => 'Pages', 'action' => 'contact']);
     $builder->connect('/anticor', ['controller' => 'Pages', 'action' => 'anticor']);
+    $builder->connect('/doc-content', ['controller' => 'Pages', 'action' => 'docContent']);
 
     $builder->connect('/update-cache', ['controller' => 'Articles', 'action' => 'updateCache']);
     $builder->connect('/search', ['controller' => 'Articles', 'action' => 'search']);

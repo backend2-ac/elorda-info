@@ -22,15 +22,15 @@
                                             <?php if ($index < 2): ?>
                                                 <p><a href="/files/docs/<?= $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
                                             <?php else: ?>
-                                                <p><?= $index - 1 ?>. <a href="/files/docs/<?= $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
+                                                <p><?= $index - 1 ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/files/docs/' . $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endif; ?>
                             </div>
-                            <div class="inner__text">
-                                <?= isset($page_comps[36]['body']) ? $page_comps[36]['body'] : '' ?>
-                            </div>
+<!--                            <div class="inner__text">-->
+<!--                                --><?php //= isset($page_comps[36]['body']) ? $page_comps[36]['body'] : '' ?>
+<!--                            </div>-->
                         </div>
                     </section>
                 </div>
