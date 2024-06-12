@@ -307,7 +307,8 @@ class AppController extends Controller
                 'kogam' => 'kogam',
                 'sukhbat' => 'sukhbat',
                 'tulga' => 'tulga',
-                'elge-kyzmet' => 'elge-kyzmet'
+                'elge-kyzmet' => 'elge-kyzmet',
+                'ekologia' => 'ekologia'
 
             ];
 

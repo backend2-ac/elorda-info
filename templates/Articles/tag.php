@@ -79,7 +79,7 @@
                     $this->Paginator->options([
                         'url' => [
                             $tag['alias'],
-                            'lang' => $l,
+//                            'lang' => $l,
                         ]
                     ]);
                     echo $this->Paginator->numbers([
