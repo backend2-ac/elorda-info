@@ -25,7 +25,8 @@
             <tr>
                 <th style="width: 1%">ID</th>
                 <th style="width: 8%">Название</th>
-                <th style="width: 5%">Приоритет</th>
+                <th style="width: 8%">slug</th>
+                <th style="width: 5%">Язык</th>
                 <th style="width: 5%; text-align: right;">Редактирование</th>
             </tr>
         </thead>
@@ -39,7 +40,10 @@
                         <?= $item['title'] ?>
                     </td>
                     <td>
-                        <?= $item['item_order'] ?>
+                        <?= $item['alias'] ?>
+                    </td>
+                    <td>
+                        <?= $item['locale'] ?>
                     </td>
                     <td class="project-actions text-right">
                         <a class="btn btn-info btn-sm" href="/admin/categories/edit/<?=$item['id']?>?">

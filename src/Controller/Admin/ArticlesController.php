@@ -226,31 +226,11 @@ class ArticlesController extends AppController{
         $this->set( compact('categories',  'authors', 'tags_list') );
     }
 
-    private function _updateArticleCache($new_article) {
-        $cache_key = $new_article->alias;
-        Cache::write($cache_key, $new_article, 'long');
-    }
-
-    private function _deleteArticleCache($article) {
-        $cache_key = $article->alias;
-        Cache::delete($cache_key, 'long');
-    }
-
     public function edit($item_id = null) {
         if (isset($_GET['lang']) && $_GET['lang']) {
             $locale = $_GET['lang'];
         }        $model = 'Articles';
         date_default_timezone_set('Asia/Atyrau');
-//        $cur_user = $this->request->getSession()->read('Auth.User');
-//        if ($cur_user['role'] == 'author') {
-//            $is_author_article = $this->$model->find()
-//                ->where(['Articles.author_id' => $cur_user['author_id'], 'Articles.id' => $item_id])
-//                ->toArray();
-//            if (!$is_author_article) {
-//                $this->Flash->error(__('У вас нет доступа!'));
-//                $this->redirect(['controller' => 'Admin', 'action' => 'index']);
-//            }
-//        }
         $data = $this->$model->get($item_id, [
             'contain' => ['Tags']
         ]);
@@ -345,16 +325,14 @@ class ArticlesController extends AppController{
 
     public function delete($item_id = null){
         $model = 'Articles';
-        $locale = strpos($_SERVER['REQUEST_URI'], 'kz') ? 'kk' : 'ru';
         $is_add_or_delete = false;
         $this->request->allowMethod(['post', 'delete']);
         $data = $this->$model->get($item_id);
-
         if ($this->$model->delete($data)) {
             $this->Flash->success(__('Элемент успешно удален'));
             $this->_imgDelete($data, $this->img_fields);
-            $this->_clearCategoryCache($data->category_id, $locale, $data->alias);
-            $this->_updateCacheArticleCount($is_add_or_delete, $locale);
+            $this->clearCacheAfterDeleting($data->category_id, $data->locale, $data->alias);
+            $this->_updateCacheArticleCount($is_add_or_delete, $data->locale);
 //            $this->_cacheDelete();
             return $this->redirect( $this->referer() );
         } else{
@@ -402,6 +380,23 @@ class ArticlesController extends AppController{
         if ($article_alias) {
             Cache::delete($article_alias, 'long');
         }
+    }
+    private function clearCacheAfterDeleting($category_id, $locale, $article_alias = null) {
+        $locale = $locale == 'kk' ? 'kz' : 'ru';
+        $category_alias = $this->_getCategoryAlias($category_id);
+        Cache::delete($category_alias . '_' . $locale, 'long');
+        Cache::delete($category_alias . '_popular_news', 'long');
+        Cache::delete($category_alias . '_last_news', 'long');
+        Cache::delete( 'main_articles_' . $locale, 'long');
+        Cache::delete('last_news_' . $locale, 'long');
+        Cache::delete('popular_news_' . $locale, 'long');
+        Cache::delete($category_alias . '_news_page_1', 'long');
+        Cache::delete('capital_news_' . $locale, 'long');
+        Cache::delete('society_news_' . $locale, 'long');
+        Cache::delete('politica_news_' . $locale, 'long');
+        Cache::delete('culture_news_' . $locale, 'long');
+        Cache::delete('heroes_news_' . $locale, 'long');
+        Cache::delete($article_alias, 'long');
     }
     protected function _cacheDelete(){
         Cache::clearGroup('long');
