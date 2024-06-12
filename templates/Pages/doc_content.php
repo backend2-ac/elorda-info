@@ -21,36 +21,38 @@
                         <div class="news-actual__items active" data-id="1">
                             <?php if( $last_news ): ?>
                                 <?php foreach( $last_news as $index => $item ): ?>
-                                    <a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>" class="news-actual__item">
-                                        <div class="news-actual__item-img">
-                                            <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
-                                        </div>
+                                    <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
+                                        <?php if ($item['img'] || $item['img_path']): ?>
+                                            <div class="news-actual__item-img">
+                                                <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
+                                            </div>
+                                        <?php endif; ?>
                                         <div class="news-actual__item-info">
                                             <div class="news-actual__item-date">
-                                                <?= $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') ?>
-                                            </div>
+                                                <?= $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') ?></div>
                                             <div class="news-actual__item-title"><?= $item['title'] ?></div>
                                         </div>
                                     </a>
                                 <?php endforeach; ?>
-                            <?php endif ?>
+                            <?php endif; ?>
                         </div>
                         <div class="news-actual__items" data-id="2">
                             <?php if( $popular_news ): ?>
                                 <?php foreach( $popular_news as $index => $item ): ?>
-                                    <a href="/<?= $lang ?><?= $category_alias ?>/<?= $item['alias'] ?>"  class="news-actual__item">
-                                        <div class="news-actual__item-img">
-                                            <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
-                                        </div>
+                                    <a href="/<?= $lang . $categories_slug_parts[$full_categories[$item['category_id']]['alias']] ?>/<?= $item['alias'] ?>" class="news-actual__item">
+                                        <?php if ($item['img'] || $item['img_path']): ?>
+                                            <div class="news-actual__item-img">
+                                                <img src="<?= file_exists('/var/www/vhosts/elorda.info/httpdocs/webroot/img/articles/' . $item['img']) ? '/img/articles/' . $item['img'] : '/img/articles' . $item['img_path'] ?>" alt="<?= $item['title'] ?>">
+                                            </div>
+                                        <?php endif; ?>
                                         <div class="news-actual__item-info">
                                             <div class="news-actual__item-date">
-                                                <?= $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') ?>
-                                            </div>
+                                                <?= $this->Time->format($item['publish_start_at'], 'dd.MM.yyyy | HH:mm') ?></div>
                                             <div class="news-actual__item-title"><?= $item['title'] ?></div>
                                         </div>
                                     </a>
                                 <?php endforeach; ?>
-                            <?php endif ?>
+                            <?php endif; ?>
                         </div>
                         <?php if ($l == 'kz'): ?>
                             <a href="/<?= $lang ?>latest-news" class="news-actual__link">
@@ -70,6 +72,12 @@
                     </div>
                     <?= $this->element('telegram') ?>
                     <?= $this->element('youtube') ?>
+                    <a href="http://astana-akshamy.kz/" target="_blank" class="ban ban-2">
+                        <img src="/img/ban-3.JPG" alt="">
+                    </a>
+                    <a href="http://vechastana.kz/" target="_blank" class="ban ban-1">
+                        <img src="/img/ban-4.JPG" alt="">
+                    </a>
                 </div>
             </div>
         </div>
