@@ -470,13 +470,13 @@ class PagesController extends AppController
             if (isset($all_page_comps[$page_id]) && $all_page_comps[$page_id]) {
                 $page_comps = $all_page_comps[$page_id];
             } else {
-                $all_comps = Cache::read('all_comps_page_id_' . $page_id, 'eternal');
-                if (!$all_comps) {
+//                $all_comps = Cache::read('all_comps_page_id_' . $page_id, 'eternal');
+//                if (!$all_comps) {
                     $all_comps = $this->Comps->find('all')
                         ->where(['Comps.page_id' => $page_id])
                         ->toList();
-                    Cache::write('all_comps_page_id_' . $page_id, $all_comps, 'eternal');
-                }
+//                    Cache::write('all_comps_page_id_' . $page_id, $all_comps, 'eternal');
+//                }
 
                 foreach ($all_comps as $item) {
                     $page_comps[$item['id']] = $item;
