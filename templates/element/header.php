@@ -171,9 +171,9 @@ if ($rates_data) {
                         <a href="javascript:;" class="header__lang-active">
                             <img src="/img/lang-icon.svg" alt="" class="icon-svg">
                             <?php if($l == 'ru'): ?>
-                            	рус
+                            	RU
                         	<?php else: ?>
-                        		қаз
+                        		KZ
                         	<?php endif ?>
 
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -182,14 +182,14 @@ if ($rates_data) {
                         </a>
                         <div class="header__lang-other">
                             <?php if ($request['controller'] == 'Articles'): ?>
-                                <a href="/ru/">рус</a>
-                                <a href="/">қаз</a>
+                                <a href="/ru/">RU</a>
+                                <a href="/">KZ</a>
                             <?php elseif($request['controller'] == 'Pages' && $request['action'] == 'home'): ?>
-                                <a href="/ru/">рус</a>
-                                <a href="/">қаз</a>
+                                <a href="/ru/">RU</a>
+                                <a href="/">KZ</a>
                             <?php else: ?>
-                                <a href="/ru<?= str_replace(['/ru/', '/en/'], '/', $_SERVER['REQUEST_URI']) ?>">рус</a>
-                                <a href="<?= str_replace(['/ru/', '/en/'], '/', $_SERVER['REQUEST_URI']) ?>">қаз</a>
+                                <a href="/ru<?= str_replace(['/ru/', '/en/'], '/', $_SERVER['REQUEST_URI']) ?>">RU</a>
+                                <a href="<?= str_replace(['/ru/', '/en/'], '/', $_SERVER['REQUEST_URI']) ?>">KZ</a>
                         <?php endif; ?>
                         </div>
                     </div>
