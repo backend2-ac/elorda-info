@@ -2,7 +2,7 @@
     <div class="widget__tg">
         <div class="widget__tg-block">
             <a href="<?= $comps[8]['body'] ?>" target="_blank" class="widget__tg-header">
-                <?= __('Последние в нашем Telegram-канале') ?>
+                <?= __('Последнее в нашем Telegram-канале') ?>
                 <img src="/img/tg-widget-icon.png" alt="">
             </a>
             <div class="widget__tg-items">
