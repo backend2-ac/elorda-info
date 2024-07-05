@@ -1,4 +1,6 @@
-
+<?php
+$i = 1;
+?>
 <main>
     <div class="container">
         <div class="wrapper-parent">
@@ -23,8 +25,9 @@
                                                 <p><a href="/files/docs/<?= $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
                                             <?php else: ?>
                                                 <?php if ($index != 8): ?>
-                                                    <p><?= $index - 1 ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/files/docs/' . $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
+                                                    <p><?= $i ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/files/docs/' . $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
                                                 <?php endif; ?>
+                                                <?php $i++; ?>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>
