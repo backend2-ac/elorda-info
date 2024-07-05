@@ -25,7 +25,7 @@
                                             <?php if ($index < 2): ?>
                                                 <p><a href="/<?= $lang . 'doc-view/' . $doc['id'] ?>"><?= $doc['title'] ?></a></p>
                                             <?php else: ?>
-                                                <p><?= $i ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/' . $lang . 'doc-view/' . $doc['id'] ?>"><?= $doc['title'] ?></a></p>
+                                                <p><?= $i ?>. <a href="<?= '/' . $lang . 'doc-view/' . $doc['id'] ?>"><?= $doc['title'] ?></a></p>
                                                 <?php $i++; ?>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
