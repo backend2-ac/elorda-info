@@ -1,6 +1,21 @@
 
 <main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js"></script>
+    <style>
+        #pdf-viewer {
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            border: none;
+        }
+        .inner__text {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+    </style>
     <div class="container">
         <div class="wrapper-parent">
             <div class="wrapper">
