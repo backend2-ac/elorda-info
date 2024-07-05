@@ -459,6 +459,52 @@ class PagesController extends AppController
         $page_comps = $this->_getPagesComps(6);
         $this->set(compact('page_comps', 'popular_news', 'last_news'));
     }
+    public function docView($doc_id)
+    {
+        $cur_lang = Configure::read('Config.lang');
+        $locale = $cur_lang == 'kz' ? 'kk' : $cur_lang;
+        $cur_date = date('Y-m-d H:i:s');
+        $conditions = [
+            'Articles.publish_start_at <' => $cur_date,
+        ];
+        $popular_news = Cache::read('popular_news_' . $cur_lang, 'long');
+        if (!$popular_news) {
+            $popular_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'views', 'publish_start_at'])
+                ->where($conditions)
+                ->where(['locale' => $locale])
+                ->orderDesc('views')
+                ->limit(10)
+                ->toList();
+            Cache::write('popular_news_' . $cur_lang, $popular_news, 'long');
+        }
+
+        $last_news = Cache::read('last_news_' . $cur_lang, 'long');
+        if (!$last_news) {
+            $last_news = $this->Articles->find('all')
+                ->select(['id', 'category_id', 'title', 'img', 'img_path', 'alias', 'publish_start_at'])
+                ->where($conditions)
+                ->where(['Articles.locale' => $locale])
+                ->orderDesc('Articles.publish_start_at')
+                ->limit(10)
+                ->toList();
+            Cache::write('last_news_' . $cur_lang, $last_news, 'long');
+        }
+
+        $doc = Cache::read('anticor_doc_' . $doc_id . '_' . $cur_lang, 'eternal');
+        if (!$doc) {
+            $doc = $this->Documents->find('translations')
+                ->where(['Documents.id' => $doc_id])
+                ->first();
+            if (!$doc) {
+                throw new NotFoundException(__('Документ не найдена'));
+            }
+            Cache::write('anticor_doc_' . $doc_id . '_' . $cur_lang, $doc, 'eternal');
+        }
+
+        $page_comps = $this->_getPagesComps(6);
+        $this->set(compact('doc', 'page_comps', 'popular_news', 'last_news'));
+    }
     protected function _getPagesComps($page_id)
     {
         $cur_lang = Configure::read('Config.lang');

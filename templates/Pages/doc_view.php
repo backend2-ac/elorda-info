@@ -1,40 +1,27 @@
 
 <main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js"></script>
     <div class="container">
         <div class="wrapper-parent">
             <div class="wrapper">
                 <div class="wrapper-col">
                     <section class="media">
                         <div class="media__container block">
-                            <ul class="breadcrumbs">
-                                <li>
-                                    <a  href="/<?= $lang ?>"><?= __('Главная') ?></a>
-                                </li>
-                                <li>
-                                    <a href="#"><?= $page['title'] ?></a>
-                                </li>
-                            </ul>
-                            <h1 class="media__title title"><?= __('Антикоррупционный комплаенс') ?></h1>
-                            <div class="media__text">
-                                <?php if ($docs): ?>
-                                <?php unset($docs[8]);
-                                    $i = 1;
-                                ?>
-                                    <div class="inner__text">
-                                        <?php foreach ($docs as $index => $doc): ?>
-                                            <?php if ($index < 2): ?>
-                                                <p><a href="/<?= $lang . 'doc-view/' . $doc['id'] ?>"><?= $doc['title'] ?></a></p>
-                                            <?php else: ?>
-                                                <p><?= $i ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/' . $lang . 'doc-view/' . $doc['id'] ?>"><?= $doc['title'] ?></a></p>
-                                                <?php $i++; ?>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-<!--                            <div class="inner__text">-->
-<!--                                --><?php //= isset($page_comps[36]['body']) ? $page_comps[36]['body'] : '' ?>
-<!--                            </div>-->
+                            <?php if ($doc): ?>
+                                <div class="inner__text">
+                                    <h2><?= $doc['title'] ?></h2>
+                                    <div id="pdf-viewer"></div>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            PDFObject.embed("/files/docs/<?= $doc['doc'] ?>", "#pdf-viewer");
+                                        });
+                                    </script>
+                                </div>
+                            <?php else: ?>
+                                <div class="inner__text">
+                                    <p>No document found.</p>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </section>
                 </div>
