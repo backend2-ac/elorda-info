@@ -123,6 +123,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const links = document.querySelectorAll('.doc-link');
+        let currentViewer = null;
 
         links.forEach(link => {
             link.addEventListener('click', function () {
@@ -130,10 +131,21 @@
                 const viewerId = this.getAttribute('data-viewer-id');
                 const viewerDiv = document.getElementById(viewerId);
 
-                // Clear the existing viewer content
-                viewerDiv.innerHTML = '';
+                // If there is a currently open viewer, hide it
+                if (currentViewer && currentViewer !== viewerDiv) {
+                    currentViewer.style.display = 'none';
+                }
 
-                PDFObject.embed(pdfUrl, "#" + viewerId);
+                // If the clicked viewer is the same as the current one, toggle its visibility
+                if (currentViewer === viewerDiv) {
+                    viewerDiv.style.display = viewerDiv.style.display === 'none' ? 'block' : 'none';
+                } else {
+                    // Otherwise, show the new viewer and update the current viewer
+                    viewerDiv.innerHTML = '';
+                    PDFObject.embed(pdfUrl, "#" + viewerId);
+                    viewerDiv.style.display = 'block';
+                    currentViewer = viewerDiv;
+                }
             });
         });
     });
