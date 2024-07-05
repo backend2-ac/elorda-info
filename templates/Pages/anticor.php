@@ -17,13 +17,16 @@
                             <h1 class="media__title title"><?= __('Антикоррупционный комплаенс') ?></h1>
                             <div class="media__text">
                                 <?php if ($docs): ?>
-                                <?php unset($docs[8]); ?>
+                                <?php unset($docs[8]);
+                                    $i = 1;
+                                ?>
                                     <div class="inner__text">
                                         <?php foreach ($docs as $index => $doc): ?>
                                             <?php if ($index < 2): ?>
                                                 <p><a href="/files/docs/<?= $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
                                             <?php else: ?>
-                                                <p><?= $index - 1 ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/files/docs/' . $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
+                                                <p><?= $i ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/files/docs/' . $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
+                                                <?php $i++; ?>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>
