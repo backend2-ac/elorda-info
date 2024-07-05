@@ -22,7 +22,9 @@
                                             <?php if ($index < 2): ?>
                                                 <p><a href="/files/docs/<?= $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
                                             <?php else: ?>
-                                                <p><?= $index - 1 ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/files/docs/' . $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
+                                                <?php if ($index != 8): ?>
+                                                    <p><?= $index - 1 ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/files/docs/' . $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
+                                                <?php endif; ?>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>

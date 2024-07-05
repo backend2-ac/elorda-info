@@ -189,7 +189,7 @@ class AppController extends Controller
 
         /*--------- Comps --------*/
 
-            $langs_ids = [4, 9, 10, 11,19];
+            $langs_ids = [4, 9, 10, 11,19,36];
             $spec_ids = [2, 3,4];
 
             $comps_lang = Cache::read('comps_lang_'. $l, 'long');
