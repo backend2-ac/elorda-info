@@ -17,15 +17,25 @@
                             <h1 class="media__title title"><?= __('Антикоррупционный комплаенс') ?></h1>
                             <div class="media__text">
                                 <?php if ($docs): ?>
-                                <?php unset($docs[8]);
+                                    <?php unset($docs[8]);
                                     $i = 1;
-                                ?>
+                                    ?>
                                     <div class="inner__text">
                                         <?php foreach ($docs as $index => $doc): ?>
                                             <?php if ($index < 2): ?>
-                                                <p><a href="/files/docs/<?= $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
+                                                <p>
+                                                    <a href="javascript:void(0);" data-doc="/files/docs/<?= $doc['doc'] ?>" class="doc-link" data-viewer-id="viewer-<?= $index ?>"><?= $doc['title'] ?></a>
+                                                </p>
+                                                <div id="viewer-<?= $index ?>"></div>
                                             <?php else: ?>
-                                                <p><?= $i ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/files/docs/' . $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
+                                                <p><?= $i ?>.
+                                                <?php if ($index == (count($docs) - 1)): ?>
+                                                    <a href="<?= '/' . $lang . 'doc-content' ?>"><?= $doc['title'] ?></a>
+                                                <?php else: ?>
+                                                    <a href="javascript:void(0);" data-doc="<?='/files/docs/' . $doc['doc'] ?>" class="doc-link" data-viewer-id="viewer-<?= $index ?>"><?= $doc['title'] ?></a>
+                                                <?php endif; ?>
+                                                </p>
+                                                <div id="viewer-<?= $index ?>"></div>
                                                 <?php $i++; ?>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
@@ -109,3 +119,22 @@
         </div>
     </div>
 </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const links = document.querySelectorAll('.doc-link');
+
+        links.forEach(link => {
+            link.addEventListener('click', function () {
+                const pdfUrl = this.getAttribute('data-doc');
+                const viewerId = this.getAttribute('data-viewer-id');
+                const viewerDiv = document.getElementById(viewerId);
+
+                // Clear the existing viewer content
+                viewerDiv.innerHTML = '';
+
+                PDFObject.embed(pdfUrl, "#" + viewerId);
+            });
+        });
+    });
+</script>
