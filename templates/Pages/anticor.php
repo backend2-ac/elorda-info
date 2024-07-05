@@ -1,6 +1,4 @@
-<?php
-$i = 1;
-?>
+
 <main>
     <div class="container">
         <div class="wrapper-parent">
@@ -19,15 +17,13 @@ $i = 1;
                             <h1 class="media__title title"><?= __('Антикоррупционный комплаенс') ?></h1>
                             <div class="media__text">
                                 <?php if ($docs): ?>
+                                <?php unset($docs[8]); ?>
                                     <div class="inner__text">
                                         <?php foreach ($docs as $index => $doc): ?>
                                             <?php if ($index < 2): ?>
                                                 <p><a href="/files/docs/<?= $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
                                             <?php else: ?>
-                                                <?php if ($index != 8): ?>
-                                                    <p><?= $i ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/files/docs/' . $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
-                                                <?php endif; ?>
-                                                <?php $i++; ?>
+                                                <p><?= $index - 1 ?>. <a href="<?= $index == (count($docs) - 1) ? '/' . $lang . 'doc-content' : '/files/docs/' . $doc['doc'] ?>"><?= $doc['title'] ?></a></p>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>
