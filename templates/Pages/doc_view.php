@@ -18,14 +18,12 @@
                             <?php if ($doc): ?>
                                 <div class="inner__text">
                                     <h2><?= $doc['title'] ?></h2>
-<!--                                    <div id="pdf-viewer"></div>-->
-
-                                        <embed src="/files/docs/<?= $doc['doc'] ?>" type="application/pdf" width="100%" height="100vh" />
-<!--                                    <script>-->
-<!--                                        document.addEventListener('DOMContentLoaded', function () {-->
-<!--                                            PDFObject.embed("/files/docs/--><?php //= $doc['doc'] ?>//", "#pdf-viewer");
-//                                        });
-//                                    </script>
+                                    <div id="pdf-viewer"></div>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            PDFObject.embed("/files/docs/<?= $doc['doc'] ?>", "#pdf-viewer");
+                                        });
+                                    </script>
                                 </div>
                             <?php else: ?>
                                 <div class="inner__text">
