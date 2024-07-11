@@ -1,14 +1,5 @@
 
 <main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js"></script>
-    <style>
-        #pdf-viewer {
-            width: 100%;
-            height: 100vh; /* Full viewport height */
-            border: none;
-        }
-
-    </style>
     <div class="container">
         <div class="wrapper-parent">
             <div class="wrapper">
@@ -18,12 +9,7 @@
                             <?php if ($doc): ?>
                                 <div class="inner__text">
                                     <h2><?= $doc['title'] ?></h2>
-                                    <div id="pdf-viewer"></div>
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function () {
-                                            PDFObject.embed("/files/docs/<?= $doc['doc'] ?>", "#pdf-viewer");
-                                        });
-                                    </script>
+                                    <iframe src="/files/docs/<?= $doc['doc'] ?>" style="display: block; width: 100%; height: 500px;"></iframe>
                                 </div>
                             <?php else: ?>
                                 <div class="inner__text">
