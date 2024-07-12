@@ -2297,7 +2297,7 @@ select {
 }
 
 .inner__text {
-  line-height: 140%;
+  line-height: 180%;
   margin-bottom: 30px;
 }
 
@@ -2306,7 +2306,7 @@ select {
 }
 
 .inner__text > * {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .inner__text p {
