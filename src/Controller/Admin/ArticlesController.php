@@ -179,13 +179,14 @@ class ArticlesController extends AppController{
 
             $entity_res = $this->EntityFiles->saveEntityFiles($data, $model, $this->img_fields);
 
-            if( $entity_res['entity']->getErrors() ){
+            if ( $entity_res['entity']->getErrors() ) {
                 $errors = $entity_res['entity']->getErrors();
                 foreach( $errors as $index => $err ){
-                    Log::write('info', 'Entity error: ' . $err[array_key_first($err)] . ' Data: ' . json_encode($data));
+                    $msg = 'Method: Articles->Add(186) Entity error: ' . $err[array_key_first($err)] . ' Data: ' . json_encode($data);
+                    $this->_setLogMsg($msg, 'admin_articles');
                     $this->Flash->error( $err[array_key_first($err)] );
                 }
-                return $this->redirect( $this->referer() );
+                return $this->redirect($this->referer());
             }
 
             if( $this->$model->save($entity_res['entity']) ){
@@ -207,7 +208,8 @@ class ArticlesController extends AppController{
                         if( $this->ArticlesTags->saveMany($entities) ){
                             $this->Flash->success(__('Теги прикреплены'));
                         } else{
-                            Log::write('info', 'Ошибка  прикрепления тегов Data: ' . json_encode($data) . ' \r\n Article_tags: ' . json_encode($articles_tags));
+                            $msg = 'Method: Articles->Add(212) ArticlesTag->SaveMany(): Ошибка  прикрепления тегов Data: ' . json_encode($data) . ' \r\n Article_tags:  ' . json_encode($articles_tags);
+                            $this->_setLogMsg($msg, 'admin_articles');
                             $this->Flash->error(__('Ошибка прикрепления тегов'));
                         }
                     }
@@ -215,7 +217,8 @@ class ArticlesController extends AppController{
 
                 return $this->redirect( $this->referer() );
             } else{
-                Log::write('info', 'Ошибка сохранения данных! Data: ' . json_encode($data));
+                $msg = 'Method: Articles->add (221 line) Ошибка сохранения данных! Data: ' . json_encode($data);
+                $this->_setLogMsg($msg, 'admin_articles');
                 $this->Flash->error(__('Ошибка сохранения данных'));
             }
         }
@@ -276,7 +279,8 @@ class ArticlesController extends AppController{
             if( $entity_res['entity']->getErrors() ){
                 $errors = $entity_res['entity']->getErrors();
                 foreach( $errors as $index => $err ){
-                    Log::write('info', 'Edit Entity error: ' . $err[array_key_first($err)] . ' Data: ' . json_encode($data));
+                    $msg = 'Method: Articles->Edit(283) Edit Entity error: ' . $err[array_key_first($err)] . ' Data: ' . json_encode($data);
+                    $this->_setLogMsg($msg, 'admin_articles');
                     $this->Flash->error( $err[array_key_first($err)] );
                 }
                 return $this->redirect( $this->referer() );
@@ -296,6 +300,8 @@ class ArticlesController extends AppController{
                     if( $this->ArticlesTags->saveMany($entities) ){
                         $this->Flash->success(__('Теги прикреплены'));
                     } else{
+                        $msg = 'Method: Articles->Edit(303) ArticlesTag->SaveMany(): Ошибка  прикрепления тегов Data: ' . json_encode($data) . ' \r\n Article_tags:  ' . json_encode($articles_tags);
+                        $this->_setLogMsg($msg, 'admin_articles');
                         $this->Flash->error(__('Ошибка прикрепления тегов'));
                     }
                 }
@@ -304,14 +310,17 @@ class ArticlesController extends AppController{
                     $del_old_tags = $this->ArticlesTags->query()->delete()->where(['tag_id IN' => $del_tags]);
                     if( $del_old_tags->execute() ){
                         $this->Flash->success(__('Старые Теги удалены'));
-                    } else{
+                    } else {
+                        $msg = 'Method: Articles->Edit(314) ArticlesTag->execute(): Error: Ошибка удаления старых тегов; Data: ' . json_encode($data) . ' \r\n del_tags:  ' . json_encode($del_tags);
+                        $this->_setLogMsg($msg, 'admin_articles');
                         $this->Flash->error(__('Ошибка удаления старых тегов'));
                     }
                 }
 
                 return $this->redirect( $this->referer() );
             }
-            Log::write('info', 'Edit Ошибка сохранения данных! Data: ' . json_encode($data));
+            $msg = 'Method: Articles->edit (317 line) Ошибка сохранения данных! Data: ' . json_encode($data);
+            $this->_setLogMsg($msg, 'admin_articles');
             $this->Flash->error(__('Ошибка сохранения'));
         }
 
@@ -336,6 +345,8 @@ class ArticlesController extends AppController{
 //            $this->_cacheDelete();
             return $this->redirect( $this->referer() );
         } else{
+            $msg = 'Method: Articles->delete(346) Ошибка удаления Data: ' . json_encode($data) . ' \r\n item_id:  ' . $item_id;
+            $this->_setLogMsg($msg, 'admin_articles');
             $this->Flash->error(__('Ошибка удаления'));
         }
     }
@@ -410,4 +421,4 @@ class ArticlesController extends AppController{
 }
 
 
- ?>
+?>
