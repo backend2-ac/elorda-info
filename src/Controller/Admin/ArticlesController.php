@@ -157,7 +157,7 @@ class ArticlesController extends AppController{
 
             if( $created ){
                 $data['alias'] = $this->_slug_render($data['alias']);
-                $msg = 'Method: Articles->Add(160) Dublicate Alias: ' . $data['alias'] . 'Current Date: ' . date('Y-m-d H:i:s') . ' Data: ' . json_encode($data) . ' IMG: ' . json_encode($_FILES);
+                $msg = 'Method: Articles->Add(160) Dublicate Alias: ' . $data['alias'] . ' Current Date: ' . date('Y-m-d H:i:s') . ' Data: ' . json_encode($data) . ' IMG: ' . json_encode($_FILES) . ' Old Data: ' . json_encode($created);
                 $this->_setLogMsg($msg, 'admin_articles');
                 $created = $this->$model->find()
                     ->where(['alias' => $data['alias']])->first();
