@@ -149,6 +149,12 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
     $builder->connect('/search', ['controller' => 'Articles', 'action' => 'search'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
+    $builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
+    $builder->connect('/article/*', ['controller' => 'Articles', 'action' => 'view'])
+        ->setPatterns(['lang' => 'ru|kz|en'])
+        ->setPersist(['lang']);
     $builder->connect('/writer/*', ['controller' => 'Articles', 'action' => 'writer'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
@@ -156,12 +162,6 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
-    $builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
-    $builder->connect('/article/*', ['controller' => 'Articles', 'action' => 'view'])
-        ->setPatterns(['lang' => 'ru|kz|en'])
-        ->setPersist(['lang']);
 
 //    $builder->connect('/*', ['controller' => 'Articles', 'action' => 'index'])
 //        ->setPatterns(['lang' => 'ru|kz|en'])
@@ -338,6 +338,8 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
 });
 
 $routes->scope('/', function (RouteBuilder $builder) {
+    $builder->connect('/ekonomika', ['controller' => 'Articles', 'action' => 'index', 'ekonomika']);
+    $builder->connect('/ekonomika/*', ['controller' => 'Articles', 'action' => 'view']);
 
     $builder->connect('/', ['controller' => 'Pages', 'action' => 'home']);
     $builder->connect('/about', ['controller' => 'Pages', 'action' => 'about']);
@@ -351,12 +353,12 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
     $builder->connect('/update-cache', ['controller' => 'Articles', 'action' => 'updateCache']);
     $builder->connect('/search', ['controller' => 'Articles', 'action' => 'search']);
-    $builder->connect('/tag/*', ['controller' => 'Articles', 'action' => 'tag']);
     $builder->connect('/writer/*', ['controller' => 'Articles', 'action' => 'writer']);
     $builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index']);
     $builder->connect('/article/*', ['controller' => 'Articles', 'action' => 'view']);
+    $builder->connect('/tag/*', ['controller' => 'Articles', 'action' => 'tag']);
 
-         $builder->connect('/get/article/*', ['controller' => 'Articles', 'action' => 'loadingview'])
+    $builder->connect('/get/article/*', ['controller' => 'Articles', 'action' => 'loadingview'])
         ->setPatterns(['lang' => 'ru|kz|en'])
         ->setPersist(['lang']);
 
@@ -373,8 +375,6 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/aleumet', ['controller' => 'Articles', 'action' => 'index', 'aleumet']);
     $builder->connect('/aleumet/*', ['controller' => 'Articles', 'action' => 'view']);
 
-    $builder->connect('/ekonomika', ['controller' => 'Articles', 'action' => 'index', 'ekonomika']);
-    $builder->connect('/ekonomika/*', ['controller' => 'Articles', 'action' => 'view']);
 
     $builder->connect('/sport', ['controller' => 'Articles', 'action' => 'index', 'sport']);
     $builder->connect('/sport/*', ['controller' => 'Articles', 'action' => 'view']);
