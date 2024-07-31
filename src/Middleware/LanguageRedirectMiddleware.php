@@ -13,7 +13,7 @@ class LanguageRedirectMiddleware
     {
     $uri = $request->getUri();
     $path = $uri->getPath();
-
+//    debug($path);
     $categories = [
         'novosti-stolicy',
         'raznoe',
@@ -35,7 +35,7 @@ class LanguageRedirectMiddleware
         'proisshestvie',
         'tema-dnya',
         'astana-25-1',
-        'sluzhba-komplaens',
+//        'sluzhba-komplaens',
         'kodeks-etiki',
         'parlament',
         'senat',

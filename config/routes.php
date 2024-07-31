@@ -340,6 +340,8 @@ $routes->scope('/{lang}', function (RouteBuilder $builder) {
 $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/ekonomika', ['controller' => 'Articles', 'action' => 'index', 'ekonomika']);
     $builder->connect('/ekonomika/*', ['controller' => 'Articles', 'action' => 'view']);
+    $builder->connect('/sluzhba-komplaens-kz', ['controller' => 'Articles', 'action' => 'index', 'sluzhba-komplaens-kz']);
+    $builder->connect('/sluzhba-komplaens-kz/*', ['controller' => 'Articles', 'action' => 'view']);
 
     $builder->connect('/', ['controller' => 'Pages', 'action' => 'home']);
     $builder->connect('/about', ['controller' => 'Pages', 'action' => 'about']);
@@ -436,8 +438,6 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/adep-kodeksi', ['controller' => 'Articles', 'action' => 'index', 'adep-kodeksi']);
     $builder->connect('/adep-kodeksi/*', ['controller' => 'Articles', 'action' => 'view']);
 
-    $builder->connect('/sluzhba-komplaens-kz', ['controller' => 'Articles', 'action' => 'index', 'sluzhba-komplaens-kz']);
-    $builder->connect('/sluzhba-komplaens-kz/*', ['controller' => 'Articles', 'action' => 'view']);
 
     $builder->connect('/joldau', ['controller' => 'Articles', 'action' => 'index', 'joldau']);
     $builder->connect('/joldau/*', ['controller' => 'Articles', 'action' => 'view']);
