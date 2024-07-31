@@ -19,7 +19,7 @@ class LanguageRedirectMiddleware
         'raznoe',
         'politika',
         'sotsium',
-        'ekonomika',
+//        'ekonomika',
 //        'sport',
         'kultura',
         'raznoe',
