@@ -574,7 +574,10 @@ class AppController extends Controller
                 'keyField' => 'id',
                 'valueField' => 'title',
             ])
-                ->where(['Categories.locale' => $locale])
+                ->where([
+                    'Categories.locale' => $locale,
+                'Categories.show' => 1
+                ])
                 ->order(['title'])
                 ->toArray();
             Cache::write('admin_categories_' . $locale, $categories, 'eternal');

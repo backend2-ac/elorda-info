@@ -40,6 +40,12 @@
 						<label for="inputTitle">Название</label>
 						<?= $this->Form->text('title', array('id' => 'inputTitle', 'class' => 'form-control', 'required')); ?>
 					</div>
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <?= $this->Form->input('show', array('class' => 'custom-control-input', 'id' => 'show', 'type' => 'checkbox'));  ?>
+                            <label class="custom-control-label" for="show">Показать в списке</label>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="inputAlias">Alias</label>
