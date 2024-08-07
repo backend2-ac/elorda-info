@@ -46,7 +46,7 @@
                         <?= $item['locale'] ?>
                     </td>
                     <td class="project-actions text-right">
-                        <a class="btn btn-info btn-sm" href="/admin/categories/edit/<?=$item['id']?>?">
+                        <a class="btn btn-info btn-sm" href="/admin/categories/edit/<?=$item['id']?>">
                             <i class="fas fa-pencil-alt"></i> Редактировать
                         </a>
                         <?php echo $this->Form->postLink('Удалить', "/admin/categories/delete/{$item['id']}", array('confirm' => 'Удалить Материал?', 'value'=>'465', 'class' => 'btn btn-danger btn-sm')) ?>

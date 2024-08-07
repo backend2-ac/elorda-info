@@ -42,8 +42,8 @@
 					</div>
                     <div class="form-group">
                         <div class="custom-control custom-switch">
-                            <?= $this->Form->input('show', array('class' => 'custom-control-input', 'id' => 'show', 'type' => 'checkbox'));  ?>
-                            <label class="custom-control-label" for="show">Показать в списке</label>
+                            <?= $this->Form->input('is_show', array('class' => 'custom-control-input', 'id' => 'is_show', 'type' => 'checkbox'));  ?>
+                            <label class="custom-control-label" for="is_show">Показать в списке</label>
                         </div>
                     </div>
 

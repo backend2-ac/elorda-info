@@ -20,7 +20,7 @@ class Category extends Entity{
         'created_by_id' => true,
         'updated_by_id' => true,
         'locale' => true,
-        'show' => true,
+        'is_show' => true,
 
 		'meta_title' => true,
 		'meta_keywords' => true,
