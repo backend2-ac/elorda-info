@@ -105,7 +105,9 @@ class CategoriesController extends AppController{
         if ($this->request->is(['post', 'put'])) {
             $data1 = $this->request->getData();
             $old_data = clone $data;
-
+            if (!isset($data1['is_show'])) {
+                $data1['is_show'] = 0; // если не установлен, то считаем его 0
+            }
             $entity_res = $this->EntityFiles->saveEntityFiles($data1, $model);
 
             if( $entity_res['entity']->getErrors() ){
