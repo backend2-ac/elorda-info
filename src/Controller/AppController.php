@@ -576,7 +576,7 @@ class AppController extends Controller
             ])
                 ->where([
                     'Categories.locale' => $locale,
-                'Categories.is_show' => 1
+                'Categories.is_show' => 1,
                 ])
                 ->order(['title'])
                 ->toArray();
